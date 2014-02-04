@@ -14,83 +14,69 @@ class AdministrarCategoria_Controller extends CI_Controller {
 
 	public function RegistrarCategoriaAction(){
 
-		$form = $this->input->post('formulario');
+		#verificar si se esta enviado datos del formulario
+		$form = $this->input->get('formulario',true);
 		
-		$form = "-";
+		#$form = "-";
 
 		$CategoriaNom = null;
 		$CategoriaDesc = null;
 		$CategoriaEst = null;
 	
 		if ($form!=null){
-			
-			#$CategoriaNom = $from["nom_categoria"];
-			#$CategoriaDesc = $from["desc_categoria"];
-			#$CategoriaEst = $from["selectEstado"];
-			$CategoriaNom = 'valorPrubea';
-			$CategoriaDesc = 'valorPrueba1';
-			$CategoriaEst = '1';
 
+			$CategoriaNom = $from["nom_categoria"];
+			$CategoriaDesc = $from["desc_categoria"];
+			$CategoriaEst = $from["selectEstado"];
+			/*$CategoriaNom = 'valorPrubea2';
+			$CategoriaDesc = 'valorPrueba2';
+			$CategoriaEst = '1';*/
 			$Categoria = array('cCategoriaNom'=>$CategoriaNom ,'cCategoriaDesc'=>$CategoriaDesc, 'cCategoriaEst' => $CategoriaEst);
 			//-------------Insertar----------
-			$this->acm->insert($Categoria);
-			/*if(===true):
-				$return = array("responseCode"=>200, "datos"=>$Categoria);
-			else
-				$return = array("responseCode"=>400, "greeting"=>"Bad");
-			endif*/
-		
+			if($this->acm->insert($Categoria)){
+				$return = array('responseCode'=>200, 'datos'=>$Categoria);
+			}
+			else{
+				$return = array('responseCode'=>400, 'greeting'=>'Bad');
+			}
 		}else{
-			//$return = array("responseCode"=>400, "greeting"=>"Bad");
+			$return = array('responseCode'=>400, 'greeting'=>'Bad');
 		}
-	
-		//$return = json_encode($return);
-		//return new Response($return,200,array('Content-Type'=>'application/json'));*/
+		$return = json_encode($return);
+		echo $return;
+		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
 	
 	public function EditarCategoriaAction(){
 	
-		$request = $this->get('request');
-		$form = $request->request->get('formulario');
-	
-		$datos = array();
-		parse_str($form,$datos);
-	
+		#verificar si se esta enviado datos del formulario
+		$form = $this->input->get('formulario',true);
+		
+		#$form = '-';
+		
 		$CategoriaNom = null;
 		$CategoriaDesc = null;
 		$CategoriaEst = null;
 	
 		if ($form != null){
 	
-			$Categoriaid = $datos["id"];
+			$Categoriaid = $form["id"];
+			$CategoriaNom = $form["nom_categoriaE"];
+			$CategoriaDesc = $form["desc_categoriaE"];
+			$CategoriaEst = $form["selectEstadoE"];
+			/*$Categoriaid = 1;
+			$CategoriaNom = "cambiado";
+			$CategoriaDesc = "cambiado";
+			$CategoriaEst = "0";*/
 
-			$CategoriaNom = $datos["nom_categoriaE"];
-			$CategoriaDesc = $datos["desc_categoriaE"];
-			$CategoriaEst = $datos["selectEstadoE"];
-			
-			$Categoria = $this->getDoctrine()
-			->getRepository('DicarsDataBundle:VenCategoria')
-			->findOneBy(array('ncategoriaId' => $Categoriaid));
-	
-			$Categoria->setCcategorianom($CategoriaNom);
-			$Categoria->setCcategoriadesc($CategoriaDesc);
-			$Categoria->setCcategoriaest($CategoriaEst);
-	
-			$em = $this->getDoctrine()->getEntityManager();
-			$em->beginTransaction();
-	
-			try {
-				$em->flush();
-			} catch (Exception $e) {
-				$em->rollback();
-				$em->close();
-				$return = array("responseCode"=>400, "greeting"=>"Bad");					
-				throw $e;
+			$data = array('cCategoriaNom'=>$CategoriaNom ,'cCategoriaDesc'=>$CategoriaDesc, 'cCategoriaEst' => $CategoriaEst);
+
+			if($this->acm->update($Categoriaid,$data)){
+				$return = array('responseCode'=>200, 'datos'=>$data);
 			}
-			$em->commit();
-			$em->clear();
-			$em->close();
-			$return = array("responseCode"=>200, "datos"=>$datos);
+			else{
+				$return = array('responseCode'=>400, 'greeting'=>'Bad');
+			}
 	
 		}
 		else {
@@ -98,10 +84,8 @@ class AdministrarCategoria_Controller extends CI_Controller {
 		}
 	
 		$return = json_encode($return);
-		return new Response($return,200,array('Content-Type'=>'application/json'));
+		echo $return;
+		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
 
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */
