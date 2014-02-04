@@ -1,12 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class AdministrarCategoria_Controller extends CI_Controller {
+class AdministrarCargo_model extends CI_Model {
 
 	
-	public function index()
-	{
-		$this->load->view('welcome_message');
+	function __construct() {
+		parent::__construct();
 	}
+
+	
 }
 
 /* End of file welcome.php */

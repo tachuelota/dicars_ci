@@ -3,6 +3,10 @@
 class AdministrarCargo_Controller extends CI_Controller {
 
 	
+	function __construct() {
+		parent::__construct();
+	}
+	
 	public function index()
 	{
 		$this->load->view('welcome_message');
@@ -97,7 +101,7 @@ class AdministrarCargo_Controller extends CI_Controller {
 		$return = json_encode($return);
 		return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
-	
+
 }
 
 /* End of file welcome.php */
