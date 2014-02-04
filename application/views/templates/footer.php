@@ -1,3 +1,17 @@
+		
+		<hr>
+		<footer>
+			<p class="pull-left">
+				&copy;
+				<a href="http://clmdevelopers.com" target="_blank">CLM Developers</a>
+				2013
+			</p>
+			<p class="pull-right">
+				Powered by:
+				<a href="http://clmdevelopers.com" target="_blank">CLM Developers</a>
+			</p>
+		</footer>
+	</div>
 	<!-- jQuery -->
 	<script src="<?php echo base_url();?>assets/js/jquery-1.7.2.min.js"></script>
 	<!-- jQuery UI -->

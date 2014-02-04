@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class AdministracionCategoria_Model extends CI_Model {
+class AdministrarCategoria_Model extends CI_Model {
 
 	
 	function __construct() {

@@ -86,7 +86,7 @@
 						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="{{path('fos_user_security_logout')}}">Salir</a>
+							<a href="<?php echo base_url();?>logout">Salir</a>
 						</li>
 					</ul>
 				</div>
@@ -94,3 +94,5 @@
 		</div>
 	</div>
 	<!-- topbar ends -->
+	<div class="container-fluid">
+		<div class="row-fluid">

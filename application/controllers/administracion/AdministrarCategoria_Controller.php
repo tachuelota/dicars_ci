@@ -4,12 +4,18 @@ class AdministrarCategoria_Controller extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('administracion/AdministracionCategoria_Model','acm');
+		$this->load->model('administracion/AdministrarCategoria_Model','acm');
 	}
 
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		$dataheader['title'] = 'Dicars - Productos -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');		
+		$this->load->view('administracion/categorias');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/categorias.js';
+		$datafooter['active'] = 'admin_prod';
+		$this->load->view('templates/footer.php',$datafooter);
 	}
 
 	public function RegistrarCategoriaAction(){

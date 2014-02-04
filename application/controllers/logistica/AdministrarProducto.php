@@ -3,16 +3,12 @@ if ( ! defined('BASEPATH')) exit('No se permite acceso directo al script');
 /**
 * Controler producto
 */
-class Producto extends CI_Controller
+class AdministrarProducto extends CI_Controller
 {
 	
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('html');
-		$this->load->library('ion_auth');
-		$this->load->database();
-		$this->lang->load('auth');
 	}
 
 	public function index()
