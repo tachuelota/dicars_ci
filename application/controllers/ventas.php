@@ -12,12 +12,12 @@ class Ventas extends CI_Controller {
 	}
 	function clientes(){
 		$dataheader['title'] = 'Clientes - Ventas -';
-		$this->load->view('headers.php',$dataheader);
-		$this->load->view('menu.php');
+		$this->load->view('templates/headers.php',$dataheader);
+		$this->load->view('templates/menu.php');
 		$this->load->view('ventas/clientes.php');
 		$datafooter['jsvista'] = 'assets/js/jsvistas/clientes.js';
 		$datafooter['active'] = 'clientes';
-		$this->load->view('footer.php',$datafooter);
+		$this->load->view('templates/footer.php',$datafooter);
 	}
 }
 ?>
