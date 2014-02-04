@@ -4,7 +4,7 @@ class AdministrarCategoria_Controller extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('AbstractFactory_Model','abs');
+		$this->load->model('administracion/AdministracionCategoria_Model','acm');
 	}
 
 	public function index()
@@ -13,38 +13,39 @@ class AdministrarCategoria_Controller extends CI_Controller {
 	}
 
 	public function RegistrarCategoriaAction(){
+
+		$form = $this->input->post('formulario');
 		
-		
-		$from = $this->input->post('formulario');
-		
+		$form = "-";
+
 		$CategoriaNom = null;
 		$CategoriaDesc = null;
 		$CategoriaEst = null;
 	
 		if ($form!=null){
 			
-			/*$CategoriaNom = $from["nom_categoria"];
-			$CategoriaDesc = $from["desc_categoria"];
-			$CategoriaEst = $from["selectEstado"];*/
+			#$CategoriaNom = $from["nom_categoria"];
+			#$CategoriaDesc = $from["desc_categoria"];
+			#$CategoriaEst = $from["selectEstado"];
 			$CategoriaNom = 'valorPrubea';
 			$CategoriaDesc = 'valorPrueba1';
 			$CategoriaEst = '1';
 
-			$Categoria = array('cCategoriaNom'=>$CategoriaNom ,'cCategoriaDesc'=>$CategoriaDesc, 'cCategoriaEst');
-			/*-------------Insertar----------*/
-			if(!$this->abs->insert($Categoria){
-				$return = array("responseCode"=>200, "datos"=>$datos);
-			}else{
+			$Categoria = array('cCategoriaNom'=>$CategoriaNom ,'cCategoriaDesc'=>$CategoriaDesc, 'cCategoriaEst' => $CategoriaEst);
+			//-------------Insertar----------
+			$this->acm->insert($Categoria);
+			/*if(===true):
+				$return = array("responseCode"=>200, "datos"=>$Categoria);
+			else
 				$return = array("responseCode"=>400, "greeting"=>"Bad");
-			};
-
-		}
-		else {
-			$return = array("responseCode"=>400, "greeting"=>"Bad");
+			endif*/
+		
+		}else{
+			//$return = array("responseCode"=>400, "greeting"=>"Bad");
 		}
 	
-		$return = json_encode($return);
-		return new Response($return,200,array('Content-Type'=>'application/json'));
+		//$return = json_encode($return);
+		//return new Response($return,200,array('Content-Type'=>'application/json'));*/
 	}
 	
 	public function EditarCategoriaAction(){
