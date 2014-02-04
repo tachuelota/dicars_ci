@@ -4,6 +4,8 @@ class AdministrarCargo_Controller extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
+		$this->load->model('administracion/AdministracionCargo_Model','acm');
+
 	}
 	
 	public function index()
@@ -12,39 +14,34 @@ class AdministrarCargo_Controller extends CI_Controller {
 	}
 
 	public function RegistrarCargoAction(){
-		$request = $this->get('request');
-		$form = $request->request->get('formulario');
+		$form = $this->input->get('formulario');
+
+		/* para verificar los datos ---->$form = "-";*/
 	
-		$datos = array();
-		parse_str($form,$datos);
-	
+
 		$CargoDesc = null;
-		$CargoEst = null;
+		$cCargocoEst = null;
 		
 		if ($form!=null){
-			$CargoDesc = $datos["nom_cargo"];
-			$CargoEst = $datos["selectEstado"];
+			$CargoDesc = $form["nom_cargo"];
+			$CargoEst = $form["selectEstado"];
+			
+			/* ---Datos de Prueba------
+			$CargoDesc = 'prueba1';
+			$CargoEst = '1'; */
 				
-			$Cargo = new VenCargo();
-			$Cargo->setNcargodesc($CargoDesc);
-			$Cargo->setCcargocoest($CargoEst);
-				
-			$em = $this->getDoctrine()->getEntityManager();
-			$em->beginTransaction();
-			try {
-				$em->persist($Cargo);
-				$em->flush();
-			} catch (Exception $e) {
-				$em->rollback();
-				$em->close();
+			$Cargo = array('nCargoDesc' => $CargoDesc,'cCargocoEst' =>$CargoEst );
+
+			/* -- probar el metodo de insert -- $this->acm->insert($Cargo); */
+
+			/* Inicio de Insertar*/
+			if(!$this->acm->insert($Cargo){
+				$return = array("responseCode"=>200, "datos"=>$datos);
+			}else{
 				$return = array("responseCode"=>400, "greeting"=>"Bad");
-					
-				throw $e;
-			}
-			$em->commit();
-			$em->clear();
-			$em->close();
-			$return = array("responseCode"=>200, "datos"=>$datos);
+			}; 
+			/* Fin de Insertar */
+
 		}
 		else {
 			$return = array("responseCode"=>400, "greeting"=>"Bad");
