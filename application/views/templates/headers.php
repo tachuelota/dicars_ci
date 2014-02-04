@@ -71,7 +71,7 @@
 				</a>
 
 				<!-- user dropdown starts -->
-				<div class="btn-group pull-right" >
+				<div class="btn-group pull-right" <?php if(isset($isloginview)) echo 'style="display:none"'?> >
 					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#"> <i class="icon-user"></i>
 						<span class="hidden-phone">admin</span>
 						<span class="caret"></span>
