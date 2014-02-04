@@ -18,24 +18,24 @@ class AdministrarCargo_Controller extends CI_Controller {
 
 		/* para verificar los datos ---->$form = "-";*/
 	
-
 		$CargoDesc = null;
-		$cCargocoEst = null;
+		$cCargocoEst = null; 
 		
 		if ($form!=null){
-			$CargoDesc = $form["nom_cargo"];
-			$CargoEst = $form["selectEstado"];
+			$CargoDesc = $form["nCargoDesc"];
+			$CargoEst = $form["cCargocoEst"];
 			
 			/* ---Datos de Prueba------
 			$CargoDesc = 'prueba1';
 			$CargoEst = '1'; */
-				
+			
 			$Cargo = array('nCargoDesc' => $CargoDesc,'cCargocoEst' =>$CargoEst );
 
-			/* -- probar el metodo de insert -- $this->acm->insert($Cargo); */
+			/* -- probar el metodo de insert -- 
+					$this->acm->insert($Cargo); */
 
 			/* Inicio de Insertar*/
-			if(!$this->acm->insert($Cargo){
+			if(!$this->acm->insert($Cargo)){
 				$return = array("responseCode"=>200, "datos"=>$datos);
 			}else{
 				$return = array("responseCode"=>400, "greeting"=>"Bad");
@@ -48,54 +48,41 @@ class AdministrarCargo_Controller extends CI_Controller {
 		}
 	
 		$return = json_encode($return);
-		return new Response($return,200,array('Content-Type'=>'application/json'));
-	}
+		echo $return;
+		//return new Response($return,200,array('Content-Type'=>'application/json'));
+	} 
 	
 	public function EditarCargoAction(){
 	
-		$request = $this->get('request');
-		$form = $request->request->get('formulario');
-	
-		$datos = array();
-		parse_str($form,$datos);
-	
+		$form = $this->input->get('formulario');
+		
 		$CargoEst = null;
 	
 		if ($form != null){
 				
-			$Cargoid = $datos["id"];
-			$CargoEst = $datos["selectEstadoE"];
+			$Cargoid = $form["id"];
+			$CargoEst = $form["cCargocoEst"];
+
 				
-			$Cargo = $this->getDoctrine()
-			->getRepository('DicarsDataBundle:VenCargo')
-			->findOneBy(array('ncargoId' => $Cargoid));
-				
-			$Cargo->setCcargocoest($CargoEst);
-	
-			$em = $this->getDoctrine()->getEntityManager();
-			$em ->beginTransaction();
-				
-			try {
-				$em->flush();
-			} catch (Exception $e) {
-				$em->rollback();
-				$em->close();
-				$return = array("responseCode"=>400, "greeting"=>"Bad");
-					
-				throw $e;
+			$Cargo= array('cCargocoEst' => $CargoEst);
+			
+			/* Inicio de Editar*/
+			if($this->acm->update($Cargoid,$data)){
+				$return = array('responseCode'=>200, 'datos'=>$data);
 			}
-			$em->commit();
-			$em->clear();
-			$em->close();
-			$return = array("responseCode"=>200, "datos"=>$datos);
-				
+			else{
+				$return = array('responseCode'=>400, 'greeting'=>'Bad');
+			}
+			/* Fin de Editar */
+			
 		}
 		else {
 			$return = array("responseCode"=>400, "greeting"=>"Bad");
 		}
 	
 		$return = json_encode($return);
-		return new Response($return,200,array('Content-Type'=>'application/json'));
+		echo $return;
+		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
 
 }
