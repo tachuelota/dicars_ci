@@ -82,7 +82,7 @@ class Views extends CI_Controller
 		$this->load->view('templates/menu.php');
 		$this->load->view('ventas/reporte_zonas.php');
 		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/reporte_zonas.js';
-		$datafooter['active'] = '';
+		$datafooter['active'] = 'movimientos';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 
@@ -94,7 +94,7 @@ class Views extends CI_Controller
 		$this->load->view('templates/menu.php');
 		$this->load->view('ventas/tarjetascreditos.php');
 		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/tarjetascreditos.js';
-		$datafooter['active'] = '';
+		$datafooter['active'] = 'tarj_cred';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 
@@ -165,7 +165,7 @@ class Views extends CI_Controller
 		$this->load->view('templates/menu.php');
 		$this->load->view('ventas/reporte_ventas.php');
 		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/reporte_ventas.js';
-		$datafooter['active'] = 'venta_prod';
+		$datafooter['active'] = 'ventas_rep';
 		$this->load->view('templates/footer.php',$datafooter);
 	} 
 	
