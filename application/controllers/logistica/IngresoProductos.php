@@ -22,7 +22,7 @@ class IngresoProductos extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 	}	
 
-	public function editar_view()
+	/*public function editar_view()
 	{
 		$dataheader['title'] = 'Dicars - Ingreso Productos (Editar) - ';
 		$this->load->view('templates/headers.php',$dataheader);		
@@ -31,7 +31,35 @@ class IngresoProductos extends CI_Controller
 		$datafooter['jsvista'] = 'assets/js/jsvistas/cons_ingresoproductos.js';
 		$datafooter['active'] = 'ing_prod';
 		$this->load->view('templates/footer.php',$datafooter);
+	}*/
+	public function registrar_view(){
+		$dataheader['title'] = 'Dicars - Ingreso Productos (Registrar) - ';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('logistica/reg_ingresoproductos.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/reg_ingresoproductos.js';
+		$datafooter['active'] = 'ing_prod';
+		$this->load->view('templates/footer.php',$datafooter);
 	}
+	public function editar_view(){
+		$dataheader['title'] = 'Dicars - Ingreso Productos (Editar) - ';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('logistica/editar_ingresoproductos.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/editar_ingresoproductos.js';
+		$datafooter['active'] = 'ing_prod';
+		$this->load->view('templates/footer.php',$datafooter);
+	}
+	public function ver_view(){
+		$dataheader['title'] = 'Dicars - Ingreso Productos (Ver) - ';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('logistica/ver_ingresoproductos.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/ver_ingresoproductos.js';
+		$datafooter['active'] = 'ing_prod';
+		$this->load->view('templates/footer.php',$datafooter);
+	}
+
 }
 
 ?>
