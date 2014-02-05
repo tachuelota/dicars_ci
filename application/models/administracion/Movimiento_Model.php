@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class AdministrarMovimiento_Model extends CI_Model {
+class Movimiento_Model extends CI_Model {
 
 	
 	function __construct() {
