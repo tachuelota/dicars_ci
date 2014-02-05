@@ -14,7 +14,7 @@ class Cargos extends CI_Controller {
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
 		$this->load->view('administracion/cargos.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/cargos.js';
+		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/cargos.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
 	}

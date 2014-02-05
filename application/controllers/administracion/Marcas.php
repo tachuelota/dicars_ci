@@ -15,7 +15,7 @@ class Marcas extends CI_Controller {
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
 		$this->load->view('administracion/marcas.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/marcas.js';
+		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/marcas.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
 

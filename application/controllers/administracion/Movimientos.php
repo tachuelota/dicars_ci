@@ -15,8 +15,8 @@ class Movimientos extends CI_Controller {
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
 		$this->load->view('administracion/movimientos.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/movimientos.js';
-		$datafooter['active'] = '';
+		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/movimientos.js';
+		$datafooter['active'] = 'movimientos';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 

@@ -9,7 +9,14 @@ class TipoMonedas extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		//$this->load->view('welcome_message');
+		$dataheader['title'] = 'Dicars - Tipo Moneda -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('administracion/tipoMonedas.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/tipoMonedas.js';
+		$datafooter['active'] = '';
+		$this->load->view('templates/footer.php',$datafooter);
 	}
 
 	public function RegistrarTipoMonedaAction(){
