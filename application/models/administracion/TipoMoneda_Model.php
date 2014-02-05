@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Movimiento_Model extends CI_Model {
+class TipoMoneda_Model extends CI_Model {
 
 	
 	function __construct() {
@@ -13,7 +13,7 @@ class Movimiento_Model extends CI_Model {
 		
 		$this->db->trans_begin();
 
-		$this->db->insert('ven_movimiento',$data);
+		$this->db->insert('ven_tipomoneda',$data);
 
 		if ($this->db->trans_status() === FALSE)
 		{
@@ -33,8 +33,8 @@ class Movimiento_Model extends CI_Model {
 		
 		$this->db->trans_begin();
 
-		$this->db->where('nMovimiento_id',$id);
-		$this->db->update('ven_movimiento',$data);
+		$this->db->where('nTipoMoneda',$id);
+		$this->db->update('ven_tipomoneda',$data);
 
 		if ($this->db->trans_status() === FALSE)
 		{

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class AdministrarMarcas_Controller extends CI_Controller {
+class Marcas extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
@@ -10,7 +10,15 @@ class AdministrarMarcas_Controller extends CI_Controller {
 	
 	public function index()
 	{
-		$this->load->view('welcome_message');
+		//$this->load->view('welcome_message');
+		$dataheader['title'] = 'Dicars - Marcas -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('administracion/marcas.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/marcas.js';
+		$datafooter['active'] = '';
+		$this->load->view('templates/footer.php',$datafooter);
+
 	}
 
 	public function RegistrarMarcaAction(){

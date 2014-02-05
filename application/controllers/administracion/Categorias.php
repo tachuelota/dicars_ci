@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class AdministrarCategoria_Controller extends CI_Controller {
+class Categorias extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
@@ -45,6 +45,7 @@ class AdministrarCategoria_Controller extends CI_Controller {
 			else{
 				$return = array('responseCode'=>400, 'greeting'=>'Bad');
 			}
+			
 		}else{
 			$return = array('responseCode'=>400, 'greeting'=>'Bad');
 		}
@@ -93,5 +94,6 @@ class AdministrarCategoria_Controller extends CI_Controller {
 		echo $return;
 		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
+	
 
 }
