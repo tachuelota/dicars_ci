@@ -3,7 +3,7 @@ if ( ! defined('BASEPATH')) exit('No se permite acceso directo al script');
 /**
 * Controler HomePages
 */
-class HomePages extends CI_Controller
+class Views extends CI_Controller
 {
 	
 	public function __construct()
@@ -128,7 +128,7 @@ class HomePages extends CI_Controller
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
-	/**********************ZONA EDIT*/***********************/
+	/**********************ZONA EDIT************************/
 	public function zona_edit()
 	{
 		$dataheader['title'] = 'Dicars - Zona_Edit -';
