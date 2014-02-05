@@ -11,14 +11,5 @@ class Ofertas extends CI_Controller
 		parent::__construct();
 	}
 
-	public function index()
-	{
-		$dataheader['title'] = 'Dicars - Ofertas -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('ventas/ofertas.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/ofertas.js';
-		$datafooter['active'] = '';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
+
 }

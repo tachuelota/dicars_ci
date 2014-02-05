@@ -6,15 +6,6 @@ class Clientes extends CI_Controller {
 		parent::__construct();
 	}
 
-	public function index()
-	{
-		$dataheader['title'] = 'Dicars - Ventas -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('ventas/clientes.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/clientes.js';
-		$datafooter['active'] = 'clientes';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
+
 	
 }

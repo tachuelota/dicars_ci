@@ -11,14 +11,5 @@ class TarjetasCreditos extends CI_Controller
 		parent::__construct();
 	}
 
-	public function index()
-	{
-		$dataheader['title'] = 'Dicars - Tarjetas de Creditos -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('ventas/tarjetascreditos.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/tarjetascreditos.js';
-		$datafooter['active'] = '';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
+	
 }
