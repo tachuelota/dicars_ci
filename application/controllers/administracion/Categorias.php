@@ -45,6 +45,7 @@ class Categorias extends CI_Controller {
 			else{
 				$return = array('responseCode'=>400, 'greeting'=>'Bad');
 			}
+			
 		}else{
 			$return = array('responseCode'=>400, 'greeting'=>'Bad');
 		}
