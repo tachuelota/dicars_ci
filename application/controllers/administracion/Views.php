@@ -129,12 +129,12 @@ class Views extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 	/**********************ZONA EDIT************************/
-	public function zona_edit()
+	public function editar_zonas()
 	{
 		$dataheader['title'] = 'Dicars - Zona_Edit -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('administracion/zona_edit.php');
+		$this->load->view('administracion/editar_zonas.php');
 		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/zona_edit.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
@@ -151,12 +151,12 @@ class Views extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 	/***********************ZONAS*************************/
-	public function zonas()
+	public function cons_zonas()
 	{
 		$dataheader['title'] = 'Dicars - Zonas -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('administracion/zonas.php');
+		$this->load->view('administracion/cons_zonas.php');
 		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/zonas.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
