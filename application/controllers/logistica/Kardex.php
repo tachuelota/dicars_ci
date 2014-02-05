@@ -1,9 +1,9 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No se permite acceso directo al script');
 /**
-* Controler producto
+* Controler Kardex
 */
-class Productos extends CI_Controller
+class Kardex extends CI_Controller
 {
 	
 	public function __construct()
@@ -13,12 +13,12 @@ class Productos extends CI_Controller
 
 	public function index()
 	{
-		$dataheader['title'] = 'Dicars - Productos -';
+		$dataheader['title'] = 'Dicars - Kardex -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/productos.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/productos.js';
-		$datafooter['active'] = 'admin_prod';
+		$this->load->view('logistica/kardex.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/kardex.js';
+		$datafooter['active'] = 'gen_kardex';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 }

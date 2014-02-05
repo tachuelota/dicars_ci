@@ -1,9 +1,9 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No se permite acceso directo al script');
 /**
-* Controler producto
+* Controler Locales
 */
-class Productos extends CI_Controller
+class HordenCompras extends CI_Controller
 {
 	
 	public function __construct()
@@ -13,11 +13,11 @@ class Productos extends CI_Controller
 
 	public function index()
 	{
-		$dataheader['title'] = 'Dicars - Productos -';
+		$dataheader['title'] = 'Dicars - HordenCompras -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/productos.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/productos.js';
+		$this->load->view('logistica/cons_hordencompras.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/hordencompras.js';
 		$datafooter['active'] = 'admin_prod';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
