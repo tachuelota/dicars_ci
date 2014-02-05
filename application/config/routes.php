@@ -42,7 +42,7 @@ $route['default_controller'] = "principal";
 $route['404_override'] = '';
 $route['login'] = "login/login/index";
 $route['logout'] = "login/login/logout";
-$route['logistica'] = "logistica/home/index";
+$route['logistica'] = "logistica/views/index";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

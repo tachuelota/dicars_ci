@@ -4,7 +4,7 @@
 		<ul class="nav nav-tabs nav-stacked main-menu">
 			<li class="nav-header hidden-tablet">Ventas</li>
 			<li id="venta_prod">
-				<a class="ajax-link" href="ventas_consultar.html"> <i class="icon icon-black icon-cart"></i>
+				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/cons_ventas"> <i class="icon icon-black icon-cart"></i>
 					<span class="hidden-tablet">Venta de Productos</span>
 				</a>
 			</li>

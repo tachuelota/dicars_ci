@@ -113,7 +113,7 @@ class Views extends CI_Controller
 
     
 	// Todo de Ventas
-	public function const_ventas()
+	public function cons_ventas()
 	{
       	$dataheader['title'] = 'Dicars - Ventas -';
 		$this->load->view('templates/headers.php',$dataheader);		
