@@ -4,7 +4,7 @@ class AdministrarCategoria_Controller extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('administracion/AdministrarCategoria_Model','acm');
+		$this->load->model('administracion/Categoria_Model','acm');
 	}
 
 	public function index()

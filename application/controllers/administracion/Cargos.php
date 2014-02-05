@@ -4,8 +4,7 @@ class AdministrarCargo_Controller extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('administracion/AdministracionCargo_Model','acm');
-
+		$this->load->model('administracion/Cargo_Model','acm');
 	}
 	
 	public function index()

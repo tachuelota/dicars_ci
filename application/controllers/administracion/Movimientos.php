@@ -4,7 +4,7 @@ class AdministrarMovimiento_Controller extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('administracion/AdministrarMovimiento_Model','amm');
+		$this->load->model('administracion/Movimiento_Model','amm');
 
 	}
 	

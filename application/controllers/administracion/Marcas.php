@@ -4,7 +4,7 @@ class AdministrarMarcas_Controller extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('administracion/AdministrarMarcas_Model','amm');
+		$this->load->model('administracion/Marca_Model','amm');
 
 	}
 	
