@@ -94,5 +94,6 @@ class Categorias extends CI_Controller {
 		echo $return;
 		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
+	
 
 }
