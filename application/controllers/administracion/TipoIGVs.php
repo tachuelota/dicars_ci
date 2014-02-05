@@ -8,17 +8,7 @@ class TipoIGVs extends CI_Controller {
 		$this->load->model('administracion/TipoIGV_Model','atm');
 	}
 	
-	public function index()
-	{
-		//$this->load->view('welcome_message');
-		$dataheader['title'] = 'Dicars - Tipo IGV -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('administracion/tipoIGV.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/tipoIGV.js';
-		$datafooter['active'] = '';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
+	
 
 	public function RegistrarTipoIGVAction(){
 

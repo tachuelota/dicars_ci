@@ -7,16 +7,7 @@ class Categorias extends CI_Controller {
 		$this->load->model('administracion/Categoria_Model','acm');
 	}
 
-	public function index()
-	{
-		$dataheader['title'] = 'Dicars - Categorias -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');		
-		$this->load->view('administracion/categorias');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/categorias.js';
-		$datafooter['active'] = 'admin_prod';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
+	
 
 	public function RegistrarCategoriaAction(){
 

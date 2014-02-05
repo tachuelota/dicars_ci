@@ -11,14 +11,5 @@ class Locales extends CI_Controller
 		parent::__construct();
 	}
 
-	public function index()
-	{
-		$dataheader['title'] = 'Dicars - Locales -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('administracion/locales.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/locales.js';
-		$datafooter['active'] = '';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
+	
 }

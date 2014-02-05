@@ -8,18 +8,7 @@ class Marcas extends CI_Controller {
 
 	}
 	
-	public function index()
-	{
-		//$this->load->view('welcome_message');
-		$dataheader['title'] = 'Dicars - Marcas -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('administracion/marcas.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/marcas.js';
-		$datafooter['active'] = '';
-		$this->load->view('templates/footer.php',$datafooter);
-
-	}
+	
 
 	public function RegistrarMarcaAction(){
 
