@@ -23,7 +23,7 @@ class TipoMonedas extends CI_Controller {
 
 		$form = $this->input->get('formulario',true);
 
-		$form = '-';
+		#$form = '-';
 
 		$Desc = null;
 		$Monto = null;
@@ -31,13 +31,13 @@ class TipoMonedas extends CI_Controller {
 
 		if ($form!=null){
 
-			#$Desc = $form["desc_tipomoneda"];
-			#$Monto = $form["monto"];
-			#$Est = $form["selectEstado"];
+			$Desc = $form["desc_tipomoneda"];
+			$Monto = $form["monto"];
+			$Est = $form["selectEstado"];
 			
-			$Desc = "1";
-			$Monto = 20.0;
-			$Est = '1';
+			#$Desc = "1";
+			#$Monto = 20.0;
+			#$Est = '1';
 
 			$TipoMoneda = array('cTipoMonedaDesc'=>$Desc ,'nTipoMonedaMont'=>$Monto, 'cTipoMonedaEst' => $Est);
 			//-------------Insertar----------
@@ -60,48 +60,27 @@ class TipoMonedas extends CI_Controller {
 
 	public function EditarTipoMonedaAction(){
 
-		$request = $this->get('request');
-		$form = $request->request->get('formulario');
-
-		$datos = array();
-		parse_str($form,$datos);
-
+		$form = $this->input->get('formulario',true);
+		#$form = '-';
 		$Desc = null;
 		$Monto = null;
 		$Est = null;
 
 		if ($form != null){
 
-			$id = $datos["id"];
+			$id = $form["id"];
+			$Desc = $form["desc_tipomonedaE"];
+			$Monto = $form["montoE"];
+			$Est = $form["selectEstadoE"];
 
-			$Desc = $datos["desc_tipomonedaE"];
-			$Monto = $datos["montoE"];
-			$Est = $datos["selectEstadoE"];
-
-			$TipMoneda = $this->getDoctrine()
-			->getRepository('DicarsDataBundle:VenTipomoneda')
-			->findOneBy(array('ntipomoneda' => $id));
-
-			$TipMoneda->setCtipomonedadesc($Desc);
-			$TipMoneda->setNtipomonedamont($Monto);
-			$TipMoneda->setNtipomonedaest($Est);
-
-			$em = $this->getDoctrine()->getEntityManager();
-			$em->beginTransaction();
-
-			try {
-				$em->flush();
-			} catch (Exception $e) {
-				$em->rollback();
-				$em->close();
-				$return = array("responseCode"=>400, "greeting"=>"Bad");
-
-				throw $e;
+			$data = array('cTipoMonedaDesc'=>$Desc ,'nTipoMonedaMont'=>$Monto, 'cTipoMonedaEst' => $Est);
+			//-------------Insertar----------
+			if($this->atm->update($id,$data)){
+				$return = array('responseCode'=>200, 'datos'=>$data);
 			}
-			$em->commit();
-			$em->clear();
-			$em->close();
-			$return = array("responseCode"=>200, "datos"=>$datos);
+			else{
+				$return = array('responseCode'=>400, 'greeting'=>'Bad');
+			}
 
 		}
 		else {
@@ -109,7 +88,8 @@ class TipoMonedas extends CI_Controller {
 		}
 
 		$return = json_encode($return);
-		return new Response($return,200,array('Content-Type'=>'application/json'));
+		echo $return;
+		#return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
 }
 
