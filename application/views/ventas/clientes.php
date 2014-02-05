@@ -8,7 +8,7 @@
 			</p>
 		</div>
 	</noscript>
-<div id="content" class="span10">
+	<div id="content" class="span10">
 			<!-- content starts -->	
 			<div>
 				<ul class="breadcrumb">
