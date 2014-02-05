@@ -9,7 +9,7 @@ class Categorias extends CI_Controller {
 
 	public function index()
 	{
-		$dataheader['title'] = 'Dicars - Productos -';
+		$dataheader['title'] = 'Dicars - Categorias -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');		
 		$this->load->view('administracion/categorias');
