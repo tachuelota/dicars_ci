@@ -10,17 +10,6 @@ class Kardex extends CI_Controller
 	{
 		parent::__construct();
 	}
-
-	public function index()
-	{
-		$dataheader['title'] = 'Dicars - Kardex -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/kardex.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/kardex.js';
-		$datafooter['active'] = 'gen_kardex';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
 }
 
 ?>

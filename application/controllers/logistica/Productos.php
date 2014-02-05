@@ -10,17 +10,6 @@ class Productos extends CI_Controller
 	{
 		parent::__construct();
 	}
-
-	public function index()
-	{
-		$dataheader['title'] = 'Dicars - Productos -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/productos.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/productos.js';
-		$datafooter['active'] = 'admin_prod';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
 }
 
 ?>

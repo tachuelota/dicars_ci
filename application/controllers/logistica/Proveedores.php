@@ -10,15 +10,4 @@ class Proveedores extends CI_Controller
 	{
 		parent::__construct();
 	}
-
-	public function index()
-	{
-		$dataheader['title'] = 'Dicars - Proveedores -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/proveedores.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/proveedores.js';
-		$datafooter['active'] = '';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
 }
