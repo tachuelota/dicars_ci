@@ -1,3 +1,125 @@
+/*Extensiones de jQuery*/
+
+jQuery.fn.getIndexObj = function (obj,attr){
+	var objindex = null;
+	this.each(function( index ) {
+		  if(this[attr] == obj[attr]){
+			  objindex = index;
+		  }
+	});
+	return objindex;
+};
+
+jQuery.fn.serializeObject = function()
+{
+    var o = {};
+    var a = this.serializeArray();
+    $.each(a, function() {
+        if (o[this.name] !== undefined) {
+            if (!o[this.name].push) {
+                o[this.name] = [o[this.name]];
+            }
+            o[this.name].push(this.value || '');
+        } else {
+            o[this.name] = this.value || '';
+        }
+    });
+    return o;
+};
+
+
+jQuery.fn.reset = function () {
+	  $(this).each (function() { this.reset(); });
+	};
+
+jQuery.fn.disable = function () {
+	  $(this).find("input,select,textarea,checkbox").attr("disabled",true);
+	};
+
+jQuery.fn.enable = function () {
+	  $(this).find("input,select,textarea,checkbox").attr("disabled",false);
+	};
+
+/*Fin extensiones de jQuery*/
+function getActionButtons(conf){
+  actions = "<p>"
+  if(conf.substring(0,1)==1)
+    actions += '<a class="ver_row actions-icons" data-original-title="Ver" href="#"><img alt="ver" class="icons" src="view.png"></a>';
+  if(conf.substring(1,2)==1)
+    actions += '<a class="edit_row actions-icons" data-original-title="Editar" href="#"><img alt="edit" class="icons" src="http://d9i0z8gxqnxp1.cloudfront.net/img/edit-icon.png"></a>';
+  if(conf.substring(2,3)==1)
+    actions += '<a class="delete-row actions-icons" data-original-title="Eliminar" href="#"><img alt="trash" src="http://d9i0z8gxqnxp1.cloudfront.net/img/trash-icon.png"></a>';
+  actions += '</p>'
+  return actions;
+}
+
+function getConfOneDay(day)
+{
+	var conf = "";
+	for(var i = 0 ; i < 7 ; i++)
+	{
+		if(i===parseInt(day))
+			continue;
+		conf+=i
+		if(i!=6)
+			conf+=","
+	}
+	return conf;
+}
+
+function getDiaSemana(num){
+  var dia;
+  switch (parseInt(num)){
+    case 0:
+      dia = "Domingo";
+      break;
+    case 1:
+      dia = "Lunes";
+      break;
+    case 2:
+      dia = "Martes";
+      break;
+    case 3:
+      dia = "Miercoles";
+      break;
+    case 4:
+      dia = "Jueves";
+      break;
+    case 5:
+      dia = "Viernes";
+      break;
+    case 6:
+      dia = "Sabado";
+      break;
+  }
+  return dia;
+}
+
+function DisplayBlockUI(idMensaje){
+  $.blockUI({
+    message: $('#'+idMensaje),
+    css: {
+      border: 'none',
+      padding: '15px',
+      backgroundColor: '#000',
+      '-webkit-border-radius': '10px', 
+      '-moz-border-radius': '10px',
+      opacity: .5,
+      color: '#fff'
+      }
+    });
+}
+
+function DisplayBlockUISingle(idMensaje){
+   $.blockUI({
+    message: $('#'+idMensaje),
+    css: {
+      border: 'none'
+    }
+  });
+}
+
+
 /*
  * logdata : muestra la data que se devuelve como response al enviar un formulario
  * con la funcion enviar
@@ -66,30 +188,10 @@ function SubTablaArray(Table, Array, attr){
 /*
  * Nesesita tener definido el atributo cantidad
  */
-
-function sumColArray(Array,attr){
+function sumArrayByAttr(Array2,attr){
 	var total = 0;
-	$(Array).each(function(index){
-		total += this[attr];
-	});
-	return total;
-}
-
-function sumArrayByAttr(Array2,attr,attrresult,attrcondicion){
-	var total = 0;
-	$(Array2).each(function( index ){
-		var condicion = 1;
-		if(typeof(attrcondicion) != 'undefined')
-			condicion = this[attrcondicion];
-		if(condicion == 1){
-			if(typeof(this['cantidad'])!='undefined')
-				total +=(this[attr]*this['cantidad']);
-			else
-				total +=this[attr];
-		}
-		if(typeof(attrresult) != 'undefined')
-			this[attrresult] = (this[attr]*this['cantidad']);
-		
+	$(Array2).each(function( index ){		
+		total +=parseFloat(this[attr]);	
 	});
 	return(total);
 }
@@ -120,99 +222,79 @@ function getSimpleSelectRowCallBack(DSelected, tableid){
  * responsefunction : es la funcion que se ejecuta cuando responde el controlador
  * otherdata: son datos adicionales que se pueden enviar al controlador
  */
-function enviar(IdForm,successfunction,otherdata, errorfunction){
-	if(typeof(otherdata)=== 'undefined' || otherdata == null)
-		otherdata = null;
-	$("#"+IdForm).submit(function(event){
-		event.preventDefault();
-        var url=$("#"+IdForm).attr("action"); 
-        var Consulta = $.ajax({
-	      	  type: "POST",
-	      	  url: url,
-	      	  data: { formulario:$("#"+IdForm).serialize(),otherdata:otherdata }
-	      	});
-     
-        Consulta.done(function( data ) {
-            
-      	  if(data.responseCode==200 ){
-				if(typeof(successfunction)=== 'undefined' || successfunction == null)
-					console.log("no function");
-				else 
-					successfunction(data);
-      	  }else if(data.responseCode==400)
-      		  alert('Error bad request');
-      	  else alert("An unexpeded error occured.");
-        });
-        
-        Consulta.fail(function() { 
-        	if(typeof(errorfunction)=== 'undefined' || errorfunction == null)
-				console.log("no function");
-			else 
-				errorfunction(); 
-        });
-	});
+function enviar(url, datos, successfunction, errorfunction){
+	var Consulta = $.ajax({
+		type: "POST",		
+      	dataType: "JSON",
+		url: url,
+		data: datos
+  	});
+
+
+    if(typeof(successfunction)!= 'undefined' && successfunction != null)
+    	Consulta.done(function(data){
+    		successfunction(data);
+    	});
+
+    if(typeof(errorfunction)!= 'undefined' && errorfunction != null)
+    	Consulta.fail(function(data){
+    		errorfunction(data);
+    	});
+
 		
 }
 
 /*
  * Crea un datatable y lo devuelve como variable
  */
-function createDataTable(idTable,UrlaDTable,FormatoDTable, CallBackFunction, RowCallBackFunction){
+function createDataTable(idTable,UrlaDTable,FormatoDTable, DrawCallBackFunction, RowCallBackFunction){
 	
-	oTable = $('#'+idTable).dataTable({
-		"aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
-		"iDisplayLength": 25,
-		"bProcessing": true,
-		"bServerSide": false,
-		"bDestroy": true,
-		"sAjaxSource": UrlaDTable,
-		"fnServerData": function( sUrl, aoData, fnCallback, oSettings ) {
-            oSettings.jqXHR = $.ajax( {
-                "url": sUrl,
-                "data": aoData,
-                "success": fnCallback,
-                "dataType": "json",
-                "cache": false
-            } );
-        },
-		"aoColumns": FormatoDTable,				             
-	 	"aaSorting": [ [0, 'asc'], [1, 'asc'] ],
+	var oTable = $('#'+idTable).dataTable({
+		"bProcessing": false,
+		"bDestroy": true,		
+        "bSort": false,
+		"sAjaxSource": UrlaDTable,	  
+		"aoColumns": FormatoDTable,				   
+    	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
+    	"sPaginationType": "full_numbers",
+    	"oLanguage": {
+		    "sProcessing":     "Procesando...",
+		    "sLengthMenu":     "Mostrar _MENU_ registros",
+		    "sZeroRecords":    "No se encontraron resultados",
+		    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+		    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+		    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+		    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		    "sInfoPostFix":    "",
+		    "sSearch":         "Buscar:",
+		    "sUrl":            "",
+		    "sInfoThousands":  ",",
+		    "sLoadingRecords": "Cargando...",
+		    "oPaginate": {
+		        "sFirst":    "Primero",
+		        "sLast":     "Último",
+		        "sNext":     "Siguiente",
+		        "sPrevious": "Anterior"
+		    },
+		    "oAria": {
+		        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+		        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		    }
+		},  
 	 	"fnCreatedRow": function( nRow, aData, iDisplayIndex ) {
 	 		if(typeof(RowCallBackFunction)!= 'undefined' && RowCallBackFunction != null)
 	 			RowCallBackFunction(nRow,aData,iDisplayIndex);
 		},
 	 	"fnDrawCallback": function(oSettings ){
-		 	if(typeof(CallBackFunction)!= 'undefined' && CallBackFunction != null){
+		 	if(typeof(DrawCallBackFunction)!= 'undefined' && DrawCallBackFunction != null){
 		 		setTimeout(function() {
-			 		CallBackFunction();
-			 		});
-		 		}
-		 	},
-		 	
-	 	"aoColumnDefs": [
-	                  {"sType": 'string-case', "aTargets": [1]}
-	                  ],
-	 	
-	 	
-		 	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
-		 	"sPaginationType": "bootstrap",
-		 	"oLanguage": {
-		 		"sUrl": urlES
-			} 		            
-	
-		});
+			 		DrawCallBackFunction();
+		 		});
+	 		}
+    }
+	});
 	return oTable;
 }
-
-jQuery.fn.getIndexObj = function (obj,attr){
-	var objindex = null;
-	this.each(function( index ) {
-		  if(this[attr] == obj[attr]){
-			  objindex = index;
-		  }
-	});
-	return objindex;
-};
 
 function CopyArray(Array1,Array2,all,attrs){
 	while(Array1.length > 0)
@@ -252,7 +334,7 @@ function ajaxResponseData(namediv,path){
         url: path,
         async: false
         }).responseText;
-		$('#'+namediv).html(data);
+	$('#'+namediv).html(data);
 }
 
 function ajaxResponseDataPost(namediv,path){
@@ -288,13 +370,11 @@ function SelectListPost(list, valor)
 {
     $('#'+list).val(valor);
 }
-jQuery.fn.reset = function () {
-	  $(this).each (function() { this.reset(); });
-	};
 	
 function reloadTable(oTable){
 	var returnfunction = function(data){
 		oTable.fnReloadAjax();
+		console.log(data);
 		};
 	return returnfunction;
 }
@@ -302,7 +382,7 @@ function reloadTable(oTable){
 function reloadclosemodal(idmodal,idaTable){
 	var returnfunction = function(data){
 		$('#'+idaTable).dataTable().fnReloadAjax();
-		//console.log(data);
+		console.log(data);
 		$('#'+idmodal).modal('hide');
 		$('#'+idmodal+" form").reset();
 		};
@@ -321,13 +401,13 @@ function crearElementosForm(Array){
 			$fielset.append('<h3>'+this.label+'</h3>');
 			break;
 		case 'actions':
-			$modalfooter.append('<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>  <button type="submit" id="btn_submit" class="btn btn-primary">Guardar</button>');
+			$modalfooter.append('<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>  <button type="submit" class="btn btn-primary">Guardar</button>');
 			break;
 		case 'close':
 			$modalfooter.append('<button type="reset" class="btn" data-dismiss="modal">Cerrar</button>');
 			break;
 		case 'hidden':
-			$fielset.append('<input type="hidden" id="'+this.name+'" name="'+this.name+'" value="'+this.value+'">');
+			$fielset.append('<input type="hidden" name="'+this.name+'" value="'+this.value+'">');
 			break;
 		default:
 			$div_control_group = $('<div class="control-group">');
@@ -357,7 +437,7 @@ function addElemento(obj){
 	    		$elem.val(obj.value);
 	    		break;
 	    case 'file':
-	    		$elem = $('<input type="file" class="input-xlarge" id="'+obj.name+'" name="'+obj.name+'">');
+	    		$elem = $('<input type="file" class="input-xlarge" name="'+obj.name+'">');
 	    		break;
 	    case 'textarea':
 	    		$elem = $('<textarea class="input-xlarge" name="'+obj.name+'" rows="2" cols="" required="'+obj.req+'" maxlength="'+obj.max+'"></textarea>');
