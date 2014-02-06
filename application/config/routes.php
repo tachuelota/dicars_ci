@@ -43,6 +43,8 @@ $route['404_override'] = '';
 $route['login'] = "login/login/index";
 $route['logout'] = "login/login/logout";
 $route['logistica'] = "logistica/views/index";
+$route['ventas'] = "ventas/views/index";
+$route['administracion'] = "administracion/views/index";
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

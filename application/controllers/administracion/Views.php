@@ -81,18 +81,6 @@ class Views extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 
 	}
-	/*******************MOVIMIENTOS*******************/
-	public function movimientos()
-	{
-		//$this->load->view('welcome_message');
-		$dataheader['title'] = 'Dicars - Movimientos -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('administracion/movimientos.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/movimientos.js';
-		$datafooter['active'] = 'movimientos';
-		$this->load->view('templates/footer.php',$datafooter);
-	}
 	/****************TIPO IGVS*******************/
 	public function tipoIGV()
 	{
