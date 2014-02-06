@@ -168,5 +168,16 @@ class Views extends CI_Controller
 		$datafooter['active'] = 'ventas_rep';
 		$this->load->view('templates/footer.php',$datafooter);
 	} 
-	
+
+	/*******************MOVIMIENTOS*******************/
+	public function movimientos()
+	{
+		$dataheader['title'] = 'Dicars - Movimientos -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('ventas/movimientos.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/movimientos.js';
+		$datafooter['active'] = 'movimientos';
+		$this->load->view('templates/footer.php',$datafooter);
+	}	
 }

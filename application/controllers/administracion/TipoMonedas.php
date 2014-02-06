@@ -6,8 +6,8 @@ class TipoMonedas extends CI_Controller {
 		parent::__construct();
 		$this->load->model('administracion/TipoMoneda_Model','atm');
 	}
-	
-	
+
+
 
 	public function RegistrarTipoMonedaAction(){
 
@@ -24,7 +24,7 @@ class TipoMonedas extends CI_Controller {
 			$Desc = $form["desc_tipomoneda"];
 			$Monto = $form["monto"];
 			$Est = $form["selectEstado"];
-			
+
 			#$Desc = "1";
 			#$Monto = 20.0;
 			#$Est = '1';

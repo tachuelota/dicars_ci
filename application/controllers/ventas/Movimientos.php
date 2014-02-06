@@ -4,11 +4,9 @@ class Movimientos extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('administracion/Movimiento_Model','amm');
+		$this->load->model('ventas/Movimiento_Model','amm');
 
-	}
-	
-	
+	}	
 
 	public function RegistrarMovAction(){
 		

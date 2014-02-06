@@ -165,4 +165,38 @@ class Views extends CI_Controller
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
+
+	public function cons_pedidos()
+	{
+		$dataheader['title'] = 'Dicars - Pedidos -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('logistica/pedidos.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/pedidos.js';
+		$datafooter['active'] = 'ord_ped';
+		$this->load->view('templates/footer.php',$datafooter);
+	}
+
+	public function reg_pedidos()
+	{
+		$dataheader['title'] = 'Dicars - Pedidos -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('logistica/reg_pedidos.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/reg_pedidos.js';
+		$datafooter['active'] = 'ord_ped';
+		$this->load->view('templates/footer.php',$datafooter);
+	}
+
+	public function ver_pedidos()
+	{
+		$dataheader['title'] = 'Dicars - Pedidos -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('logistica/ver_pedidos.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/ver_pedidos.js';
+		$datafooter['active'] = 'ord_ped';
+		$this->load->view('templates/footer.php',$datafooter);
+	}
+	
 }
