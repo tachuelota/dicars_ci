@@ -14,15 +14,15 @@
 		<div>
 			<ul class="breadcrumb">
 				<li>
-					<a href="index.html">Home</a>
+					<a href="<?php echo base_url();?>">Home</a>
 					<span class="divider">/</span>
 				</li>
 				<li>
-					<a href="logistica_homepage.html">Logística</a>
+					<a href="<?php echo base_url();?>logistica/">Logística</a>
 					<span class="divider">/</span>
 				</li>
 				<li>
-					<a href="logistica_productos.html">Productos</a>
+					<a href="<?php echo base_url();?>logistica/views/productos/">Productos</a>
 				</li>
 			</ul>
 		</div>

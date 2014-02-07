@@ -15,37 +15,39 @@
 	<div>
 		<ul class="breadcrumb">
 			<li>
-				<a href="index.html">Home</a>
+				<a href="<?php echo base_url();?>">Home</a>
 				<span class="divider">/</span>
 			</li>
 			<li>
-				<a href="logistica_homepage.html">Logística</a>
+				<a href="<?php echo base_url();?>logistica/">Logística</a>
 			</li>
 		</ul>
 	</div>
 	<div class="row-fluid">
-		<a data-rel="tooltip" title="Ver, Agregar y editar Productos." class="well span3 top-block" href="logistica_productos.html">
+		<a data-rel="tooltip" title="Ver, Agregar y editar Productos." class="well span3 top-block" href="<?php echo base_url();?>
+			logistica/views/productos">
 			<span class="icon32 icon-color icon-inbox"></span>
 			<div>
 				Administrar
 				<br>Productos</div>
 		</a>
 
-		<a data-rel="tooltip" title="Ver, Agregar y editar Proveedores." class="well span3 top-block" href="logistica_proveedores.html">
+		<a data-rel="tooltip" title="Ver, Agregar y editar Proveedores." class="well span3 top-block" href="<?php echo base_url();?>logistica/views/proveedores/">
 			<span class="icon32 icon-color icon-users"></span>
 			<div>
 				Administrar
 				<br>Proveedores</div>
 		</a>
 
-		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Pedidos." class="well span3 top-block" href="logistica_pedidos.html">
+		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Pedidos." class="well span3 top-block" href="<?php echo base_url();?>logistica/views/cons_pedidos/">
 			<span class="icon32 icon-color icon-compose"></span>
 			<div>
 				Orden
 				<br>de Pedido</div>
 		</a>
 
-		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Orden Salida." class="well span3 top-block" href="logistica_orden_compra_consultar.html">
+		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Orden Compra." class="well span3 top-block" href="<?php echo base_url();?>
+			logistica/views/cons_ordencompra">
 			<span class="icon32 icon-color icon-compose"></span>
 			<div>
 				Orden
@@ -53,26 +55,30 @@
 		</a>
 	</div>
 	<div class="row-fluid">
-		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Pedidos." class="well span3 top-block" href="logistica_cons_ingresoproductos.html">
+		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Ingreso Productos." class="well span3 top-block" href="<?php echo base_url();?>
+			logistica/views/cons_ingresoproductos">
 			<span class="icon32 icon-color icon-archive"></span>
 			<div>
 				Ingreso
 				<br>de Productos</div>
 		</a>
 
-		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Orden Salida." class="well span3 top-block" href="logistica_cons_salidaproductos.html">
+		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Orden Salida." class="well span3 top-block" href="<?php echo base_url();?>
+			logistica/views/cons_salidaproductos">
 			<span class="icon32 icon-color icon-reply"></span>
 			<div>
 				Salida
 				<br>de Productos</div>
 		</a>
-		<a data-rel="tooltip" title="Ver Saldo Inicial." class="well span3 top-block" href="logistica_saldoini.html">
+		<a data-rel="tooltip" title="Ver Saldo Inicial." class="well span3 top-block" href="<?php echo base_url();?>
+			logistica/views/saldo_inicial">
 			<span class="icon32 icon-color icon-document"></span>
 			<div>
 				Saldo
 				<br>Inicial</div>
 		</a>
-		<a data-rel="tooltip" title="Ver Kardex." class="well span3 top-block" href="logistica_kardex.html">
+		<a data-rel="tooltip" title="Ver Kardex." class="well span3 top-block" href="<?php echo base_url();?>
+			logistica/views/kardex">
 			<span class="icon32 icon-color icon-document"></span>
 			<div>
 				Generar

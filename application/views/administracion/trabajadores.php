@@ -15,10 +15,10 @@
 						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>/administracion">administracion/</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>administracion">Administración/</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>/administracion/trabajadores">Trabajadores</a>
+						<a href="<?php echo base_url();?>administracion/trabajadores">Trabajadores</a>
 					</li>
 				</ul>
 			</div>  
@@ -38,20 +38,9 @@
 								  	<th>Nombre y Apellidos</th>
 								  	<th>DNI</th>
 								  	<th>Teléfono</th>
-								  	<th></th>
-								  	<th></th>
-								  	<th></th>
 							  	</tr>
 						  	</thead>
 						  	<tbody>
-						  		<tr>
-								  	<th>Diego Molina</th>
-								  	<th>12345678</th>
-								  	<th>123456</th>
-								  	<th><a class='btn btn-success btn-datos' href='#'><i class='icon-zoom-in icon-white'></i>Ver Datos</a></th>
-								  	<th><a class='btn btn-info btn-editar' href='#'><i class='icon-edit icon-white'></i>Editar</a></th>
-								  	<th><a id-data='".$empleado -> getNpersonalId()."' class='btn btn-danger' href='#'><i class='icon-trash icon-white'></i>Eliminar</a></th>
-							  	</tr>
 						  	</tbody>
 					  	</table> 
 

@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	$("#TipoMonedaForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 
-	var CargosTA = new DTActions({
+	var TipoMonedaTA = new DTActions({
 		'conf': '010',
 		'idtable': 'tipomoneda_table',
 		'EditFunction': function(nRow, aData, iDisplayIndex) {
@@ -11,7 +11,7 @@ $(document).ready(function(){
 	  		$("#desc_tipomoneda").val(aData.cTipoMonedaDesc);
 	  		$("#monto").val(aData.nTipoMonedaMont);
 	  		$("#selectEstado").val(aData.cTipoMonedaEst);
-	  		$("#idTpoMoneda").val(aData.nTipoMoneda);
+	  		$("#idTipoMoneda").val(aData.nTipoMoneda);
 		},
 	});
 
@@ -20,7 +20,7 @@ $(document).ready(function(){
 	};
 
 
-    var TipoMonedaURL = '';
+    var TipoMonedaURL = $("#tipomoneda_table").attr("data-source");
 	TipoMonedaFormato = [
 		              { "sWidth": "25%","mDataProp": "cTipoMonedaDesc"},
 		              { "sWidth": "25%","mDataProp": "nTipoMonedaMont"},
@@ -48,13 +48,13 @@ $(document).ready(function(){
 	$("#btn-reg-tipomoneda").click(function(event){
 		event.preventDefault();
 		if($("#TipoMonedaForm").validationEngine('validate'))
-			enviar($("#TipoMonedaForm").attr("action-1"),{formulario:$("#TipoMonedaForm").serializeObject()}, successCategoria, null)
+			enviar($("#TipoMonedaForm").attr("action-1"),{formulario:$("#TipoMonedaForm").serializeObject()}, successTipoMoneda, null)
 	});
 	$("#btn-editar-tipomoneda").click(function(event){
 		event.preventDefault();
 		if($("#TipoMonedaForm").validationEngine('validate'))
-			enviar($("#TipoMonedaForm").attr("action-2"),{formulario:$("#TipoMonedaForm").serializeObject()}, successCategoria, null)
+			enviar($("#TipoMonedaForm").attr("action-2"),{formulario:$("#TipoMonedaForm").serializeObject()}, successTipoMoneda, null)
 	})
 
-	TipoMonedaTable = createDataTable('tipomoneda_table',UrlaDTable,FormatoDTable,null, TipoMonedaRowCBF);
+	TipoMonedaTable = createDataTable('tipomoneda_table',TipoMonedaURL,TipoMonedaFormato,null, TipoMonedaRowCBF);
 });

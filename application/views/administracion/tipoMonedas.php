@@ -46,8 +46,8 @@
 							<div class="modal-header">
 								<h3>Registrar Tipo de Moneda</h3>
 							</div>
-							<form id="TipoMonedaForm" class="form-horizontal" action-1="<?php echo base_url();?>administracion/tipomoneda/registrar" action-2="<?php echo base_url();?>administracion/tipomoneda/editar">
-								<input type="hidden" id="idTipoMoneda" name="idTpoMoneda">
+							<form id="TipoMonedaForm" class="form-horizontal" action-1="<?php echo base_url();?>administracion/tipomonedas/registrar" action-2="<?php echo base_url();?>administracion/tipomonedas/editar">
+								<input type="hidden" id="idTipoMoneda" name="idTipoMoneda">
 								<div class="modal-body">
 									<fieldset>
 									  	<div class="control-group">
@@ -59,7 +59,7 @@
 									  	<div class="control-group">
 											<label class="control-label" for="monto">Monto</label>
 											<div class="controls">
-										  		<input id="monto" name="monto" type="number" step="0.01" min="1" max="10" required >
+										  		<input id="monto" name="monto" type="text">
 											</div>
 									  	</div>
 									  	<div class="control-group">
