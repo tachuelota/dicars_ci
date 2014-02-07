@@ -48,6 +48,7 @@ class Cargo_Model extends CI_Model {
 		}
 	}
 
+
  	public function get_cargos($nCargo_id = FALSE)
 	{
 		if($nCargo_id === FALSE )

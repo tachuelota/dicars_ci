@@ -47,5 +47,16 @@ class TipoMoneda_Model extends CI_Model {
 			return true;
 		}
 	}
+
+		public function get_tipomoneda($nTipoMoneda = FALSE)
+	{
+		if($nTipoMoneda === FALSE )
+		{
+			$query = $this ->db->get ('ven_tipomoneda');
+			return $query -> result_array();
+		}
+		$query = $this->db->get_where('ven_tipomoneda', array('nTipoMoneda' => $nTipoMoneda));
+		return $query->row_array();
+	}
 	
 }

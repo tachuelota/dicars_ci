@@ -4,84 +4,63 @@ class Cargos extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('administracion/Cargo_Model','acm');
+		$this->load->model('administracion/Cargo_Model','acam');
 	}
 	
-	
-
-	public function RegistrarCargoAction(){
-		$form = $this->input->get('formulario');
-
-		/* para verificar los datos ---->$form = "-";*/
+	public function registrar(){
+		$form = $this->input->post('formulario');
 	
 		$CargoDesc = null;
 		$cCargocoEst = null; 
 		
 		if ($form!=null){
-			$CargoDesc = $form["nCargoDesc"];
-			$CargoEst = $form["cCargocoEst"];
-			
-			/* ---Datos de Prueba------
-			$CargoDesc = 'prueba1';
-			$CargoEst = '1'; */
-			
-			$Cargo = array('nCargoDesc' => $CargoDesc,'cCargocoEst' =>$CargoEst );
-
-			/* -- probar el metodo de insert -- 
-					$this->acm->insert($Cargo); */
-
-			/* Inicio de Insertar*/
-			if(!$this->acm->insert($Cargo)){
-				$return = array("responseCode"=>200, "datos"=>$datos);
+			$CargoDesc = $form["nom_cargo"];
+			$cCargocoEst = $form["selectEstado"];
+							
+			$Cargo = array('nCargoDesc' => $CargoDesc,'cCargocoEst' =>$cCargocoEst );
+	
+			if($this->acam->insert($Cargo)){
+				$return = array("responseCode"=>200, "datos"=>"ok");
 			}else{
 				$return = array("responseCode"=>400, "greeting"=>"Bad");
 			}; 
-			/* Fin de Insertar */
 
 		}
 		else {
 			$return = array("responseCode"=>400, "greeting"=>"Bad");
-		}
+		} 
 	
 		$return = json_encode($return);
 		echo $return;
-		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	} 
 	
-	public function EditarCargoAction(){
+	public function editar(){
+		$form = $this->input->post('formulario',null);
 	
-		$form = $this->input->get('formulario');
+		$CargoDesc = null;
+		$cCargocoEst = null; 
 		
-		$CargoEst = null;
-	
-		if ($form != null){
-				
-			$Cargoid = $form["id"];
-			$CargoEst = $form["cCargocoEst"];
+		if ($form!=null){
 
-				
-			$Cargo= array('cCargocoEst' => $CargoEst);
+			$Cargoid = $form["idCargo"];
+			$CargoDesc = $form["nom_cargo"];
+			$cCargocoEst = $form["selectEstado"];
+							
+			$data = array('nCargoDesc' => $CargoDesc,'cCargocoEst' =>$cCargocoEst );		
 			
-			/* Inicio de Editar*/
-			if($this->acm->update($Cargoid,$data)){
+			if($this->acam->update($Cargoid,$data)){
 				$return = array('responseCode'=>200, 'datos'=>$data);
 			}
 			else{
 				$return = array('responseCode'=>400, 'greeting'=>'Bad');
-			}
-			/* Fin de Editar */
-			
+			}		
 		}
 		else {
 			$return = array("responseCode"=>400, "greeting"=>"Bad");
-		}
+		} 
 	
 		$return = json_encode($return);
 		echo $return;
-		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
-
+	
 }
-
-/* End of file welcome.php */
-/* Location: ./application/controllers/welcome.php */

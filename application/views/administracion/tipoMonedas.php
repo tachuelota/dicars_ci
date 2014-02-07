@@ -12,13 +12,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_homepage.html">Administración</a><span class="divider">/</span>
+						<a href="<?php echo base_url();?>administracion/">Administración</a><span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_tipo_moneda.html">Tipo de Moneda</a>
+						<a href="<?php echo base_url();?>administracion/views/tipomonedas">Tipo de Moneda</a>
 					</li>
 				</ul>
 			</div>  
@@ -31,35 +31,29 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="tipomoneda_table">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="tipomoneda_table" data-source = "<?php echo base_url();?>administracion/servicios/getTipoMonedas">
 							<thead>
 								<tr>
 									<th>Nombre</th>
 								  	<th>Monto</th>
 									<th>Estado</th>
-								  	<th></th>
 							  	</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Nuevo Sol</td>
-								  	<td>1</td>
-									<td>Habilitado</td>
-								  	<td><a class='btn btn-info btn-editar' href='#'><i class='icon-edit icon-white'></i>Editar</a></td>
-							  	</tr>
 							</tbody>
 						</table>
-						<div class="modal hide fade" id="modalRegistroTipoMoneda">
+						<div class="modal hide fade" id="modalTipoMoneda">
 							<div class="modal-header">
 								<h3>Registrar Tipo de Moneda</h3>
 							</div>
-							<form id="RegistrarTipoMonedaForm" class="form-horizontal" method="post" action="">
+							<form id="TipoMonedaForm" class="form-horizontal" action-1="<?php echo base_url();?>administracion/tipomoneda/registrar" action-2="<?php echo base_url();?>administracion/tipomoneda/editar">
+								<input type="hidden" id="idTipoMoneda" name="idTpoMoneda">
 								<div class="modal-body">
 									<fieldset>
 									  	<div class="control-group">
 											<label class="control-label" for="desc_tipomoneda">Nombre de la Moneda</label>
 											<div class="controls">
-										  		<input class="input-xlarge focused" id="desc_tipomoneda" name="desc_tipomoneda" type="text" pattern="|^[a-zA-Z ñÑáéíóúüç]+$|" required >
+										  		<input class="input-xlarge focused" id="desc_tipomoneda" name="desc_tipomoneda" type="text">
 											</div>
 									  	</div>
 									  	<div class="control-group">
@@ -80,50 +74,12 @@
 									</fieldset>
 								</div>
 								<div class="modal-footer">
-									<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>
-									<button type="submit" class="btn btn-primary ">Guardar</button>
+									<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
+									<button id="btn-reg-tipomoneda" type="button" class="btn btn-primary ">Registrar</button>
+									<button id="btn-editar-tipomoneda" type="button" class="btn btn-primary " style="display:none">Editar</button>
 								</div>
 							</form>
-						</div>
-						<div class="modal hide fade" id="modalEditarDatos">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal">x</button>
-								<h3>Editar Tipo de Moneda</h3>
-							</div>
-							<div class="modal-body">
-								<form id="EditarTipoMonedaForm" class="form-horizontal" method="post" action="">
-									<div class="modal-body">
-										<fieldset>
-										  	<div class="control-group">
-												<label class="control-label" for="desc_tipomoneda">Nombre de la Moneda</label>
-												<div class="controls">
-											  		<input class="input-xlarge focused" id="desc_tipomoneda" name="desc_tipomoneda" type="text" pattern="|^[a-zA-Z ñÑáéíóúüç]+$|" value="Nuevo Sol" readonly required >
-												</div>
-										  	</div>
-										  	<div class="control-group">
-												<label class="control-label" for="monto">Monto</label>
-												<div class="controls">
-											  		<input id="monto" name="monto" value="1" type="number" step="0.01" min="1" max="10" required >
-												</div>
-										  	</div>
-										  	<div class="control-group">
-												<label class="control-label" for="selectEstado">Estado</label>
-												<div class="controls">
-											  		<select id="selectEstadoE" name="selectEstadoE" required>
-														<option value="1">Habilitado</option>
-														<option value="0">Inhabilitado</option>
-													</select>
-												</div>
-										  	</div>
-										</fieldset>
-									</div>
-									<div class="modal-footer">
-										<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>
-										<button type="submit" class="btn btn-primary ">Guardar</button>
-									</div>
-								</form>
-							</div>
-						</div>
+						</div>						
 					</div>
 				</div>
 			</div><!-- content ends -->

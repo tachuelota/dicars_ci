@@ -1,13 +1,14 @@
 $(document).ready(function(){
 	$("#CargoForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
- //--------
+
+ //--------  nombreTableAccion (..ta)
 	var CargosTA = new DTActions({
 		'conf': '010',
 		'idtable': 'cargos_table',
 		'EditFunction': function(nRow, aData, iDisplayIndex) {
-			$("#btn-reg-cargos").hide();
-			$("#btn-editar-cargos").show();
-	  		$('#modalCargos').modal('show');
+			$("#btn-reg-cargo").hide();
+			$("#btn-editar-cargo").show();
+	  		$('#modalCargo').modal('show');
 	  		$("#nom_cargo").val(aData.nCargoDesc);
 	  		$("#selectEstado").val(aData.cCargocoEst);
 	  		$("#idCargo").val(aData.nCargo_id);
@@ -35,10 +36,36 @@ $(document).ready(function(){
 
 
 	var successCargo = function(){
-		$('#modalCargos').modal('hide');
-		TableCargos.fnReloadAjax()
+		$('#modalCargo').modal('hide');
+		CargosTable.fnReloadAjax()
 	}
 
+
+	$('#modalCargo').on('hidden', function(){		
+		$("#CargoForm").reset();
+		$('#modalCargo').modal('hide');
+		$("#btn-reg-cargo").show();
+		$("#btn-editar-cargo").hide();
+	});
+
+	 //--funcion de los botones
+
+	$('.btn-registrar').click(function(e){
+		e.preventDefault();
+		$('#modalCargo').modal('show');
+	});
+
+	$("#btn-reg-cargo").click(function(event){
+		event.preventDefault();
+		if($("#CargoForm").validationEngine('validate'))
+			// para vefiricar console.log($("#CargoForm").serializeObject());
+			enviar($("#CargoForm").attr("action-1"),{formulario:$("#CargoForm").serializeObject()}, successCargo, null)
+	});
+	$("#btn-editar-cargo").click(function(event){
+		event.preventDefault();
+		if($("#CargoForm").validationEngine('validate'))
+			enviar($("#CargoForm").attr("action-2"),{formulario:$("#CargoForm").serializeObject()}, successCargo, null)
+	});
 	
 	CargosTable = createDataTable('cargos_table',UrlaDTable,FormatoDTable,null, CargosRowCBF);
 
