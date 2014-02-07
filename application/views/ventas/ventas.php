@@ -15,13 +15,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="ventas_homepage.html">Ventas</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>ventas">Ventas</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="ventas_consultar.html">Consultar</a>
+						<a href="<?php echo base_url();?>ventas/views/cons_ventas">Consultar</a>
 					</li>
 				</ul>
 			</div>  
@@ -99,7 +99,7 @@
 								  	<td><span class='label label-warning'>Separada</span></td>
 								  	<td></td>
 								  	<td><a class='btn btn-danger btn-elim' href='#'><i class='icon-trash icon-white'></i>Anular</a></td>
-								  	<td><a class='btn btn-info btn-editar' href='venta_editar.html'><i class='icon-edit icon-white'></i>Editar</a></td>
+								  	<td><a class='btn btn-info btn-editar' href='<?php echo base_url();?>ventas/views/editar_ventas'><i class='icon-edit icon-white'></i>Editar</a></td>
 							  	</tr>
 							</tbody>
 						</table>

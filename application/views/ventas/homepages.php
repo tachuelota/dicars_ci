@@ -10,10 +10,10 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="ventas_homepage.html">Ventas</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>ventas">Ventas</a> <span class="divider">/</span>
 					</li>
 				</ul>
 			</div>  

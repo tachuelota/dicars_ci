@@ -14,15 +14,15 @@
 	<div>
 		<ul class="breadcrumb">
 			<li>
-				<a href="index.html">Home</a>
+				<a href="<?php echo base_url();?>">Home</a>
 				<span class="divider">/</span>
 			</li>
 			<li>
-				<a href="ventas_homepage.html">Ventas</a>
+				<a href="<?php echo base_url();?>ventas">Ventas</a>
 				<span class="divider">/</span>
 			</li>
 			<li>
-				<a href="cronograma.html">Cronograma de Pago</a>
+				<a href="<?php echo base_url();?>ventas/Views/cronogramas">Cronograma de Pago</a>
 			</li>
 		</ul>
 	</div>
@@ -49,7 +49,7 @@
 							<td>12345678</td>
 							<td>1000</td>
 							<td>
-								<a class='btn btn-success btn-pagar' href='cronograma_detalle.html'> <i class='icon-zoom-in icon-white'></i>
+								<a class='btn btn-success btn-pagar' href='<?php echo base_url();?>ventas/views/cronogramas_detalle'> <i class='icon-zoom-in icon-white'></i>
 									Ver Creditos
 								</a>
 							</td>
