@@ -12,13 +12,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_homepage.html">Administración</a><span class="divider">/</span>
+						<a href="<?php echo base_url();?>administracion/">Administración</a><span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_cargos.html">Cargos</a>
+						<a href="<?php echo base_url();?>administracion/views/cargos">Cargos</a>
 					</li>
 				</ul>
 			</div>  
@@ -31,20 +31,14 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<table id="cargos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="cargos_table" data-source = "<?php echo base_url();?>administracion/servicios/getcargos">
 							<thead>
 								<tr>
 									<th>Nombre del Cargo</th>
 									<th>Estado</th>
-									<th></th>
 								</tr>
 							</thead>   
 							<tbody>
-								<tr>
-									<td>Administrador</td>
-									<td>Habilitado</td>
-									<td><a class='btn btn-info btn-editar' href='#'><i class='icon-edit icon-white'></i>Editar</a></td>
-								</tr>
 							</tbody>
 						</table>
 						<div class="modal hide fade" id="modalRegistroCargo">

@@ -48,4 +48,16 @@ class Cargo_Model extends CI_Model {
 		}
 	}
 
+ 	public function get_cargos($nCargo_id = FALSE)
+	{
+		if($nCargo_id === FALSE )
+		{
+			$query = $this ->db->get ('ven_cargo');
+			return $query -> result_array();
+		}
+		$query = $this->db->get_where('ven_cargo', array('nCargo_id' => $nCargo_id));
+		return $query->row_array();
+	}
+
+
 }

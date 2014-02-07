@@ -73,6 +73,7 @@ class Views extends CI_Controller
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
+<<<<<<< HEAD
 
     //Reporte Zona
 	public function reporte_zonas()
@@ -86,6 +87,9 @@ class Views extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 
+=======
+	
+>>>>>>> e516aa74299afce977a5720217beca947b473ee5
     //Tarjetas Creditos
 	public function tarjetascreditos()
 	{
@@ -168,6 +172,19 @@ class Views extends CI_Controller
 		$datafooter['active'] = 'ventas_rep';
 		$this->load->view('templates/footer.php',$datafooter);
 	} 
+
+    //Reporte Zona
+	public function reporte_zonas()
+	{
+		$dataheader['title'] = 'Dicars - Reporte Zonas -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('ventas/reporte_zonas.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/reporte_zonas.js';
+		$datafooter['active'] = '';
+		$this->load->view('templates/footer.php',$datafooter);
+	}
+
 
 	/*******************MOVIMIENTOS*******************/
 	public function movimientos()

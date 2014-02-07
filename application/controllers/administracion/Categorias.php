@@ -9,10 +9,10 @@ class Categorias extends CI_Controller {
 
 	
 
-	public function RegistrarCategoriaAction(){
+	public function registrar(){
 
 		#verificar si se esta enviado datos del formulario
-		$form = $this->input->get('formulario',true);
+		$form = $this->input->post('formulario');
 		
 		#$form = "-";
 
@@ -22,16 +22,14 @@ class Categorias extends CI_Controller {
 	
 		if ($form!=null){
 
-			$CategoriaNom = $from["nom_categoria"];
-			$CategoriaDesc = $from["desc_categoria"];
-			$CategoriaEst = $from["selectEstado"];
-			/*$CategoriaNom = 'valorPrubea2';
-			$CategoriaDesc = 'valorPrueba2';
-			$CategoriaEst = '1';*/
+			$CategoriaNom = $form["nom_categoria"];
+			$CategoriaDesc = $form["desc_categoria"];
+			$CategoriaEst = $form["selectEstado"];
 			$Categoria = array('cCategoriaNom'=>$CategoriaNom ,'cCategoriaDesc'=>$CategoriaDesc, 'cCategoriaEst' => $CategoriaEst);
+			
 			//-------------Insertar----------
 			if($this->acm->insert($Categoria)){
-				$return = array('responseCode'=>200, 'datos'=>$Categoria);
+				$return = array('responseCode'=>200, 'resp'=>"ok");
 			}
 			else{
 				$return = array('responseCode'=>400, 'greeting'=>'Bad');
@@ -42,13 +40,12 @@ class Categorias extends CI_Controller {
 		}
 		$return = json_encode($return);
 		echo $return;
-		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
 	
-	public function EditarCategoriaAction(){
+	public function editar(){
 	
 		#verificar si se esta enviado datos del formulario
-		$form = $this->input->get('formulario',true);
+		$form = $this->input->post('formulario',true);
 		
 		#$form = '-';
 		
@@ -58,14 +55,10 @@ class Categorias extends CI_Controller {
 	
 		if ($form != null){
 	
-			$Categoriaid = $form["id"];
-			$CategoriaNom = $form["nom_categoriaE"];
-			$CategoriaDesc = $form["desc_categoriaE"];
-			$CategoriaEst = $form["selectEstadoE"];
-			/*$Categoriaid = 1;
-			$CategoriaNom = "cambiado";
-			$CategoriaDesc = "cambiado";
-			$CategoriaEst = "0";*/
+			$Categoriaid = $form["idCategoria"];
+			$CategoriaNom = $form["nom_categoria"];
+			$CategoriaDesc = $form["desc_categoria"];
+			$CategoriaEst = $form["selectEstado"];
 
 			$data = array('cCategoriaNom'=>$CategoriaNom ,'cCategoriaDesc'=>$CategoriaDesc, 'cCategoriaEst' => $CategoriaEst);
 
@@ -79,11 +72,9 @@ class Categorias extends CI_Controller {
 		}
 		else {
 			$return = array("responseCode"=>400, "greeting"=>"Bad");
-		}
-	
+		}	
 		$return = json_encode($return);
 		echo $return;
-		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
 	
 

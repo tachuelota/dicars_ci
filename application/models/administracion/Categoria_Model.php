@@ -47,5 +47,16 @@ class Categoria_Model extends CI_Model {
 			return true;
 		}
 	}
+
+	public function get_categorias($nCategoria_id = FALSE)
+	{
+		if($nProducto_id === FALSE )
+		{
+			$query = $this ->db->get ('ven_categoria');
+			return $query -> result_array();
+		}
+		$query = $this->db->get_where('ven_categoria', array('nCategoria_id' => $nCategoria_id));
+		return $query->row_array();
+	}
 	
 }
