@@ -10,9 +10,9 @@ class TipoIGVs extends CI_Controller {
 	
 	
 
-	public function RegistrarTipoIGVAction(){
+	public function registrar(){
 
-		$form = $this->input->get('formulario');
+		$form = $this->input->post('formulario');
 		#$form = '-';
 
 		$TipoIGV_tipoigv = null;
@@ -27,7 +27,8 @@ class TipoIGVs extends CI_Controller {
 			$TipoIGV_estado = $form["estado"];
 			/*$TipoIGV_tipoigv = 1;
 			$TipoIGV_porcentaje = 18;
-			$TipoIGV_estado = 1;*/			
+			$TipoIGV_estado = 1;*/	
+
 			$TipoIGV_fechareg = new DateTime();
 			$TipoIGV_fechareg = $TipoIGV_fechareg->format('Y-m-d H:i:s');
 
@@ -54,9 +55,9 @@ class TipoIGVs extends CI_Controller {
 		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
 
-	public function EditarTipoIGVAction(){
+	public function editar(){
 
-		$form = $this->input->get('formulario');
+		$form = $this->input->post('formulario');
 		#$form = '-';
 
 		$TipoIGV_tipoigv = null;
@@ -65,14 +66,10 @@ class TipoIGVs extends CI_Controller {
 
 		if ($form != null){
 
-			$TipoIGV_id = $datos["id"];
-			$TipoIGV_tipoigv = $datos["tipoE"];
-			$TipoIGV_porcentaje = $datos["porcE"];
-			$TipoIGV_estado = $datos["estadoE"];
-			/*$TipoIGV_id = 1;
-			$TipoIGV_tipoigv = 1;
-			$TipoIGV_porcentaje = 19;
-			$TipoIGV_estado = 0;*/			
+			$TipoIGV_id = $form["idTipoIGV"];
+			$TipoIGV_tipoigv = $form["tipo"];
+			$TipoIGV_porcentaje = $form["porc"];
+			$TipoIGV_estado = $form["estado"];	
 			$TipoIGV_fechareg = new DateTime();
 			$TipoIGV_fechareg = $TipoIGV_fechareg->format('Y-m-d H:i:s');
 
@@ -83,7 +80,7 @@ class TipoIGVs extends CI_Controller {
 
 			//-------------Update----------
 			if($this->atm->update($TipoIGV_id,$data)){
-				$return = array('responseCode'=>200, 'datos'=>$data);
+				$return = array('responseCode'=>200, 'datos'=>'Ok');
 			}
 			else{
 				$return = array('responseCode'=>400, 'greeting'=>'Bad');

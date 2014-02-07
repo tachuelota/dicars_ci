@@ -7,7 +7,7 @@ class Servicios extends CI_Controller {
 		parent::__construct();
 		$this->load->model('administracion/Categoria_Model','acm');
 	}
-
+	//CARGAR CARGOS
 	public function getCargos()
 	{
 		$this->load->model('administracion/Cargo_Model','acam');
@@ -289,25 +289,12 @@ class Servicios extends CI_Controller {
 		$em->close();
 		return new JsonResponse($todo);
 	}
-	
-	public function getOptionTiposIGVAction(){
-		$em = $this->getDoctrine()->getEntityManager();
-			
-		$tiposigv = $this->getDoctrine()
-		->getRepository('DicarsDataBundle:VenTipoigv')
-		->findAll();
-	
-		$todo = array();
-		foreach ($tiposigv as $key => $tipoigv){
-			if($tipoigv->getCtipoigvest() == 1){
-				$todo[] = array('id' => $tipoigv -> getNtipoigv(),
-						'porc' => $tipoigv -> getNtipoigvproc()
-				);
-			}
-		}
-		$em->clear();
-		$em->close();
-		return new JsonResponse($todo);
+
+	//CARGAR TIPO IGV
+	public function getTipoIGV(){
+	$this->load->model('administracion/TipoIGV_Model','igvm');
+		$result = $this->igvm->get_tipoIGV();
+		echo json_encode(array('aaData' => $result));
 	}
 	
 	public function getOptionZonasAction(){
@@ -329,9 +316,7 @@ class Servicios extends CI_Controller {
 		return new JsonResponse($todo);
 	}
 	
-	public function getTipoIGV(){
 
-	}
 	
 	public function getTablaTipoIGVByIdAction($id){
 		$em = $this->getDoctrine()->getEntityManager();

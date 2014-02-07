@@ -47,5 +47,15 @@ class TipoIGV_Model extends CI_Model {
 			return true;
 		}
 	}
+
+	function get_tipoIGV($nTipoIGV = FALSE){
+		if($nTipoIGV === FALSE )
+		{
+			$query = $this ->db->get ('ven_tipoigv');
+			return $query -> result_array();
+		}
+		$query = $this->db->get_where('ven_tipoigv', array('nTipoIGV' => $nTipoIGV));
+		return $query->row_array();
+	}
 	
 }

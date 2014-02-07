@@ -26,7 +26,7 @@ $(document).ready(function(){
 		$('#modalRegistroCargo').modal('show');
 	});
 	
-
+	//1.creas tu tabla 
 	var UrlaDTable = $("#cargos_table").attr("data-source");
 	FormatoDTable = [
 		              { "sWidth": "33%","mDataProp": "nCargoDesc"},
@@ -43,7 +43,6 @@ $(document).ready(function(){
 
 	$('#modalCargo').on('hidden', function(){		
 		$("#CargoForm").reset();
-		$('#modalCargo').modal('hide');
 		$("#btn-reg-cargo").show();
 		$("#btn-editar-cargo").hide();
 	});

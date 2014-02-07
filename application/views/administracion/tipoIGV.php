@@ -31,43 +31,36 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<table id="tipo_igv_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table id="tipo_igv_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>administracion/servicios/getTipoIGV">
 							<thead>
 								<tr>
 									<th>Tipo</th>
 									<th>Porcentaje (%)</th>
 									<th>Fecha Registro</th>
-									<th>Estado</th>
-									<th></th>
+									<th>Estado</th>									
 								</tr>
 							</thead>   
 							<tbody>
-								<tr>
-									<td>IGV</td>
-									<td>18</td>
-									<td>10/01/2013</td>
-									<td>Habilitado</td>
-									<td><a class='btn btn-info btn-editar' href='#'><i class='icon-edit icon-white'></i>Editar</a></td>
-								</tr>
 							</tbody>
 						</table>		
-						<div class="modal hide fade" id="modalRegistroTipoIGV" style="width: 650px;">
+						<div class="modal hide fade" id="modalTipoIGV" style="width: 650px;">
 							<div class="modal-header">
 								<h3>Registrar Tipo IGV</h3>
 							</div>
-							<form id="RegistrarTipoForm" class="form-horizontal" method="post" action="">
+							<form id="TipoIGV_Registrar" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/TipoIGVs/registrar" action-2="<?php echo base_url();?>administracion/TipoIGVs/editar">
+								<input type="hidden" id="idTipoIGV" name="idTipoIGV">
 								<div class="modal-body">
 									<fieldset>
 										<div class="control-group">
 											<label class="control-label" for="tipo">Tipo IGV</label>
 											<div class="controls">
-										  		<input class="input-xlarge focused" id="tipo" name="tipo" type="text" pattern="|^[a-zA-Z0-9 ñÑáÁéÉíÍóÓúÚüÜç-]+$|" maxlength="11" required>
+										  		<input class="input-xlarge focused" id="tipo" name="tipo" type="text">
 											</div>
 									  	</div>
 									  	<div class="control-group">
 											<label class="control-label" for="porc">Porcentaje</label>
 											<div class="controls">
-										  		<input id="porc" name="porc" type="number" step="0.01" min="1" max="100" required>
+										  		<input id="porc" name="porc" type="text" >
 											</div>
 									  	</div>
 									  	<div class="control-group">
@@ -83,48 +76,8 @@
 								</div>
 								<div class="modal-footer">
 									<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
-									<button type="submit" class="btn btn-primary ">Guardar</button>
-								</div>
-							</form>
-						</div>
-					</div>
-					
-					
-					<div class="modal hide fade" id="modalEditarDatos">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">x</button>
-							<h3>Editar Tipo IGV</h3>
-						</div>
-						<div class="modal-body">
-							<form id="EditarTipoIGVForm" class="form-horizontal" method="post" action="">
-								<div class="modal-body">
-									<fieldset>
-										<div class="control-group">
-											<label class="control-label" for="tipo">Tipo IGV</label>
-											<div class="controls">
-										  		<input class="input-xlarge focused" id="tipo" name="tipo" type="text" pattern="|^[a-zA-Z0-9 ñÑáÁéÉíÍóÓúÚüÜç-]+$|" maxlength="11" value="IGV" readonly required>
-											</div>
-									  	</div>
-									  	<div class="control-group">
-											<label class="control-label" for="porc">Porcentaje</label>
-											<div class="controls">
-										  		<input id="porc" name="porc" type="number" step="0.01" min="1" max="100" value="18" required>
-											</div>
-									  	</div>
-									  	<div class="control-group">
-											<label class="control-label" for="estado">Estado</label>
-											<div class="controls">
-										  		<select id="estadoE" name="estadoE" data-rel="chosen">
-												<option value="1">Habilitado</option>
-												<option value="2">Deshabilitado</option>
-											</select>
-											</div>
-									  	</div>
-									</fieldset>
-								</div>
-								<div class="modal-footer">
-									<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
-									<button type="submit" class="btn btn-primary ">Guardar</button>
+									<button id="btn-tipoigv-reg" type="submit" class="btn btn-primary ">Guardar</button>
+									<button id="btn-tipoigv-edi" type="button" class="btn btn-primary " style="display:none">Editar</button>
 								</div>
 							</form>
 						</div>
