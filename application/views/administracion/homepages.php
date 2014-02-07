@@ -33,7 +33,7 @@
 				<br>Constantes</div>
 		</a>
 		<a data-rel="tooltip" title="Ver, agregar y editar Trabajadores." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/trabajadores">
 			<span class="icon32 icon-color icon-users"></span>
 			<div>
 				Administrar
@@ -41,14 +41,14 @@
 		</a>
 
 		<a data-rel="tooltip" title="Ver, agregar y editar Usuarios." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/usuarios">
 			<span class="icon32 icon-color icon-users"></span>
 			<div>
 				Administrar
 				<br>Usuarios</div>
 		</a>
 		<a data-rel="tooltip" title="Ver, agregar y editar Locales." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/locales">
 			<span class="icon32 icon-color icon-home"></span>
 			<div>
 				Administrar
@@ -57,7 +57,7 @@
 	</div>
 	<div class="row-fluid">
 		<a data-rel="tooltip" title="Ver, Agregar y editar Cargos." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/cargos">
 			<span class="icon32 icon-color icon-bookmark"></span>
 			<div>
 				Administrar
@@ -89,7 +89,7 @@
 	</div>
 	<div class="row-fluid">
 		<a data-rel="tooltip" title="Ver, Agregar y editar Zona/Editar." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/zona_personal">
 			<span class="icon32 icon-color icon-user"></span>
 			<div>
 				Zona
@@ -97,14 +97,14 @@
 		</a>
 
 		<a data-rel="tooltip" title="Ver, Agregar y editar Tipo IGV." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/tipoIGV">
 			<span class="icon32 icon-color icon-tag"></span>
 			<div>
 				Tipo de
 				<br>IGV</div>
 		</a>
 		<a data-rel="tooltip" title="Ver, Agregar y editar Tipo Moneda." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/tipoMonedas">
 			<span class="icon32 icon-color icon-tag"></span>
 			<div>
 				Tipo de

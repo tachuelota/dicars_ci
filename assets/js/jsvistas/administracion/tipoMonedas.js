@@ -1,7 +1,6 @@
 $(document).ready(function(){
 	$("#TipoMonedaForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 
- //--------  nombreTableAccion (..ta)
 	var CargosTA = new DTActions({
 		'conf': '010',
 		'idtable': 'tipomoneda_table',
@@ -21,8 +20,8 @@ $(document).ready(function(){
 	};
 
 
-    var UrlaDTable = '{{ path("dicars_admin_servicio_gettablatipomoneda") }}';
-	FormatoDTable = [
+    var TipoMonedaURL = '';
+	TipoMonedaFormato = [
 		              { "sWidth": "25%","mDataProp": "cTipoMonedaDesc"},
 		              { "sWidth": "25%","mDataProp": "nTipoMonedaMont"},
 		              { "sWidth": "25%","mDataProp": "cTipoMonedaEst"},
@@ -40,24 +39,22 @@ $(document).ready(function(){
 		$("#btn-reg-tipomoneda").show();
 		$("#btn-editar-tipomoneda").hide();
 	});
-	//Init------------------------------------>
-	
 
-		/*$('.btn-editar').click(function(e){
-			e.preventDefault();
-			$('#modalEditarDatos').modal('show');
-		});*/
-		
-		//mostrar Buscar Cliente------------------------------------>
-		$('.btn-registrar').click(function(e){
-			e.preventDefault();
-			$('#modalTipoMoneda').modal('show');
-		}); 
+	$('.btn-registrar').click(function(e){
+		e.preventDefault();
+		$('#modalTipoMoneda').modal('show');
+	});
 
-
+	$("#btn-reg-tipomoneda").click(function(event){
+		event.preventDefault();
+		if($("#TipoMonedaForm").validationEngine('validate'))
+			enviar($("#TipoMonedaForm").attr("action-1"),{formulario:$("#TipoMonedaForm").serializeObject()}, successCategoria, null)
+	});
+	$("#btn-editar-tipomoneda").click(function(event){
+		event.preventDefault();
+		if($("#TipoMonedaForm").validationEngine('validate'))
+			enviar($("#TipoMonedaForm").attr("action-2"),{formulario:$("#TipoMonedaForm").serializeObject()}, successCategoria, null)
+	})
 
 	TipoMonedaTable = createDataTable('tipomoneda_table',UrlaDTable,FormatoDTable,null, TipoMonedaRowCBF);
-
-
-
-	});
+});

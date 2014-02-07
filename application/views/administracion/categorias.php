@@ -15,7 +15,7 @@
 	<div>
 		<ul class="breadcrumb">
 			<li>
-				<a href="/">Home</a>
+				<a href="<?php echo base_url();?>">Home</a>
 				<span class="divider">/</span>
 			</li>
 			<li>

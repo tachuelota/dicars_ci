@@ -149,4 +149,17 @@ class Views extends CI_Controller
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
+	
+	//Trabajadores
+
+	public function trabajadores()
+	{
+		$dataheader['title'] = 'Dicars - Trabajadores -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('administracion/trabajadores.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/trabajadores.js';
+		$datafooter['active'] = '';
+		$this->load->view('templates/footer.php',$datafooter);
+	}
 }

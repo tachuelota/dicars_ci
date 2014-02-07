@@ -12,13 +12,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="ventas_homepage.html">Ventas</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>/administracion">administracion/</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="ventas_trabajadores.html">Trabajadores</a>
+						<a href="<?php echo base_url();?>/administracion/trabajadores">Trabajadores</a>
 					</li>
 				</ul>
 			</div>  
