@@ -5,9 +5,7 @@ class Categorias extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('administracion/Categoria_Model','acm');
-	}
-
-	
+	}	
 
 	public function registrar(){
 

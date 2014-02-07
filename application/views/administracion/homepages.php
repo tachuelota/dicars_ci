@@ -72,7 +72,7 @@
 		</a>
 
 		<a data-rel="tooltip" title="Ver, Agregar y editar Marcas." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/marcas">
 			<span class="icon32 icon-color icon-bookmark"></span>
 			<div>
 				Administrar

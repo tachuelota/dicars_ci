@@ -13,7 +13,7 @@
 	<div>
 		<ul class="breadcrumb">
 			<li>
-				<a href="/">Home</a>
+				<a href="<?php echo base_url()?>">Home</a>
 				<span class="divider">/</span>
 			</li>
 			<li>
@@ -29,49 +29,50 @@
 				<div class="box-header well" data-original-title>
 					<h2>CONSTANTES</h2>
 					<div class="box-icon">
-						<a href="#" class="btn btn-round btn-registrar" alt="Registrar Clase"> <i class="icon-plus"></i>
+						<a href="#" id="btn-registrar" class="btn btn-round" alt="Registrar Clase"> <i class="icon-plus"></i>
 						</a>
 					</div>
 				</div>
 				<div class="box-content">
-					<table id="constantes_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>administracion/servicios/getCategoria">
+					<table id="constantes_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>administracion/servicios/getConstantes">
 						<thead>
 							<tr>
 								<th>Clase</th>
 								<th>Nombre</th>
 								<th>Valor</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody></tbody>
 					</table>
-					<div class="modal hide fade" id="modalRegistroConstantes" style="width: 650px;">
+					<div class="modal hide fade" id="modalConstante" style="width: 650px;">
 						<div class="modal-header">
 							<h3>Registrar Clase</h3>
 						</div>
-						<form id="RegistrarClaseForm" class="form-horizontal" method="post" action="{{ path('dicars_admin_registrar_constante') }}">
+						<form id="ConstanteForm" class="form-horizontal" action-1="<?php echo base_url();?>administracion/constantes/registrar" action-2="<?php echo base_url();?>administracion/constantes/editar">
+							<input type="hidden" id="idConstante" name="idConstante">
 							<div class="modal-body">
 								<fieldset>
 									<div class="control-group">
 										<label class="control-label" for="clase">Nro de Clase</label>
 										<div class="controls">
-											<input class="input-xlarge focused" id="clase" name="clase" type="text" pattern="|^[0-9]{1,11}$|" maxlength="11" required></div>
+											<input class="input-xlarge focused" id="clase" name="clase" type="text" ></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="nom_clase">Nombre de Clase</label>
 										<div class="controls">
-											<input class="input-xlarge focused" id="nom_clase" name="nom_clase" type="text" pattern="|^[a-zA-Z ñÑáÁéÉíÍóÓúÚüÜç]+$|" maxlength="100" required></div>
+											<input class="input-xlarge focused" id="nom_clase" name="nom_clase" type="text" ></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="valor">Valor</label>
 										<div class="controls">
-											<input class="input-xlarge focused" id="valor" name="valor" type="text" pattern="|^[0-9]{1,11}$|" maxlength="11" required></div>
+											<input class="input-xlarge focused" id="valor" name="valor" type="text" ></div>
 									</div>
 								</fieldset>
 							</div>
 							<div class="modal-footer">
-								<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
-								<button type="submit" class="btn btn-primary ">Guardar</button>
+								<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>			
+								<button id="btn-reg-constante" class="btn btn-primary">Registrar</button>
+								<button id="btn-edit-constante" class="btn btn-primary" style="display:none">Editar</button>
 							</div>
 						</form>
 					</div>

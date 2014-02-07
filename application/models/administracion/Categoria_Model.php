@@ -50,7 +50,7 @@ class Categoria_Model extends CI_Model {
 
 	public function get_categorias($nCategoria_id = FALSE)
 	{
-		if($nProducto_id === FALSE )
+		if($nCategoria_id === FALSE )
 		{
 			$query = $this ->db->get ('ven_categoria');
 			return $query -> result_array();

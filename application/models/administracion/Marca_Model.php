@@ -3,11 +3,11 @@
 class Marca_Model extends CI_Model {
 
 	
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 	}
 
-	function insert($data){
+	public function insert($data){
 		
 		$this->db->trans_start(true);
 		
@@ -27,7 +27,7 @@ class Marca_Model extends CI_Model {
 		}
 	}
 
-	function update($id,$data){
+	public function update($id,$data){
 		
 		$this->db->trans_start();
 		
@@ -46,6 +46,17 @@ class Marca_Model extends CI_Model {
 			$this->db->trans_commit();
 			return true;
 		}
+	}
+
+	public function get_marcas($nMarca_id = FALSE)
+	{
+		if($nMarca_id === FALSE )
+		{
+			$query = $this ->db->get ('ven_marca');
+			return $query -> result_array();
+		}
+		$query = $this->db->get_where('ven_marca', array('nCategoria_id' => $nMarca_id));
+		return $query->row_array();
 	}
 	
 }

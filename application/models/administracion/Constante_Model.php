@@ -10,6 +10,47 @@ class Constante_Model extends CI_Model
 		parent::__construct();
 	}
 
+	public function insert($data){
+		
+		$this->db->trans_start(true);
+		
+		$this->db->trans_begin();
+
+		$this->db->insert('constante',$data);
+
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
+	}
+
+	public function update($id,$data){
+		
+		$this->db->trans_start();
+		
+		$this->db->trans_begin();
+
+		$this->db->where('nConstante_id',$id);
+		$this->db->update('constante',$data);
+
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
+	}
+
 	public function get_constantes($nConstante_id = FALSE)
 	{
 		if($nConstante_id === FALSE )

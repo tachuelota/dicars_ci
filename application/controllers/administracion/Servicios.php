@@ -8,8 +8,8 @@ class Servicios extends CI_Controller {
 		$this->load->model('administracion/Categoria_Model','acm');
 	}
 
-	public function getCargos(){
-
+	public function getCargos()
+	{
 		$this->load->model('administracion/Cargo_Model','acam');
 		$result = $this->acam->get_cargos();
 		echo json_encode(array('aaData' => $result));
@@ -28,124 +28,21 @@ class Servicios extends CI_Controller {
 	public function getCategoriaByIdAction($id){
 	}
 	
-	public function getTablaMarcasAction(){
-		$em = $this->getDoctrine()->getEntityManager();
-			
-		$marcas = $this->getDoctrine()
-		->getRepository('DicarsDataBundle:VenMarca')
-		->findAll();
-	
-		$todo = array();
-		foreach ($marcas as $key => $marca){
-			$estado = '';
-			$estadochar = $marca -> getCmarcaest();
-			if($estadochar=="1")
-				$estado = "
-<span class='label label-success'>Habilidado</span>
-";
-			else
-				$estado = "
-<span class='label label-important'>Inhabilitado</span>
-";
-	
-			$todo[] = array('id' => $marca -> getNmarcaId(),
-					'desc_marca' => $marca -> getCmarcadesc(),
-					'selectEstado' => $estado,
-					'estado' => $marca -> getCmarcaest(),
-					'edit_btn' => "
-<a id-data='".$marca ->
-	getNmarcaId()."' class='btn btn-info btn-editar' href='#'>
-	<i class='icon-edit icon-white'></i>
-	Editar
-</a>
-"
-			);
-		}
-
-		$em->clear();
-		$em->close();
-		return new JsonResponse(array('aaData' => $todo));
+	public function getMarcas()
+	{
+		$this->load->model('administracion/Marca_Model','amm');
+		$result = $this->amm->get_marcas();
+		echo json_encode(array('aaData' => $result));
 	}
 	
-	public function getMarcaByIdAction($id){
-		$em = $this->getDoctrine()->getEntityManager();
-			
-		$marca = $this->getDoctrine()
-		->getRepository('DicarsDataBundle:VenMarca')
-		->findOneBy(array('nmarcaId' => $id));
-	
-		$data = array('id' => $marca -> getNmarcaId(),
-				'desc_marca' => $marca -> getCmarcadesc(),
-				'selectEstado' => $marca -> getCmarcaest());
-		
-		$em->clear();
-		$em->close();
-		return new JsonResponse($data);
+	public function getMarcaByIdAction($id)
+	{
+
 	}
 
 
 	public function getTablaUsuarioAction(){
-		$em = $this->getDoctrine()->getEntityManager();
 		
-		$userManager = $this->get('fos_user.user_manager');
-		$usuarios = $userManager->findUsers();
-		
-		$todo = array();
-		foreach ($usuarios as $key => $usuario){                    
-            
-            $personal = $usuario -> getNpersonal();
-            if($personal!=NULL){
-				if($usuario->isEnabled()=="1")
-					$estado = "
-<span class='label label-success'>Habilidado</span>
-";
-				else
-					$estado = "
-<span class='label label-important'>Inhabilitado</span>
-";
-				
-				if($usuario-> getLastLogin()!=null)
-					$lastlogin = $usuario-> getLastLogin() -> format('d/m/Y');
-				else
-					$lastlogin = "";				
-				
-				$todo[] = array(//'id' => $usuario -> getNusuarioid(),
-							'trabajador' => $personal -> getCpersonalnom()." ".$personal -> getCpersonalape(),
-							'usuario_name' => $usuario ->getUsername(),
-							'roles' => $usuario -> getRoles(),
-							'password' => $usuario -> getPassword(),
-							'lastlogin' => $lastlogin,
-							'selectEstado' => $estado,
-							'ver_btn' => "
-<a class='btn btn-success btn-datos' href='#'>
-	<i class='icon-zoom-in icon-white'></i>
-	Ver Datos
-</a>
-",
-							'edit_btn' => "
-<a class='btn btn-info btn-editar' href='#'>
-	<i class='icon-edit icon-white'></i>
-	Editar
-</a>
-",
-	                    	'rol_btn' => "
-<a class='btn btn-rol btn-info' href='#'>
-	<i class='icon-trash icon-white'></i>
-	Roles
-</a>
-",
-							'local_btn' => "
-<a class='btn btn-rol btn-info' href='#'>
-	<i class='icon-edit icon-white'></i>
-	Local
-</a>
-");
-				}
-			}
-
-		$em->clear();
-		$em->close();
-		return new JsonResponse(array('aaData' => $todo));
 	}
 	
 	public function getUsuarioByIdAction($id){

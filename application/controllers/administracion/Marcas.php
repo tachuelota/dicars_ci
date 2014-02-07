@@ -7,24 +7,17 @@ class Marcas extends CI_Controller {
 		$this->load->model('administracion/Marca_Model','amm');
 
 	}
-	
-	
 
-	public function RegistrarMarcaAction(){
+	public function registrar(){
 
-		$form = $this->input->get('formulario',true);
-		#$form = "-";
+		$form = $this->input->post('formulario',true);
 
 		$MarcaDesc = null;
 		$MarcaEst = null;
 
-		if ($form!=null){
-			
-			#$MarcaDesc = $form["desc_marca"];
-			#$MarcaEst = $form["selectEstado"];
-
-			$MarcaDesc = "test";
-			$MarcaEst = "1";
+		if ($form!=null){			
+			$MarcaDesc = $form["desc_marca"];
+			$MarcaEst = $form["selectEstado"];
 
 			$Marca = array('cMarcaDesc'=>$MarcaDesc ,'cMarcaEst'=>$MarcaEst);
 			//-------------Insertar----------
@@ -33,34 +26,28 @@ class Marcas extends CI_Controller {
 			}
 			else{
 				$return = array('responseCode'=>400, 'greeting'=>'Bad');
-			}
-			
+			}			
 		}
 		else {
 			$return = array("responseCode"=>400, "greeting"=>"Bad");
 		}
 
-		$return = json_encode($return);
+		$return = json_encode($form);
 		echo $return;
-		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
 
-	public function EditarMarcaAction(){
+	public function editar(){
 
-		$form = $this->input->get('formulario',true);
-		#$form = '-';
+		$form = $this->input->post('formulario',true);
 
 		$MarcaDesc = null;
 		$MarcaEst = null;
 
 		if ($form != null){
 
-			/*$Marcaid = $form["id"];
+			$Marcaid = $form["idMarca"];
 			$MarcaDesc = $form["desc_marcaE"];
-			$MarcaEst = $form["selectEstadoE"];*/
-			$Marcaid = 1;
-			$MarcaDesc = "Marcon";
-			$MarcaEst = "1";
+			$MarcaEst = $form["selectEstadoE"];
 
 			$data = array('cMarcaDesc'=>$MarcaDesc ,'cMarcaEst'=>$MarcaEst);
 			//-------------Update----------
@@ -78,7 +65,6 @@ class Marcas extends CI_Controller {
 
 		$return = json_encode($return);
 		echo $return;
-		//return new Response($return,200,array('Content-Type'=>'application/json'));
 	}
 
 }
