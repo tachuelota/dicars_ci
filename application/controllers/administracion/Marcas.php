@@ -46,8 +46,8 @@ class Marcas extends CI_Controller {
 		if ($form != null){
 
 			$Marcaid = $form["idMarca"];
-			$MarcaDesc = $form["desc_marcaE"];
-			$MarcaEst = $form["selectEstadoE"];
+			$MarcaDesc = $form["desc_marca"];
+			$MarcaEst = $form["selectEstado"];
 
 			$data = array('cMarcaDesc'=>$MarcaDesc ,'cMarcaEst'=>$MarcaEst);
 			//-------------Update----------

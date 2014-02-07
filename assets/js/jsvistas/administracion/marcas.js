@@ -20,7 +20,7 @@ $(document).ready(function(){
 
 	successMarca = function(){
 		$('#modalMarca').modal('hide');
-		TableCategorias.fnReloadAjax()
+		MarcasTable.fnReloadAjax()
 	}
 	
 	//mostrar Buscar Cliente------------------------------------>
