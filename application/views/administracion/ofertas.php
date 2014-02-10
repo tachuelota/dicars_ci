@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<table id="ofertas_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table id="ofertas_table" class="table table-striped table-bordered bootstrap-datatable datatable" source-data="<?php echo base_url();?>/administracion/servicios/">
 						  <thead>
 							  <tr>
 								  <th>Fecha Inicio</th>
@@ -43,14 +43,6 @@
 							  </tr>
 						  </thead>   
 						  <tbody>
-								<tr>
-								  <td>10/01/2013</td>
-								  <td>Oferta por Inicio de Año</td>
-								  <td>20</td>
-								  <td>31/01/2013</td>
-								  <td>Habilitada</td>
-								  <td><a class='btn btn-info btn-editar' href='#'><i class='icon-edit icon-white'></i>Editar</a></td>
-							  </tr>
 						  </tbody>
 					  </table>  
 					  <div class="modal hide fade" id="modalRegistro">
@@ -58,19 +50,19 @@
 							<button type="button" class="close" data-dismiss="modal">x</button>
 							<h3>Registrar Oferta</h3>
 						</div>
-						<form id="RegistrarOfertasForm" class="form-horizontal" method="post" action="{{ path('dicars_ventas_registrar_oferta') }}">
+						<form id="RegistrarOfertasForm" class="form-horizontal">
 							<div  class="modal-body">
 								<fieldset>
 								  <div class="control-group">
 									<label class="control-label" for="fecha_ini">Fecha de Inicio</label>
 									<div class="controls">
-									  <input type="text" class="input-xlarge datepicker" pattern="|^\d{2}/\d{2}/\d{4}$|" id="fecha_ini" name="fecha_ini" required>
+									  <input type="text" class="input-xlarge datepicker" id="fecha_ini" name="fecha_ini">
 									</div>
 								  </div>
 								  <div class="control-group">
 									<label class="control-label" for="fecha_fin">Fecha de Vencimiento</label>
 									<div class="controls">
-									  <input type="text" class="input-xlarge datepicker" pattern="|^\d{2}/\d{2}/\d{4}$|" id="fecha_fin" name="fecha_fin" required>
+									  <input type="text" class="input-xlarge datepicker" id="fecha_fin" name="fecha_fin">
 									</div>
 								  </div>
 								  <div class="control-group">
@@ -88,11 +80,12 @@
 									</div>
 								</div>
 								<hr>
-								  <table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+								  <table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>administracion/servicios/getProductoOferta">
 									  <thead>
 										  <tr>
 											  <th>Producto</th>
 											  <th>Precio</th>
+											  <th>Talla</th>
 											  <th>Marca</th>
 											  <th>Categoría</th>
 										  </tr>

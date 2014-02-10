@@ -112,7 +112,7 @@
 		</a>
 
 		<a data-rel="tooltip" title="Ver, Agregar y editar las Ofertas." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/ofertas">
 			<span class="icon32 icon-color icon-tag"></span>
 			<div>
 				<br>Ofertas</div>
