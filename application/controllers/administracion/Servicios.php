@@ -34,6 +34,16 @@ class Servicios extends CI_Controller {
 		$result = $this->amm->get_marcas();
 		echo json_encode(array('aaData' => $result));
 	}
+
+
+
+	public function getTrabajadores()
+	{
+		$this->load->model('administracion/Trabajadores_Model','tramod');
+		$result = $this->tramod->get_trabajadores();
+		echo json_encode(array('aaData' => $result));
+	}
+	
 	
 	public function getMarcaByIdAction($id)
 	{
