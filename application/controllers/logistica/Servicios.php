@@ -65,23 +65,12 @@ class Servicios extends CI_Controller {
 	}
 	
 
-	public function getProductoByIdAction($id){
-		$em = $this->getDoctrine()->getEntityManager();
-			
-		$producto = $this->getDoctrine()		
-		->getRepository('DicarsDataBundle:Producto')
-		->findOneBy(array('nproductoId' => $id));
-		
-		$data = array('id' => $producto -> getNproductoId(),'serie' => $producto -> getCproductoserie(),'talla' => $producto -> getCproductotalla(),
-				'nombre' => $producto -> getCproductodesc(),'pcosto' => $producto -> getNproductopcosto(),'pcontado' => $producto -> getNproductopcontado(),
-				'pcredito' => $producto -> getNproductopcredito(),'tipo' => $producto -> getNproductotipo(),'codigobarras' => $producto -> getCproductocodbarra(),
-				'stockmin' => $producto -> getNproductostockmin(),'stock' => $producto -> getNproductostock(),'stockmax' => $producto -> getNproductostockmax(), 
-				'estado' => $producto -> getCproductoest(),'porcuti' => $producto -> getNproductoporcuti(),				
-				'utibruta' => $producto -> getNproductoutibruta(), 'marca' => $producto -> getNproductomarca() -> getNmarcaId());
-								
-		$em->clear();
-		$em->close();
-		return new JsonResponse($data);
+	public function getProductos(){
+		//CARGAR PRODUCTOS
+	
+		$this->load->model('logistica/Producto_Model','prod');
+		$result = $this->prod->get_producto();
+		echo json_encode(array('aaData' => $result));
 	}
 	
 	public function getTablaProveedoresAction(){
@@ -117,25 +106,12 @@ class Servicios extends CI_Controller {
 		return new JsonResponse(array('aaData' => $todo));
 	}
 	
-	public function getProveedorByIdAction($id){
-		$em = $this->getDoctrine()->getEntityManager();
-			
-		$proveedor = $this->getDoctrine()
-		->getRepository('DicarsDataBundle:LogProveedor')
-		->findOneBy(array('nproveedorId' => $id));
+	public function getProveedor(){
+		//CARGAR PRODUCTOS
 		
-		$data = array('id' => $proveedor -> getNproveedorId(),
-					'ruc' => $proveedor -> getCproveedorruc(),
-					'razonsocial' => $proveedor -> getCproveedorrazsocial(),
-					'telefono' => $proveedor -> getCproveedortel(),
-					'email' => $proveedor -> getCproveedoremail(),
-					'sitioweb' => $proveedor -> getCproveedorsitioweb(),
-					'direccion' => $proveedor -> getCproveedordirec(),
-					'ccorriente' => $proveedor -> getCproveedorccorriente());
-	
-		$em->clear();
-		$em->close();
-		return new JsonResponse($data);
+		$this->load->model('logistica/Proveedor_Model','pro');
+		$result = $this->pro->get_proveedor();
+		echo json_encode(array('aaData' => $result));
 	}
 	
 	public function getTablaLocalesAction(){

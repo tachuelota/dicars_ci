@@ -36,7 +36,8 @@
 					</div>
 				</div>
 				<div class="box-content">
-					<table class="table table-striped table-bordered bootstrap-datatable datatable" id="productos_table">
+					<table class="table table-striped table-bordered bootstrap-datatable datatable" id="productos_table"
+					data-source = "<?php echo base_url();?>logistica/Servicios/getProductos">
 						<thead>
 							<tr>
 								<th>Nombre</th>
@@ -48,37 +49,13 @@
 								<th>Prec. Contado</th>
 								<th>Prec. Crédito</th>
 								<th>Cod. Barra</th>
-								<th></th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Jean</td>
-								<td>Jeansito</td>
-								<td>Cadera</td>
-								<td>Pantalones</td>
-								<td>28</td>
-								<td>1000</td>
-								<td>80</td>
-								<td>90</td>
-								<td>123456789654312987</td>
-								<td>
-									<a class='btn btn-success btn-datos' href='producto_ver.html'> <i class='icon-zoom-in icon-white'></i>
-										Ver Datos
-									</a>
-								</td>
-								<td>
-									<a class='btn btn-info btn-editar' href='producto_editar.html'>
-										<i class='icon-edit icon-white'></i>
-										Editar
-									</a>
-								</td>
-							</tr>
 						</tbody>
 					</table>
 
-					<div class="modal hide fade" id="modalVerDatos">
+					<!--<div class="modal hide fade" id="modalVerDatos">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">x</button>
 							<h3>Datos del Producto</h3>
@@ -173,8 +150,8 @@
 								<button type="reset" class="btn" data-dismiss="modal">Cerrar</button>
 							</div>
 						</div>
-					</div>
-					<div class="modal hide fade" id="modalEditarDatos" >
+					</div>-->
+					<!--<div class="modal hide fade" id="modalEditarDatos" >
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">x</button>
 							<h3>Datos del Producto</h3>
@@ -284,25 +261,25 @@
 								<button id="reg_prod_btn" type="submit" class="btn btn-primary">Guardar</button>
 							</div>
 						</form>
-					</div>
-					<div class="modal hide fade" id="modalRegistro">
+					</div>-->
+					<div class="modal hide fade" id="modalProductos">
 						<div class="modal-header">
 							<h3>Registrar Producto</h3>
 						</div>
-						<form id="RegistrarProductoForm" class="form-horizontal" method="post" action="">
+						<form id="ProductoForm" class="form-horizontal" action-1="<?php echo base_url();?>logistica/Productos/registrar" action-2="<?php echo base_url();?>logistica/Productos/editar">
 							<div class="modal-body">
 								<input id="codigo" name="codigo" type="hidden">
 								<fieldset>
 									<div class="control-group">
 										<label class="control-label" for="serie">Serie</label>
 										<div class="controls">
-											<input maxlength="15" id="serie" name="serie" type="text" pattern='|^[a-zA-Z0-9\-\]+$|' required></div>
+											<input maxlength="15" id="serie" name="serie" type="text"></div>
 									</div>
 
 									<div class="control-group">
 										<label class="control-label" for="talla">Talla</label>
 										<div class="controls">
-											<input required maxlength="15" id="talla" name="talla" type="text" pattern='|^([0-9]+)$|'></div>
+											<input required maxlength="15" id="talla" name="talla" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="marca">Marca</label>
@@ -379,7 +356,8 @@
 							</div>
 							<div class="modal-footer">
 								<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
-								<button id="reg_prod_btn" type="submit" class="btn btn-primary">Guardar</button>
+								<button id="btn-reg-prod" type="button" class="btn btn-primary ">Registrar</button>
+								<button id="btn-editar-prod" type="button" class="btn btn-primary " style="display:none">Editar</button>
 							</div>
 						</form>
 					</div>
