@@ -84,8 +84,8 @@
 	<script src="<?php echo base_url();?>assets/js/jqueryvalidation/languages/jquery.validationEngine-es.js"></script>
 	<script src="<?php echo base_url();?>assets/js/jqueryvalidation/jquery.validationEngine.js"></script>
 	<script src="<?php echo base_url();?>assets/js/jquery.blockUI.js"></script>
-	<script src="<?php echo base_url();?>assets/js/util/functiongen.js"></script>
 	<script src="<?php echo base_url();?>assets/js/util/datatable_plugins.js"></script>
+	<script src="<?php echo base_url();?>assets/js/util/functiongen.js"></script>
 	<script src="<?php echo base_url();?>assets/js/datatables.actions.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){

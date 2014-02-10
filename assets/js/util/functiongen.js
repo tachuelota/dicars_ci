@@ -239,24 +239,141 @@ function enviar(url, datos, successfunction, errorfunction){
     if(typeof(errorfunction)!= 'undefined' && errorfunction != null)
     	Consulta.fail(function(data){
     		errorfunction(data);
-    	});
-
-		
+    	});		
 }
 
 /*
  * Crea un datatable y lo devuelve como variable
  */
-function createDataTable(idTable,UrlaDTable,FormatoDTable, DrawCallBackFunction, RowCallBackFunction){
+
+function recoveryOprions(inputoptions){
+	var outputoptions = {};
+	if(typeof inputoptions.sAjaxSource == "undefined")
+		outputoptions.sAjaxSource = "";
+	else
+		outputoptions.sAjaxSource = inputoptions.sAjaxSource;
+
+	if(typeof inputoptions.aoColumns == "undefined")
+		outputoptions.aoColumns = "";
+	else
+		outputoptions.aoColumns = inputoptions.aoColumns
+
+	if(typeof inputoptions.iDisplayLength == "undefined")
+		outputoptions.iDisplayLength = 5;
+	else
+		outputoptions.iDisplayLength = inputoptions.iDisplayLength;
+
+	if(typeof inputoptions.aLengthMenu == "undefined")
+		outputoptions.aLengthMenu = [[5,10, 25, 50], [5,10, 25, 50]];
+	else
+		outputoptions.aLengthMenu = inputoptions.aLengthMenu
+
+	if(typeof inputoptions.sDom == "undefined")
+		outputoptions.sDom = "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>";
+	else
+		outputoptions.sDom = inputoptions.sDom
+
+	if(typeof inputoptions.fnCreatedRow == "undefined")
+		outputoptions.fnCreatedRow = null;
+	else
+		outputoptions.fnCreatedRow = inputoptions.fnCreatedRow
+
+	if(typeof inputoptions.fnDrawCallback == "undefined")
+		outputoptions.fnDrawCallback = null;
+	else
+		outputoptions.fnDrawCallback = inputoptions.fnDrawCallback
+
+	if(typeof inputoptions.fnInitComplete == "undefined")
+		outputoptions.fnInitComplete = null;
+	else
+		outputoptions.fnInitComplete = inputoptions.fnInitComplete
+
+	return outputoptions;
+}
+
+function createDataTable2(idTable, options){
+	var TOptios = recoveryOprions(options);
+	var asInitVals = new Array();
+	var oTable = $('#'+idTable).dataTable({
+		"bProcessing": false,
+		"bDestroy": true,		
+        "bSort": false,
+		"sAjaxSource": TOptios.sAjaxSource,
+		"aoColumns": TOptios.aoColumns,	
+		'iDisplayLength': TOptios.iDisplayLength,
+		"aLengthMenu": [[5,10, 25, 50], [5,10, 25, 50]],			   
+    	"sDom": TOptios.sDom,
+    	"sPaginationType": "full_numbers",
+    	"oLanguage": {
+		    "sProcessing":     "Procesando...",
+		    "sLengthMenu":     "Mostrar _MENU_ registros",
+		    "sZeroRecords":    "No se encontraron resultados",
+		    "sEmptyTable":     "Ningún dato disponible en esta tabla",
+		    "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+		    "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+		    "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+		    "sInfoPostFix":    "",
+		    "sSearch":         "Buscar:",
+		    "sUrl":            "",
+		    "sInfoThousands":  ",",
+		    "sLoadingRecords": "Cargando...",
+		    "oPaginate": {
+		        "sFirst":    "Primero",
+		        "sLast":     "Último",
+		        "sNext":     "Siguiente",
+		        "sPrevious": "Anterior"
+		    },
+		    "oAria": {
+		        "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+		        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+		    }
+		},  
+	 	"fnCreatedRow": TOptios.fnCreatedRow,
+		"fnInitComplete": TOptios.fnInitComplete,
+	 	"fnDrawCallback": TOptios.fnDrawCallback
+	});
+
+	$("tfoot th.input input").keyup( function () {
+		/* Filter on the column (the index) of this element */
+		oTable.fnFilter( this.value, $("tfoot th.input input").index(this) );
+	} );
+
+	$("tfoot th.input input").each( function (i) {
+		asInitVals[i] = this.value;
+	} );
 	
+	$("tfoot th.input input").focus( function () {
+		if ( this.className == "search_init" )
+		{
+			this.className = "";
+			this.value = "";
+		}
+	} );
+	
+	$("tfoot th.input input").blur( function (i) {
+		if ( this.value == "" )
+		{
+			this.className = "search_init";
+			this.value = asInitVals[$("tfoot th.input input").index(this)];
+		}
+	} );
+
+	$("tfoot th.select").each( function ( i ) {
+        this.innerHTML = fnCreateSelect( oTable.fnGetColumnData(i) );
+        $('select', this).change( function () {
+            oTable.fnFilter( $(this).val(), i );
+        } );
+    } );
+
+	return oTable;
+}
+function createDataTable(idTable,UrlaDTable,FormatoDTable, DrawCallBackFunction, RowCallBackFunction){
 	var oTable = $('#'+idTable).dataTable({
 		"bProcessing": false,
 		"bDestroy": true,		
         "bSort": false,
 		"sAjaxSource": UrlaDTable,
-		'iDisplayLength': 5,
-		"aLengthMenu": [[5,10, 25, 50], [5,10, 25, 50]],
-		"aoColumns": FormatoDTable,				   
+		"aoColumns": FormatoDTable,			   
     	"sDom": "<'row-fluid'<'span6'l><'span6'f>r>t<'row-fluid'<'span12'i><'span12 center'p>>",
     	"sPaginationType": "full_numbers",
     	"oLanguage": {
@@ -298,29 +415,17 @@ function createDataTable(idTable,UrlaDTable,FormatoDTable, DrawCallBackFunction,
 	return oTable;
 }
 
-function CopyArray(Array1,Array2,all,attrs){
-	while(Array1.length > 0)
-		Array1.pop();	
-	if(all){
-		$(Array2).each(function( index ){
-			Array1.push(this);
+function CopyArray(Array,attrs){
+	var ArrayReturn = [];
+	$(Array).each(function(index){
+		var ArrayData = this;
+		var data = {};
+		$(attrs).each(function(index){
+			data[this] = ArrayData[this];
 		});
-	}
-	else{
-		$(Array2).each(function( index ){
-			var olddata = this;
-			var newdata = [];
-			var jsondata = '{';
-			for(var i=0; i<attrs.length;i++){
-				jsondata +='"'+attrs[i]+'":"'+olddata[attrs[i]]+'"';
-				if(attrs.length-1>i)
-					jsondata = jsondata + ',';
-			}
-			jsondata += '}';
-			newdata = jQuery.parseJSON(jsondata);
-			Array1.push(newdata);
-		});
-	}
+		ArrayReturn.push(data);
+	});
+	return ArrayReturn;
 }
 
 function getAjaxObject(url){
