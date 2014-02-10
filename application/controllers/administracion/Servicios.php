@@ -28,7 +28,6 @@ class Servicios extends CI_Controller {
 	}
 
 
-
 	public function getTrabajadores()
 	{
 		$this->load->model('administracion/Trabajadores_Model','tramod');

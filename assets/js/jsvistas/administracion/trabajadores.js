@@ -7,20 +7,20 @@ $(document).ready(function(){
 	var TrabajadoresTA = new DTActions({
 		'conf': '010',
 		'idtable': 'trabajadores_table',
-		'EditFunction': function(nRow, aData, iDisplayIndex) {
+		'EditFunction': function(nRow, aData, iDisplayIndex) {		
 			$("#btn-reg-trabajadores").hide();
 			$("#btn-editar-trabajadores").show();
 	  		$('#modalTrabajadores').modal('show');
-	  		$("#nom_trabajadores").val(aData.cPersonalNom);	  				
-	  		$("#apelli_trabajadores").val(aData.cPersonalApe);
-	  		$("#fechanac_trabajadores").val(aData.dPersonalFec);	  		
-	  		$("#edad_trabajadores").val(aData.cPersonalEdad);
-	  		$("#dni_trabajadores").val(aData.cPersonalDNI);	  		
-	  		$("#telefono_trabajadores").val(aData.cPersonalTelf);
-	  		$("#email_trabajadores").val(aData.cPersonalEmail);
-	  		$("#selectSexo").val(aData.cPersonalSexo);	  		
-	  		$("#selectCargo").val(aData.nCargo_id);
-	  		$("#selectEstado").val(aData.cPersonalEst);
+	  		$("#nombres").val(aData.cPersonalNom);	  				
+	  		$("#apellidos").val(aData.cPersonalApe);
+	  		$("#fechanacimiento").val(aData.dPersonalFec);	  		
+	  		$("#edad").val(aData.cPersonalEdad);
+	  		$("#dni").val(aData.cPersonalDNI);	  		
+	  		$("#telefono").val(aData.cPersonalTelf);
+	  		$("#email").val(aData.cPersonalEmail);
+	  		$("#sexo").val(aData.cPersonalSexo);	  		
+	  		$("#cargo").val(aData.nCargo_id);
+	  		$("#estado").val(aData.cPersonalEst);
 	  		$("#idTrabajadores").val(aData.nPersonal_id);
 		},
 	});
@@ -29,23 +29,6 @@ $(document).ready(function(){
     TrabajadoresRowCBF = function(nRow, aData, iDisplayIndex){
 		TrabajadoresTA.RowCBFunction(nRow, aData, iDisplayIndex);	
 	};
-
-
-	//mostrar Registrar Trabajador------------------------------------>
-	$('.btn-registrar').click(function(e){
-		e.preventDefault();
-		$('#modalTrabajadores').modal('show');
-	});
-
-	$('.btn-datos').click(function(e){
-		e.preventDefault();
-		$('#modalVerDatos').modal('show');
-	});
-	$('.btn-editar').click(function(e){
-		e.preventDefault();
-		$('#modalEditarDatos').modal('show');
-	});
-	//----------------------------------------------------------
 
 	var UrlaDTable = $("#trabajadores_table").attr("data-source");
 	//console.log(UrlaDTable);
@@ -57,17 +40,21 @@ $(document).ready(function(){
 
 		              ];
 
+    TrabajadoresTable = createDataTable('trabajadores_table',UrlaDTable,FormatoTrabajador,null,TrabajadoresRowCBF);
+
+	//mostrar Registrar Trabajador------------------------------------>
+	$('.btn-registrar').click(function(e){
+		e.preventDefault();
+		$('#modalTrabajadores').modal('show');
+	});
+
+	//----------------------------------------------------------
     var successTrabajador = function(){
 		$('#modalTrabajadores').modal('hide');
 		TrabajadoresTable.fnReloadAjax()
 	}
 
-//--funcion de los botones
-
-	$('.btn-registrar').click(function(e){
-		e.preventDefault();
-		$('#modalCargo').modal('show');
-	});
+	//--funcion de los botones
 
 	$("#btn-reg-trabajadores").click(function(event){
 		event.preventDefault();
@@ -82,6 +69,6 @@ $(document).ready(function(){
 			enviar($("#TrabajadoresForm").attr("action-2"),{formulario:$("#TrabajadoresForm").serializeObject()}, successTrabajador, null);
 	});
 	
-	TrabajadoresTable = createDataTable('trabajadores_table',UrlaDTable,FormatoTrabajador,null,TrabajadoresRowCBF);
+
 
 });

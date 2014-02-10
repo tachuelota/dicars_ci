@@ -49,9 +49,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = '192.168.0.24';
-$db['default']['username'] = 'dicars_user';
-$db['default']['password'] = '123456';
+$db['default']['hostname'] = '127.0.0.1';
+$db['default']['username'] = 'root';
+$db['default']['password'] = '';
 $db['default']['database'] = 'dicarsbd';
 $db['default']['dbdriver'] = 'MySQLi';
 $db['default']['dbprefix'] = '';
