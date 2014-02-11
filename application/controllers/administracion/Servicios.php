@@ -87,4 +87,11 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
+	public function getTrabajadores_Activos()
+	{
+		$this->load->model('administracion/Trabajadores_Model','tramod');
+		$result = $this->tramod->get_trabajadores_activos();
+		echo json_encode(array('aaData' => $result));
+	}
+
 }
