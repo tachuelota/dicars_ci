@@ -29,10 +29,10 @@ class Locales extends CI_Controller
 			$Ubigeo = $form[""];
 			$TipoRubro = $form[""];
 							
-			$Cargo = array('cLocalDesc' => $Descripcion,'nLocalEst' =>$Estado,'cLocalTelf'=>$Telefono,
+			$local = array('cLocalDesc' => $Descripcion,'nLocalEst' =>$Estado,'cLocalTelf'=>$Telefono,
 			'cLocalDirec'=>$Direccion,'nUbigeo_id'=>$Ubigeo,'nLocalTipRub'=>$TipoRubro );
 	
-			if($this->lo->insert($Cargo)){
+			if($this->lo->insert($local)){
 				$return = array("responseCode"=>200, "datos"=>"ok");
 			}else{
 				$return = array("responseCode"=>400, "greeting"=>"Bad");
