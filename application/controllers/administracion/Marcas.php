@@ -21,19 +21,15 @@ class Marcas extends CI_Controller {
 
 			$Marca = array('cMarcaDesc'=>$MarcaDesc ,'cMarcaEst'=>$MarcaEst);
 			//-------------Insertar----------
-			if($this->amm->insert($Marca)){
-				$return = array('responseCode'=>200, 'datos'=>$Marca);
-			}
-			else{
-				$return = array('responseCode'=>400, 'greeting'=>'Bad');
-			}			
+			if(!$this->amm->insert($Marca))
+				$this->output->set_status_header('400');
 		}
-		else {
-			$return = array("responseCode"=>400, "greeting"=>"Bad");
-		}
+		else
+			$this->output->set_status_header('400');
 
-		$return = json_encode($form);
-		echo $return;
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode("ok"));
 	}
 
 	public function editar(){
@@ -51,20 +47,16 @@ class Marcas extends CI_Controller {
 
 			$data = array('cMarcaDesc'=>$MarcaDesc ,'cMarcaEst'=>$MarcaEst);
 			//-------------Update----------
-			if($this->amm->update($Marcaid,$data)){
-				$return = array('responseCode'=>200, 'datos'=>$data);
-			}
-			else{
-				$return = array('responseCode'=>400, 'greeting'=>'Bad');
-			}
+			if(!$this->amm->update($Marcaid,$data))
+				$this->output->set_status_header('400');
 
 		}
-		else {
-			$return = array("responseCode"=>400, "greeting"=>"Bad");
-		}
+		else
+			$this->output->set_status_header('400');
 
-		$return = json_encode($return);
-		echo $return;
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode("ok"));
 	}
 
 }

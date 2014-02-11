@@ -87,17 +87,19 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
-<<<<<<< HEAD
-	public function get_trabajadores_activos(){
-=======
-	public function getTrabajadores_sinzona()
-	{
->>>>>>> 222fe19bd69a104b51ddb5fea846a5bdd3ecb48b
+	public function get_trabajadores_sinzona(){
 		$this->load->model('administracion/Trabajadores_Model','tramod');
 		$result = $this->tramod->get_trabajadores_sinzona();
 		echo json_encode(array('aaData' => $result));
 	}
 
-
+	public function getOfertas()
+	{
+		$this->load->model('administracion/Oferta_Model','ofertm');
+		$ofertas = $this->ofertm->get_ofertas();
+		$foreach ($ofertas as $key => $oferta) {
+			if($oferta[""])
+		}
+	}
 
 }

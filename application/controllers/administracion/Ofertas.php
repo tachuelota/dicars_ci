@@ -16,29 +16,48 @@ class Ofertas extends CI_Controller
 	public function registrar()
 	{
 		$form = $this->input->post('formulario',true);
-		$productos = $this->input->post('productos',true);
-
-		$this->db->trans_start(true);		
-		$this->db->trans_begin();
+		$productos = $this->input->post('productos',true);		
 
 		if($form != null)
 		{
-			$cOfertaDesc
-			$dOfertaFecVigente
-			$dOfertaFecVencto
-			$nOfertaPorc
-			if ($this->db->trans_status() === FALSE)
+			$cOfertaDesc = $form["descripcion"];
+			$dOfertaFecVigente = date_create_from_format("d/m/Y",$form["fecha_ini"]);
+			$dOfertaFecVencto = date_create_from_format("d/m/Y",$form["fecha_fin"]);
+			$nOfertaPorc = $form["descuento"];
+
+			$Oferta = array(
+				"cOfertaDesc"=>$cOfertaDesc,
+				"dOfertaFecVigente"=>$dOfertaFecVigente->format('Y-m-d'),
+				"dOfertaFecVencto"=>$dOfertaFecVencto->format('Y-m-d'),
+				"nOfertaPorc"=>$nOfertaPorc,
+				);
+			$this->db->trans_begin();
+			$band = true;
+			if ($this->ofertm->insert($Oferta))
 			{
-				$this->db->trans_rollback();
-				return false;
+				$idOferta = $this->db->insert_id();
+				foreach ($productos as $prod) {
+				    $OfertaProducto = array("nOferta_id"=>$idOferta,"nProducto_id"=>$prod["nProducto_id"],"nOfertaProductoPorc"=>$form["descuento"]);
+				    if(!$this->ofertprodm->insert($OfertaProducto))
+				    {
+				    	$band = false;
+				    	$this->db->trans_rollback();
+				    	$this->output->set_status_header('400');
+						break;
+				    }
+				}
+				if($band)
+					$this->db->trans_commit();
 			}
 			else
-			{
-				$this->db->trans_commit();
-				return true;
-			}
+				$this->output->set_status_header('400');
 		}
-	}
+		else			
+			$this->output->set_status_header('400');
 
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode("ok"));
+	}
 
 }

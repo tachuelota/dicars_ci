@@ -175,4 +175,16 @@ class Views extends CI_Controller
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
+
+	//Editar Ofertas
+	public function editar_ofertas()
+	{
+		$dataheader['title'] = 'Dicars - Ofertas -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('administracion/editar_ofertas.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/editar_ofertas.js';
+		$datafooter['active'] = '';
+		$this->load->view('templates/footer.php',$datafooter);
+	}
 }

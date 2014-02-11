@@ -23,7 +23,7 @@
 				<span class="divider">/</span>
 			</li>
 			<li>
-				<a href="<?php echo base_url();?>ventas/views/ofertas">Ofertas</a>
+				<a href="<?php echo base_url();?>administracion/views/ofertas">Ofertas</a>
 			</li>
 		</ul>
 	</div>
@@ -51,12 +51,12 @@
 					</thead>
 					<tbody></tbody>
 				</table>
-				<div class="modal hide fade" id="modalRegistro">
+				<div class="modal hide fade OfertaModal" id="OfertaModal">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">x</button>
 						<h3>Registrar Oferta</h3>
 					</div>
-					<form id="RegistrarOfertasForm" class="form-horizontal">
+					<form id="OfertasForm" class="form-horizontal" action-1="<?php echo base_url();?>administracion/ofertas/registrar">
 						<div  class="modal-body">
 							<fieldset>
 								<div class="control-group">
@@ -79,34 +79,11 @@
 									<label class="control-label" for="descuento">Venta Descuento</label>
 									<div class="controls">
 										<div class="input-prepend input-append">
-											<input class="input-xlarge focused " name="descuento" id="descuento" type="number" min="0" max="100" value="0" required>
+											<input class="input-xlarge focused " name="descuento" id="descuento" type="text">
 											<span id="spandesc" class="add-on">%</span>
 										</div>
 									</div>
-								</div>
-								<hr>
-								<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>
-									administracion/servicios/getProductoOferta">
-									<thead>
-										<tr>
-											<th>Producto</th>
-											<th>Precio</th>
-											<th>Talla</th>
-											<th>Marca</th>
-											<th>Categoría</th>
-										</tr>
-									</thead>
-									<tbody></tbody>
-									<tfoot>
-										<tr>
-											<th class="input"><input type="text" style="width: 75px" name="search_engine" value="Nombre" class="search_init" /></th>
-											<th class="input"><input type="text"style="width: 75px" name="search_browser" value="Precio" class="search_init" /></th>
-											<th class="input"><input type="text" style="width: 75px" name="search_platform" value="Talla" class="search_init" /></th>
-											<th class="input"><input type="text" style="width: 75px" name="search_platform" value="Marca" class="search_init" /></th>
-											<th class="input"><input type="text" style="width: 75px" name="search_version" value="Categoria" class="search_init" /></th>
-										</tr>
-									</tfoot>
-								</table>
+								</div>								
 							</fieldset>
 						</div>
 						<div class="modal-footer">
@@ -115,23 +92,11 @@
 						</div>
 					</form>
 				</div>
-				<div class="modal hide fade" id="modalVerDatos">
-					<div class="modal-header">
-						<h3>Oferta</h3>
-					</div>
-					<div class="modal-body">
-						<div id="VerOferta" class="form-horizontal"></div>
-					</div>
-					<!-- div class="modal-footer">
-					<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-					<a href="#" class="btn btn-primary">Guardar</a>
-				</div -->
 			</div>
 		</div>
+		<!--/span-->
 	</div>
-	<!--/span-->
-</div>
-<!-- content ends -->
+	<!-- content ends -->
 </div>
 <!--/#content.span10-->
 </div>
