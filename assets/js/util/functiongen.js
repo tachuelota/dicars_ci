@@ -208,7 +208,7 @@ function sumArrayByAttr(Array2,attr){
 	return(total);
 }
 
-function getSimpleSelectRowCallBack(DSelected, tableid){
+function getSimpleSelectRowCallBack(DSelected){
 	var SelectRowFunction = function(nRow,aData,iDisplayIndex){
 		$(nRow).click( function() {
 			if ( $(this).hasClass('row_selected') ) {
@@ -216,7 +216,7 @@ function getSimpleSelectRowCallBack(DSelected, tableid){
 	            DSelected.pop();
 	        }
 			else {
-				$('#'+tableid+' tr.row_selected').removeClass('row_selected');
+				$(nRow).closset('table').find('tr.row_selected').removeClass('row_selected');
 	            $(this).addClass('row_selected');
 	            DSelected.pop();
 	            DSelected.push(aData);
