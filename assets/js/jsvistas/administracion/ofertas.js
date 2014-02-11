@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	var SelectProductoData = new Array();
-	var ProducsDataToSend = new Array();
 	var DataToSend = {};
 
 	//mostrar Registrar Trabajador------------------------------------>

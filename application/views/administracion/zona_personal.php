@@ -12,13 +12,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_homepage.html">Administración</a><span class="divider">/</span>
+						<a href="<?php echo base_url();?>administracion/">Administración</a><span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_zonas.html">Zonas</a>
+						<a  href="<?php echo base_url();?>administracion/views/zona_personal">Zonas</a>
 					</li>
 				</ul>
 			</div>  
@@ -28,7 +28,7 @@
 						<h2>ZONAS ASIGNADAS</h2>
 					</div>
 					<div class="box-content">
-						<form id="RegistrarZonapersonalForm" class="form-horizontal" method="post" action="">
+						<form id="ZonapersonalForm" class="form-horizontal" method="post" action="">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="nombre_trabajador">Trabajador</label>
@@ -67,18 +67,8 @@
 										  </tr>
 									  </thead>
 									  <tbody>
-									  	<tr>
-											  <th>Diego</th>
-											  <th>Molina</th>
-											  <th>12345678</th>
-											  <th>147258</th>
-										  </tr>
-										  <tr>
-											  <th>Arturo</th>
-											  <th>Méndez</th>
-											  <th>36925814</th>
-											  <th>258369</th>
-										  </tr>
+									  	<tr>											
+										</tr>
 									  </tbody>
 								  </table> 
 							</div>	
@@ -102,14 +92,8 @@
 								</thead>     
 								<tbody>
 									<tr>
-										<th>Zona 1</th>
-										<th>Habilitada</th>
-										<th>Trujillo - Trujillo - La Libertad</th>
 									</tr>
 									<tr>
-										<th>Zona 2</th>
-										<th>Habilitada</th>
-										<th>Tumbes - Tumbes - Tumbes</th>
 									</tr>
 								</tbody>
 							</table>	
@@ -120,28 +104,22 @@
 							</div>
 						</div>							
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonapersonal_table">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonapersonal_table" data-souce="<?php echo base_url();?>administracion/servicios/getcargos">
 						  <thead>
 							  <tr>
 								  <th>Nombre</th>
 								  <th>Encargado</th>
 								  <th>Estado</th>
 								  <th>Ubigeo</th>
-								  <th></th>
 							  </tr>
 						  </thead>   
 						  <tbody>
-						  	<tr>
-								  <th>Zona 3</th>
-								  <th>Pedro Casas</th>
-								  <th>Habilitada</th>
-								  <th>Aguas Verdes - Zarumilla - Tumbes</th>
-								  <th><a class='btn btn-info btn-editar' href='admin_zona_edit.html'><i class='icon-edit icon-white'></i>Editar</a></th>
-							  </tr>
+						  	<tr>								  
+							</tr>
 						</tbody>
 					</table>
 					</div>
 				</div><!--/span-->
 			</div><!-- content ends -->
 			</div><!--/#content.span10-->
-				</div><!--/fluid-row-->
+			</div><!--/fluid-row-->
