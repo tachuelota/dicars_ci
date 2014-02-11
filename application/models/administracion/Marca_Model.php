@@ -52,7 +52,7 @@ class Marca_Model extends CI_Model {
 	{
 		if($nMarca_id === FALSE )
 		{
-			$query = $this ->db->get ('ven_marca');
+			$query = $this ->db->query ('select * from ven_marca_all;');
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('ven_marca', array('nCategoria_id' => $nMarca_id));

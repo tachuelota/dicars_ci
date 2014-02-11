@@ -52,7 +52,7 @@ class TipoMoneda_Model extends CI_Model {
 	{
 		if($nTipoMoneda === FALSE )
 		{
-			$query = $this ->db->get ('ven_tipomoneda');
+			$query = $this ->db->query ('select * from ven_tipomodena_all;');
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('ven_tipomoneda', array('nTipoMoneda' => $nTipoMoneda));

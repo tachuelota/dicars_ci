@@ -79,4 +79,12 @@ class Servicios extends CI_Controller {
 		$productos = $this->db->query("SELECT * FROM ven_productossinoferta");
 		echo json_encode(array('aaData' => $productos->result_array()));
 	}
+
+	public function getLocales()
+	{
+		$this->load->model('administracion/Local_Model','lo');
+		$result = $this->lo->get_locales();
+		echo json_encode(array('aaData' => $result));
+	}
+
 }

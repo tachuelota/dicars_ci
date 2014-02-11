@@ -80,7 +80,7 @@
 		</a>
 
 		<a data-rel="tooltip" title="Ver, Agregar y editar Zonas." class="well span3 top-block" href="<?php echo base_url();?>
-			administracion/views/categorias">
+			administracion/views/cons_zonas">
 			<span class="icon32 icon-color icon-flag"></span>
 			<div>
 				Administrar

@@ -68,7 +68,7 @@
 											<div class="controls">
 										  		<select id="estado" name="estado" data-rel="chosen">
 												<option value="1">Habilitado</option>
-												<option value="2">Deshabilitado</option>
+												<option value="0">Deshabilitado</option>
 											</select>
 											</div>
 									  	</div>
