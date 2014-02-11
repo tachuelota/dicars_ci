@@ -9,9 +9,9 @@ $(document).ready(function(){
 			$("#btn-reg-cargo").hide();
 			$("#btn-editar-cargo").show();
 	  		$('#modalCargo').modal('show');
-	  		$("#nom_cargo").val(aData.descripcion);
-	  		$("#selectEstado").val(aData.idestado);
-	  		$("#idCargo").val(aData.id);
+	  		$("#nom_cargo").val(aData.nCargoDesc);
+	  		$("#selectEstado").val(aData.cCargoEst);
+	  		$("#idCargo").val(aData.nCargo_id);
 		},
 	});
 //Init------------------------------------>
@@ -29,7 +29,7 @@ $(document).ready(function(){
 	//1.creas tu tabla 
 	var UrlaDTable = $("#cargos_table").attr("data-source");
 	FormatoDTable = [
-		              { "sWidth": "33%","mDataProp": "descripcion"},
+		              { "sWidth": "33%","mDataProp": "nCargoDesc"},
 		              { "sWidth": "33%","mDataProp": "estado"},
 
 		              ];
