@@ -27,13 +27,16 @@ jQuery.fn.serializeObject = function()
     return o;
 };
 
-jQuery.fn.SelectAjax = function(attval, attrdesc)
+jQuery.fn.SelectAjax = function()
 {
-	var data = getAjaxObject($(this).attr("data-source"))
-	if(typeof data.aaData == "undefined")
-		cargarSelect(data,$(this).attr("id"),attval,attrdesc);
-	else
-		cargarSelect(data.aaData,$(this).attr("id"),attval,attrdesc);
+	$(this).each(function()
+	{
+		var data = getAjaxObject($(this).attr("data-source"))
+		if(typeof data.aaData == "undefined")
+			cargarSelect(data,$(this).attr("id"),$(this).attr("attrval"),$(this).attr("attrdesc"));
+		else
+			cargarSelect(data.aaData,$(this).attr("id"),$(this).attr("attrval"),$(this).attr("attrdesc"));
+	});
 };
 
 

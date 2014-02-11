@@ -2,15 +2,8 @@
 $(document).ready(function(){
 	$("#ProductoForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 
-	//CARGAR MARCAS EN EL COMBO BOX
-	var marcas = getAjaxObject($("#marca").attr("data-source"))
-	cargarSelect(marcas.aaData,"marca","nMarca_id","cMarcaDesc")
-
-	var categoria = getAjaxObject($("#categoria").attr("data-source"))
-	cargarSelect(categoria.aaData,"categoria","nCategoria_id","cCategoriaNom")
-
-	var tipo = getAjaxObject($("#tipprod").attr("data-source"))
-	cargarSelect(tipo.aaData,"tipprod","cConstanteValor","cConstanteDesc")
+	//CARGAR MARCAS EN EL COMBO BOX	
+	$(".SelectAjax").SelectAjax();
 
 	var TipoProdTA = new DTActions({
 		'conf': '010',
