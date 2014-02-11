@@ -18,7 +18,7 @@
 						<a href="<?php echo base_url();?>administracion">Administración/</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>administracion/trabajadores">Trabajadores</a>
+						<a href="<?php echo base_url();?>administracion/views/trabajadores">Trabajadores</a>
 					</li>
 				</ul>
 			</div>  
@@ -48,7 +48,7 @@
 						<div class="modal-header">
 							<h3>Registrar Trabajador</h3>
 						</div>
-						<form id="TrabajadoresForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/trabajadores/registrar" action-2="<?php echo base_url();?>administracion/trabajadores/editar" action-3="<?php echo base_url();?>administracion/trabajadores/ver">
+						<form id="TrabajadoresForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/trabajadores/registrar" action-2="<?php echo base_url();?>administracion/trabajadores/editar">
 							<input type="hidden" id="idTrabajadores" name="idTrabajadores">
 							<div class="modal-body">
 								<fieldset>
@@ -125,7 +125,7 @@
 									<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
 									<button id="btn-reg-trabajadores" class="btn btn-primary ">Registrar</button>
 									<button id="btn-editar-trabajadores" class="btn btn-primary " style="display:none">Editar</button>
-								</div>
+							</div>
 						</form>
 					</div>					    
 					</div>

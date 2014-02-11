@@ -19,7 +19,7 @@
 						<a href="<?php echo base_url();?>ventas">Ventas</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>ventas/Views/clientes">Clientes</a>
+						<a href="<?php echo base_url();?>ventas/views/clientes">Clientes</a>
 					</li>
 				</ul>
 			</div>  
@@ -39,31 +39,26 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="clientes_table">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="clientes_table" data-source="<?php echo base_url();?>ventas/servicios/getclientes">
 							<thead>
 								<tr>
-									<th>Nombre y Apellidos</th>
+									<th>Nombres</th>
+									<th>Apellidos</th>
 								  	<th>DNI</th>
-								  	<th>Línea de Crédito</th>
-								  	<th></th>
-								  	<th></th>			  
+								  	<th>Línea de Crédito</th>			  
 							  	</tr>
 						  	</thead>
 						  	<tbody>
-						  		<tr>
-									<th>Lourdes Paredes</th>
-								  	<th>85236974</th>
-								  	<th>1000</th>
-								  	<th><a class='btn btn-success btn-datos' href='#'><i class='icon-zoom-in icon-white'></i>Ver Datos</a></th>
-								  	<th><a class='btn btn-info btn-editar' href='#'><i class='icon-edit icon-white'></i>Editar</a></th>			  
+						  		<tr>									
 							  	</tr>
 						  	</tbody>
 					  	</table>  
-			  			<div class="modal hide fade" id="modalRegistro">
+			  			<div class="modal hide fade" id="modalClientes">
 							<div class="modal-header">
 								<h3>Registrar Cliente</h3>
 							</div>
-							<form id="RegistrarClienteForm" class="form-horizontal" method="post" action="">
+							<form id="ClienteForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>ventas/clientes/registrar" action-2="<?php echo base_url();?>ventas/clientes/editar">								
+							<input type="hidden" id="idClientes" name="idClientes">
 								<div class="modal-body">
 									<fieldset>
 										<div class="control-group">
@@ -113,151 +108,21 @@
 										<label class="control-label" for="zona">Zona</label>
 										<div class="controls">
 										  <select id="zona" name="zona">
-										  </select>
-										</div>
-										</div>
-									</fieldset>
-								</div>
-								<div class="modal-footer">
-									<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>
-									<button type="submit" class="btn btn-primary">Guardar</button>
-								</div>
-							</form>
-						</div>
-					     
-						<div class="modal hide fade" id="modalEditarDatos">
-							<div class="modal-header">
-								<h3>Editar Cliente</h3>
-							</div>
-							<form id="EditarClienteForm" class="form-horizontal" method="post" action="">
-								<div class="modal-body">
-									<fieldset>
-										<div class="control-group">
-											<label class="control-label" for="nombres">Nombres</label>
-											<div class="controls">
-										 		<input class="input-xlarge focused" maxlength="50" required pattern="|^[a-zA-Z ñÑáÁéÉíÍóÓúÚüÜç]*$|" title="Este campo debe ser sólo letras" name="nombres" id="focusedInput" type="text" value="Lourdes">
-											</div>
-										</div>
-										 <div class="control-group">
-											<label class="control-label" for="apellidos">Apellidos</label>
-											<div class="controls">
-										  		<input class="input-xlarge focused" maxlength="50" required pattern="|^[a-zA-Z ñÑáÁéÉíÍóÓúÚüÜç]*$|" title="Este campo debe ser sólo letras" name="apellidos" id="focusedInput" type="text" value="Paredes">
-											</div>
-										</div>			
-										 <div class="control-group">
-											<label class="control-label" for="dni">DNI</label>
-											<div class="controls">
-											  	<input class="input-xlarge focused" maxlength="8" required pattern="|^\d{8}$|" title="Este campo debe tener 8 números" name="dni" id="focusedInput" type="text" value="85236974">
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="direccion">Dirección</label>
-											<div class="controls">
-												 <input class="input-xlarge focused" required pattern="|^([a-zA-ZñÑáÁéÉíÍóÓúÚüÜç0-9.]+\s*)+$" maxlength="200" name="direccion" id="focusedInput" type="text" value="Mi Casa 456">
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="referencia">Referencia</label>
-											<div class="controls">
-											  <input class="input-xlarge focused" required pattern="|^[a-zA-Z ñÑáÁéÉíÍóÓúÚüÜç0-9.]+$" maxlength="200" name="referencia" id="focusedInput" type="text" value="...">
-											</div>
-										</div>			
-										<div class="control-group">
-											<label class="control-label" for="ocupacion">Ocupación</label>
-											<div class="controls"> 
-											  <input class="input-xlarge focused" required pattern="|^[a-zA-Z ñÑáÁéÉíÍóÓúÚüÜç]+$|" title="Este campo debe ser sólo letras" maxlength="40" name="ocupacion" type="text" value="Empresaria">
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="lineaop">Línea Operativa</label>
-											<div class="controls">
-											  <input class="input-xlarge focused" name="lineaop" id="lineaop" type="number" step="0.10" min="0" max="1000" required value="1000">
-											</div>
-										</div>
-										
-										<div class="control-group">
-										<label class="control-label" for="zona">Zona</label>
-										<div class="controls">
-										  <select id="zona" name="zona">
 										  	<option value="1">Zona 1</option>
-										  	<option value="2">Zona 2</option>
-										  	<option value="3">Zona 3</option>
+											<option value="2">Zona 2</option>
 										  </select>
 										</div>
 										</div>
 									</fieldset>
 								</div>
-								<div class="modal-footer">
-									<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>
-									<button type="submit" class="btn btn-primary">Guardar</button>
-								</div>
+							  <div class="modal-footer">
+								<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
+								<button id="btn-reg-clientes" class="btn btn-primary ">Registrar</button>
+								<button id="btn-editar-clientes" class="btn btn-primary " style="display:none">Editar</button>
+							  </div>
 							</form>
-						</div>		
-					
-						<div class="modal hide fade" id="modalVerDatos">
-							<div class="modal-header">
-								<h3>Datos del Cliente</h3>
-							</div>
-							<div id="VerClienteForm" class="form-horizontal">
-								<div class="modal-body">
-									<fieldset>
-										<div class="control-group">
-											<label class="control-label" for="nombres">Nombres</label>
-											<div class="controls">
-												<span class="help-inline" style="padding-top:5px;">Lourdes</span>
-											</div>
-										</div>
-										 <div class="control-group">
-											<label class="control-label" for="apellidos">Apellidos</label>
-											<div class="controls">
-										  		<span class="help-inline" style="padding-top:5px;">Paredes</span>
-											</div>
-										</div>			
-										 <div class="control-group">
-											<label class="control-label" for="dni">DNI</label>
-											<div class="controls">
-											  	<span class="help-inline" style="padding-top:5px;">85236974</span>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="direccion">Dirección</label>
-											<div class="controls">
-												<span class="help-inline" style="padding-top:5px;">Mi Casa 456</span>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="referencia">Referencia</label>
-											<div class="controls">
-											  	<span class="help-inline" style="padding-top:5px;">...</span>
-											</div>
-										</div>			
-										<div class="control-group">
-											<label class="control-label" for="ocupacion">Ocupación</label>
-											<div class="controls"> 
-											  	<span class="help-inline" style="padding-top:5px;">Empresaria</span>
-											</div>
-										</div>
-										<div class="control-group">
-											<label class="control-label" for="lineaop">Línea Operativa</label>
-											<div class="controls">
-											  	<span class="help-inline" style="padding-top:5px;">1000</span>
-											</div>
-										</div>
-										
-										<div class="control-group">
-										<label class="control-label" for="zona">Zona</label>
-										<div class="controls">
-										  	<span class="help-inline" style="padding-top:5px;">Zona 1</span>
-										</div>
-										</div>
-									</fieldset>
-								</div>
-								<div class="modal-footer">
-									<button type="reset" class="btn" data-dismiss="modal">Cerrar</button>
-								</div>
-							</div>
 						</div>
-					</div>
+			    		</div>
 					<div class="modal hide fade" id="exportmodal">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">×</button>
