@@ -31,36 +31,32 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonas_table">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonas_table" data-source = "<?php echo base_url();?>administracion/servicios/getZonas">
 						  <thead>
 							  <tr>
 								  <th>Nombre</th>
 								  <th>Estado</th>
 								  <th>Ubigeo</th>
-								  <th></th>
 							  </tr>
 						  </thead>   
 						  <tbody>
 						  	<tr>
-								  <th>Zona 1</th>
-								  <th>Habilitada</th>
-								  <th>Trujillo - Trujillo - La Libertad</th>
-								  <th><a class='btn btn-info btn-editar' href='#'><i class='icon-edit icon-white'></i>Editar</a></th>
-							  </tr>
+							 </tr>
 						</tbody>
 					</table>
-					<div class="modal hide fade" id="modalRegistro">
+					<div class="modal hide fade" id="modalZonas">
 						<div class="modal-header">
 							<button type="button" class="close" data-dismiss="modal">x</button>
 							<h3>Registrar Zona</h3>
 						</div>
-						<form id="RegistrarZonaForm" class="form-horizontal" method="post" action="">
+						<form id="ZonasForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zonas/registrar" action-2="<?php echo base_url();?>administracion/Zonas/editar">
+							<input type="hidden" id="idZonas" name="idZonas">
 							<div class="modal-body">
 								<fieldset>
 									<div class="control-group">
 										<label class="control-label" for="desc">Nombre de la Zona</label>
 										<div class="controls">
-									  		<input class="input-xlarge focused" id="desc" name="desc" type="text" pattern="|^[a-zA-Z0-9 ñÑáÁéÉíÍóÓúÚüÜç]+$|" maxlength="100" required>
+									  		<input class="input-xlarge focused" id="desc" name="desc" type="text" >
 										</div>
 								  	</div>
 								  	<div class="control-group">
@@ -98,8 +94,8 @@
 										<div class="controls">
 									  		<select id="dist" name="dist">
 									  			<option value="1">Trujillo</option>
-									  			<option value="2">Tumbes</option>
-									  			<option value="3">Aguas Verdes</option>
+									  			<option value="1">Tumbes</option>
+									  			<option value="1">Aguas Verdes</option>
 											</select>
 										</div>
 								  	</div>
@@ -107,73 +103,11 @@
 							</div>
 							<div class="modal-footer">
 								<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button id="btn-reg-zonas" type="button" class="btn btn-primary ">Registrar</button>
+									<button id="btn-editar-zonas" type="button" class="btn btn-primary " style="display:none">Editar</button>
 							</div>
 						</form>
 					</div>
-					<div class="modal hide fade" id="modalEditarDatos">
-						<div class="modal-header">
-							<h3>Editar Zona</h3>
-						</div>
-						<div class="modal-body">
-							<form id="EditarZonaForm" class="form-horizontal" method="post" action="">
-								<div class="modal-body">
-									<fieldset>
-										<div class="control-group">
-											<label class="control-label" for="desc">Nombre de la Zona</label>
-											<div class="controls">
-												<span class="help-inline" style="padding-top:5px;">Zona 1</span>
-											</div>
-									  	</div>
-									  	<div class="control-group">
-											<label class="control-label" for="selectEstado">Estado</label>
-											<div class="controls">
-										  		<select id="selectEstado" name="selectEstado">
-													<option value="1">Habilitado</option>
-													<option value="0">Inhabilitado</option>
-												</select>
-											</div>
-									  	</div>
-									  	<h4>Ubigeo</h4>
-									  	<hr>
-									  	<div class="control-group">
-											<label class="control-label" for="dep">Departamento</label>
-											<div class="controls">
-										  		<select id="dep" name="dep">
-										  			<option value="1">La Libertad</option>
-										  			<option value="2">Tumbes</option>
-												</select>
-											</div>
-									  	</div>
-									  	<div class="control-group">
-											<label class="control-label" for="prov">Provincia</label>
-											<div class="controls">
-										  		<select id="prov" name="prov">
-										  			<option value="1">Trujillo</option>
-										  			<option value="2">Tumbes</option>
-										  			<option value="3">Zarumilla</option>
-												</select>
-											</div>
-									  	</div>
-									  	<div class="control-group">
-											<label class="control-label" for="dist">Distrito</label>
-											<div class="controls">
-										  		<select id="dist" name="dist">
-										  			<option value="1">Trujillo</option>
-										  			<option value="2">Tumbes</option>
-										  			<option value="3">Aguas Verdes</option>
-												</select>
-											</div>
-									  	</div>
-									</fieldset>
-								</div>
-								<div class="modal-footer">
-									<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>
-									<button type="submit" class="btn btn-primary">Guardar</button>
-								</div>
-							</form>
-						</div>
-					</div> 
 					</div>
 				</div><!--/span-->
 			</div><!-- content ends -->
