@@ -52,7 +52,7 @@ class Categoria_Model extends CI_Model {
 	{
 		if($nCategoria_id === FALSE )
 		{
-			$query = $this ->db->get ('ven_categoria');
+			$query = $this ->db->query ('select * from ven_categoria_all;');
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('ven_categoria', array('nCategoria_id' => $nCategoria_id));

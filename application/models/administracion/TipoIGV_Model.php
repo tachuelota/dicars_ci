@@ -51,7 +51,7 @@ class TipoIGV_Model extends CI_Model {
 	function get_tipoIGV($nTipoIGV = FALSE){
 		if($nTipoIGV === FALSE )
 		{
-			$query = $this ->db->get ('ven_tipoigv');
+			$query = $this ->db->query ('select * from ven_tipoigv_all');
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('ven_tipoigv', array('nTipoIGV' => $nTipoIGV));

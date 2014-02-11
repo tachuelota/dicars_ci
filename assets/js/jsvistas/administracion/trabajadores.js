@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$("#TrabajadoresForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
-	$(".SelectAjax").SelectAjax("nCargo_id","nCargoDesc");
+	$(".SelectAjax").SelectAjax();
 
  //--------  nombreTableAccion (..ta)
 	var TrabajadoresTA = new DTActions({
