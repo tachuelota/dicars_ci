@@ -1,5 +1,7 @@
 $(document).ready(function(){
 $("#ClienteForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
+var cargos = getAjaxObject($("#zona").attr("data-source"))
+	cargarSelect(cargos.aaData,"cargo","nCargo_id","nCargoDesc")
 
  //--------  nombreTableAccion (..ta)
 	var ClientesTA = new DTActions({

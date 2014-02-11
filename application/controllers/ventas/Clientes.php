@@ -13,10 +13,11 @@ public function registrar(){
 		$ClienteApell = null; 
 		$ClienteDNI = null;
 		$ClienteDirec = null;
+		$ClienteZona = null;
 		$ClienteRef = null;
-		$ClienteOcup = null;
 		$ClienteLinOpe = null;
-		//$ClienteZona = 1;
+		//$cClienteArcCredito=null;
+		$ClienteOcup = null;			
 
 		if ($form != null)
 		{
@@ -25,8 +26,9 @@ public function registrar(){
 			$ClienteDNI = $form["dni"];
 			$ClienteRef = $form["referencia"];
 			$ClienteDirec = $form["direccion"];			
-			//$ClienteZona = $form["zona"];				
-			$ClienteLinOpe = $form["lineaop"];			
+			$ClienteZona = $form["zona"];				
+			$ClienteLinOpe = $form["lineaop"];	
+			$cClienteArcCredito =null;
 			$ClienteOcup = $form["ocupacion"];				
 			$Cliente = array(
 				'cClienteNom'=> $ClienteNombre,
@@ -34,8 +36,9 @@ public function registrar(){
 				'cClienteDNI'=> $ClienteDNI,				
 			 	'cClienteRef' => $ClienteRef,
 				'cClientecDir' => $ClienteDirec,
-			 	//'nZona_id'=> $ClienteZona,
+			 	'nZona_id'=> $ClienteZona,
 			 	'nClienteLineaOp'=> $ClienteLinOpe,
+			 	//'cClienteArcCredito' =>"ejemplo",
 			 	'cClienteOcup'=> $ClienteOcup);
 			if($this->climod->insert($Cliente))
 				$return = array("responseCode"=>200, "datos"=>"ok");

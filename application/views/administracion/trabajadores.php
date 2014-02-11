@@ -106,7 +106,7 @@
 										  <div class="control-group">
 											<label class="control-label" for="cargo">Cargo</label>
 											<div class="controls">
-											  <select id="cargo" name="cargo" data-source="<?php echo base_url();?>administracion/servicios/getcargos">
+											  <select id="cargo" class="SelectAjax" name="cargo" data-source="<?php echo base_url();?>administracion/servicios/getcargos">
 											  </select>
 											</div>
 										  </div>					  

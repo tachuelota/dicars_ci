@@ -107,9 +107,7 @@
 										<div class="control-group">
 										<label class="control-label" for="zona">Zona</label>
 										<div class="controls">
-										  <select id="zona" name="zona">
-										  	<option value="1">Zona 1</option>
-											<option value="2">Zona 2</option>
+										  <select id="zona" name="zona" data-source="<?php echo base_url();?>administracion/servicios/getzonas">							
 										  </select>
 										</div>
 										</div>

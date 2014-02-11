@@ -43,6 +43,13 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 
 	}
+
+	public function getConstantesByClase($clase)
+	{
+		$this->load->model('administracion/Constante_Model','constm');
+		$result = $this->constm->get_ByClase($clase);
+		echo json_encode(array('aaData' => $result));
+	}
 	
 	public function getTipoMonedas(){
 		$this->load->model('administracion/TipoMoneda_Model','tmonmod');
@@ -56,6 +63,14 @@ class Servicios extends CI_Controller {
 		$result = $this->igvm->get_tipoIGV();
 		echo json_encode(array('aaData' => $result));
 	}
+
+	public function getZonas()
+	{
+		$this->load->model('administracion/Zona_Model','zonmod');
+		$result = $this->zonmod->get_zonas();
+		echo json_encode(array('aaData' => $result));
+	}
+
 
 	/*recuperar productos para ofertas
 	*/
