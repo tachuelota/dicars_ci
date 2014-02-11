@@ -57,7 +57,7 @@
 								<h3>Trabajadores</h3>
 							</div>
 							<div class="modal-body">
-								<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+								<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>administracion/servicios/get_trabajadores_activos">
 									  <thead>
 										  <tr>
 											  <th>Nombres</th>
@@ -67,18 +67,6 @@
 										  </tr>
 									  </thead>
 									  <tbody>
-									  	<tr>
-											  <th>Diego</th>
-											  <th>Molina</th>
-											  <th>12345678</th>
-											  <th>147258</th>
-										  </tr>
-										  <tr>
-											  <th>Arturo</th>
-											  <th>Méndez</th>
-											  <th>36925814</th>
-											  <th>258369</th>
-										  </tr>
 									  </tbody>
 								  </table> 
 							</div>	
