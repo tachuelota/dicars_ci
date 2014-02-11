@@ -53,7 +53,7 @@ class Cargo_Model extends CI_Model {
 	{
 		if($nCargo_id === FALSE )
 		{
-			$query = $this ->db->get ('ven_cargo');
+			$query = $this ->db->query ('select * from ven_cargo_all;');
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('ven_cargo', array('nCargo_id' => $nCargo_id));

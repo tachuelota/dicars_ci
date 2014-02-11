@@ -17,9 +17,9 @@ class Productos extends CI_Controller
 	
 		$Serie = null;
 		$Talla = null;
-		$Marca = 1;
-		$Tipo = 1; 
-		$Categoria = 1;
+		$Marca = null;
+		$Tipo = null; 
+		$Categoria = null;
 		$Descripcion = null;
 		$Imagen = null;
 		$PContado = null; 
@@ -36,9 +36,9 @@ class Productos extends CI_Controller
 		if ($form!=null){
 			$Serie = $form["serie"];
 			$Talla = $form["talla"];
-			//$Marca = $form["marca"];
-			//$Tipo = $form["tipprod"];
-			//$Categoria = $form["categoria"];
+			$Marca = $form["marca"];
+			$Tipo = $form["tipprod"];
+			$Categoria = $form["categoria"];
 			$Descripcion = $form["descripcion"];
 			$Imagen = $form["nombrearchivo"];
 			$PContado = $form["preciocontado"];
@@ -72,9 +72,9 @@ class Productos extends CI_Controller
 	
 		$Serie = null;
 		$Talla = null;
-		$Marca = 1;
-		$Tipo = 1; 
-		$Categoria = 1;
+		$Marca = null;
+		$Tipo = null; 
+		$Categoria = null;
 		$Descripcion = null;
 		$Imagen = null;
 		$PContado = null; 
@@ -92,9 +92,9 @@ class Productos extends CI_Controller
 			$Productoid=$form["codigo"];
 			$Serie = $form["serie"];
 			$Talla = $form["talla"];
-			//$Marca = $form["marca"];
-			//$Tipo = $form["tipprod"];
-			//$Categoria = $form["categoria"];
+			$Marca = $form["marca"];
+			$Tipo = $form["tipprod"];
+			$Categoria = $form["categoria"];
 			$Descripcion = $form["descripcion"];
 			$Imagen = $form["nombrearchivo"];
 			$PContado = $form["preciocontado"];

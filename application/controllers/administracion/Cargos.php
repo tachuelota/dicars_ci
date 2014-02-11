@@ -11,13 +11,13 @@ class Cargos extends CI_Controller {
 		$form = $this->input->post('formulario');
 	
 		$CargoDesc = null;
-		$cCargocoEst = null; 
+		$cCargoEst = null; 
 		
 		if ($form!=null){
 			$CargoDesc = $form["nom_cargo"];
-			$cCargocoEst = $form["selectEstado"];
+			$cCargoEst = $form["selectEstado"];
 							
-			$Cargo = array('nCargoDesc' => $CargoDesc,'cCargocoEst' =>$cCargocoEst );
+			$Cargo = array('nCargoDesc' => $CargoDesc,'cCargoEst' =>$cCargoEst );
 	
 			if($this->acam->insert($Cargo)){
 				$return = array("responseCode"=>200, "datos"=>"ok");
@@ -38,15 +38,15 @@ class Cargos extends CI_Controller {
 		$form = $this->input->post('formulario',null);
 	
 		$CargoDesc = null;
-		$cCargocoEst = null; 
+		$cCargoEst = null; 
 		
 		if ($form!=null){
 
 			$Cargoid = $form["idCargo"];
 			$CargoDesc = $form["nom_cargo"];
-			$cCargocoEst = $form["selectEstado"];
+			$cCargoEst = $form["selectEstado"];
 							
-			$data = array('nCargoDesc' => $CargoDesc,'cCargocoEst' =>$cCargocoEst );		
+			$data = array('nCargoDesc' => $CargoDesc,'cCargoEst' =>$cCargoEst );		
 			
 			if($this->acam->update($Cargoid,$data)){
 				$return = array('responseCode'=>200, 'datos'=>$data);
