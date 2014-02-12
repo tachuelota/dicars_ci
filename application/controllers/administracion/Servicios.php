@@ -5,7 +5,6 @@ class Servicios extends CI_Controller {
 	function __construct() 
 	{
 		parent::__construct();
-		$this->load->model('administracion/Categoria_Model','acm');
 	}
 	//CARGAR CARGOS
 	public function getCargos()
@@ -16,7 +15,8 @@ class Servicios extends CI_Controller {
 	}
 	
 	public function getCategoria()
-	{
+	{		
+		$this->load->model('administracion/Categoria_Model','acm');
 		$result = $this->acm->get_categorias();
 		echo json_encode(array('aaData' => $result));
 	}
@@ -81,10 +81,21 @@ class Servicios extends CI_Controller {
 
 	/*recuperar productos para ofertas
 	*/
-	public function getProductoOferta()
+	public function getProductoSinOferta()
 	{
-		$productos = $this->db->query("SELECT * FROM ven_productossinoferta");
-		echo json_encode(array('aaData' => $productos->result_array()));
+		$this->load->model('logistica/Producto_model','prodm');
+		$productos = $this->prodm->get_sinoferta();
+		echo json_encode(array('aaData' => $productos));
+	}
+
+	public function getProductosByOferta($nOferta_id)
+	{
+		$this->load->model('logistica/Producto_model','prodm');
+		$productos = $this->prodm->get_byoferta($nOferta_id);
+		foreach ($productos as $key => $producto) {
+			$productos[$key]["estadolabel"] = '<span class="label label-success">Activo</span>';
+		}
+		echo json_encode(array('aaData' => $productos));
 	}
 
 	public function getLocales()

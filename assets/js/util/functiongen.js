@@ -52,6 +52,12 @@ jQuery.fn.enable = function () {
 	  $(this).find("input,select,textarea,checkbox").attr("disabled",false);
 	};
 
+jQuery.fn.AddAttr = function (attr, value){
+	$(this).each(function( index ){
+		this[attr] = value;
+	});
+}
+
 /*Fin extensiones de jQuery*/
 function getActionButtons(conf){
   actions = "<p>"
@@ -146,12 +152,6 @@ var logdata = function(data){
 var reloadpage = function(data){
 	location.reload();
 	};
-	
-function AddAttr(Array, attr, value){
-	$(Array).each(function( index ){
-		this[attr] = value;
-	});
-}
 
 function CloneAttr(Array, attr1, attr2){
 	$(Array).each(function( index ){

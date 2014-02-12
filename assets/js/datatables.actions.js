@@ -33,6 +33,8 @@ function DTActions(options)
     	{
     		e.preventDefault();
     		var tr = $(this);
+    		var tabla = $(tr.closest('table'));
+    		tabla.find('.btn-action').tooltip('hide');
 			if ( tr.hasClass('row_selected') ) {
 	            tr.removeClass('row_selected');
 	            divaction.remove();	            
@@ -41,21 +43,24 @@ function DTActions(options)
 			else {
 				divaction.show();
 				var tds = $(this).find("td");
-				$($("#"+options.idtable).dataTable().fnGetNodes()).removeClass('row_selected');
+				$(tabla.dataTable().fnGetNodes()).removeClass('row_selected');
 	            tr.addClass('row_selected');
 	            $(tds[tds.length-1]).append(divaction);
 
 				ul.find(".btn-view").click(function(e){
 					e.preventDefault();
 					options.ViewFunction(nRow, aData, iDisplayIndex);
+					$(this).tooltip('hide');
 				});
 				ul.find(".btn-edit").click(function(e){
 					e.preventDefault();
-					options.EditFunction(nRow, aData, iDisplayIndex);
+					options.EditFunction(nRow, aData, iDisplayIndex);					
+					$(this).tooltip('hide');
 				});
 				ul.find(".btn-drop").click(function(e){
 					e.preventDefault();
-					options.DropFunction(nRow, aData, iDisplayIndex);
+					options.DropFunction(nRow, aData, iDisplayIndex);					
+					$(this).tooltip('hide');
 				});
 				tr.find('[data-rel="tooltip"]').tooltip({"placement":"bottom",delay: { show: 400, hide: 200 }});
         	}

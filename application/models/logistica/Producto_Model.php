@@ -68,6 +68,18 @@ class Producto_model extends CI_Model
 		$query = $this->db->get_where('producto', array('nProducto_id' => $nProducto_id));
 		return $query->row_array();
 	}
+
+	public function get_byoferta($nOferta_id)
+	{
+		$productos = $this->db->query("SELECT * FROM ven_productosoferta where nOferta_id=".$nOferta_id);
+		return $productos->result_array();
+	}
+
+	public function get_sinoferta()
+	{
+		$productos = $this->db->query("SELECT * FROM ven_productossinoferta");
+		return $productos->result_array();
+	}
 }
 
 ?>

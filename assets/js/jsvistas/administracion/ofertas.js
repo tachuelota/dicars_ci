@@ -1,6 +1,4 @@
 $(document).ready(function(){
-	var SelectProductoData = new Array();
-
 	//mostrar Registrar Trabajador------------------------------------>
 	$('.btn-registrar').click(function(event){
 		event.preventDefault();
@@ -14,15 +12,14 @@ $(document).ready(function(){
 
 	var Actions = new DTActions({
 		'conf': '010',
-		'idtable': 'ofertas_table',
 		'EditFunction': function(nRow, aData, iDisplayIndex) {
-			location.href = $("#OfertasForm").attr("action-2");
+			location.href = $("#OfertasForm").attr("action-2")+aData.nOferta_id;
 		}
 	});
 
 	var successOferta = function(){
 		$('#OfertaModal').modal('hide');
-		OfertasTable.fnReloadAjax()
+		OfertasTable.fnReloadAjax();
 	}
 
 	OfertaOptions = {

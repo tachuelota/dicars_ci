@@ -177,12 +177,14 @@ class Views extends CI_Controller
 	}
 
 	//Editar Ofertas
-	public function editar_ofertas()
+	public function editar_ofertas($nOferta_id)
 	{
+		$this->load->model('administracion/Oferta_Model','ofertm');
+		$pagedata = $this->ofertm->get_ofertas($nOferta_id);
 		$dataheader['title'] = 'Dicars - Ofertas -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('administracion/editar_ofertas.php');
+		$this->load->view('administracion/editar_ofertas.php',$pagedata);
 		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/editar_ofertas.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
