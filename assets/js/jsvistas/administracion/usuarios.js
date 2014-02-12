@@ -4,11 +4,22 @@
 
 		var SelectUsuarioData = new Array();
 		var DataToSend = {};
+
+		var SelectUsuarioData = new Array();
+
+		$('#select_trabajador').click(function(event){
+			event.preventDefault();
+			$("#trabajador").val(SelectUsuarioData[0].nPersonal_id);
+			$('#nombre_trabajador').val(SelectUsuarioData[0].cPersonalNom+" "+SelectUsuarioData[0].cPersonalApe);
+			$('#modalBuscarTrabajador').modal('hide');
+		});
 		//LLAMAR AL MODAL
 		$('#btn-trabajador').click(function(e){
 			e.preventDefault();
 			$('#modalBuscarTrabajador').modal('show');
 		});
+
+
 
 		function prepararDatos(){
 		DataToSend = {
@@ -29,31 +40,30 @@
 		BuscarUsuariosTable = createDataTable2('select_trabajador_table',BuscarUOptions);
 
 
-		//mostrar trabajadores------------------------------------>
-		/*$('.btn-trabajador').click(function(e){
-			e.preventDefault();
-			$('#modalBuscarTrabajador').modal('show');
-		});
-		//seleccionar trabajador para agregarlo------------------->
-		$("#select_trabajador").click(function(e){
-			e.preventDefault();
-			$('#modalBuscarTrabajador').modal('hide');
-		});
 
-		
-		$( "#listalocales" ).selectable();
-		
-		$('.btn-datos').click(function(e){
-			e.preventDefault();
-			$('#modalVerDatos').modal('show');
-		});
-		$('.btn-editar').click(function(e){
-			e.preventDefault();
-			$('#modalEditarDatos').modal('show');
-		});
 
-		$('.btn-rol').click(function(e){
-			e.preventDefault();
-			$('#modalRoles').modal('show');*/
+		/****************************************/
+		var SelectUsuTablaData = new Array();
+		var DataToSend1 = {};
+
+		function prepararDatos(){
+		DataToSend1 = {
+			formulario:$("#UsuarioForm").serializeObject(),
+			listado:CopyArray(SelectUsuTablaData,["id"])
+			};
+		}
+
+		var BuscarUsuOptions = {
+		"aoColumns":[
+					  { "sWidth": "20%","mDataProp": "id"},	
+		              { "sWidth": "20%","mDataProp": "nomape"},		             
+		              { "sWidth": "20%","mDataProp": "ultimologin"},
+		               { "sWidth": "20%","mDataProp": "estadolabel"},
+		              
+		              ],
+		"fnCreatedRow":getSimpleSelectRowCallBack(SelectUsuTablaData)
+		};
+		BuscarUsuListadoTable = createDataTable2('usuarios_table',BuscarUsuOptions);
+
 		});
 	

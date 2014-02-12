@@ -125,4 +125,20 @@ class Servicios extends CI_Controller {
 		}
 		echo json_encode(array('aaData' => $ofertas));
 	}
+	public function get_usuarios(){
+		$this->load->model('administracion/Usuario_Model','us');
+		$usuarios = $this->us->get_usuarios();
+
+		foreach ($usuarios as $key => $usuario) {
+			switch ($usuario["estado"]) {
+			    case 0:
+			        $usuarios[$key]["estadolabel"] = '<span class="label label-important">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $usuarios[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $usuarios));
+	}
 }

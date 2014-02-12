@@ -79,7 +79,7 @@
 								<h3>Trabajadores</h3>
 							</div>
 							<div class="modal-body">
-								<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable" source-data = "<?php echo base_url();?>administracion/Servicios/get_trabajadores_activos">
+								<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>administracion/Servicios/get_trabajadores_activos">
 									<thead>
 										<tr>
 											<th>Nombres</th>
@@ -309,28 +309,16 @@
 						</div>
 						</div> 
 						
-						<table id="usuarios_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table id="usuarios_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>administracion/Servicios/get_usuarios">
 							<thead>
 								<tr>
 									<th>Usuario ID</th>
-								  	<th>Trabajador</th>
-								  	<th>Estado</th>
+								  	<th>Trabajador</th>								  	
 								  	<th>Último Login</th>
-								  	<th></th>
-								  	<th></th>
-								  	<th></th>
+								  	<th>Estado</th>
 							  	</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>000012</td>
-								  	<td>Diego Molina</td>
-								  	<td>Habilitado</td>
-								  	<td>02/02/2013</td>
-								  	<td><a class='btn btn-success btn-datos' href='#'><i class='icon-zoom-in icon-white'></i>Ver Datos</a></td>
-								  	<td><a class='btn btn-info btn-editar' href='#'><i class='icon-edit icon-white'></i>Editar</a></td>
-								  	<td><a class='btn btn-rol btn-info' href='#'><i class='icon-trash icon-white'></i>Roles</a></td>
-							  	</tr>
+							<tbody>								
 							</tbody>
 						</table>
 					</div>
