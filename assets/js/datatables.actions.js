@@ -66,11 +66,11 @@ function DTActions(options)
 function getButtons(conf){
 	actions = "<ul>";
 	if(conf.substring(0,1)==1)
-	    actions += '<li><button class="btn btn-action btn-view"><i class="icon-eye-open"></i></button></li>';
+	    actions += '<li><button class="btn btn-action btn-view" title="Ver" data-rel="tooltip"><i class="icon-eye-open"></i></button></li>';
 	if(conf.substring(1,2)==1)
-	    actions += '<li><button class="btn btn-action btn-edit"><i class="icon-edit"></i></button></li>';
+	    actions += '<li><button class="btn btn-action btn-edit" title="Editar" data-rel="tooltip"><i class="icon-edit"></i></button></li>';
 	if(conf.substring(2,3)==1)
-	    actions += '<li><button class="btn btn-action btn-drop"><i class="icon-trash"></i></button></li>';
+	    actions += '<li><button class="btn btn-action btn-drop" title="Deshabilitar" data-rel="tooltip"><i class="icon-trash"></i></button></li>';
 	actions += '<ul>';
 	return actions;
 }

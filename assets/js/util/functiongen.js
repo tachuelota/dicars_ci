@@ -260,11 +260,6 @@ function enviar(url, datos, successfunction, errorfunction){
 
 function recoveryOprions(inputoptions){
 	var outputoptions = {};
-	if(typeof inputoptions.sAjaxSource == "undefined")
-		outputoptions.sAjaxSource = "";
-	else
-		outputoptions.sAjaxSource = inputoptions.sAjaxSource;
-
 	if(typeof inputoptions.aoColumns == "undefined")
 		outputoptions.aoColumns = "";
 	else
