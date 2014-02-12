@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	var SelectProductoData = new Array();
-	var DataToSend = {};
 
 	//mostrar Registrar Trabajador------------------------------------>
 	$('.btn-registrar').click(function(event){
@@ -10,22 +9,20 @@ $(document).ready(function(){
 	//mostrar Editar Trabajador------------------------------------>
 	$('#enviar_oferta_btn').click(function(event){
 		event.preventDefault();
-		prepararDatos();
-		enviar($("#OfertasForm").attr("action-1"),DataToSend, logdata, null)
+		enviar($("#OfertasForm").attr("action-1"),{formulario:$("#OfertasForm").serializeObject()}, successOferta, null)
 	});
 
 	var Actions = new DTActions({
 		'conf': '010',
 		'idtable': 'ofertas_table',
 		'EditFunction': function(nRow, aData, iDisplayIndex) {
-		},
+			location.href = $("#OfertasForm").attr("action-2");
+		}
 	});
 
-	function prepararDatos(){
-		DataToSend = {
-			formulario:$("#OfertasForm").serializeObject(),
-			productos:CopyArray(SelectProductoData,["nProducto_id"])
-		};
+	var successOferta = function(){
+		$('#OfertaModal').modal('hide');
+		OfertasTable.fnReloadAjax()
 	}
 
 	OfertaOptions = {
@@ -39,6 +36,6 @@ $(document).ready(function(){
 		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
 		"fnCreatedRow":Actions.RowCBFunction
 	};
-	BuscarProductosTable = createDataTable2('ofertas_table',OfertaOptions);
+	OfertasTable = createDataTable2('ofertas_table',OfertaOptions);
 	
 });

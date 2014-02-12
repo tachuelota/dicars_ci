@@ -54,7 +54,7 @@
 							<label class="control-label" for="descuento">Venta Descuento</label>
 							<div class="controls">
 								<div class="input-prepend input-append">
-									<input class="input-xlarge focused " name="descuento" id="descuento" type="number" min="0" max="100" value="" required>
+									<input class="input-xlarge focused " name="descuento" id="descuento" type="text">
 									<span id="spandesc" class="add-on">%</span>
 								</div>
 							</div>
@@ -99,16 +99,37 @@
 				<div class="form-horizontal" >
 					<div  class="modal-body">
 						<fieldset>
-							<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+							<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>
+								administracion/servicios/getProductoOferta">
 								<thead>
 									<tr>
 										<th>Producto</th>
 										<th>Precio</th>
+										<th>Talla</th>
 										<th>Marca</th>
 										<th>Categoría</th>
 									</tr>
 								</thead>
 								<tbody></tbody>
+								<tfoot>
+									<tr>
+										<th class="input">
+											<input type="text" style="width: 75px" value="Nombre" class="search_init" />
+										</th>
+										<th class="input">
+											<input type="text"style="width: 75px" value="Precio" class="search_init" />
+										</th>
+										<th class="input">
+											<input type="text" style="width: 75px" value="Talla" class="search_init" />
+										</th>
+										<th class="input">
+											<input type="text" style="width: 75px" value="Marca" class="search_init" />
+										</th>
+										<th class="input">
+											<input type="text" style="width: 75px" value="Categoria" class="search_init" />
+										</th>
+									</tr>
+								</tfoot>
 							</table>
 						</fieldset>
 					</div>

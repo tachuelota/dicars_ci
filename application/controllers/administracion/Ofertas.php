@@ -16,7 +16,6 @@ class Ofertas extends CI_Controller
 	public function registrar()
 	{
 		$form = $this->input->post('formulario',true);
-		$productos = $this->input->post('productos',true);		
 
 		if($form != null)
 		{
@@ -31,26 +30,9 @@ class Ofertas extends CI_Controller
 				"dOfertaFecVencto"=>$dOfertaFecVencto->format('Y-m-d'),
 				"nOfertaPorc"=>$nOfertaPorc,
 				);
-			$this->db->trans_begin();
 			$band = true;
-			if ($this->ofertm->insert($Oferta))
-			{
-				$idOferta = $this->db->insert_id();
-				foreach ($productos as $prod) {
-				    $OfertaProducto = array("nOferta_id"=>$idOferta,"nProducto_id"=>$prod["nProducto_id"],"nOfertaProductoPorc"=>$form["descuento"]);
-				    if(!$this->ofertprodm->insert($OfertaProducto))
-				    {
-				    	$band = false;
-				    	$this->db->trans_rollback();
-				    	$this->output->set_status_header('400');
-						break;
-				    }
-				}
-				if($band)
-					$this->db->trans_commit();
-			}
-			else
-				$this->output->set_status_header('400');
+			if (!$this->ofertm->insert($Oferta))
+				$this->output->set_status_header('400');				
 		}
 		else			
 			$this->output->set_status_header('400');

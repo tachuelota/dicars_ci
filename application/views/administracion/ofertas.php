@@ -37,7 +37,7 @@
 				</div>
 			</div>
 			<div class="box-content">
-				<table id="ofertas_table" class="table table-striped table-bordered bootstrap-datatable datatable" source-data="<?php echo base_url();?>administracion/servicios/getOfertas">
+				<table id="ofertas_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>administracion/servicios/getOfertas">
 					<thead>
 						<tr>
 							<th>Fecha Inicio</th>
@@ -54,7 +54,7 @@
 						<button type="button" class="close" data-dismiss="modal">x</button>
 						<h3>Registrar Oferta</h3>
 					</div>
-					<form id="OfertasForm" class="form-horizontal" action-1="<?php echo base_url();?>administracion/ofertas/registrar">
+					<form id="OfertasForm" class="form-horizontal" action-1="<?php echo base_url();?>administracion/ofertas/registrar" action-2="<?php echo base_url();?>administracion/views/editar_ofertas/">
 						<div  class="modal-body">
 							<fieldset>
 								<div class="control-group">

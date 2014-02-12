@@ -305,7 +305,7 @@ function createDataTable2(idTable, options){
 		"bProcessing": false,
 		"bDestroy": true,		
         "bSort": false,
-		"sAjaxSource": $("#"+idTable).attr("source-data"),
+		"sAjaxSource": $("#"+idTable).attr("data-source"),
 		"aoColumns": TOptios.aoColumns,	
 		'iDisplayLength': TOptios.iDisplayLength,
 		"aLengthMenu": [[5,10, 25, 50], [5,10, 25, 50]],			   
