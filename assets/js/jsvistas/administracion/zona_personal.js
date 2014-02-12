@@ -14,6 +14,16 @@ var SelectTrabajadorData = new Array();
 			e.preventDefault();
 			$('#modalBuscarZona').modal('show');
 		});
+
+		$('#select_trabajador').click(function(event){
+			event.preventDefault();
+			$("#").val(SelectTrabajadorData[0].nPersonal_id);
+		});
+
+		$('#btn-trabajador').click(function(e){
+			e.preventDefault();
+			$('#modalBuscarTrabajador').modal('show');
+		});
 // fin de botones	
 
 	//Inicio de Zonas
@@ -59,7 +69,19 @@ var SelectTrabajadorData = new Array();
 
     //Fin de Zonas
 
-	TipoPerActivosRowCBF = function(nRow, aData, iDisplayIndex){
+    //---Inicio de Trabajadores
+    var BuscarTOptions = {
+		"aoColumns":[
+		              { "sWidth": "12%","mDataProp": "cPersonalNom"},
+		              { "sWidth": "12%","mDataProp": "cPersonalApe"},
+		              { "sWidth": "12%","mDataProp": "cPersonalDNI"},
+		              { "sWidth": "12%","mDataProp": "cPersonalTelf"}
+		              ],
+		"fnCreatedRow":getSimpleSelectRowCallBack(SelectZonaData)
+	};
+	BuscarTrabajadorTable = createDataTable2('select_trabajador_table',BuscarTOptions);
+
+	/*TipoPerActivosRowCBF = function(nRow, aData, iDisplayIndex){
 		TipoPerActivosTA.RowCBFunction(nRow, aData, iDisplayIndex);	
 	};
 	
@@ -72,7 +94,7 @@ var SelectTrabajadorData = new Array();
 		             
 		              ];
 
-	TipoPersonalTable = createDataTable('select_trabajador_table',UrlaDTable,FormatoDTable,null, TipoPerActivosRowCBF);	              
+	TipoPersonalTable = createDataTable('select_trabajador_table',UrlaDTable,FormatoDTable,null, TipoPerActivosRowCBF);*/
 
 
  
