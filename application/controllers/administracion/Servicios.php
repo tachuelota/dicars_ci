@@ -93,13 +93,23 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
-	/*public function getOfertas()
+	public function getOfertas()
 	{
 		$this->load->model('administracion/Oferta_Model','ofertm');
 		$ofertas = $this->ofertm->get_ofertas();
-		$foreach ($ofertas as $key => $oferta) {
-			if($oferta[""])
+		foreach ($ofertas as $key => $oferta) {
+			switch ($oferta["estado"]) {
+			    case 1:
+			        $ofertas[$key]["estadolabel"] = '<span class="label label-success">Vigente</span>';
+			        break;
+			    case 2:
+			        $ofertas[$key]["estadolabel"] = '<span class="label label-info">Programada</span>';
+			        break;
+			    case 3:
+			        $ofertas[$key]["estadolabel"] = '<span class="label">Terminada</span>';
+			        break;
+			}
 		}
-	}*/
-
+		echo json_encode(array('aaData' => $ofertas));
+	}
 }

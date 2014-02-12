@@ -28,10 +28,10 @@ class Oferta_Model extends CI_Model
 	{
 		if($nOferta_id === FALSE )
 		{
-			$query = $this ->db->get ('oferta');
+			$query = $this ->db->query ('SELECT * FROM ven_oferta_all');
 			return $query -> result_array();
 		}
-		$query = $this->db->get_where('oferta', array('nOferta_id' => $nOferta_id));
+		$query = $this->db->query('SELECT * FROM ven_oferta_all  where nOferta_id ='.$nOferta_id);
 		return $query->row_array();
 	}
 }

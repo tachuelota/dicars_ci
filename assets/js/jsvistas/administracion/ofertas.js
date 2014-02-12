@@ -14,6 +14,13 @@ $(document).ready(function(){
 		enviar($("#OfertasForm").attr("action-1"),DataToSend, logdata, null)
 	});
 
+	var Actions = new DTActions({
+		'conf': '010',
+		'idtable': 'ofertas_table',
+		'EditFunction': function(nRow, aData, iDisplayIndex) {
+		},
+	});
+
 	function prepararDatos(){
 		DataToSend = {
 			formulario:$("#OfertasForm").serializeObject(),
@@ -21,31 +28,16 @@ $(document).ready(function(){
 		};
 	}
 
-	BuscarPOptions = {
-		"sAjaxSource":$("#select_producto_table").attr("data-source"),
-		"aoColumns":[
-		              { "sWidth": "12%","mDataProp": "cProductoDesc"},
-		              { "sWidth": "12%","mDataProp": "nProductoPContado"},
-		              { "sWidth": "12%","mDataProp": "cProductoTalla"},
-		              { "sWidth": "12%","mDataProp": "cMarcaDesc"},
-		              { "sWidth": "12%","mDataProp": "cCategoriaNom"}
-		              ],
-		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
-		"fnCreatedRow":getMultipleSelectRowCallBack(SelectProductoData)
-	};
-	BuscarProductosTable = createDataTable2('select_producto_table',BuscarPOptions);
-
 	OfertaOptions = {
-		"sAjaxSource":$("#ofertas_table").attr("data-source"),
 		"aoColumns":[
-		              { "sWidth": "12%","mDataProp": "cProductoDesc"},
-		              { "sWidth": "12%","mDataProp": "nProductoPContado"},
-		              { "sWidth": "12%","mDataProp": "cProductoTalla"},
-		              { "sWidth": "12%","mDataProp": "cMarcaDesc"},
-		              { "sWidth": "12%","mDataProp": "cCategoriaNom"}
+		              { "sWidth": "12%","mDataProp": "dOfertaFecVigente"},
+		              { "sWidth": "12%","mDataProp": "cOfertaDesc"},
+		              { "sWidth": "12%","mDataProp": "nOfertaPorc"},
+		              { "sWidth": "12%","mDataProp": "dOfertaFecVencto"},
+		              { "sWidth": "12%","mDataProp": "estadolabel"}
 		              ],
 		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
-		"fnCreatedRow":getMultipleSelectRowCallBack(SelectProductoData)
+		"fnCreatedRow":Actions.RowCBFunction
 	};
 	BuscarProductosTable = createDataTable2('ofertas_table',OfertaOptions);
 	

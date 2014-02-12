@@ -19,7 +19,7 @@
 				<span class="divider">/</span>
 			</li>
 			<li>
-				<a href="<?php echo base_url();?>ventas">Administración</a>
+				<a href="<?php echo base_url();?>administracion">Administración</a>
 				<span class="divider">/</span>
 			</li>
 			<li>
@@ -37,8 +37,7 @@
 				</div>
 			</div>
 			<div class="box-content">
-				<table id="ofertas_table" class="table table-striped table-bordered bootstrap-datatable datatable" source-data="<?php echo base_url();?>
-					/administracion/servicios/">
+				<table id="ofertas_table" class="table table-striped table-bordered bootstrap-datatable datatable" source-data="<?php echo base_url();?>administracion/servicios/getOfertas">
 					<thead>
 						<tr>
 							<th>Fecha Inicio</th>
@@ -46,7 +45,6 @@
 							<th>Descuento (%)</th>
 							<th>Fecha Vencimiento</th>
 							<th>Estado</th>
-							<th>Editar</th>
 						</tr>
 					</thead>
 					<tbody></tbody>
