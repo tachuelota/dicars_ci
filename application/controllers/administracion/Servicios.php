@@ -93,13 +93,13 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
-	public function getOfertas()
+	/*public function getOfertas()
 	{
 		$this->load->model('administracion/Oferta_Model','ofertm');
 		$ofertas = $this->ofertm->get_ofertas();
 		$foreach ($ofertas as $key => $oferta) {
 			if($oferta[""])
 		}
-	}
+	}*/
 
 }
