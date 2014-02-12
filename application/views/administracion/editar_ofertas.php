@@ -72,7 +72,7 @@
 				<hr>
 				<h3>Productos de la Oferta</h3>
 				<hr>
-				<table id="oferta_productos_table" name="oferta_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+				<table id="oferta_productos_table" name="oferta_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="">
 					<thead>
 						<tr>
 							<th>Código</th>
