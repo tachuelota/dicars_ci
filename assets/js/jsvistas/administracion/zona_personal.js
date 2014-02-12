@@ -1,10 +1,10 @@
 $(document).ready(function(){
+$("#ZonapersonalForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 var SelectZonaData = new Array();
+var SelectTrabajadorData = new Array();
 var DataToSend = {};
 
-var SelectTrabajadorData = new Array();
-
-//---btn de html
+    //---btn de html
 		$('#btn-trabajador').click(function(e){
 			e.preventDefault();
 			$('#modalBuscarTrabajador').modal('show');
@@ -14,88 +14,84 @@ var SelectTrabajadorData = new Array();
 			e.preventDefault();
 			$('#modalBuscarZona').modal('show');
 		});
+    // fin de botones	
 
 		$('#select_trabajador').click(function(event){
 			event.preventDefault();
-			$("#").val(SelectTrabajadorData[0].nPersonal_id);
+			$("#nombre_trabajador").val(SelectTrabajadorData[0].cPersonalNom+" "+ SelectTrabajadorData[0].cPersonalApe);
+			$("#id_trabajador").val(SelectTrabajadorData[0].nPersonal_id);
+			$('#modalBuscarTrabajador').modal('hide');
 		});
 
-		$('#btn-trabajador').click(function(e){
+		$('#enviar_zona_btn').click(function(e){
 			e.preventDefault();
-			$('#modalBuscarTrabajador').modal('show');
-		});
-// fin de botones	
-
-	//Inicio de Zonas
-
-	$('#enviar_zona_btn').click(function(event){
-		event.preventDefault();
-		prepararDatos();
-		enviar($("#ZonapersonalForm").attr("action-1"),DataToSend, logdata, null)
-	});
-
-
-	var ZonasTA = new DTActions({
-		'conf': '010',
-		'idtable': 'select_zona_table',
-		'EditFunction': function(nRow, aData, iDisplayIndex) {
-		},
-	});
-
-	var TipoPerActivosTA = new DTActions({
-		'conf': '000',
-		'idtable': 'select_trabajador_table',
-		'EditFunction': function(nRow, aData, iDisplayIndex) {		
-			},
+			$("#nombre_zona").val(SelectZonaData[0].cZonaDesc);
+			$("#id_zona").val(SelectZonaData[0].nZona_id);
+			$('#modalBuscarZona').modal('hide');
 		});
 
 
-	function prepararDatos(){
+	//---Inicio de Zonas
+
+		$('#enviar_zona_btn').click(function(event){
+			event.preventDefault();
+			prepararDatos();
+			enviar($("#ZonapersonalForm").attr("action-1"),DataToSend, logdata, null)
+		});
+
+		var BuscarZOptions = {
+			"aoColumns":[
+			              { "sWidth": "12%","mDataProp": "cZonaDesc"},
+			              { "sWidth": "12%","mDataProp": "nZonaEst"},
+			              { "sWidth": "12%","mDataProp": "nUbigeo_id"}
+			              ],
+			"fnCreatedRow":getSimpleSelectRowCallBack(SelectZonaData)
+		};
+		BuscarZonasTable = createDataTable2('select_zona_table',BuscarZOptions);
+
+    //Fin de Zonas
+    function prepararDatos(){
 		DataToSend = {
 			formulario:$("#ZonapersonalForm").serializeObject(),
 			zonas:CopyArray(SelectZonaData,["nZona_id"])
 		};
 	}
 
-	var BuscarZOptions = {
-		"aoColumns":[
-		              { "sWidth": "12%","mDataProp": "cZonaDesc"},
-		              { "sWidth": "12%","mDataProp": "nZonaEst"},
-		              { "sWidth": "12%","mDataProp": "nUbigeo_id"}
-		              ],
-		"fnCreatedRow":getSimpleSelectRowCallBack(SelectZonaData)
-	};
-	BuscarZonasTable = createDataTable2('select_zona_table',BuscarZOptions);
-
-    //Fin de Zonas
 
     //---Inicio de Trabajadores
-    var BuscarTOptions = {
-		"aoColumns":[
-		              { "sWidth": "12%","mDataProp": "cPersonalNom"},
-		              { "sWidth": "12%","mDataProp": "cPersonalApe"},
-		              { "sWidth": "12%","mDataProp": "cPersonalDNI"},
-		              { "sWidth": "12%","mDataProp": "cPersonalTelf"}
-		              ],
-		"fnCreatedRow":getSimpleSelectRowCallBack(SelectZonaData)
-	};
-	BuscarTrabajadorTable = createDataTable2('select_trabajador_table',BuscarTOptions);
+	    var BuscarTOptions = {
+			"aoColumns":[
+			              { "sWidth": "12%","mDataProp": "cPersonalNom"},
+			              { "sWidth": "12%","mDataProp": "cPersonalApe"},
+			              { "sWidth": "12%","mDataProp": "cPersonalDNI"},
+			              { "sWidth": "12%","mDataProp": "cPersonalTelf"}
+			              ],
+			"fnCreatedRow":getSimpleSelectRowCallBack(SelectTrabajadorData)
+		};
+		BuscarTrabajadorTable = createDataTable2('select_trabajador_table',BuscarTOptions);
 
-	/*TipoPerActivosRowCBF = function(nRow, aData, iDisplayIndex){
-		TipoPerActivosTA.RowCBFunction(nRow, aData, iDisplayIndex);	
+
+
+
+   var ZonPerTA = new DTActions({
+		'conf': '010',
+		'idtable': 'zonapersonal_table',
+		'EditFunction': function(nRow, aData, iDisplayIndex) {			
+		},
+	});
+
+  	ZonPersRowCBF = function(nRow, aData, iDisplayIndex){
+		ZonPerTA.RowCBFunction(nRow, aData, iDisplayIndex);	
 	};
-	
-	var UrlaDTable = $("#select_trabajador_table").attr("data-source");
+
+  	var UrlaDTable = $("#zonapersonal_table").attr("data-source");
 	FormatoDTable = [
-		              { "sWidth": "3%","mDataProp": "cPersonalNom"},
-		              { "sWidth": "3%","mDataProp": "cPersonalApe"},
-		              { "sWidth": "3%","mDataProp": "cPersonalDNI"},
-		              { "sWidth": "3%","mDataProp": "cPersonalTelf"},
-		             
+		              { "sWidth": "33%","mDataProp": "nZona_id"},
+		              { "sWidth": "33%","mDataProp": "nPersonal_id"},
+
 		              ];
 
-	TipoPersonalTable = createDataTable('select_trabajador_table',UrlaDTable,FormatoDTable,null, TipoPerActivosRowCBF);*/
+	ZonasPersonalTable = createDataTable('zonapersonal_table',UrlaDTable,FormatoDTable,null, ZonPersRowCBF);		          
 
-
- 
+	 
 });

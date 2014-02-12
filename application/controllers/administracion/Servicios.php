@@ -71,6 +71,13 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
+	public function getZonasPersonal()
+	{
+		$this->load->model('administracion/ZonaPersonal_Model','zopermod');
+		$result = $this->zopermod->get_zonaspersonal();
+		echo json_encode(array('aaData' => $result));
+	}
+
 
 	/*recuperar productos para ofertas
 	*/
