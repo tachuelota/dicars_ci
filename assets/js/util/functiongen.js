@@ -216,7 +216,7 @@ function getSimpleSelectRowCallBack(DSelected){
 	            DSelected.pop();
 	        }
 			else {
-				$(nRow).closset('table').find('tr.row_selected').removeClass('row_selected');
+				$(nRow).closest('table').find('tr.row_selected').removeClass('row_selected');
 	            $(this).addClass('row_selected');
 	            DSelected.pop();
 	            DSelected.push(aData);

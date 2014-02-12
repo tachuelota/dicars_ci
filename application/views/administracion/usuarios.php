@@ -28,14 +28,14 @@
 						<h2>USUARIOS</h2>
 					</div>
 					<div class="box-content">
-						<form id="RegistrarUsuarioForm" class="form-horizontal" method="post" action="">
+						<form id="UsuarioForm" class="form-horizontal" method="post" action="">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="trabajador">Trabajador</label>
 									<div class="controls">
 										<input class="input-xlarge" id="nombre_trabajador" type="text" readonly required>
 										<input class="input-xlarge focused" id="trabajador" name="trabajador" type="hidden">
-										<button class="btn btn-info btn-trabajador" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
+										<button id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-trabajador" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
 									</div>
 								</div>
 								<div class="control-group">
@@ -79,7 +79,7 @@
 								<h3>Trabajadores</h3>
 							</div>
 							<div class="modal-body">
-								<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+								<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable" source-data = "<?php echo base_url();?>administracion/Servicios/get_trabajadores_activos">
 									<thead>
 										<tr>
 											<th>Nombres</th>
@@ -89,12 +89,6 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>Arturo</td>
-											<td>Méndez</td>
-											<td>85236974</td>
-											<td>147852369</td>
-										</tr>
 									</tbody>
 								  </table> 
 							</div>	

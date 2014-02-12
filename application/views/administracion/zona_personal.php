@@ -28,7 +28,7 @@
 						<h2>ZONAS ASIGNADAS</h2>
 					</div>
 					<div class="box-content">
-						<form id="ZonapersonalForm" class="form-horizontal" method="post" action="">
+						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="nombre_trabajador">Trabajador</label>
@@ -57,7 +57,7 @@
 								<h3>Trabajadores</h3>
 							</div>
 							<div class="modal-body">
-								<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>administracion/servicios/get_trabajadores_sinzona">
+								<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable" source-data = "<?php echo base_url();?>administracion/servicios/get_trabajadores_sinzona">
 									  <thead>
 										  <tr>
 											  <th>Nombres</th>
@@ -79,8 +79,8 @@
 							<div class="modal-header">
 								<h3>Zonas</h3>
 							</div>
-							<div class="modal-body">
-							<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonas_table">
+							<div class="modal-body">							
+							<table id="select_zona_table" class="table table-striped table-bordered bootstrap-datatable datatable" source-data = "<?php echo base_url();?>administracion/servicios/getzonas">
 								<thead>
 									<tr>
 										<th>Nombre</th>
@@ -88,21 +88,17 @@
 										<th>Ubigeo</th>
 									</tr>
 								</thead>     
-								<tbody>
-									<tr>
-									</tr>
-									<tr>
-									</tr>
-								</tbody>
+								<tbody></tbody>
 							</table>	
 							</div>
 							<div class="modal-footer">
 								<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-								<a  id="select_zona" href="#" class="btn btn-primary">Seleccionar</a>
+								<input id="enviar_zona_btn" type="button" value="Seleccionar" class="btn btn-primary">
+							</div>								
 							</div>
 						</div>							
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonapersonal_table" data-souce="<?php echo base_url();?>administracion/servicios/getcargos">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonapersonal_table" data-souce="<?php echo base_url();?>administracion/servicios/getzonas">
 						  <thead>
 							  <tr>
 								  <th>Nombre</th>
