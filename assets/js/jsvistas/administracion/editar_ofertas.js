@@ -15,8 +15,9 @@ $(document).ready(function(){
 					aData.band = 0;
 					break;
 				case 2:
-					BuscarProdTable.fnAddData(aData);
 					OfertaProductoTable.fnDeleteRow(index); 
+					BuscarProdTable.fnAddData(aData);
+					break;
 			}
 		}
 	});
@@ -45,8 +46,8 @@ $(document).ready(function(){
 		$('#modalBuscarProducto').modal('hide');
 		$(SelectProductoData).AddAttr("estadolabel", "<span class='label label-success'>Activo</span>");
 		$(SelectProductoData).AddAttr("band", 2);
-		SubTablaArray(BuscarProdTable,SelectProductoData,'nProducto_id');
 		OfertaProductoTable.fnAddData(SelectProductoData);
+		SubTablaArray(BuscarProdTable,SelectProductoData,'nProducto_id');
 	});
 
 	$('#enviar_editar').click(function(event){

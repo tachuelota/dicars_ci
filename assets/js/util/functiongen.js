@@ -423,7 +423,7 @@ function createDataTable(idTable,UrlaDTable,FormatoDTable, DrawCallBackFunction,
 }
 
 function CopyArray(Array,attrs){
-	var ArrayReturn = [];
+	var ArrayReturn = new Array();
 	$(Array).each(function(index){
 		var ArrayData = this;
 		var data = {};
