@@ -61,9 +61,27 @@ class Ofertas extends CI_Controller
 				"nOfertaPorc"=>$nOfertaPorc,
 				);
 			$band = true;
-			if (!$this->ofertm->update($form["idOferta"],$Oferta))
-			{				
-				$this->output->set_status_header('400');
+			if ($this->ofertm->update($form["idOferta"],$Oferta))
+			{
+				$this->db->trans_begin();
+				foreach ($tabla as $index => $row)
+				{
+					switch ($row["band"])
+					{
+						case 0:
+							$OfertaProducto = array("cOfertaProductoEst" => 0);
+							$this->ofertprodm->update($row["nOfertaProducto_id"],$OfertaProducto);
+							break;
+						case 2:
+							$OfertaProducto = array("cOfertaProductoEst" => 1);
+							if($this->ofertprodm->update($row["nOfertaProducto_id"],$OfertaProducto))
+							{
+								$OfertaProducto = array("nOferta_id" => $form["idOferta"],"nProducto_id"=>$row["nProducto_id"]);
+								$this->ofertprodm->insert($OfertaProducto);
+							}	
+							break;
+					}
+				}
 			}
 			else
 				$this->output->set_status_header('400');		

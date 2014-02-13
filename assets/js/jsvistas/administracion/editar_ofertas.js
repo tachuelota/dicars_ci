@@ -26,7 +26,7 @@ $(document).ready(function(){
 	{
 		DataToSendOferta = {
 			formulario:$("#OfertasForm").serializeObject(),
-			tabla: OfertaProductoTable.fnGetData()
+			tabla: CopyArray(OfertaProductoTable.fnGetData(),["nProducto_id"])
 		}
 		return DataToSendOferta;
 	};
@@ -48,6 +48,8 @@ $(document).ready(function(){
 		$(SelectProductoData).AddAttr("band", 2);
 		OfertaProductoTable.fnAddData(SelectProductoData);
 		SubTablaArray(BuscarProdTable,SelectProductoData,'nProducto_id');
+		SelectProductosData.splice(0,SelectProductosData.length);
+		UnselectRow("select_producto_table");
 	});
 
 	$('#enviar_editar').click(function(event){
