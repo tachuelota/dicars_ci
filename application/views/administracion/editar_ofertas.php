@@ -32,12 +32,12 @@
 			</div>
 			<div class="box-content">
 				<fieldset>
-					<form id="EditarOfertasForm" class="form-horizontal" action-1="<?php echo base_url();?>administracion/ofertas/editar">
-
+					<form id="OfertasForm" class="form-horizontal" action-1="<?php echo base_url();?>administracion/ofertas/editar">
+						<input type="hidden" name="idOferta" value="<?php echo $nOferta_id;?>">
 						<div class="control-group">
 							<label class="control-label" for="fecha_ini">Fecha de Inicio</label>
 							<div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="fecha_ini" value="<?php echo $dOfertaFecVigente ?>"></div>
+								<input type="text" class="input-xlarge datepicker" name="fecha_ini" id="fecha_ini" value="<?php echo $dOfertaFecVigente ?>"></div>
 						</div>
 						<div class="control-group">
 							<label class="control-label" for="fecha_fin">Fecha de Vencimiento</label>

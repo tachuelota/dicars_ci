@@ -1,6 +1,5 @@
 $(document).ready(function(){
 	var SelectProductoData = new Array();
-	var DataToSendOferta = {};
 
 	var OfertaProductoActions = new DTActions({
 		'conf': '001',
@@ -25,9 +24,10 @@ $(document).ready(function(){
 	var PrepararDatosOferta = function()
 	{
 		DataToSendOferta = {
-			formulario:$("#EditarOfertasForm").serializeObject(),
+			formulario:$("#OfertasForm").serializeObject(),
 			tabla: OfertaProductoTable.fnGetData()
 		}
+		return DataToSendOferta;
 	};
 
 	var successEditarOferta = function(){
@@ -51,7 +51,8 @@ $(document).ready(function(){
 
 	$('#enviar_editar').click(function(event){
 		event.preventDefault();
-		enviar($("#EditarOfertasForm").attr("action-1"),DataToSendOferta, successEditarOferta, null)
+		PrepararDatosOferta();
+		enviar($("#OfertasForm").attr("action-1"),PrepararDatosOferta(), logdata, null)
 	});
 
 	BuscarProdOptions = {
