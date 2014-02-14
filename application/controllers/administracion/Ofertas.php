@@ -64,23 +64,10 @@ class Ofertas extends CI_Controller
 			if ($this->ofertm->update($form["idOferta"],$Oferta))
 			{
 				$this->db->trans_begin();
+				$datos = array();
 				foreach ($tabla as $index => $row)
 				{
-					switch ($row["band"])
-					{
-						case 0:
-							$OfertaProducto = array("cOfertaProductoEst" => 0);
-							$this->ofertprodm->update($row["nOfertaProducto_id"],$OfertaProducto);
-							break;
-						case 2:
-							$OfertaProducto = array("cOfertaProductoEst" => 1);
-							if($this->ofertprodm->update($row["nOfertaProducto_id"],$OfertaProducto))
-							{
-								$OfertaProducto = array("nOferta_id" => $form["idOferta"],"nProducto_id"=>$row["nProducto_id"]);
-								$this->ofertprodm->insert($OfertaProducto);
-							}	
-							break;
-					}
+					
 				}
 			}
 			else
