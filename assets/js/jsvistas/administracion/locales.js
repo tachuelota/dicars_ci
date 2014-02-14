@@ -1,8 +1,7 @@
-
-	//init------------------------------------>
-	$(document).ready(function(){
-		$("#LocalesForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
-
+$(document).ready(function(){
+	$("#LocalesForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
+	var Ubigeos = getAjaxObject($("#LocalesForm").attr("data-source"));
+	cargarUbigeo(Ubigeos,"dist", "prov", "dep");
 
 	var TipoLocalesTA = new DTActions({
 		'conf': '010',

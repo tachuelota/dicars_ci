@@ -52,7 +52,7 @@ class Zona_Model extends CI_Model {
 	{
 		if($nZona_id === FALSE )
 		{
-			$query = $this ->db->get ('ven_zona');
+			$query = $this ->db->query ('select * from ven_zona_all');
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('ven_zona', array('nZona_id' => $nZona_id));

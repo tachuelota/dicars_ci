@@ -21,11 +21,12 @@ class Zonas extends CI_Controller
 		$Ubigeo=null;
 		
 		if ($form!=null){
-			$Descripcion = $form["desc"];
-			
-			$Ubigeo = $form["dist"];
-							
-			$zonas = array('cZonaDesc' => $Descripcion,'nZonaEst' =>$Estado , 'nUbigeo_id' =>$Ubigeo );
+			$Descripcion = $form["desc"];			
+			$Ubigeo = $form["dist"];							
+			$zonas = array(
+				'cZonaDesc' => $Descripcion,
+				'nZonaEst' =>$Estado, 
+				'nUbigeo_id' =>$Ubigeo );
 	
 			if($this->zo->insert($zonas)){
 				$return = array("responseCode"=>200, "datos"=>"ok");
@@ -54,8 +55,7 @@ class Zonas extends CI_Controller
 			$idZonas=$form['idZonas'];
 			$Descripcion = $form["desc"];
 			$Estado = $form["selectEstado"];
-			$Ubigeo = $form["dist"];
-							
+			$Ubigeo = $form["dist"];							
 			$data = array('cZonaDesc' => $Descripcion,'nZonaEst' =>$Estado , 'nUbigeo_id' =>$Ubigeo );		
 			
 			if($this->zo->update($idZonas,$data)){

@@ -28,7 +28,7 @@
 						<h2>ZONAS ASIGNADAS</h2>
 					</div>
 					<div class="box-content">
-						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar">
+						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar" data-source="<?php echo base_url();?>administracion/servicios/getUbigeo">
 							<input type="hidden" id="idZonapersonal" name="idZonapersonal">
 							<fieldset>
 								<div class="control-group">
@@ -100,18 +100,15 @@
 						</div>							
 					<div class="box-content">
 						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonapersonal_table" data-source="<?php echo base_url();?>administracion/servicios/getZonasPersonal">
-						  <thead>
-							  <tr>
-								  <th>Nombre</th>
-								  <th>Encargado</th>
-								  <th>Ubigeo</th>
-							  </tr>
-						  </thead>   
-						  <tbody>
-						  	<tr>								  
-							</tr>
-						</tbody>
-					</table>
+							  <thead>
+								  <tr>
+									  <th>Nombre</th>
+									  <th>Encargado</th>
+									  <th>Ubigeo</th>
+								  </tr>
+							  </thead>   
+							  <tbody></tbody>
+						</table>
 					</div>
 				</div><!--/span-->
 			</div><!-- content ends -->

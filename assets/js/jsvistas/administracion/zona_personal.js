@@ -1,10 +1,13 @@
 $(document).ready(function(){
-$("#ZonapersonalForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
-var SelectZonaData = new Array();
-var SelectTrabajadorData = new Array();
-var DataToSend = {};
+	$("#ZonapersonalForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
+	var Ubigeos = getAjaxObject($("#ZonapersonalForm").attr("data-source"));	
+	cargarUbigeo(Ubigeos,"dist", "prov", "dep");
 
-    //---btn de html
+	var SelectZonaData = new Array();
+	var SelectTrabajadorData = new Array();
+	var DataToSend = {};
+
+	//---btn de html
 		$('#btn-trabajador').click(function(e){
 			e.preventDefault();
 			$('#modalBuscarTrabajador').modal('show');
@@ -32,18 +35,11 @@ var DataToSend = {};
 
 
 //---Inicio de Zonas
-
-	$('#enviar_zona_btn').click(function(event){
-		event.preventDefault();
-		prepararDatos();
-		enviar($("#ZonapersonalForm").attr("action-1"),DataToSend, logdata, null)
-	});
-
 	var BuscarZOptions = {
 		"aoColumns":[
 		    { "sWidth": "12%","mDataProp": "cZonaDesc"},
-		    { "sWidth": "12%","mDataProp": "nZonaEst"},
-		    { "sWidth": "12%","mDataProp": "nUbigeo_id"}
+		    { "sWidth": "12%","mDataProp": "estado"},
+		    { "sWidth": "12%","mDataProp": "des_ubigeo"}
 		],
 			"fnCreatedRow":getSimpleSelectRowCallBack(SelectZonaData)
 	};
@@ -75,7 +71,7 @@ var DataToSend = {};
 
 
   	var ZonPerTA = new DTActions({
-		'conf': '010',
+		'conf': '001',
 		'idtable': 'zonapersonal_table',
 		'EditFunction': function(nRow, aData, iDisplayIndex) {	
 			$("#btn-reg-usuario").hide();
@@ -91,8 +87,14 @@ var DataToSend = {};
 			enviar($("#ZonapersonalForm").attr("action-1"),{formulario:$("#ZonapersonalForm").serializeObject()}, successZonaPersonal, null)
 	});
 
+	$("#btn-editar-zonper").click(function(event){
+		event.preventDefault();
+		if($("#ZonapersonalForm").validationEngine('validate'))
+			enviar($("#ZonapersonalForm").attr("action-2"),{formulario:$("#ZonapersonalForm").serializeObject()}, successZonaPersonal, null)
+	});
+
 	var successZonaPersonal = function(){
-		//$('#modalCargo').modal('hide');
+		//$('#ZonapersonalForm').modal('hide');
 		ZonasPersonalTable.fnReloadAjax()
 	}
 
@@ -104,10 +106,10 @@ var DataToSend = {};
 	FormatoDTable = [
 		              { "sWidth": "33%","mDataProp": "cZonaDesc"},
 		              { "sWidth": "33%","mDataProp": "persona"},
-		              { "sWidth": "33%","mDataProp": "cUbigeoDesc"},
+		              { "sWidth": "33%","mDataProp": "des_ubigeo"},
 		              ];
 
-	ZonasPersonalTable = createDataTable('zonapersonal_table',UrlaDTable,FormatoDTable,null, ZonPersRowCBF);		          
+    ZonasPersonalTable = createDataTable('zonapersonal_table',UrlaDTable,FormatoDTable,null, ZonPersRowCBF);		          
  	
 	 
 });

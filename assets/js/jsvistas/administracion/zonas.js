@@ -1,6 +1,7 @@
-	//init------------------------------------>
-	$(document).ready(function(){
-		$("#ZonasForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
+$(document).ready(function(){
+	$("#ZonasForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
+	var Ubigeos = getAjaxObject($("#ZonasForm").attr("data-source"));
+	cargarUbigeo(Ubigeos,"dist", "prov", "dep");
 
 		var TipoZonasTA = new DTActions({
 		'conf': '010',
@@ -10,10 +11,9 @@
 			$("#btn-editar-zonas").show();
 	  		$('#modalZonas').modal('show');
 	  		$("#desc").val(aData.cZonaDesc);
-	  		$("#selectEstado").val(aData.nZonaEst);
-	  		$("#dist").val(aData.nUbigeo_id);
-	  		
+	  		$("#selectEstado").val(aData.nZonaEst);	  		
 	  		$("#idZonas").val(aData.nZona_id);
+	  		cargarUbigeo(Ubigeos,"dist", "prov", "dep",aData.nUbigeo_id);
 		},
 	});	
 
@@ -22,9 +22,9 @@
 	};
 	var UrlaDTable = $("#zonas_table").attr("data-source");
 	FormatoDTable = [
-		              { "sWidth": "15%","mDataProp": "cZonaDesc"},
-		              { "sWidth": "8%","mDataProp": "nZonaEst"},
-		              { "sWidth": "8%","mDataProp": "nUbigeo_id"},
+		              { "sWidth": "40%","mDataProp": "cZonaDesc"},
+		              { "sWidth": "20%","mDataProp": "estado"},
+		              { "sWidth": "40%","mDataProp": "des_ubigeo"},
 		              ];
 
 	TipoProductoTable = createDataTable('zonas_table',UrlaDTable,FormatoDTable,null, TipoZonasRowCBF);

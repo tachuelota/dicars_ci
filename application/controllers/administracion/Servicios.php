@@ -78,6 +78,13 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
+	public function getUbigeo()
+	{
+			$query = $this ->db->get ('ubigeo');
+			echo json_encode($query -> result_array());
+	}
+
+
 
 	/*recuperar productos para ofertas
 	*/
