@@ -72,7 +72,7 @@ public function registrar(){
 			$ClienteDNI = $form["dni"];
 			$ClienteRef = $form["referencia"];
 			$ClienteDirec = $form["direccion"];			
-			//$ClienteZona = $form["zona"];				
+			$ClienteZona = $form["zona"];				
 			$ClienteLinOpe = $form["lineaop"];			
 			$ClienteOcup = $form["ocupacion"];			
 			$data = array(
@@ -81,7 +81,7 @@ public function registrar(){
 				'cClienteDNI'=> $ClienteDNI,				
 			 	'cClienteRef' => $ClienteRef,
 				'cClientecDir' => $ClienteDirec,
-			 	//'nZona_id'=> $ClienteZona,
+			 	'nZona_id'=> $ClienteZona,
 			 	'nClienteLineaOp'=> $ClienteLinOpe,
 			 	'cClienteOcup'=> $ClienteOcup);					
 			if($this->climod->update($nCliente_id,$data))

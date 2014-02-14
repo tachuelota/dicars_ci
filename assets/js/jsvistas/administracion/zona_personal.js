@@ -13,7 +13,7 @@ var DataToSend = {};
 		$('#btn-zona').click(function(e){
 			e.preventDefault();
 			$('#modalBuscarZona').modal('show');
-		});
+		}); 
     // fin de botones	
 
 		$('#select_trabajador').click(function(event){
@@ -23,7 +23,7 @@ var DataToSend = {};
 			$('#modalBuscarTrabajador').modal('hide');
 		});
 
-		$('#enviar_zona_btn').click(function(e){
+		$('#select_zona').click(function(e){
 			e.preventDefault();
 			$("#nombre_zona").val(SelectZonaData[0].cZonaDesc);
 			$("#id_zona").val(SelectZonaData[0].nZona_id);
@@ -31,29 +31,30 @@ var DataToSend = {};
 		});
 
 
-	//---Inicio de Zonas
+//---Inicio de Zonas
 
-		$('#enviar_zona_btn').click(function(event){
-			event.preventDefault();
-			prepararDatos();
-			enviar($("#ZonapersonalForm").attr("action-1"),DataToSend, logdata, null)
-		});
+	$('#enviar_zona_btn').click(function(event){
+		event.preventDefault();
+		prepararDatos();
+		enviar($("#ZonapersonalForm").attr("action-1"),DataToSend, logdata, null)
+	});
 
-		var BuscarZOptions = {
-			"aoColumns":[
-			              { "sWidth": "12%","mDataProp": "cZonaDesc"},
-			              { "sWidth": "12%","mDataProp": "nZonaEst"},
-			              { "sWidth": "12%","mDataProp": "nUbigeo_id"}
-			              ],
+	var BuscarZOptions = {
+		"aoColumns":[
+		    { "sWidth": "12%","mDataProp": "cZonaDesc"},
+		    { "sWidth": "12%","mDataProp": "nZonaEst"},
+		    { "sWidth": "12%","mDataProp": "nUbigeo_id"}
+		],
 			"fnCreatedRow":getSimpleSelectRowCallBack(SelectZonaData)
-		};
-		BuscarZonasTable = createDataTable2('select_zona_table',BuscarZOptions);
+	};
+	
+	BuscarZonasTable = createDataTable2('select_zona_table',BuscarZOptions);
 
     //Fin de Zonas
     function prepararDatos(){
-		DataToSend = {
-			formulario:$("#ZonapersonalForm").serializeObject(),
-			zonas:CopyArray(SelectZonaData,["nZona_id"])
+			DataToSend = {
+				formulario:$("#ZonapersonalForm").serializeObject(),
+				zonas:CopyArray(SelectZonaData,["nZona_id"])
 		};
 	}
 
@@ -73,12 +74,27 @@ var DataToSend = {};
 
 
 
-   var ZonPerTA = new DTActions({
+  	var ZonPerTA = new DTActions({
 		'conf': '010',
 		'idtable': 'zonapersonal_table',
-		'EditFunction': function(nRow, aData, iDisplayIndex) {			
+		'EditFunction': function(nRow, aData, iDisplayIndex) {	
+			$("#btn-reg-usuario").hide();
+			$("#id_zona").val(aData.nZona_id);
+	  		$("#id_trabajador").val(aData.nPersonal_id);
+	  		$("#idZonapersonal").val(aData.nZonaPersonal_id);	
 		},
+	}); 
+
+   	$("#btn-reg-usuario").click(function(event){
+		event.preventDefault();
+		if($("#ZonapersonalForm").validationEngine('validate'))
+			enviar($("#ZonapersonalForm").attr("action-1"),{formulario:$("#ZonapersonalForm").serializeObject()}, successZonaPersonal, null)
 	});
+
+	var successZonaPersonal = function(){
+		//$('#modalCargo').modal('hide');
+		ZonasPersonalTable.fnReloadAjax()
+	}
 
   	ZonPersRowCBF = function(nRow, aData, iDisplayIndex){
 		ZonPerTA.RowCBFunction(nRow, aData, iDisplayIndex);	
@@ -86,12 +102,12 @@ var DataToSend = {};
 
   	var UrlaDTable = $("#zonapersonal_table").attr("data-source");
 	FormatoDTable = [
-		              { "sWidth": "33%","mDataProp": "nZona_id"},
-		              { "sWidth": "33%","mDataProp": "nPersonal_id"},
-
+		              { "sWidth": "33%","mDataProp": "cZonaDesc"},
+		              { "sWidth": "33%","mDataProp": "persona"},
+		              { "sWidth": "33%","mDataProp": "cUbigeoDesc"},
 		              ];
 
 	ZonasPersonalTable = createDataTable('zonapersonal_table',UrlaDTable,FormatoDTable,null, ZonPersRowCBF);		          
-
+ 	
 	 
 });

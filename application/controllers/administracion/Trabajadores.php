@@ -92,7 +92,7 @@ class Trabajadores extends CI_Controller
 			$data = array(
 				'cPersonalNom'=> $TrabajNombre,
 				'cPersonalApe'=> $TrabajApell,
-				'dPersonalFec'=> $TrabajFecN->format("Y-m-d"),
+				"dPersonalFec"=> $TrabajFecN->format('Y-m-d'),
 				'cPersonalEdad'=> $TrabajEdad,
 				'cPersonalDNI' => $TrabajDNI,
 			 	'cPersonalTelf' => $TrabajTelef,
