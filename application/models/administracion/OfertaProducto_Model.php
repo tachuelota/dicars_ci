@@ -12,8 +12,16 @@ class OfertaProducto_Model extends CI_Model
 
 	public function insert($data)
 	{
-		$this->db->insert('oferta_producto',$data);
-
+		$sql = 'CALL sp_ins_ofertaproducto(?,?,?,?,?)';
+	    $params =array(
+		intval($data['nProducto_id']),
+		intval($data['idOferta']),
+		intval($data['nOfertaProducto_id']),
+		intval($data['band']),
+		intval($data['descuento']));
+		$result = $this->db->query($sql,$params);
+		$result->next_result(); // Dump the extra resultset.
+		$result->free_result(); // Does what it says.
 		if ($this->db->trans_status() === FALSE)
 		{
 			return false;
@@ -23,6 +31,25 @@ class OfertaProducto_Model extends CI_Model
 			return true;
 		}
 	}
+	
+	public function update($nOfertaProducto_id, $data)
+	{
+		$this->db->trans_begin();
+		$this->db->where('nOfertaProducto_id',$nOfertaProducto_id);
+		$this->db->update('oferta_producto',$data);
+
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
+	}	
+
 }
 
  ?>

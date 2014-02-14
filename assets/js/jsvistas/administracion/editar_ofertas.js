@@ -13,6 +13,7 @@ $(document).ready(function(){
 				case 1:
 					OfertaProductoTable.fnUpdate('<span class="label label-important">Eliminar</span>',index,6);
 					aData.band = 0;
+					console.log(aData);
 					break;
 				case 2:
 					OfertaProductoTable.fnDeleteRow(index); 
@@ -26,12 +27,12 @@ $(document).ready(function(){
 	{
 		DataToSendOferta = {
 			formulario:$("#OfertasForm").serializeObject(),
-			tabla: OfertaProductoTable.fnGetData()
+			tabla: CopyArray(OfertaProductoTable.fnGetData(),["nProducto_id","band","nOfertaProducto_id"])
 		}
 		return DataToSendOferta;
 	};
 
-	var successEditarOferta = function(){
+	var successEditarOferta = function(data){
 		BuscarProdTable.fnReloadAjax();
 		OfertaProductoTable.fnReloadAjax();
 	};
@@ -45,15 +46,17 @@ $(document).ready(function(){
 		event.preventDefault();
 		$('#modalBuscarProducto').modal('hide');
 		$(SelectProductoData).AddAttr("estadolabel", "<span class='label label-success'>Activo</span>");
+		$(SelectProductoData).AddAttr("nOfertaProducto_id", 0);
 		$(SelectProductoData).AddAttr("band", 2);
 		OfertaProductoTable.fnAddData(SelectProductoData);
 		SubTablaArray(BuscarProdTable,SelectProductoData,'nProducto_id');
+		SelectProductoData.splice(0,SelectProductoData.length);
+		UnselectRow("select_producto_table");
 	});
 
 	$('#enviar_editar').click(function(event){
 		event.preventDefault();
-		PrepararDatosOferta();
-		enviar($("#OfertasForm").attr("action-1"),PrepararDatosOferta(), logdata, null)
+		enviar($("#OfertasForm").attr("action-1"),PrepararDatosOferta(), successEditarOferta, null)
 	});
 
 	BuscarProdOptions = {

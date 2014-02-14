@@ -9,7 +9,8 @@ class Ofertas extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('administracion/Oferta_Model','ofertm');
+		$this->
+load->model('administracion/Oferta_Model','ofertm');
 		$this->load->model('administracion/OfertaProducto_Model','ofertprodm');
 	}
 
@@ -61,9 +62,29 @@ class Ofertas extends CI_Controller
 				"nOfertaPorc"=>$nOfertaPorc,
 				);
 			$band = true;
-			if (!$this->ofertm->update($form["idOferta"],$Oferta))
-			{				
-				$this->output->set_status_header('400');
+			if ($this->ofertm->update($form["idOferta"],$Oferta))
+			{
+				$this->db->trans_begin();
+				foreach ($tabla as $index => $row)
+				{
+					$row["idOferta"]= $form["idOferta"];
+					$row["descuento"]= $form["descuento"];
+					if($row["band"]!=1)
+					{
+						if(!$this->ofertprodm->insert($row))
+						{
+							$band = false;
+							break;
+						}
+					}
+				}
+				if($band)
+					$this->db->trans_commit();
+				else
+				{
+					$this->db->trans_rollback();
+					$this->output->set_status_header('400');
+				}
 			}
 			else
 				$this->output->set_status_header('400');		
