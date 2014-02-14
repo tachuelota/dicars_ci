@@ -9,7 +9,8 @@ class Ofertas extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('administracion/Oferta_Model','ofertm');
+		$this->
+load->model('administracion/Oferta_Model','ofertm');
 		$this->load->model('administracion/OfertaProducto_Model','ofertprodm');
 	}
 
@@ -64,10 +65,29 @@ class Ofertas extends CI_Controller
 			if ($this->ofertm->update($form["idOferta"],$Oferta))
 			{
 				$this->db->trans_begin();
-				$datos = array();
 				foreach ($tabla as $index => $row)
 				{
-					
+					if($row["band"]!=1)
+						{
+							$query = $this ->db->query ("CALL sp_ins_ofertaproducto(
+							".$row["nProducto_id"].",
+							".$form["idOferta"].",
+							".$row["nOfertaProducto_id"].",
+							".$row["band"].",
+							".$form["descuento"].")");
+						if ($this->db->trans_status() === FALSE)
+						{						
+							$band = false;
+							break;
+						}
+					}
+				}
+				if($band)
+					$this->db->trans_commit();
+				else
+				{
+					$this->db->trans_rollback();
+					$this->output->set_status_header('400');
 				}
 			}
 			else
