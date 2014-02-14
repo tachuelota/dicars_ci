@@ -28,7 +28,8 @@
 						<h2>ZONAS ASIGNADAS</h2>
 					</div>
 					<div class="box-content">
-						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>">
+						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar">
+							<input type="hidden" id="idZonapersonal" name="idZonapersonal">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="nombre_trabajador">Trabajador</label>
@@ -46,8 +47,8 @@
 										<button class="btn btn-info" id="btn-zona" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
 									</div>
 								</div>
-								<div class="form-actions">
-									<button id="agregar_usuario" type="submit" class="btn btn-primary">Asignar</button>
+								<div class="form-actions">									
+									<button id="btn-reg-usuario" type="button" class="btn btn-primary ">Asignar</button>
 									<button type="reset" class="btn">Limpiar Campos</button>
 							  	</div>
 							</fieldset>
@@ -93,7 +94,7 @@
 							</div>
 							<div class="modal-footer">
 								<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-								<input id="enviar_zona_btn" type="button" value="Seleccionar" class="btn btn-primary">
+								<a id="select_zona" href="#" class="btn btn-primary">Seleccionar</a>
 							</div>								
 							</div>
 						</div>							
