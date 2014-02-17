@@ -12,13 +12,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_homepage">Administración</a><span class="divider">/</span>
+						<a href="<?php echo base_url();?>administracion/">Administración</a><span class="divider">/</span>
 					</li>
 					<li>
-						<a href="logistica_locales.html">Locales</a>
+						<a  href="<?php echo base_url();?>administracion/views/locales">Locales</a>
 					</li>
 				</ul>
 			</div>  
@@ -35,10 +35,10 @@
 						  	<thead>
 								<tr>
 								  	<th>Nombre</th>
-								  	<th>Estado</th>
 								  	<th>Teléfono</th>
 								  	<th>Dirección</th>
-								  	<th>Tipo de Rubro</th>
+								  	<th>Tipo de Rubro</th>								  	
+								  	<th>Estado</th>
 							  	</tr>
 						  	</thead>   
 							<tbody>

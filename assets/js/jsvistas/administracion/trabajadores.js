@@ -32,11 +32,11 @@ $(document).ready(function(){
 	var UrlaDTable = $("#trabajadores_table").attr("data-source");
 	//console.log(UrlaDTable);
 	FormatoTrabajador = [
-		              { "sWidth": "33%","mDataProp": "cPersonalNom"},
-		              { "sWidth": "33%","mDataProp": "cPersonalApe"},
-		              { "sWidth": "33%","mDataProp": "cPersonalDNI"},		              
-		              { "sWidth": "33%","mDataProp": "cPersonalTelf"},
-
+		              { "sWidth": "26%","mDataProp": "cPersonalNom"},
+		              { "sWidth": "26%","mDataProp": "cPersonalApe"},
+		              { "sWidth": "15%","mDataProp": "cPersonalDNI"},		              
+		              { "sWidth": "15%","mDataProp": "cPersonalTelf"},		              	              
+		              { "sWidth": "18%","mDataProp": "estadolabel"},
 		              ];
 
     TrabajadoresTable = createDataTable('trabajadores_table',UrlaDTable,FormatoTrabajador,null,TrabajadoresRowCBF);

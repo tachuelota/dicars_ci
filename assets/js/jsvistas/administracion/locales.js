@@ -15,7 +15,8 @@ $(document).ready(function(){
 	  		$("#telefono").val(aData.cLocalTelf);
 	  		$("#estado").val(aData.nLocalEst);
 	  		$("#tiprub").val(aData.nLocalTipRub);
-	  		$("#idlocal").val(aData.nLocal_id);
+	  		$("#idlocal").val(aData.nLocal_id);	  		
+	  		cargarUbigeo(Ubigeos,"dist", "prov", "dep",aData.nUbigeo_id);
 		},
 	});
 
@@ -24,11 +25,11 @@ $(document).ready(function(){
 	};
 	var UrlaDTable = $("#locales_table").attr("data-source");
 	FormatoDTable = [
-		              { "sWidth": "15%","mDataProp": "cLocalDesc"},
-		              { "sWidth": "8%","mDataProp": "nLocalEst"},
+		              { "sWidth": "15%","mDataProp": "cLocalDesc"},		       
 		              { "sWidth": "8%","mDataProp": "cLocalTelf"},
 		              { "sWidth": "12%","mDataProp": "cLocalDirec"},
 		              { "sWidth": "10%","mDataProp": "nLocalTipRub"},
+		              { "sWidth": "8%","mDataProp": "estadolabel"},
 		              ];
 
 	TipoLocalTable = createDataTable('locales_table',UrlaDTable,FormatoDTable,null, TipoLocalesRowCBF);		

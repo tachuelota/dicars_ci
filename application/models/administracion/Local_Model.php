@@ -53,12 +53,11 @@ class Local_Model extends CI_Model {
 	{
 		if($nLocal_id === FALSE )
 		{
-			$query = $this ->db->get ('local');
+			$query = $this ->db->query ('select * from adm_local_all');
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('local', array('nLocal_id' => $nLocal_id));
 		return $query->row_array();
 	}
-
 
 }

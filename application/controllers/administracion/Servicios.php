@@ -10,15 +10,35 @@ class Servicios extends CI_Controller {
 	public function getCargos()
 	{
 		$this->load->model('administracion/Cargo_Model','acam');
-		$result = $this->acam->get_cargos();
-		echo json_encode(array('aaData' => $result));			
+		$cargos = $this->acam->get_cargos();
+		foreach ($cargos as $key => $cargo) {
+		switch ($cargo["cCargoEst"]) {				
+			    case 0:
+			        $cargos[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $cargos[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $cargos));			
 	}
 	
 	public function getCategoria()
 	{		
 		$this->load->model('administracion/Categoria_Model','acm');
-		$result = $this->acm->get_categorias();
-		echo json_encode(array('aaData' => $result));
+		$categorias = $this->acm->get_categorias();
+		foreach ($categorias as $key => $categoria) {
+		switch ($categoria["cCategoriaEst"]) {				
+			    case 0:
+			        $categorias[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $categorias[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $categorias));
 	}
 	public function getMarcas()
 	{
@@ -27,14 +47,23 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
-
 	public function getTrabajadores()
 	{
 		$this->load->model('administracion/Trabajadores_Model','tramod');
-		$result = $this->tramod->get_trabajadores();
-		echo json_encode(array('aaData' => $result));
+		$trabajadores = $this->tramod->get_trabajadores();
+		foreach ($trabajadores as $key => $trabajador) {
+			switch ($trabajador["cPersonalEst"]) {				
+			    case 0:
+			        $trabajadores[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $trabajadores[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $trabajadores));
 	}
-	
+
 	
 	public function getConstantes()
 	{
@@ -84,8 +113,6 @@ class Servicios extends CI_Controller {
 			echo json_encode($query -> result_array());
 	}
 
-
-
 	/*recuperar productos para ofertas
 	*/
 	public function getProductoSinOferta()
@@ -108,8 +135,18 @@ class Servicios extends CI_Controller {
 	public function getLocales()
 	{
 		$this->load->model('administracion/Local_Model','lo');
-		$result = $this->lo->get_locales();
-		echo json_encode(array('aaData' => $result));
+		$locales = $this->lo->get_locales();
+		foreach ($locales as $key => $local) {
+			switch ($local["nLocalEst"]) {				
+			    case 0:
+			        $locales[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $locales[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $locales));
 	}
 
 	public function get_trabajadores_sinzona(){

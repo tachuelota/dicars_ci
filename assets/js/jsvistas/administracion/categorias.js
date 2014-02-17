@@ -20,7 +20,7 @@ $(document).ready(function(){
 	var FormatoCategorias = [
 		              { "sWidth": "33%","mDataProp": "cCategoriaNom"},
 		              { "sWidth": "33%","mDataProp": "cCategoriaDesc"},
-		              { "sWidth": "33%","mDataProp": "estado"}
+		              { "sWidth": "33%","mDataProp": "estadolabel"}
 		              ];
 
 	var successCategoria = function(){

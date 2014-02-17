@@ -18,7 +18,7 @@
 						<a href="<?php echo base_url();?>administracion/">Administración</a><span class="divider">/</span>
 					</li>
 					<li>
-						<a  href="<?php echo base_url();?>administracion/views/zona_personal">Zonas</a>
+						<a  href="<?php echo base_url();?>administracion/views/zona_personal">Zonas Personal</a>
 					</li>
 				</ul>
 			</div>  

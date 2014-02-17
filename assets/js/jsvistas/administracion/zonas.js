@@ -18,8 +18,9 @@ $(document).ready(function(){
 	});	
 
 	TipoZonasRowCBF = function(nRow, aData, iDisplayIndex){
-		TipoZonasTA.RowCBFunction(nRow, aData, iDisplayIndex);	
+	TipoZonasTA.RowCBFunction(nRow, aData, iDisplayIndex);	
 	};
+	
 	var UrlaDTable = $("#zonas_table").attr("data-source");
 	FormatoDTable = [
 		              { "sWidth": "40%","mDataProp": "cZonaDesc"},
@@ -27,13 +28,13 @@ $(document).ready(function(){
 		              { "sWidth": "40%","mDataProp": "des_ubigeo"},
 		              ];
 
-	TipoProductoTable = createDataTable('zonas_table',UrlaDTable,FormatoDTable,null, TipoZonasRowCBF);
+	TipoZonaTable = createDataTable('zonas_table',UrlaDTable,FormatoDTable,null, TipoZonasRowCBF);
 
 
 	var successZonas = function(){
 		//alert("Hola Como estas");
 		$('#modalZonas').modal('hide');
-		TipoProductoTable.fnReloadAjax()
+		TipoZonaTable.fnReloadAjax()
 	}
 	//Llamar al modal Registrar-Modal
 	$('.btn-registrar').click(function(e){
