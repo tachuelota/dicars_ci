@@ -39,7 +39,6 @@ jQuery.fn.SelectAjax = function()
 	});
 };
 
-
 jQuery.fn.reset = function () {
 	  $(this).each (function() { this.reset(); });
 	};
@@ -200,10 +199,10 @@ function SubTablaArray(Table, Array, attr){
 /*
  * Nesesita tener definido el atributo cantidad
  */
-function sumArrayByAttr(Array2,attr){
+function sumArrayByAttr(Array2,attr1,attr2){
 	var total = 0;
 	$(Array2).each(function( index ){		
-		total +=parseFloat(this[attr]);	
+		total +=parseFloat(this[attr1]*this[attr2]);	
 	});
 	return(total);
 }

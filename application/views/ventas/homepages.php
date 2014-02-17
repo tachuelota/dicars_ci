@@ -18,26 +18,26 @@
 				</ul>
 			</div>  
        		<div class="row-fluid">
-				<a data-rel="tooltip" title="Ver, agregar y editar Ventas." class="well span3 top-block" href="ventas_consultar.html">
+				<a data-rel="tooltip" title="Ver, agregar y editar Ventas." class="well span3 top-block" href="<?php echo base_url();?>ventas/views/cons_ventas">
 					<span class="icon32 icon-color icon-cart"></span>
 					<div>Venta de<br> Productos</div>
 				</a>
-				<a data-rel="tooltip" title="Ver Cronograma y realizar Pagos." class="well span3 top-block" href="ventas_cronograma.html">
+				<a data-rel="tooltip" title="Ver Cronograma y realizar Pagos." class="well span3 top-block" href="<?php echo base_url();?>ventas/views/cronogramas">
 					<span class="icon32 icon-color icon-document"></span>
 					<div>Cronograma <br>de Pago</div>
 				</a>
 			        
-				<a data-rel="tooltip" title="Ver Clientes Deudores y Morosos." class="well span3 top-block" href="ventas_clientes_dm.html">
+				<a data-rel="tooltip" title="Ver Clientes Deudores y Morosos." class="well span3 top-block" href="<?php echo base_url();?>ventas/views/">
 					<span class="icon32 icon-color icon-users"></span>
 					<div>Clientes Deudores <br> y Morosos</div>
 				</a>
-				<a data-rel="tooltip" title="Asignar e imprimir Tarjetas de Crédito." class="well span3 top-block" href="ventas_regimp_tarjetacredito.html">
+				<a data-rel="tooltip" title="Asignar e imprimir Tarjetas de Crédito." class="well span3 top-block" href="<?php echo base_url();?>ventas/views/tarjetascreditos">
 					<span class="icon32 icon-color icon-profile"></span>
 					<div>Tarjeta <br> de Crédito</div>
 				</a>
 			</div>
 			<div class="row-fluid">
-				<a data-rel="tooltip" title="Ver y agregar Movimiento de Dinero." class="well span3 top-block" href="admin_movimientos.html">
+				<a data-rel="tooltip" title="Ver y agregar Movimiento de Dinero." class="well span3 top-block" href="<?php echo base_url();?>ventas/views/movimientos">
 					<span class="icon32 icon-color icon-transfer-ew"></span>
 					<div>Registrar<br> Movimientos</div>
 				</a>
