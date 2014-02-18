@@ -7,13 +7,13 @@ class Usuario_Model extends CI_Model {
 		parent::__construct();
 	}
 
-	/*function insert($data){
+	function insert($data){
 		
 		$this->db->trans_start(true);
 		
 		$this->db->trans_begin();
 
-		$this->db->insert('ven_cargo',$data);
+		$this->db->insert('users',$data);
 
 		if ($this->db->trans_status() === FALSE)
 		{
@@ -26,7 +26,7 @@ class Usuario_Model extends CI_Model {
 			return true;
 		}
 	}
-
+	/*
 	function update($id,$data){
 		
 		$this->db->trans_start();

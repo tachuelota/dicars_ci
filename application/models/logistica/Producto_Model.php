@@ -80,6 +80,7 @@ class Producto_model extends CI_Model
 		$productos = $this->db->query("SELECT * FROM ven_productossinoferta");
 		return $productos->result_array();
 	}
+	
 }
 
 ?>

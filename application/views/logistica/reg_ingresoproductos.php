@@ -31,21 +31,23 @@
 				<h2>INGRESO DE PRODUCTOS: REGISTRAR</h2>
 			</div>
 			<div class="box-content">
-				<form class="form-horizontal" id="RegistrarIngresoForm" method="post" action="">
+				<form class="form-horizontal" id="IngresoProductosForm" method="post" action-1="<?php echo base_url();?>logistica/IngresoProductos/registrar" >
 					<input type="hidden" name="serie_ingreso" id="serie_ingreso">
 					<input type="hidden" name="numero_ingreso" id="numero_ingreso">
+					<input type="hidden" name="idRegistrado" id="idRegistrado" value="4">
+					<input type="hidden" name="idLocal" id="idLocal" value="2">
 					<fieldset>
 						<div class="row-fluid">
 							<div class="span6">
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly value="Diego Molina"></div>
+										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly value="Local 1"></div>
+										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly value=""></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="tipo">Tipo</label>
@@ -75,7 +77,7 @@
 								<div class="control-group">
 									<label class="control-label" for="fecharegistro">Fecha</label>
 									<div class="controls">
-										<input class="input-xlarge" name="fecharegistro" id="fecharegistro" type="text" readonly></div>
+										<input class="input-xlarge" name="fecharegistro" id="fecharegistro" type="text" readonly value="13/02/2014"></div>
 								</div>
 							</div>
 						</div>
@@ -85,12 +87,13 @@
 				<hr>
 				<h3>Detalle de Ingreso de Productos</h3>
 				<hr>
-				<form id="AgregarProductoForm" class="form-horizontal">
+				<form id="ProductoForm" class="form-horizontal">
 					<div class="control-group">
 						<label class="control-label" for="producto">Producto</label>
 						<div class="controls">
+							<input type="hidden" id="idProducto" name="idProducto">
 							<input class="input-xlarge focused" id="producto" disabled type="text">
-							<button type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+							<button id="btn-buscar-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 								Buscar
 							</button>
 							<label style="display:inline;" for="cantidad">Cantidad</label>
@@ -111,22 +114,9 @@
 							<th>Nombre</th>
 							<th>Cantidad</th>
 							<th>Precio</th>
-							<th>Eliminar</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>000001</td>
-							<td>Producto 4</td>
-							<td>30</td>
-							<td>40</td>
-							<td>
-								<a class='btn btn-danger' href='#'>
-									<i class='icon-trash icon-white'></i>
-									Eliminar
-								</a>
-							</td>
-						</tr>
 					</tbody>
 				</table>
 				<hr>
@@ -140,12 +130,15 @@
 						Guardar
 					</button>
 				</div>
+
+<!---------------------------------------------------->
+
 				<div class="modal hide fade" id="modalBuscarProducto">
 					<div class="modal-header">
 						<h3>Productos</h3>
 					</div>
 					<div class="modal-body">
-						<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>logistica/Servicios/getProductos">
 							<thead>
 								<tr>
 									<th>Producto</th>
@@ -154,11 +147,6 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th>Producto 2</th>
-									<th>300</th>
-									<th>10</th>
-								</tr>
 							</tbody>
 						</table>
 					</div>

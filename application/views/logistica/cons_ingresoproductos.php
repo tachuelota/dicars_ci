@@ -30,7 +30,7 @@
 			<div class="box-header well" data-original-title>
 				<h2>INGRESO DE PRODUCTOS</h2>
 				<div class="box-icon">
-					<a href="logistica_reg_ingresoproductos.html" class="btn btn-round" alt="Registrar Ingreso de Productos"> <i class="icon-plus"></i>
+					<a href="<?php echo base_url();?>logistica/views/reg_ingresoproductos/" class="btn btn-round" alt="Registrar Ingreso de Productos"> <i class="icon-plus"></i>
 					</a>
 				</div>
 			</div>
