@@ -39,7 +39,6 @@ jQuery.fn.SelectAjax = function()
 	});
 };
 
-
 jQuery.fn.reset = function () {
 	  $(this).each (function() { this.reset(); });
 	};
@@ -200,10 +199,10 @@ function SubTablaArray(Table, Array, attr){
 /*
  * Nesesita tener definido el atributo cantidad
  */
-function sumArrayByAttr(Array2,attr){
+function sumArrayByAttr(Array2,attr1,attr2){
 	var total = 0;
 	$(Array2).each(function( index ){		
-		total +=parseFloat(this[attr]);	
+		total +=parseFloat(this[attr1]*this[attr2]);	
 	});
 	return(total);
 }
@@ -578,8 +577,8 @@ function cargarDep(idselect, ubigeo){
 	var $select = $('#'+idselect);
 	var result = '';
 	$(ubigeo).each(function(){
-		if(this.dep == 1)
-			result += '<option value="'+this.id+'">'+this.desc+'</option>';
+		if(this.nUbigeoDpt == 1)
+			result += '<option value="'+this.nUbigeo_id+'">'+this.cUbigeoDesc+'</option>';
 	});
 	$select.html(result); 
 }
@@ -588,8 +587,8 @@ function cargarProv(idselect, ubigeo, iddepend){
 	var $select = $('#'+idselect);
 	var result = '';
 	$(ubigeo).each(function(){
-		if(this.prov == 1 && this.depend == iddepend)
-			result += '<option value="'+this.id+'">'+this.desc+'</option>';
+		if(this.nUbigeoProv == 1 && this.nUbigeoDep == iddepend)
+			result += '<option value="'+this.nUbigeo_id+'">'+this.cUbigeoDesc+'</option>';
 	});
 	$select.html(result); 
 }
@@ -598,8 +597,8 @@ function cargarDist(idselect, ubigeo, iddepend){
 	var $select = $('#'+idselect);
 	var result = '';
 	$(ubigeo).each(function(){
-		if(this.dist == 1 && this.depend == iddepend)
-			result += '<option value="'+this.id+'">'+this.desc+'</option>';
+		if(this.nUbigeoDist == 1 && this.nUbigeoDep == iddepend)
+			result += '<option value="'+this.nUbigeo_id+'">'+this.cUbigeoDesc+'</option>';
 	});
 	$select.html(result); 
 }
@@ -612,18 +611,37 @@ function cargarDist(idselect, ubigeo, iddepend){
  * iddep: es el id por defecto que se le asignara a departamento
  * */
 
-function cargarUbigeo(idtagdist, idtagprov, idtagdep, iddist, idprov, iddep){
+function cargarUbigeo(ubigeos,idtagdist, idtagprov, idtagdep, iddist){
+	var prov = null;
+	if(typeof(iddist) != 'undefined')
+	{
+		$(ubigeos).each(function(){
+			if(this.nUbigeo_id == iddist)
+			{
+				dist = this;
+				return 0;
+			}
+		});
+		$(ubigeos).each(function(){
+			if(this.nUbigeo_id == dist.nUbigeoDep)
+			{
+				prov = this;
+				return 0;
+			}
+		});
+	}
 	
+
 	cargarDep(idtagdep, ubigeos);
 
-	if(typeof(iddep) != 'undefined'){
-		$('#'+idtagdep).val(iddep);
+	if(prov!= null){
+		$('#'+idtagdep).val(prov.nUbigeoDep);
 	}
 
 	cargarProv(idtagprov, ubigeos, $('#'+idtagdep).val());
 
-	if(typeof(idprov) != 'undefined'){
-		$('#'+idtagprov).val(idprov);
+	if(prov!= null){
+		$('#'+idtagprov).val(prov.nUbigeo_id);
 	}
 
 	cargarDist(idtagdist, ubigeos, $('#'+idtagprov).val());

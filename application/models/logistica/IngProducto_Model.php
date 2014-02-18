@@ -9,55 +9,31 @@ class IngProducto_Model extends CI_Model
 		$this->load->database();
 	}
 
-	public function insert($IngProducto,$Detalle){
-		
-		$this->db->trans_start(true);
-		$this->db->trans_begin();
-		//Registro Cabecera
-		$this->db->query("call sp_ins_logingprod (
-							 $IngProducto[nPersonal_id],$IngProducto[nLocal_id],'$IngProducto[cIngProdSerie]',
-							'$IngProducto[cIngProdNro]',$IngProducto[nIngProdMotivo],'$IngProducto[cIngProdDocSerie]',
-							'$IngProducto[cIngProdDocNro]','$IngProducto[cIngProdObsv]');");
-		//capturo el ultimo id
-		$id_ingprod = $this->db->insert_id();
-		
-		//Registro Detalle
-		/*
-		$DetalleIngProd = array(); 
-		foreach($Detalle as $key => $data){			
-				$detalle=array(
-					'nProducto_id' => $data["idproducto"],
-					'nIngProd_id' =>$IngProd,
-					'nDetIngProdCant'=>$data["cantidad"],
-					'nDetIngProdPrecUnt'=> $data["precio_uni"],
-					'nDetIngProdTot' => $data["total"]);
-				$DetalleIngProd.array_push($detalle);
-					
-		}
+	public function insert($IngProducto){
+		$procedure="call sp_ins_logingprod(?,?,?,?,?,?,?,?)";
 
-		$this->db->insert('log_detingprod',$DetalleIngProd);*/
+		$params =array(
+			intval($IngProducto['nPersonal_id']),
+			intval($IngProducto['nLocal_id']),
+			$IngProducto['cIngProdSerie'],
+			$IngProducto['cIngProdNro'],
+			intval($IngProducto['nIngProdMotivo']),
+			$IngProducto['cIngProdDocSerie'],
+			$IngProducto['cIngProdDocNro'],
+			$IngProducto['cIngProdObsv']
+			);
 
-		$cuerpo = array();
-		foreach ($Detalle as $row)
-		{
-			$cuerpo [] = array('nIngProd_id' => $id_ingprod,'nProducto_id' => $row->nProducto_id , 
-			 					'nDetIngProdCant' => $row->cantidad, 'nDetIngProdPrecUnt' => $row->precio_uni ,
-			 					'nDetIngProdTot' => ($row->cantidad * $row->precio_uni)
-			 				);
-		}
-
-		$this->db->insert_batch('log_detingprod',$cuerpo);
-
-		//Aquí se ejecuta la transacción
+		$result = $this->db->query($procedure,$params);
+		$id = $result->row_array()["id"];
+		$result->next_result();
+		$result->free_result();
 		if ($this->db->trans_status() === FALSE)
 		{
-			$this->db->trans_rollback();
 			return false;
 		}
 		else
 		{
-			$this->db->trans_commit();
-			return true;
+			return $id;
 		}
 	}
 

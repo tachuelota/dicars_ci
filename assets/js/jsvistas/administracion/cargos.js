@@ -30,7 +30,7 @@ $(document).ready(function(){
 	var UrlaDTable = $("#cargos_table").attr("data-source");
 	FormatoDTable = [
 		              { "sWidth": "33%","mDataProp": "nCargoDesc"},
-		              { "sWidth": "33%","mDataProp": "estado"},
+		              { "sWidth": "33%","mDataProp": "estadolabel"},
 
 		              ];
 

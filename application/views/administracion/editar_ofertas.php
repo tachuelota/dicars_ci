@@ -59,7 +59,6 @@
 								</div>
 							</div>
 						</div>
-						<input type="hidden" name="idoferta" value="{{ id }}">
 						<div class="control-group">
 							<div class="controls">
 								<button type="button" id="btn-buscarproducto" class="btn btn-info btn-buscarp" style="margin: 0 0;"> <i class="icon-search icon-white"></i>

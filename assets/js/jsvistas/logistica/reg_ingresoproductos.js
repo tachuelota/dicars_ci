@@ -17,14 +17,15 @@
 		//	Agregar a la tabla
 		$('#agregar_producto').click(function(event){
 			event.preventDefault();
-			SelectProductosData[0].cantidad=$("#cantidad").val();
-			SelectProductosData[0].precio_uni=$("#precio_uni").val();			
+			SelectProductosData[0].nDetIngProdCant = $("#cantidad").val();
+			SelectProductosData[0].nDetIngProdPrecUnt = $("#precio_uni").val();
+			SelectProductosData[0].nDetIngProdTot = 	$("#cantidad").val() * $("#precio_uni").val();
 			IngresoProductosTable.fnAddData(SelectProductosData);
 			$("#cantidad").val("");
 			$("#precio_uni").val("");
 			$("#producto").val("");
 			$("#idProducto").val("");
-			
+			//console.log(IngresoProductosTable.fnGetData());
 		});
 
 
@@ -45,12 +46,12 @@
 				};
 		}
 
-		function PrepararDatos_IngresoProductos(){
+		/*function PrepararDatos_IngresoProductos(){
 			DataToSend = {
 				formulario:$("#IngresoProductosForm").serializeObject(),
 				tabla: CopyArray(IngresoProductosTable.fnGetData(),["nProducto_id","cantidad","precio_uni"])
 				};
-		}	
+		}	*/
 
 		var BuscarProOptions = {
 		"aoColumns":[
@@ -71,13 +72,12 @@
 			}
 		});
 
-
 		BuscarIngresoProductosdOptions = {
 		"aoColumns":[
 			{ "sWidth": "12%","mDataProp": "nProducto_id"},
 			{ "sWidth": "12%","mDataProp": "cProductoDesc"},
-			{ "sWidth": "12%","mDataProp": "cantidad"},
-			{ "sWidth": "12%","mDataProp": "precio_uni"}			
+			{ "sWidth": "12%","mDataProp": "nDetIngProdCant"},
+			{ "sWidth": "12%","mDataProp": "nDetIngProdPrecUnt"}			
 		              ],
 		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
 		"fnCreatedRow":OfertaProductoActions.RowCBFunction
@@ -96,7 +96,8 @@
 		event.preventDefault();
 		if($("#IngresoProductosForm").validationEngine('validate'))
 			
-			enviar($("#IngresoProductosForm").attr("action-1"),PrepararDatos_IngresoProductos(), successIngresoProductos, null)
+			enviar($("#IngresoProductosForm").attr("action-1"),{formulario:$("#IngresoProductosForm").serializeObject(),
+				tabla: CopyArray(IngresoProductosTable.fnGetData(),["nProducto_id","nDetIngProdCant","nDetIngProdPrecUnt","nDetIngProdTot"])}, successIngresoProductos, null)
 	});
 
 

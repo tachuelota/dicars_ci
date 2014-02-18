@@ -37,7 +37,8 @@
 								  	<th>Nombres</th>
 								  	<th>Apellidos</th>
 								  	<th>DNI</th>
-								  	<th>Teléfono</th>
+								  	<th>Teléfono</th>								  	
+								  	<th>Estado</th>
 							  	</tr>
 						  	</thead>
 						  	<tbody>

@@ -12,13 +12,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_homepage.html">Administrar</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>administracion/">Administración</a><span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_tipo_igv.html">Tipo IGV</a>
+						<a href="<?php echo base_url();?>administracion/views/tipoIGV">Tipo IGV</a>
 					</li>
 				</ul>
 			</div>  
@@ -66,7 +66,7 @@
 									  	<div class="control-group">
 											<label class="control-label" for="estado">Estado</label>
 											<div class="controls">
-										  		<select id="estado" name="estado" data-rel="chosen">
+										  		<select id="estado" name="estado" style="margin: 0 18px 0 0;" class="input focused">
 												<option value="1">Habilitado</option>
 												<option value="0">Deshabilitado</option>
 											</select>

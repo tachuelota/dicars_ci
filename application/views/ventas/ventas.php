@@ -30,7 +30,7 @@
 					<div class="box-header well" data-original-title>
 						<h2>VENTAS: CONSULTAR</h2>
 						<div class="box-icon">
-							<a href="venta_productos.html" class="btn btn-round" alt="Registrar Ventas"><i class="icon-plus"></i></a>
+							<a href="<?php echo base_url();?>ventas/views/registrar_ventas" class="btn btn-round" alt="Registrar Ventas"><i class="icon-plus"></i></a>
 						</div>
 					</div>
 					<div class="box-content">

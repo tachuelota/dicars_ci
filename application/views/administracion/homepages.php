@@ -15,11 +15,12 @@
 	<div>
 		<ul class="breadcrumb">
 			<li>
-				<a href="index.html">Home</a>
+				<a href="<?php echo base_url();?>">Home</a>
 				<span class="divider">/</span>
 			</li>
 			<li>
-				<a href="admin_homepage.html">Administración</a>
+				<a href="<?php echo base_url();?>
+			administracion/">Administración</a>
 			</li>
 		</ul>
 	</div>

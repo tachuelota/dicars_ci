@@ -87,6 +87,8 @@
 	<script src="<?php echo base_url();?>assets/js/util/datatable_plugins.js"></script>
 	<script src="<?php echo base_url();?>assets/js/util/functiongen.js"></script>
 	<script src="<?php echo base_url();?>assets/js/datatables.actions.js"></script>
+	<script src="<?php echo base_url();?>assets/js/prettify.js"></script>
+	<script src="<?php echo base_url();?>assets/js/jquery.bootstrap.wizard.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function(){
 			var urlES =  "js/es_ES.txt";

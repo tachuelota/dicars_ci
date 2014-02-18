@@ -38,6 +38,7 @@
 		echo link_tag('assets/css/DicarsDataTable.css');
 		echo link_tag('assets/css/datatables.actions.css');
 		echo link_tag('assets/css/jqueryvalidation/css/validationEngine.jquery.css');
+		echo link_tag('assets/css/prettify.css');
 	?>
 	<!-- The HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>

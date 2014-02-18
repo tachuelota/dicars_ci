@@ -30,7 +30,7 @@ class Trabajadores extends CI_Controller
 		{
 			$TrabajNombre = $form["nombres"];
 			$TrabajApell = $form["apellidos"];
-			$TrabajFecN = date_create_from_format("d/m/Y",$form["fechanacimiento"]);
+			$TrabajFecN = date_create_from_format("d/m/Y",$form["fechanacimiento"]);			
 			$TrabajEdad = $form["edad"];
 			$TrabajDNI = $form["dni"];
 			$TrabajTelef = $form["telefono"];
@@ -41,7 +41,7 @@ class Trabajadores extends CI_Controller
 			$Trabajador = array(
 				'cPersonalNom'=> $TrabajNombre,
 				'cPersonalApe'=> $TrabajApell,
-				'dPersonalFec'=> $TrabajFecN->format("Y-m-d"),
+				"dPersonalFec"=> $TrabajFecN->format('Y-m-d'),
 				'cPersonalEdad'=> $TrabajEdad,
 				'cPersonalDNI' => $TrabajDNI,
 			 	'cPersonalTelf' => $TrabajTelef,

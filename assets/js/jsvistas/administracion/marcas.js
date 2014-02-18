@@ -32,7 +32,7 @@ $(document).ready(function(){
 	MarcasUrl = $("#marcas_table").attr("data-source");
 	FormatoMarcas = [
 		              { "sWidth": "33%","mDataProp": "cMarcaDesc"},
-		              { "sWidth": "33%","mDataProp": "estado"}
+		              { "sWidth": "33%","mDataProp": "estadolabel"}
 		              ];
 
 	MarcasTable = createDataTable("marcas_table",MarcasUrl,FormatoMarcas, null, MarcasRowCBF);

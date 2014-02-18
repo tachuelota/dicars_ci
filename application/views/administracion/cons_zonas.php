@@ -12,13 +12,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_homepage.html">Administración</a><span class="divider">/</span>
+						<a href="<?php echo base_url();?>administracion/">Administración</a><span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_zonas.html">Zonas</a>
+						<a  href="<?php echo base_url();?>administracion/views/cons_zonas">Zonas</a>
 					</li>
 				</ul>
 			</div>  
@@ -49,7 +49,7 @@
 							<button type="button" class="close" data-dismiss="modal">x</button>
 							<h3>Registrar Zona</h3>
 						</div>
-						<form id="ZonasForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zonas/registrar" action-2="<?php echo base_url();?>administracion/Zonas/editar">
+						<form id="ZonasForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zonas/registrar" action-2="<?php echo base_url();?>administracion/Zonas/editar" data-source="<?php echo base_url();?>administracion/servicios/getUbigeo">
 							<input type="hidden" id="idZonas" name="idZonas">
 							<div class="modal-body">
 								<fieldset>
@@ -74,8 +74,6 @@
 										<label class="control-label" for="dep">Departamento</label>
 										<div class="controls">
 									  		<select id="dep" name="dep">
-									  			<option value="1">La Libertad</option>
-									  			<option value="2">Tumbes</option>
 											</select>
 										</div>
 								  	</div>
@@ -83,9 +81,6 @@
 										<label class="control-label" for="prov">Provincia</label>
 										<div class="controls">
 									  		<select id="prov" name="prov">
-									  			<option value="1">Trujillo</option>
-									  			<option value="2">Tumbes</option>
-									  			<option value="3">Zarumilla</option>
 											</select>
 										</div>
 								  	</div>
@@ -93,9 +88,6 @@
 										<label class="control-label" for="dist">Distrito</label>
 										<div class="controls">
 									  		<select id="dist" name="dist">
-									  			<option value="1">Trujillo</option>
-									  			<option value="1">Tumbes</option>
-									  			<option value="1">Aguas Verdes</option>
 											</select>
 										</div>
 								  	</div>

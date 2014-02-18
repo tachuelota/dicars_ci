@@ -12,13 +12,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_homepage">Administración</a><span class="divider">/</span>
+						<a href="<?php echo base_url();?>administracion/">Administración</a><span class="divider">/</span>
 					</li>
 					<li>
-						<a href="logistica_locales.html">Locales</a>
+						<a  href="<?php echo base_url();?>administracion/views/locales">Locales</a>
 					</li>
 				</ul>
 			</div>  
@@ -35,10 +35,10 @@
 						  	<thead>
 								<tr>
 								  	<th>Nombre</th>
-								  	<th>Estado</th>
 								  	<th>Teléfono</th>
 								  	<th>Dirección</th>
-								  	<th>Tipo de Rubro</th>
+								  	<th>Tipo de Rubro</th>								  	
+								  	<th>Estado</th>
 							  	</tr>
 						  	</thead>   
 							<tbody>
@@ -49,7 +49,7 @@
 							<button type="button" class="close" data-dismiss="modal">x</button>
 							<h3>Registrar Local</h3>
 						</div>
-						<form id="LocalesForm" class="form-horizontal" method="post"  action-1="<?php echo base_url();?>administracion/Locales/registrar" action-2="<?php echo base_url();?>administracion/Locales/editar">
+						<form id="LocalesForm" class="form-horizontal" method="post"  action-1="<?php echo base_url();?>administracion/Locales/registrar" action-2="<?php echo base_url();?>administracion/Locales/editar" data-source="<?php echo base_url();?>administracion/servicios/getUbigeo">
 							<input type="hidden" id="idlocal" name="idlocal">
 							<div class="modal-body">
 								<fieldset>
@@ -96,9 +96,6 @@
 										<label class="control-label" for="dep">Departamento</label>
 										<div class="controls">
 									  		<select id="dep" name="dep">
-									  			<option value="1">Departamento 1</option>
-									  			<option value="2">Departamento 2</option>
-									  			<option value="3">Departamento 3</option>
 											</select>
 										</div>
 								  	</div>
@@ -106,9 +103,6 @@
 										<label class="control-label" for="prov">Provincia</label>
 										<div class="controls">
 									  		<select id="prov" name="prov">
-									  			<option value="1">Provincia 1</option>
-									  			<option value="1">Provincia 2</option>
-									  			<option value="1">Provincia 3</option>
 											</select>
 										</div>
 								  	</div>
@@ -116,9 +110,6 @@
 										<label class="control-label" for="dist">Distrito</label>
 										<div class="controls">
 									  		<select id="dist" name="dist">
-									  			<option value="1">Distrito 1</option>
-									  			<option value="1">Distrito 2</option>
-									  			<option value="1">Distrito 3</option>
 											</select>
 										</div>
 								  	</div>

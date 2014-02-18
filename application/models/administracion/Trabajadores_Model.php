@@ -47,16 +47,13 @@ class Trabajadores_Model extends CI_Model {
 	}
 
 
- 	public function get_trabajadores($nPersonal_id = FALSE)
+ 	public function get_trabajadores()
 	{
-		if($nPersonal_id === FALSE )
-		{
-			$query = $this ->db->get ('ven_personal');
-			return $query -> result_array();
-		}
-		$query = $this->db->get_where('ven_personal', array('nPersonal_id' => $nPersonal_id));
-		return $query->row_array();
+		$query = $this ->db->query ('select * from ven_personal_all');
+		return $query -> result_array();
 	}
+
+
 
 	public function get_trabajadores_activos()
 	{	

@@ -67,16 +67,12 @@ load->model('administracion/Oferta_Model','ofertm');
 				$this->db->trans_begin();
 				foreach ($tabla as $index => $row)
 				{
+					$row["idOferta"]= $form["idOferta"];
+					$row["descuento"]= $form["descuento"];
 					if($row["band"]!=1)
+					{
+						if(!$this->ofertprodm->insert($row))
 						{
-							$query = $this ->db->query ("CALL sp_ins_ofertaproducto(
-							".$row["nProducto_id"].",
-							".$form["idOferta"].",
-							".$row["nOfertaProducto_id"].",
-							".$row["band"].",
-							".$form["descuento"].")");
-						if ($this->db->trans_status() === FALSE)
-						{						
 							$band = false;
 							break;
 						}

@@ -29,11 +29,10 @@ $(document).ready(function(){
 			formulario:$("#OfertasForm").serializeObject(),
 			tabla: CopyArray(OfertaProductoTable.fnGetData(),["nProducto_id","band","nOfertaProducto_id"])
 		}
-		console.log(DataToSendOferta)
 		return DataToSendOferta;
 	};
 
-	var successEditarOferta = function(){
+	var successEditarOferta = function(data){
 		BuscarProdTable.fnReloadAjax();
 		OfertaProductoTable.fnReloadAjax();
 	};
@@ -51,13 +50,13 @@ $(document).ready(function(){
 		$(SelectProductoData).AddAttr("band", 2);
 		OfertaProductoTable.fnAddData(SelectProductoData);
 		SubTablaArray(BuscarProdTable,SelectProductoData,'nProducto_id');
-		SelectProductosData.splice(0,SelectProductosData.length);
+		SelectProductoData.splice(0,SelectProductoData.length);
 		UnselectRow("select_producto_table");
 	});
 
 	$('#enviar_editar').click(function(event){
 		event.preventDefault();
-		enviar($("#OfertasForm").attr("action-1"),PrepararDatosOferta(), logdata, null)
+		enviar($("#OfertasForm").attr("action-1"),PrepararDatosOferta(), successEditarOferta, null)
 	});
 
 	BuscarProdOptions = {

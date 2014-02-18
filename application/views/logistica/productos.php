@@ -89,7 +89,7 @@
 									<div class="control-group">
 										<label class="control-label" for="tipo">Tipo</label>
 										<div class="controls">
-											<select id="tipprod" class="SelectAjax" name="tipprod" data-source="<?php echo base_url();?>administracion/servicios/getConstantes/1" attrval="cConstanteValor" attrdesc="cConstanteDesc"></select>
+											<select id="tipprod" class="SelectAjax" name="tipprod" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/0" attrdesc="cConstanteDesc"></select>
 										</div>
 									</div>
 									<div class="control-group">
@@ -113,28 +113,28 @@
 									<div class="control-group">
 										<label class="control-label" for="preciocosto">Precio Costo</label>
 										<div class="controls">
-											<input required name="preciocosto" id="preciocosto" min="1" step="0.01" type="number"></div>
+											<input required name="preciocosto" id="preciocosto" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="preciocontado">Precio Contado</label>
 										<div class="controls">
-											<input required name="preciocontado" id="preciocontado" min="1" step="0.01" type="number"></div>
+											<input required name="preciocontado" id="preciocontado" type="text"></div>
 									</div>
 
 									<div class="control-group">
 										<label class="control-label" for="preciocredito">Precio Credito</label>
 										<div class="controls">
-											<input required name="preciocredito" id="preciocredito" min="1" step="0.01" type="number"></div>
+											<input required name="preciocredito" id="preciocredito" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="stockmin">Stock Min</label>
 										<div class="controls">
-											<input required maxlength="11" name="stockmin" id="stockmin" min="1" step="1" type="number"></div>
+											<input required maxlength="11" name="stockmin" id="stockmin" type="text"</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="stockmax">Stock Max</label>
 										<div class="controls">
-											<input required maxlength="11" name="stockmax" id="stockmax" min="1" step="1" type="number"></div>
+											<input required maxlength="11" name="stockmax" id="stockmax" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="estado">Estado</label>

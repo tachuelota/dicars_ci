@@ -10,31 +10,70 @@ class Servicios extends CI_Controller {
 	public function getCargos()
 	{
 		$this->load->model('administracion/Cargo_Model','acam');
-		$result = $this->acam->get_cargos();
-		echo json_encode(array('aaData' => $result));			
+		$cargos = $this->acam->get_cargos();
+		foreach ($cargos as $key => $cargo) {
+		switch ($cargo["cCargoEst"]) {				
+			    case 0:
+			        $cargos[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $cargos[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $cargos));			
 	}
 	
 	public function getCategoria()
 	{		
 		$this->load->model('administracion/Categoria_Model','acm');
-		$result = $this->acm->get_categorias();
-		echo json_encode(array('aaData' => $result));
+		$categorias = $this->acm->get_categorias();
+		foreach ($categorias as $key => $categoria) {
+		switch ($categoria["cCategoriaEst"]) {				
+			    case 0:
+			        $categorias[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $categorias[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $categorias));
 	}
 	public function getMarcas()
 	{
 		$this->load->model('administracion/Marca_Model','amm');
-		$result = $this->amm->get_marcas();
-		echo json_encode(array('aaData' => $result));
+		$marcas = $this->amm->get_marcas();
+		foreach ($marcas as $key => $marca) {
+			switch ($marca["cMarcaEst"]) {				
+			    case 0:
+			        $marcas[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $marcas[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $marcas));
 	}
-
 
 	public function getTrabajadores()
 	{
 		$this->load->model('administracion/Trabajadores_Model','tramod');
-		$result = $this->tramod->get_trabajadores();
-		echo json_encode(array('aaData' => $result));
+		$trabajadores = $this->tramod->get_trabajadores();
+		foreach ($trabajadores as $key => $trabajador) {
+			switch ($trabajador["cPersonalEst"]) {				
+			    case 0:
+			        $trabajadores[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $trabajadores[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $trabajadores));
 	}
-	
+
 	
 	public function getConstantes()
 	{
@@ -53,23 +92,73 @@ class Servicios extends CI_Controller {
 	
 	public function getTipoMonedas(){
 		$this->load->model('administracion/TipoMoneda_Model','tmonmod');
-		$result = $this->tmonmod->get_tipomoneda();
-		echo json_encode(array('aaData' => $result));
+		$tipomoneda = $this->tmonmod->get_tipomoneda();
+		foreach ($tipomoneda as $key => $tipomonedas) {
+			switch ($tipomonedas["cTipoMonedaEst"]) {				
+			    case 0:
+			        $tipomoneda[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $tipomoneda[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $tipomoneda));
 	}
 
 	//CARGAR TIPO IGV
+
+	public function getTipoIGVActivo()
+	{
+		$this->load->model('administracion/TipoIGV_Model','igvm');
+		$result = $this->igvm->get_activo();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}
+
 	public function getTipoIGV(){
 	$this->load->model('administracion/TipoIGV_Model','igvm');
-		$result = $this->igvm->get_tipoIGV();
-		echo json_encode(array('aaData' => $result));
+		$tipoigv = $this->igvm->get_tipoIGV();
+		foreach ($tipoigv as $key => $tipo_igv) {
+			switch ($tipo_igv["cTipoIGVEst"]) {				
+			    case 0:
+			        $tipoigv[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $tipoigv[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $tipoigv)));
 	}
 
 	public function getZonas()
 	{
 		$this->load->model('administracion/Zona_Model','zonmod');
-		$result = $this->zonmod->get_zonas();
+		$zonas = $this->zonmod->get_zonas();
+		foreach ($zonas as $key => $zona) {
+			switch ($zona["nZonaEst"]) {				
+			    case 0:
+			        $zonas[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $zonas[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $zonas));
+	}
+
+	public function get_zonas_activos()
+	{	
+		$this->load->model('administracion/Zona_Model','zonmod');
+		$result = $this->zonmod->get_zonas_activos();
 		echo json_encode(array('aaData' => $result));
 	}
+
 
 	public function getZonasPersonal()
 	{
@@ -78,6 +167,11 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
+	public function getUbigeo()
+	{
+			$query = $this ->db->get ('ubigeo');
+			echo json_encode($query -> result_array());
+	}
 
 	/*recuperar productos para ofertas
 	*/
@@ -101,15 +195,25 @@ class Servicios extends CI_Controller {
 	public function getLocales()
 	{
 		$this->load->model('administracion/Local_Model','lo');
-		$result = $this->lo->get_locales();
-		echo json_encode(array('aaData' => $result));
+		$locales = $this->lo->get_locales();
+		foreach ($locales as $key => $local) {
+			switch ($local["nLocalEst"]) {				
+			    case 0:
+			        $locales[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $locales[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		echo json_encode(array('aaData' => $locales));
 	}
 
 	public function get_trabajadores_sinzona(){
 		$this->load->model('administracion/Trabajadores_Model','tramod');
 		$result = $this->tramod->get_trabajadores_sinzona();
 		echo json_encode(array('aaData' => $result));
-	}
+	} 
 
 	public function get_trabajadores_activos(){
 		$this->load->model('administracion/Trabajadores_Model','tramod');

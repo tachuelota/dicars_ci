@@ -10,22 +10,13 @@ class IngresoProductos extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('logistica/IngProducto_Model','ingpro');
+		$this->load->model('logistica/DetIngProducto_Model','detingpro');
 	}
 
 	public function registrar(){
 
-		$form = $this->input->post('formulario',true);
+		$form = $this->input->post('formulario');
 		$tabla = $this->input->post('tabla',true);		
-		
-		//CABECERA
-		$idPersonal = null;
-		$idLocal = null;
-		$Serie = null;
-		$Numero = null; 
-		$Motivo = null;
-		$DocSerie = null;
-		$DocNumero = null; 
-		$Observacion = null;
 		
 		if ($form!=null){
 			//CABECERA
@@ -38,26 +29,46 @@ class IngresoProductos extends CI_Controller
 			$DocNumero = $form["docnumero"];
 			$Observacion = $form["observacion"];
 							
-			$ProductoCabecera = array('nPersonal_id' => $idPersonal,'nLocal_id' =>$idLocal,'cIngProdSerie'=>$Serie,
+			$IngProducto = array('nPersonal_id' => $idPersonal,'nLocal_id' =>$idLocal,'cIngProdSerie'=>$Serie,
 			'cIngProdNro'=> $Numero,'nIngProdMotivo' => $Motivo,'cIngProdDocSerie' => $DocSerie,'cIngProdDocNro' => $DocNumero,
 			'cIngProdObsv'=>$Observacion);
 
-			/*if($this->ingpro->insert($ProductoCabecera,$tabla))
+			$band = true;
+			$this->db->trans_begin();
+			$IngProducto_id = $this->ingpro->insert($IngProducto);
+			if($IngProducto_id === FALSE)
 			{ 
-				$return = array("respoeCode"=>200, "datos"=>"ok");
-			} else {
-				$return = array("responseCode"=>400, "greeting"=>"Bad");
-			};*/
+				$this->output->set_status_header('400');
+				$band = false;
+			} 
+			else
+			{
+				foreach ($tabla as $key => $row)
+				{
+					$tabla[$key]["nIngProd_id"] = intval($IngProducto_id);
 
-			$return = $tabla;
+				}
+				if(!$this->detingpro->insert_batch($tabla))
+					$band = false;
+			}
+
+			if($band)
+				$this->db->trans_commit();
+			else
+			{
+				$this->db->trans_rollback();
+				$this->output->set_status_header('400');
+			}
 		}
-		else {
-
-			$return = array("responseCode"=>400, "greeting"=>"Bad");
+		else 
+		{
+			$this->output->set_status_header('400');
+			$return = "bad";
 		} 
 	
-		$return = json_encode($return);
-		echo $return;
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode("ok"));
 	}
 
 

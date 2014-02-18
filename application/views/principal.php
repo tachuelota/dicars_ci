@@ -20,17 +20,17 @@
 			</ul>
 		</div>
 		<div class="row-fluid">
-			<a data-rel="tooltip" class="well span3 top-block" href="ventas_homepage.html" style="width: 31.5%;">
+			<a data-rel="tooltip" class="well span3 top-block" href="<?php echo base_url();?>ventas/" style="width: 31.5%;">
 				<span class="icon32 icon-color icon-cart"></span>
 				<div>Ventas</div>
 			</a>
 
-			<a data-rel="tooltip" class="well span3 top-block" href="logistica_homepage.html" style="width: 31.5%;">
+			<a data-rel="tooltip" class="well span3 top-block" href="<?php echo base_url();?>logistica/" style="width: 31.5%;">
 				<span class="icon32 icon-color icon-gear"></span>
 				<div>Logística</div>
 			</a>
 
-			<a data-rel="tooltip" class="well span3 top-block" href="admin_homepage.html" style="width: 31.5%;">
+			<a data-rel="tooltip" class="well span3 top-block" href="<?php echo base_url();?>ventas/" style="width: 31.5%;">
 				<span class="icon32 icon-color icon-users"></span>
 				<div>Administración</div>
 			</a>

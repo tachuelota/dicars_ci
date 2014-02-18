@@ -27,15 +27,11 @@ class ZonaPersonal_Model extends CI_Model {
 				
 	}
 
-	function update($id,$data){
-	
-	}
-
 	public function get_zonaspersonal($nZonaPersonal_id = FALSE)
 	{
 		if($nZonaPersonal_id === FALSE )
 		{
-			$query = $this ->db->query ('select * from ven_zonapersonal_all;');
+			$query = $this ->db->query ('select * from ven_zonapersonal_all');
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('ven_zonapersonal', array('nZonaPersonal_id' => $nZonaPersonal_id));
