@@ -36,6 +36,7 @@
 		echo link_tag('assets/css/opa-icons.css');
 		echo link_tag('assets/css/uploadify.css');
 		echo link_tag('assets/css/DicarsDataTable.css');
+		echo link_tag('assets/css/datepicker/css/datepicker.css');
 		echo link_tag('assets/css/datatables.actions.css');
 		echo link_tag('assets/css/jqueryvalidation/css/validationEngine.jquery.css');
 		echo link_tag('assets/css/prettify.css');

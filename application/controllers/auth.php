@@ -50,6 +50,13 @@ class Auth extends CI_Controller {
 		}
 	}
 
+	public function getUsersAll(){
+		$result = $this->ion_auth->users_personal();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}
+
 	//log the user in
 	function login()
 	{

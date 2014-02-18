@@ -1,103 +1,109 @@
-function VentaUpdate(){	
-	var igv = parseInt($("#tipo_igv option:selected").text());
-	var des = $("#descuento").val();
-	var formapago = $("#forma_pago").val();
-		
-	var montomoneda = parseFloat($("#tipo_moneda option:selected").attr('monto'));
-	var montodesc;
-	var montoigv;
-	var montoproductos;
-	
-	if($("#tipo_moneda").val()==1)
-		TipoMoneda = " - s/.";
-	else{
-		TipoMoneda = " - s/.";
-		$("#resumen_dolares").show();
-	}
-
-	if(formapago == 1){
-		$("#pagocont_block").show();
-		$("#cuotas_block").hide();
-		$("#saldo_block").hide();
-		$("#resume-credito").hide();
-		montoproductos = totalcontado;
-		tipoprecio = 'pcontado';
-	}
-	else{
-		$("#importe").attr("min", "0");
-		$("#saldo_block").show();
-		$("#pagocont_block").hide();
-		$("#resume-credito").show();
-		
-		if(formapago == 2){
-			UnselectRow("select_producto_table");
-			$("#cuotas_block").show();
-			montoproductos = totalcredito;
-			tipoprecio = 'pcredito';
-			$("#prim_cuota").attr("required",true);
-		}
-
-		else{
-			$("amortizacion").attr("required",true);
-			$("#cuotas_block").hide();
-			montoproductos = totalcontado;
-			tipoprecio = "pcontado";
-			$("#amortizacion").attr("min", "1");
-		}
-	}
-	
-	CargarTablaResumen(formapago);
-	montodesc = (montoproductos*des/100).toFixed(2);
-	
-	$("#subtotal").val((montoproductos*(100/(igv+100))*(100-des)/100).toFixed(2));
-	montoigv = ($("#subtotal").val()*igv/100).toFixed(2);
-	$("#total").val(($("#subtotal").val()*(100+igv)/100).toFixed(2));
-	$("#saldo").val(($("#total").val()-$("#amortizacion").val()).toFixed(2));
-	$("#spandesc").text("% "+TipoMoneda+" "+montodesc);
-	$("#spanigv").text("% "+TipoMoneda+" "+montoigv);
-	
-	$("#spanamort").text(TipoMoneda);
-	montocuota = $("#saldo").val()/$("#num_cuotas").val();
-	montocuota = Math.ceil(montocuota*100)/100;
-	$("#montocuota").val(montocuota);
-	$("#spancouota").text("x "+TipoMoneda+" "+montocuota.toFixed(2));
-
-	$("#forma_pagoR").text($("#forma_pago option:selected").text());
-	$("#montoR").text(montodesc);
-	$("#descuentoR").text(des+$("#spandesc").text());
-	$("#subtotalR").text($("#subtotal").val());
-	$("#tipo_igvR").text(igv+$("#spanigv").text());
-	$("#totalR").text($("#total").val());
-	$("#totalDo").text(($("#total").val()/montomoneda).toFixed(2));
-	$("#amortizacionR").text($("#amortizacion").val());
-	$("#saldoR").text($("#saldo").val());
-	total = parseFloat($('#total').val());
-	$('#amortizacion').attr('max', total);	
-	if(formapago == 1){
-		$("#importeR").text($("#importe").val());
-		$("#vueltoR").text($("#vuelto").val());
-		$('#importe').attr('min', total);
-		
-		if($('#importe').val() >= total){
-			$('#vuelto').val(($('#importe').val() - total).toFixed(2));
-			$('#importe_help').hide();
-		}
-		else if($('#importe').val() == 0){
-			$('#vuelto').val("0");
-			$('#importe_help').hide();
-		}
-		else{
-			$('#vuelto').val("0");
-			$('#importe_help').show();
-		}
-	}
-}
-
 $(document).ready(function(){
 	var SelectProductoData = new Array();
 	var SelectClienteData = new Array();
 
-	$(".SelectAjax").SelectAjax();
+	var  VentaUpdate = function(){	
+		var igv = parseInt($("#tipo_igv option:selected").text());
+		var des = $("#descuento").val();
+		var formapago = $("#forma_pago").val();		
+		var montomoneda = parseFloat($("#tipo_moneda option:selected").attr('monto'));
+		var montodesc;
+		var montoigv;
+		var montoproductos;
+		
+		if($("#tipo_moneda").val()==1)
+			TipoMoneda = " - s/.";
+		else{
+			TipoMoneda = " - s/.";
+			$("#resumen_dolares").show();
+		}
+
+		if(formapago == 1){
+			$("#pagocont_block").show();
+			$("#cuotas_block").hide();
+			$("#saldo_block").hide();
+			$("#resume-credito").hide();
+			montoproductos = totalcontado;
+			tipoprecio = 'pcontado';
+		}
+		else{
+			$("#importe").attr("min", "0");
+			$("#saldo_block").show();
+			$("#pagocont_block").hide();
+			$("#resume-credito").show();
+			
+			if(formapago == 2){
+				UnselectRow("select_producto_table");
+				$("#cuotas_block").show();
+				montoproductos = totalcredito;
+				tipoprecio = 'pcredito';
+				$("#prim_cuota").attr("required",true);
+			}
+
+			else{
+				$("amortizacion").attr("required",true);
+				$("#cuotas_block").hide();
+				montoproductos = totalcontado;
+				tipoprecio = "pcontado";
+				$("#amortizacion").attr("min", "1");
+			}
+		}
+		
+		CargarTablaResumen(formapago);
+		montodesc = (montoproductos*des/100).toFixed(2);
+		
+		$("#subtotal").val((montoproductos*(100/(igv+100))*(100-des)/100).toFixed(2));
+		montoigv = ($("#subtotal").val()*igv/100).toFixed(2);
+		$("#total").val(($("#subtotal").val()*(100+igv)/100).toFixed(2));
+		$("#saldo").val(($("#total").val()-$("#amortizacion").val()).toFixed(2));
+		$("#spandesc").text("% "+TipoMoneda+" "+montodesc);
+		$("#spanigv").text("% "+TipoMoneda+" "+montoigv);
+		
+		$("#spanamort").text(TipoMoneda);
+		montocuota = $("#saldo").val()/$("#num_cuotas").val();
+		montocuota = Math.ceil(montocuota*100)/100;
+		$("#montocuota").val(montocuota);
+		$("#spancouota").text("x "+TipoMoneda+" "+montocuota.toFixed(2));
+
+		$("#forma_pagoR").text($("#forma_pago option:selected").text());
+		$("#montoR").text(montodesc);
+		$("#descuentoR").text(des+$("#spandesc").text());
+		$("#subtotalR").text($("#subtotal").val());
+		$("#tipo_igvR").text(igv+$("#spanigv").text());
+		$("#totalR").text($("#total").val());
+		$("#totalDo").text(($("#total").val()/montomoneda).toFixed(2));
+		$("#amortizacionR").text($("#amortizacion").val());
+		$("#saldoR").text($("#saldo").val());
+		total = parseFloat($('#total').val());
+		$('#amortizacion').attr('max', total);	
+		if(formapago == 1){
+			$("#importeR").text($("#importe").val());
+			$("#vueltoR").text($("#vuelto").val());
+			$('#importe').attr('min', total);
+			
+			if($('#importe').val() >= total){
+				$('#vuelto').val(($('#importe').val() - total).toFixed(2));
+				$('#importe_help').hide();
+			}
+			else if($('#importe').val() == 0){
+				$('#vuelto').val("0");
+				$('#importe_help').hide();
+			}
+			else{
+				$('#vuelto').val("0");
+				$('#importe_help').show();
+			}
+		}
+	}
+	var CargarTablaResumen = function(formapago){
+		ResumenProdTable.fnClearTable();
+		Auxtable = VentaProdTable.fnGetData();
+		if(formapago == 2)
+			CloneAttr(Auxtable,'PrecioContado_Dscto','pventa');
+		else
+			CloneAttr(Auxtable,'PrecioCredito_Dscto','pventa');
+		ResumenProdTable.fnAddData($(Auxtable).CopyArray(["cProductoCodBarra","cProductoDesc","cantidad","pventa"]));
+	};
 
 	$('#rootwizard').bootstrapWizard({
 		onNext: function(tab, navigation, index) {
@@ -107,7 +113,8 @@ $(document).ready(function(){
 					$("#rquiredproducts").modal('show');
 					return false;
 				}
-				
+				else
+					VentaUpdate();				
 			}			
 		},
 			onTabShow: function(tab, navigation, index) {
@@ -118,7 +125,9 @@ $(document).ready(function(){
 		}
 	});
 
-	BuscarProdOptions = {
+	$(".SelectAjax").SelectAjax();
+
+	var BuscarProdOptions = {
 		"aoColumns":[
 			{ "mDataProp": "cProductoCodBarra"},
 			{ "mDataProp": "cProductoDesc"},
@@ -132,20 +141,20 @@ $(document).ready(function(){
 		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
 		"fnCreatedRow":getSimpleSelectRowCallBack(SelectProductoData)
 	};	
-	BuscarProdTable = createDataTable2('select_producto_table',BuscarProdOptions);
+	var BuscarProdTable = createDataTable2('select_producto_table',BuscarProdOptions);
 
 	ClienteOptions = {
 		"aoColumns":[
-			{ "sWidth": "33%","mDataProp": "cClienteNom"},
-			{ "sWidth": "33%","mDataProp": "cClienteApe"},
-			{ "sWidth": "33%","mDataProp": "cClienteDNI"},		              
-			{ "sWidth": "33%","mDataProp": "nClienteLineaOp"}
+			{ "sWidth": "25%","mDataProp": "cClienteNom"},
+			{ "sWidth": "25%","mDataProp": "cClienteApe"},
+			{ "sWidth": "25%","mDataProp": "cClienteDNI"},		              
+			{ "sWidth": "25%","mDataProp": "nClienteLineaOp"}
 		],
 		"fnCreatedRow":getSimpleSelectRowCallBack(SelectClienteData)
 	};
-	ClienteTable = createDataTable2('select_cliente_table',ClienteOptions);
+	var ClienteTable = createDataTable2('select_cliente_table',ClienteOptions);
 
-	VentaProdOptions = {
+	var VentaProdOptions = {
 		"aoColumns":[
 			{ "mDataProp": "cProductoCodBarra"},
 			{ "mDataProp": "cProductoDesc"},
@@ -155,7 +164,18 @@ $(document).ready(function(){
 		              ],
 		"fnCreatedRow":null
 	};
-	VentaProdTable = createDataTable2('select_productos_venta',VentaProdOptions);
+	var VentaProdTable = createDataTable2('select_productos_venta',VentaProdOptions);
+
+	ResumenProdOptions = {
+		"aoColumns":[
+			{ "sWidth": "25%","mDataProp": "cProductoCodBarra"},
+			{ "sWidth": "25%","mDataProp": "cProductoDesc"},
+			{ "sWidth": "25%","mDataProp": "cantidad"},
+			{ "sWidth": "25%","mDataProp": "pventa"}
+			],
+		"fnCreatedRow":null
+	};
+	var ResumenProdTable = createDataTable2('tabla_resumen_productos',ResumenProdOptions);
 
 	unlockload = function(){
 		$.unblockUI({
@@ -167,6 +187,7 @@ $(document).ready(function(){
 
 	$('#cliente').val('ANONIMO ANONIMO');
 	$('#cliente_id').val('0');
+	$("#fechaR").text(fechaAhora());
 
 	volverConsultar = function(){
 		$(location).attr("href","ventas_consultar.html");

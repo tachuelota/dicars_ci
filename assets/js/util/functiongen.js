@@ -57,18 +57,23 @@ jQuery.fn.AddAttr = function (attr, value){
 	});
 }
 
-/*Fin extensiones de jQuery*/
-function getActionButtons(conf){
-  actions = "<p>"
-  if(conf.substring(0,1)==1)
-    actions += '<a class="ver_row actions-icons" data-original-title="Ver" href="#"><img alt="ver" class="icons" src="view.png"></a>';
-  if(conf.substring(1,2)==1)
-    actions += '<a class="edit_row actions-icons" data-original-title="Editar" href="#"><img alt="edit" class="icons" src="http://d9i0z8gxqnxp1.cloudfront.net/img/edit-icon.png"></a>';
-  if(conf.substring(2,3)==1)
-    actions += '<a class="delete-row actions-icons" data-original-title="Eliminar" href="#"><img alt="trash" src="http://d9i0z8gxqnxp1.cloudfront.net/img/trash-icon.png"></a>';
-  actions += '</p>'
-  return actions;
+
+
+jQuery.fn.CopyArray = function(attrs){
+	var ArrayReturn = [];
+	var array = this
+	$(array).each(function(index){
+		var ArrayData = this;
+		var data = {};
+		$(attrs).each(function(index){
+			data[this] = ArrayData[this];
+		});
+		ArrayReturn.push(data);
+	});
+	return ArrayReturn;
 }
+
+/*Fin extensiones de jQuery*/
 
 function getConfOneDay(day)
 {
@@ -501,76 +506,6 @@ function reloadclosemodal(idmodal,idaTable){
 		};
 	return returnfunction;
 }
-	
-/*Funcion para crear los formularios de forma dinamica*/
-function crearElementosForm(Array){
-	var $form = $("<div>");
-	var $modalfooter = $("<div class='modal-footer'>");
-	var $modalbody = $("<div class='modal-body'>");
-	var $fielset = $("<fieldset>");
-	jQuery.each(Array, function() {
-		switch (this.type){
-		case 'h3':
-			$fielset.append('<h3>'+this.label+'</h3>');
-			break;
-		case 'actions':
-			$modalfooter.append('<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>  <button type="submit" class="btn btn-primary">Guardar</button>');
-			break;
-		case 'close':
-			$modalfooter.append('<button type="reset" class="btn" data-dismiss="modal">Cerrar</button>');
-			break;
-		case 'hidden':
-			$fielset.append('<input type="hidden" name="'+this.name+'" value="'+this.value+'">');
-			break;
-		default:
-			$div_control_group = $('<div class="control-group">');
-			$div_control_group.append('<label class="control-label" for="zona">'+this.label+'</label>');
-			$div_control = $('<div class="controls">');
-			$div_control.append(addElemento(this));
-			$div_control_group.append($div_control);
-			$fielset.append($div_control_group);
-			$modalbody.append($fielset);
-			break;
-		}
-	   });
-	$form.append($modalbody);
-	$form.append($modalfooter);
-	
-	return $form;
-}
-
-function addElemento(obj){
-	switch (obj.type) {
-	    case 'input': 
-	    		$elem = $('<input class="input-xlarge focused" id="'+obj.name+'" name="'+obj.name+'" type="'+obj.typeinput+'" pattern="'+obj.pattern+'" title="'+obj.title+'" required="'+obj.req+'" maxlength="'+obj.max+'">');
-	    		$elem.val(obj.value);
-	    		break;
-	    case 'inputnumber':
-		    	$elem = $('<input class="input-xlarge focused" id="'+obj.name+'" name="'+obj.name+'" type="number" required="'+obj.req+'" step="'+obj.step+'" min="'+obj.min+'" max="'+obj.max+'">');
-	    		$elem.val(obj.value);
-	    		break;
-	    case 'file':
-	    		$elem = $('<input type="file" class="input-xlarge" name="'+obj.name+'">');
-	    		break;
-	    case 'textarea':
-	    		$elem = $('<textarea class="input-xlarge" name="'+obj.name+'" rows="2" cols="" required="'+obj.req+'" maxlength="'+obj.max+'"></textarea>');
-	    		$elem.val(obj.value);
-	    		break;
-	    case 'date':
-	    		$elem = $('<input type="text" class="input-xlarge datepicker" id="'+obj.name+'" name="'+obj.name+'" value="'+obj.value+'">');
-	    		break;
-	    case 'select':
-	    		$elem  = $('<select id="'+obj.name+'" name="'+obj.name+'" data-rel="chosen" >');
-	    		break;
-	    case 'img':
-	    		$elem = $('<figure><img src="'+obj.value+'" alt="Tarjeta"></figure>');
-	    		break;
-	    case 'span': 
-	    		$elem = $('<span class="help-inline" style="margin-top:5px;">'+obj.value+'</span>');
-	    		break;
-	}	
-	return $elem;
-}	
 
 /*--------------------------------UBIGEO------------------------------------*/
 function cargarDep(idselect, ubigeo){

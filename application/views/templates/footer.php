@@ -79,6 +79,10 @@
 	<script src="<?php echo base_url();?>assets/js/jquery.uploadify-3.1.min.js"></script>
 	<!-- history.js for cross-browser state change on ajax -->
 	<script src="<?php echo base_url();?>assets/js/jquery.history.js"></script>
+
+	<script src="<?php echo base_url();?>assets/js/datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="<?php echo base_url();?>assets/js/datepicker/js/locales/bootstrap-datepicker.es.js"></script>
+
 	<!-- application script for Charisma demo -->
 	<script src="<?php echo base_url();?>assets/js/charisma.js"></script>
 	<script src="<?php echo base_url();?>assets/js/jqueryvalidation/languages/jquery.validationEngine-es.js"></script>

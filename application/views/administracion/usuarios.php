@@ -34,7 +34,8 @@
 									<label class="control-label" for="trabajador">Trabajador</label>
 									<div class="controls">
 										<input class="input-xlarge" id="nombre_trabajador" type="text" readonly required>
-										<input class="input-xlarge focused" id="trabajador" name="trabajador" type="hidden">
+										<input id="trabajador" name="trabajador" type="hidden">
+										<input id="email" name="email" type="hidden">
 										<button id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-trabajador" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
 									</div>
 								</div>
@@ -44,13 +45,6 @@
 										<input class="input-xlarge focused" id="usuario_id" name="usuario_id" type="text" pattern="|^[a-zA-Z0-9]+$|" title="El usuario puede contener leras y números" maxlength="20" required>
 									</div>
 								</div>
-			                                        
-                                <div class="control-group">
-                                    <label class="control-label" for="email">Email</label>
-                                    <div class="controls">
-                                        <input class="input-xlarge focused" id="email" name="email" type="text">
-                                    </div>
-                                </div>
 			                                        
 								<div class="control-group">
 									<label class="control-label" for="contrasena">Contraseña</label>

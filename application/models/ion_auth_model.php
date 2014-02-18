@@ -789,7 +789,7 @@ class Ion_auth_model extends CI_Model
 	 * @return bool
 	 * @author Mathew
 	 **/
-	public function register($username, $password, $email, $additional_data = array(), $groups = array())
+	public function register($username, $nPersonal_id, $password, $email, $additional_data = array(), $groups = array())
 	{
 		$this->trigger_events('pre_register');
 
@@ -826,13 +826,14 @@ class Ion_auth_model extends CI_Model
 
 		// Users table.
 		$data = array(
-		    'username'   => $username,
-		    'password'   => $password,
-		    'email'      => $email,
-		    'ip_address' => $ip_address,
-		    'created_on' => time(),
-		    'last_login' => time(),
-		    'active'     => ($manual_activation === false ? 1 : 0)
+			'nPersonal_id'	=> $nPersonal_id,
+		    'username'   	=> $username,
+		    'password'  	=> $password,
+		    'email'      	=> $email,
+		    'ip_address' 	=> $ip_address,
+		    'created_on' 	=> time(),
+		    'last_login' 	=> time(),
+		    'active'     	=> ($manual_activation === false ? 1 : 0)
 		);
 
 		if ($this->store_salt)
@@ -1294,6 +1295,14 @@ class Ion_auth_model extends CI_Model
 
 		return $this;
 	}
+
+
+	public function users_personal()
+	{
+		$query = $this ->db->query ('select * from adm_usuarios_all;');
+		return $query -> result_array();
+	}
+
 
 	/**
 	 * get_users_groups
