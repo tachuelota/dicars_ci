@@ -30,10 +30,10 @@ var cargos = getAjaxObject($("#zona").attr("data-source"))
 	var UrlaDTable = $("#clientes_table").attr("data-source");
 	//console.log(UrlaDTable);
 	FormatoClientes = [
-		              { "sWidth": "33%","mDataProp": "cClienteNom"},
-		              { "sWidth": "33%","mDataProp": "cClienteApe"},
-		              { "sWidth": "33%","mDataProp": "cClienteDNI"},		              
-		              { "sWidth": "33%","mDataProp": "nClienteLineaOp"},
+		              { "sWidth": "30%","mDataProp": "cClienteNom"},
+		              { "sWidth": "30%","mDataProp": "cClienteApe"},
+		              { "sWidth": "20%","mDataProp": "cClienteDNI"},		              
+		              { "sWidth": "20%","mDataProp": "nClienteLineaOp"}
 
 		              ];
 

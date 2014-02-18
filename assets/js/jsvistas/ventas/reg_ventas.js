@@ -7,10 +7,6 @@ function VentaUpdate(){
 	var montodesc;
 	var montoigv;
 	var montoproductos;
-
-	$("#resumen_dolares").hide();
-	$("#prim_cuota").attr("required",false);
-	$("amortizacion").attr("required",false);
 	
 	if($("#tipo_moneda").val()==1)
 		TipoMoneda = " - s/.";
@@ -99,6 +95,7 @@ function VentaUpdate(){
 
 $(document).ready(function(){
 	var SelectProductoData = new Array();
+	var SelectClienteData = new Array();
 
 	$(".SelectAjax").SelectAjax();
 
@@ -137,6 +134,17 @@ $(document).ready(function(){
 	};	
 	BuscarProdTable = createDataTable2('select_producto_table',BuscarProdOptions);
 
+	ClienteOptions = {
+		"aoColumns":[
+			{ "sWidth": "33%","mDataProp": "cClienteNom"},
+			{ "sWidth": "33%","mDataProp": "cClienteApe"},
+			{ "sWidth": "33%","mDataProp": "cClienteDNI"},		              
+			{ "sWidth": "33%","mDataProp": "nClienteLineaOp"}
+		],
+		"fnCreatedRow":getSimpleSelectRowCallBack(SelectClienteData)
+	};
+	ClienteTable = createDataTable2('select_cliente_table',ClienteOptions);
+
 	VentaProdOptions = {
 		"aoColumns":[
 			{ "mDataProp": "cProductoCodBarra"},
@@ -146,7 +154,7 @@ $(document).ready(function(){
 			{ "mDataProp": "PrecioCredito_Dscto"}
 		              ],
 		"fnCreatedRow":null
-	};	
+	};
 	VentaProdTable = createDataTable2('select_productos_venta',VentaProdOptions);
 
 	unlockload = function(){
@@ -172,20 +180,20 @@ $(document).ready(function(){
 		$(location).attr("href","ventas_consultar.html");
 	});
 
-	$("#pdfbutton").click(function(e){
-		e.preventDefault();
+	$("#pdfbutton").click(function(event){
+		event.preventDefault();
 		$("#CreatePDFForm").attr("action",urlExportPDF);
 		$("#CreatePDFForm").submit();
 	});
 	
-	$("#xlsutton").click(function(e){
-		e.preventDefault();
+	$("#xlsutton").click(function(event){
+		event.preventDefault();
 		$("#CreatePDFForm").attr("action",urlExportXLS);
 		$("#CreatePDFForm").submit();
 	});
 
-	$("#finalizar_venta").click(function(e){
-		e.preventDefault();
+	$("#finalizar_venta").click(function(event){
+		event.preventDefault();
 		$.blockUI({ 
 	    	message: $('#loadingDiv'),
 	    	css: { padding: '10px' }, 
@@ -196,20 +204,20 @@ $(document).ready(function(){
 		});
 	});
 
-	$('.btn-buscarp').click(function(e){
-		e.preventDefault();
+	$('.btn-buscarp').click(function(event){
+		event.preventDefault();
 		$('#modalBuscarProducto').modal('show');
 		UnselectRow("select_producto_table");
 	});
 
-	$('.btn-buscarc').click(function(e){
-		e.preventDefault();
+	$('.btn-buscarc').click(function(event){
+		event.preventDefault();
 		$('#modalBuscarCliente').modal('show');
 		UnselectRow("select_cliente_table");
 	});
 
-	$("#select_producto").click(function(e){
-		e.preventDefault();
+	$("#select_producto").click(function(event){
+		event.preventDefault();
 		var data = SelectProductoData[0];
 		$('#producto').val(data.cProductoCodBarra);
 		$('#cantidad').val("1");
@@ -240,8 +248,8 @@ $(document).ready(function(){
 		}
 	});
 
-	$("#btn-select-cliente").click(function(e){
-		e.preventDefault();
+	$("#btn-select-cliente").click(function(event){
+		event.preventDefault();
 		var data = SelectClienteData[0];
 		$('#cliente').val(data.nombre+" "+data.apellido);
 		$('#cliente_id').val(data.id);
@@ -249,5 +257,10 @@ $(document).ready(function(){
 		$('#direccionR').text(data.direccion);
 		$('#modalBuscarCliente').modal('hide');
 		
+	});
+
+	$("#EnviarVentaForm").change(function(event){
+		event.preventDefault();
+		VentaUpdate();
 	});
 });

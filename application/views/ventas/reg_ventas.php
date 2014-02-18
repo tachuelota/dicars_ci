@@ -127,7 +127,7 @@
 											<label class="control-label" for="descuento">Venta Descuento</label>
 											<div class="controls">
 												<div class="input-prepend input-append">
-													<input class="input focused " name="descuento" id="descuento" type="text">
+													<input class="input focused " name="descuento" id="descuento" type="text" value="0">
 													<span id="spandesc" class="add-on">%</span>
 												</div>
 											</div>
@@ -381,7 +381,7 @@
 				<h3>Clientes</h3>
 			</div>
 			<div class="modal-body">
-				<table id="select_cliente_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+				<table id="select_cliente_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>ventas/servicios/getClientes">
 					<thead>
 						<tr>
 							<th>Nombres</th>
@@ -391,12 +391,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th>José</th>
-							<th>Pérez</th>
-							<th>12345678</th>
-							<th>1000</th>
-						</tr>
 					</tbody>
 				</table>
 			</div>
