@@ -77,19 +77,19 @@
 									<div class="control-group">
 										<label class="control-label" for="marca">Marca</label>
 										<div class="controls">
-											<select id="marca" class="SelectAjax" name="marca" data-source="<?php echo base_url();?>administracion/servicios/getMarcas" attrval="nMarca_id" attrdesc="cMarcaDesc"></select>
+											<select id="marca" class="SelectAjax" name="marca" data-source="<?php echo base_url();?>administracion/servicios/getMarcas_Activo" attrval="nMarca_id" attrdesc="cMarcaDesc"></select>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="categoria">Categoría</label>
 										<div class="controls">
-											<select id="categoria" class="SelectAjax" name="categoria" data-source="<?php echo base_url();?>administracion/servicios/getCategoria" attrval="nCategoria_id" attrdesc="cCategoriaNom"></select>
+											<select id="categoria" class="SelectAjax" name="categoria" data-source="<?php echo base_url();?>administracion/servicios/getCategoria_Activo" attrval="nCategoria_id" attrdesc="cCategoriaNom"></select>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="tipo">Tipo</label>
 										<div class="controls">
-											<select id="tipprod" class="SelectAjax" name="tipprod" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/0" attrdesc="cConstanteDesc"></select>
+											<select id="tipprod" class="SelectAjax" name="tipprod" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/1" attrval="cConstanteValor" attrdesc="cConstanteDesc"></select>
 										</div>
 									</div>
 									<div class="control-group">

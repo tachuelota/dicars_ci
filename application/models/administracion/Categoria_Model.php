@@ -58,5 +58,10 @@ class Categoria_Model extends CI_Model {
 		$query = $this->db->get_where('ven_categoria', array('nCategoria_id' => $nCategoria_id));
 		return $query->row_array();
 	}
+
+	function get_categoria_activo(){
+		$query = $this->db->get_where('ven_categoria', array('cCategoriaEst' => 1));
+		return $query -> result_array();
+	}
 	
 }

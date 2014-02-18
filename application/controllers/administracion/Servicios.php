@@ -23,7 +23,17 @@ class Servicios extends CI_Controller {
 		}
 		echo json_encode(array('aaData' => $cargos));			
 	}
-	
+	//Tipo de Categoria Activo get_categoria_activo
+
+	public function getCategoria_Activo()
+	{
+		$this->load->model('administracion/Categoria_Model','acm');
+		$result = $this->acm->get_categoria_activo();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}	
+
 	public function getCategoria()
 	{		
 		$this->load->model('administracion/Categoria_Model','acm');
@@ -40,6 +50,17 @@ class Servicios extends CI_Controller {
 		}
 		echo json_encode(array('aaData' => $categorias));
 	}
+
+	//Marcas activas
+	public function getMarcas_Activo()
+	{
+		$this->load->model('administracion/Marca_Model','amm');
+		$result = $this->amm->get_activos();	
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}
+
 	public function getMarcas()
 	{
 		$this->load->model('administracion/Marca_Model','amm');
@@ -157,7 +178,14 @@ class Servicios extends CI_Controller {
 		$this->load->model('administracion/Zona_Model','zonmod');
 		$result = $this->zonmod->get_zonas_activos();
 		echo json_encode(array('aaData' => $result));
-	}
+	} 
+
+	public function get_ZonaByUbigeo($nUbigeo_id)
+	{	
+		$this->load->model('administracion/Zona_Model','zonmod');
+		$result = $this->zonmod->get_ByUbigeo($nUbigeo_id);
+		echo json_encode(array('aaData' => $result));
+	} 
 
 
 	public function getZonasPersonal()

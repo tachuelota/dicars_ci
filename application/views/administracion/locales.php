@@ -83,11 +83,8 @@
 								  	<div class="control-group">
 										<label class="control-label" for="tiprub">Tipo de Rubro</label>
 										<div class="controls">
-									  		<select id="tiprub" name="tiprub">
-									  			<option value="1">Ropa</option>
-									  			<option value="2">Acessorios</option>
-									  			<option value="3">Calzado</option>
-											</select>
+									  		<select id="tiprub" name="tiprub" class="SelectAjax" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/3" attrval="cConstanteValor" attrdesc="cConstanteDesc">
+									  		</select>
 										</div>
 								  	</div>
 								  	<h4>Ubigeo</h4>

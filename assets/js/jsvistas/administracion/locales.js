@@ -3,6 +3,8 @@ $(document).ready(function(){
 	var Ubigeos = getAjaxObject($("#LocalesForm").attr("data-source"));
 	cargarUbigeo(Ubigeos,"dist", "prov", "dep");
 
+	$(".SelectAjax").SelectAjax();
+
 	var TipoLocalesTA = new DTActions({
 		'conf': '010',
 		'idtable': 'locales_table',

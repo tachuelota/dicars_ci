@@ -58,5 +58,11 @@ class Marca_Model extends CI_Model {
 		$query = $this->db->get_where('ven_marca', array('nCategoria_id' => $nMarca_id));
 		return $query->row_array();
 	}
+    
+    function get_activos(){
+    	$query= $this->db->get_where('ven_marca', array('cMarcaEst' =>1));
+    	return $query ->result_array();
+
+    }
 	
 }

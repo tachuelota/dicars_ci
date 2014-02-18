@@ -16,7 +16,7 @@ public function registrar(){
 		$ClienteZona = null;
 		$ClienteRef = null;
 		$ClienteLinOpe = null;
-		//$cClienteArcCredito=null;
+		//$cClienteArcCredito = 0;
 		$ClienteOcup = null;			
 
 		if ($form != null)
@@ -26,7 +26,7 @@ public function registrar(){
 			$ClienteDNI = $form["dni"];
 			$ClienteRef = $form["referencia"];
 			$ClienteDirec = $form["direccion"];			
-			$ClienteZona = $form["zona"];				
+			$ClienteZona = $form["zonas"];				
 			$ClienteLinOpe = $form["lineaop"];	
 			$cClienteArcCredito =null;
 			$ClienteOcup = $form["ocupacion"];				
@@ -72,7 +72,7 @@ public function registrar(){
 			$ClienteDNI = $form["dni"];
 			$ClienteRef = $form["referencia"];
 			$ClienteDirec = $form["direccion"];			
-			$ClienteZona = $form["zona"];				
+			$ClienteZona = $form["zonas"];				
 			$ClienteLinOpe = $form["lineaop"];			
 			$ClienteOcup = $form["ocupacion"];			
 			$data = array(
