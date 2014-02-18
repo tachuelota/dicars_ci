@@ -24,7 +24,7 @@ $(document).ready(function(){
 	TipoMonedaFormato = [
 		              { "sWidth": "25%","mDataProp": "cTipoMonedaDesc"},
 		              { "sWidth": "25%","mDataProp": "nTipoMonedaMont"},
-		              { "sWidth": "25%","mDataProp": "estado"},
+		              { "sWidth": "25%","mDataProp": "estadolabel"},
 		              ];
 
  	var successTipoMoneda = function(){

@@ -37,9 +37,8 @@ $(document).ready(function(){
 //---Inicio de Zonas
 	var BuscarZOptions = {
 		"aoColumns":[
-		    { "sWidth": "12%","mDataProp": "cZonaDesc"},
-		    { "sWidth": "12%","mDataProp": "estado"},
-		    { "sWidth": "12%","mDataProp": "des_ubigeo"}
+		    { "sWidth": "50%","mDataProp": "cZonaDesc"},
+		    { "sWidth": "50%","mDataProp": "des_ubigeo"}
 		],
 			"fnCreatedRow":getSimpleSelectRowCallBack(SelectZonaData)
 	};
@@ -72,14 +71,11 @@ $(document).ready(function(){
 
   	var ZonPerTA = new DTActions({
 		'conf': '001',
-		'idtable': 'zonapersonal_table',
-		'EditFunction': function(nRow, aData, iDisplayIndex) {	
-			$("#btn-reg-usuario").hide();
-			$("#id_zona").val(aData.nZona_id);
-	  		$("#id_trabajador").val(aData.nPersonal_id);
-	  		$("#idZonapersonal").val(aData.nZonaPersonal_id);	
+		'DropFunction': function(nRow, aData, iDisplayIndex){	
+		var index = $(ZonasPersonalTable.fnGetData()).getIndexObj(aData,'nZonaPersonal_id');					
 		},
 	}); 
+
 
    	$("#btn-reg-usuario").click(function(event){
 		event.preventDefault();
@@ -106,10 +102,10 @@ $(document).ready(function(){
 	FormatoDTable = [
 		              { "sWidth": "33%","mDataProp": "cZonaDesc"},
 		              { "sWidth": "33%","mDataProp": "persona"},
-		              { "sWidth": "33%","mDataProp": "des_ubigeo"},
+		              { "sWidth": "33%","mDataProp": "des_ubigeo"},		              
+		
 		              ];
 
-    ZonasPersonalTable = createDataTable('zonapersonal_table',UrlaDTable,FormatoDTable,null, ZonPersRowCBF);		          
- 	
+    ZonasPersonalTable = createDataTable('zonapersonal_table',UrlaDTable,FormatoDTable,null, ZonPersRowCBF);	       
 	 
 });

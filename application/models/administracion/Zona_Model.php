@@ -59,5 +59,16 @@ class Zona_Model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function get_zonas_activos($nZona_id = FALSE)
+	{
+		if($nZona_id === FALSE )
+		{
+			$query = $this ->db->query ('select * from ven_zona_activo_all');
+			return $query -> result_array();
+		}
+		$query = $this->db->get_where('ven_zona', array('nZona_id' => $nZona_id));
+		return $query->row_array();
+	}
+
 
 }

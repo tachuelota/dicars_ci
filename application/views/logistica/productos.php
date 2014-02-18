@@ -89,7 +89,7 @@
 									<div class="control-group">
 										<label class="control-label" for="tipo">Tipo</label>
 										<div class="controls">
-											<select id="tipprod" class="SelectAjax" name="tipprod" data-source="<?php echo base_url();?>administracion/servicios/getConstantes/1" attrval="cConstanteValor" attrdesc="cConstanteDesc"></select>
+											<select id="tipprod" class="SelectAjax" name="tipprod" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/0" attrdesc="cConstanteDesc"></select>
 										</div>
 									</div>
 									<div class="control-group">

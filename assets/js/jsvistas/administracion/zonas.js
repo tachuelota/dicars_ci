@@ -24,7 +24,7 @@ $(document).ready(function(){
 	var UrlaDTable = $("#zonas_table").attr("data-source");
 	FormatoDTable = [
 		              { "sWidth": "40%","mDataProp": "cZonaDesc"},
-		              { "sWidth": "20%","mDataProp": "estado"},
+		              { "sWidth": "20%","mDataProp": "estadolabel"},
 		              { "sWidth": "40%","mDataProp": "des_ubigeo"},
 		              ];
 

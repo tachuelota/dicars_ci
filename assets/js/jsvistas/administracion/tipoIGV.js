@@ -23,7 +23,7 @@ $(document).ready(function(){
 		              { "sWidth": "20%","mDataProp": "cTipoIGV"},
 		              { "sWidth": "25%","mDataProp": "nTipoIGVProc"},
 		              { "sWidth": "33%","mDataProp": "dTipoIGVFecReg"},
-		              { "sWidth": "20%","mDataProp": "estado"},
+		              { "sWidth": "20%","mDataProp": "estadolabel"},
 
 		              ];
 

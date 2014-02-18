@@ -27,10 +27,6 @@ class ZonaPersonal_Model extends CI_Model {
 				
 	}
 
-	function update($id,$data){
-	
-	}
-
 	public function get_zonaspersonal($nZonaPersonal_id = FALSE)
 	{
 		if($nZonaPersonal_id === FALSE )

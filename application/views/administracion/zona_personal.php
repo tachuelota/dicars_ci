@@ -81,11 +81,10 @@
 								<h3>Zonas</h3>
 							</div>
 							<div class="modal-body">							
-							<table id="select_zona_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source= "<?php echo base_url();?>administracion/servicios/getzonas">
+							<table id="select_zona_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>administracion/servicios/get_zonas_activos">
 								<thead>
 									<tr>
 										<th>Nombre</th>
-										<th>Estado</th>
 										<th>Ubigeo</th>
 									</tr>
 								</thead>     
