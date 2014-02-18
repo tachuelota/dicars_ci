@@ -112,16 +112,14 @@
 										<div class="control-group">
 											<label class="control-label" for="forma_pago">Tipo de Pago</label>
 											<div class="controls">
-												<select style="margin: 0 18px 0 0;" class="input focused SelectAjax" name="forma_pago" id="forma_pago" data-source="<?php echo base_url();?>administracion/servicios/getConstantes/1" attrval="cConstanteValor" attrdesc="cConstanteDesc">
+												<select style="margin: 0 18px 0 0;" class="input focused SelectAjax" name="forma_pago" id="forma_pago" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/2" attrval="cConstanteValor" attrdesc="cConstanteDesc">
 												</select>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="tipo_moneda">Tipo moneda</label>
 											<div class="controls">
-												<select style="margin: 0 18px 0 0;" class="input focused" name="tipo_moneda" id="tipo_moneda">
-													<option value="1">Soles</option>
-													<option value="1">Dólares</option>
+												<select style="margin: 0 18px 0 0;" class="input focused SelectAjax" name="tipo_moneda" id="tipo_moneda" data-source="<?php echo base_url();?>administracion/servicios/getTipoMonedas" attrval="nTipoMoneda" attrdesc="cTipoMonedaDesc">
 												</select>
 											</div>
 										</div>
@@ -144,8 +142,7 @@
 											<label class="control-label" for="tipo_igv">IGV</label>
 											<div class="controls">
 												<div class="input-prepend input-append">
-													<select style="margin: 0 0px 0 0;" class="input focused" name="tipo_igv" id="tipo_igv">
-														<option value="1">18%</option>
+													<select style="margin: 0 0px 0 0;" class="input focused SelectAjax" name="tipo_igv" id="tipo_igv" data-source="<?php echo base_url();?>administracion/servicios/getTipoIGVActivo" attrval="nTipoIGV" attrdesc="cTipoIGV">
 													</select>
 													<span id="spanigv" class="add-on">%</span>
 												</div>

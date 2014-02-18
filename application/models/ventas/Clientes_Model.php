@@ -58,5 +58,4 @@ class Clientes_Model extends CI_Model {
 		return $query->row_array();
 	}
 
-
 }

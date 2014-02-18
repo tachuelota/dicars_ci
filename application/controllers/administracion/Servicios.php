@@ -87,17 +87,43 @@ class Servicios extends CI_Controller {
 	}
 
 	//CARGAR TIPO IGV
-	public function getTipoIGV(){
-	$this->load->model('administracion/TipoIGV_Model','igvm');
+	public function getTipoIGV()
+	{
+		$this->load->model('administracion/TipoIGV_Model','igvm');
 		$result = $this->igvm->get_tipoIGV();
-		echo json_encode(array('aaData' => $result));
+		foreach ($result as $key => $tipoigv)
+		{
+			switch ($tipoigv["cTipoIGVEst"])
+			{				
+			    case 0:
+			        $result[$key]["estado"] = '<span class="label label-info">Inhabilitado</span>';
+			        break;
+			    case 1:
+			        $result[$key]["estado"] = '<span class="label label-success">Habilitado</span>';
+			        break;
+			}
+		}
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}
+
+	public function getTipoIGVActivo()
+	{
+		$this->load->model('administracion/TipoIGV_Model','igvm');
+		$result = $this->igvm->get_activo();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
 	}
 
 	public function getZonas()
 	{
 		$this->load->model('administracion/Zona_Model','zonmod');
 		$result = $this->zonmod->get_zonas();
-		echo json_encode(array('aaData' => $result));
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
 	}
 
 	public function getZonasPersonal()

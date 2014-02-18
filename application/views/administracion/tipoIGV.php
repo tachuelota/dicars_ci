@@ -66,7 +66,7 @@
 									  	<div class="control-group">
 											<label class="control-label" for="estado">Estado</label>
 											<div class="controls">
-										  		<select id="estado" name="estado" data-rel="chosen">
+										  		<select id="estado" name="estado" style="margin: 0 18px 0 0;" class="input focused">
 												<option value="1">Habilitado</option>
 												<option value="0">Deshabilitado</option>
 											</select>
