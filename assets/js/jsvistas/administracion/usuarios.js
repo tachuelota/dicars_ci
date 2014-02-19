@@ -1,11 +1,21 @@
-
-		
 	$(document).ready(function(){
 
 		var SelectUsuarioData = new Array();
 		var DataToSend = {};
 
 		var SelectUsuarioData = new Array();
+
+		$('#rootwizard').bootstrapWizard({
+		onNext: function(tab, navigation, index) 
+			{
+			},
+				onTabShow: function(tab, navigation, index) {
+				var $total = navigation.find('li').length;
+				var $current = index+1;
+				var $percent = ($current/$total) * 100;
+				$('#rootwizard').find('.bar').css({width:$percent+'%'});
+			}
+		});
 
 		$('#select_trabajador').click(function(event){
 			event.preventDefault();

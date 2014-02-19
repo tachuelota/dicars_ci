@@ -610,7 +610,7 @@ function cargarSelect(arreglo, idselect, attrvalue, attrdescripcion){
 	$select.html(result);
 }
 /*------------------------------FECHAAAA------------------------------------------*/
-function fechaAhora(){
+function fechanow(){
 	date = new Date();
 	Fecha = paddate(date.getDate())+"/"+paddate((date.getMonth()+1))+"/"+date.getFullYear();
 	return Fecha;
@@ -621,6 +621,13 @@ function toHTML(element){
 	div.append(element);
 	return div.html();
 }
+
+function fechaFormatoSQL(date)
+{
+	Fecha = date.getFullYear()+"-"+paddate((date.getMonth()+1))+"-"+paddate(date.getDate());
+	return Fecha;
+}
+
 
 /*-------------------------------- Crear Tabla ------------------------------------*/
 function crearTablaToArray(Idtable,Head,HeadExt,Attr,AttrExt,Array){
