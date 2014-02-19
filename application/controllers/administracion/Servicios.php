@@ -115,7 +115,7 @@ class Servicios extends CI_Controller {
 		$this->load->model('administracion/TipoMoneda_Model','tmonmod');
 		$tipomoneda = $this->tmonmod->get_tipomoneda();
 		foreach ($tipomoneda as $key => $tipomonedas) {
-			switch ($tipomonedas["cTipoMonedaEst"]) {				
+			switch ($tipomonedas["cTipoMonedaEst"]) {		
 			    case 0:
 			        $tipomoneda[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
 			        break;
@@ -286,5 +286,13 @@ class Servicios extends CI_Controller {
 			}
 		}
 		echo json_encode(array('aaData' => $usuarios));
+	}
+
+	public function get_groupsbyUser($user_id)
+	{
+		$result = $this->ion_auth->get_users_groups($user_id);
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($result->result_array()));
 	}
 }

@@ -14,7 +14,8 @@ class Login extends CI_Controller{
 	{
 		if(isset($_POST['username']) && isset($_POST['password']))
 		{
-			if ($this->ion_auth->login($this->input->post('username'), $this->input->post('password')))
+			$remember = (bool) $this->input->post('remember');
+			if ($this->ion_auth->login($this->input->post('username'), $this->input->post('password'),$remember))
 			{
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
 				redirect('/', 'refresh');

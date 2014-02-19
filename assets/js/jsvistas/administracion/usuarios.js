@@ -14,29 +14,49 @@
 				var $current = index+1;
 				var $percent = ($current/$total) * 100;
 				$('#rootwizard').find('.bar').css({width:$percent+'%'});
+				if($current >= $total) {
+					$('#rootwizard').find('.pager .next').hide();
+					$('#rootwizard').find('.pager .finish').show();
+					$('#rootwizard').find('.pager .finish').removeClass('disabled');
+				} else {
+					$('#rootwizard').find('.pager .next').show();
+					$('#rootwizard').find('.pager .finish').hide();
+				}
 			}
 		});
+
+		var UsuariosDTA = new DTActions({
+			'conf': '010',
+			'idtable': 'marcas_table',
+			'EditFunction': function(nRow, aData, iDisplayIndex) {
+				$('#tab2 input:checkbox').removeAttr('checked');
+				var groups = getAjaxObject($("#tab2").attr("data-source")+aData.id);
+				$(groups).each(function(index){
+					$("#group"+this.id).attr("checked","checked");
+					console.log("#group"+this.id);
+				});
+				$("input:checkbox, input:radio, input:file").not('[data-no-uniform="true"],#uniform-is-ajax').uniform();
+			}
+		});
+
 
 		$('#select_trabajador').click(function(event){
 			event.preventDefault();
 			$("#trabajador").val(SelectUsuarioData[0].nPersonal_id);
+			$("#email").val(SelectUsuarioData[0].cPersonalEmail);
 			$('#nombre_trabajador').val(SelectUsuarioData[0].cPersonalNom+" "+SelectUsuarioData[0].cPersonalApe);
 			$('#modalBuscarTrabajador').modal('hide');
 		});
 		//LLAMAR AL MODAL
-		$('#btn-trabajador').click(function(e){
-			e.preventDefault();
+		$('#btn-trabajador').click(function(event){
+			event.preventDefault();
 			$('#modalBuscarTrabajador').modal('show');
 		});
 
-
-
-		function prepararDatos(){
-		DataToSend = {
-			formulario:$("#UsuarioForm").serializeObject(),
-			usuarios:CopyArray(SelectUsuarioData,["nPersonal_id"])
-			};
-		}
+		$('#btn-reg-usuario').click(function(event){
+			event.preventDefault();
+			enviar($("#UsuarioForm").attr("action-1"),{formulario:$("#UsuarioForm").serialize()}, logdata, null);
+		});
 
 		var BuscarUOptions = {
 		"aoColumns":[
@@ -49,21 +69,7 @@
 		};
 		BuscarUsuariosTable = createDataTable2('select_trabajador_table',BuscarUOptions);
 
-
-
-
-		/****************************************/
-		var SelectUsuTablaData = new Array();
-		var DataToSend1 = {};
-
-		function prepararDatos(){
-		DataToSend1 = {
-			formulario:$("#UsuarioForm").serializeObject(),
-			listado:CopyArray(SelectUsuTablaData,["id"])
-			};
-		}
-
-		var BuscarUsuOptions = {
+		var UsuarioOptions = {
 		"aoColumns":[
 					  { "sWidth": "20%","mDataProp": "id"},	
 		              { "sWidth": "20%","mDataProp": "nomape"},		             
@@ -71,9 +77,9 @@
 		               { "sWidth": "20%","mDataProp": "estadolabel"},
 		              
 		              ],
-		"fnCreatedRow":getSimpleSelectRowCallBack(SelectUsuTablaData)
+		"fnCreatedRow":UsuariosDTA.RowCBFunction
 		};
-		BuscarUsuListadoTable = createDataTable2('usuarios_table',BuscarUsuOptions);
+		BuscarUsuListadoTable = createDataTable2('usuarios_table',UsuarioOptions);
 
 		});
 	

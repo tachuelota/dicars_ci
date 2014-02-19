@@ -108,10 +108,14 @@ class Views extends CI_Controller
 	/**************USUARIOS¨¨¨¨¨¨¨¨*******************/
 	public function usuarios()
 	{
+		$dataview["groups_ventas"] = $this->ion_auth->groups_bytipo(1);
+		$dataview["groups_logistica"] = $this->ion_auth->groups_bytipo(2);
+		$dataview["groups_administracion"] = $this->ion_auth->groups_bytipo(3);
+
 		$dataheader['title'] = 'Dicars - Usuarios -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('administracion/usuarios.php');
+		$this->load->view('administracion/usuarios.php',$dataview);
 		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/usuarios.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);

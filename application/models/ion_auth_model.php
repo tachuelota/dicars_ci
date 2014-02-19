@@ -789,7 +789,7 @@ class Ion_auth_model extends CI_Model
 	 * @return bool
 	 * @author Mathew
 	 **/
-	public function register($username, $nPersonal_id, $password, $email, $additional_data = array(), $groups = array())
+	public function register($username, $password, $email, $additional_data = array(), $groups = array())
 	{
 		$this->trigger_events('pre_register');
 
@@ -826,7 +826,6 @@ class Ion_auth_model extends CI_Model
 
 		// Users table.
 		$data = array(
-			'nPersonal_id'	=> $nPersonal_id,
 		    'username'   	=> $username,
 		    'password'  	=> $password,
 		    'email'      	=> $email,
@@ -1317,7 +1316,7 @@ class Ion_auth_model extends CI_Model
 		//if no id was passed use the current users id
 		$id || $id = $this->session->userdata('user_id');
 
-		return $this->db->select($this->tables['users_groups'].'.'.$this->join['groups'].' as id, '.$this->tables['groups'].'.name, '.$this->tables['groups'].'.description')
+		return $this->db->select($this->tables['users_groups'].'.'.$this->join['groups'].' as id, '.$this->tables['groups'].'.name, '.$this->tables['groups'].'.description, '.$this->tables['groups'].'.tipo')
 		                ->where($this->tables['users_groups'].'.'.$this->join['users'], $id)
 		                ->join($this->tables['groups'], $this->tables['users_groups'].'.'.$this->join['groups'].'='.$this->tables['groups'].'.id')
 		                ->get($this->tables['users_groups']);
@@ -1462,6 +1461,16 @@ class Ion_auth_model extends CI_Model
 		$this->limit(1);
 
 		return $this->groups();
+	}
+
+	public function groups_bytipo($tipo = NULL)
+	{
+		if (isset($tipo))
+		{
+			$query = $this->db->get_where($this->tables['groups'], array('tipo' => $tipo));
+			return $query -> result_array();
+		}
+		return array();
 	}
 
 	/**

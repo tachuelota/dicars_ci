@@ -6,13 +6,18 @@
 <?php echo form_open("auth/create_group");?>
 
       <p>
-            <?php echo lang('create_group_name_label', 'group_name');?> <br />
-            <?php echo form_input($group_name);?>
+      		<label for="group_name">Nombre</label>
+      		<input tyepe="text" name="group_name" id="group_name">
       </p>
 
       <p>
-            <?php echo lang('create_group_desc_label', 'description');?> <br />
-            <?php echo form_input($description);?>
+            <label for="description">Description</label>
+      		<input tyepe="text" name="description" id="description">
+      </p>
+
+       <p>
+            <label for="tipo">Tipo</label>
+      		<input tyepe="text" name="tipo" id="tipo">
       </p>
 
       <p><?php echo form_submit('submit', lang('create_group_submit_btn'));?></p>

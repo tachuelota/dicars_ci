@@ -15,15 +15,15 @@
 	<div>
 		<ul class="breadcrumb">
 			<li>
-				<a href="index.html">Home</a>
+				<a href="<?php echo base_url();?>">Home</a>
 				<span class="divider">/</span>
 			</li>
 			<li>
-				<a href="admin_homepage.html">Administración</a>
+				<a href="<?php echo base_url();?>administracion">Administración</a>
 				<span class="divider">/</span>
 			</li>
 			<li>
-				<a href="admin_usuarios.html">Usuarios</a>
+				<a href="<?php echo base_url();?>administracion/views/usuarios">Usuarios</a>
 			</li>
 		</ul>
 	</div>
@@ -44,53 +44,98 @@
 						</div>
 					</div>
 				</div>
-				<div id="bar" class="progress progress-striped active">
-				  <div class="bar"></div>
+				<div class="box-content">
+					<div id="bar" class="progress progress-striped active">
+					  <div class="bar"></div>
+					</div>
 				</div>
-				<form id="">
+				<form id="UsuarioForm" action-1="<?php echo base_url();?>auth/create_user">
 					<div class="tab-content">
-						<div class="tab-pane box-content" id="tab1">
-							<div class="form-horizontal">
+						<div class="tab-pane" id="tab1">
+							<div class="form-horizontal box-content">
 								<div class="control-group">
 									<label class="control-label" for="trabajador">Trabajador</label>
 									<div class="controls">
-										<input class="input-xlarge" id="nombre_trabajador" type="text" readonly required>
-										<input id="trabajador" name="trabajador" type="hidden">
+										<input class="input-xlarge" id="nombre_trabajador" type="text" readonly>
+										<input id="trabajador" name="nPersonal_id" type="hidden">
 										<input id="email" name="email" type="hidden">
-										<button id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-trabajador" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
+										<button type="button" id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-trabajador" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
 										</button>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="usuario_id">Usuario ID</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="usuario_id" name="usuario_id" type="text" pattern="|^[a-zA-Z0-9]+$|" title="El usuario puede contener leras y números" maxlength="20" required></div>
+										<input class="input-xlarge focused" id="usuario_id" name="usuario_id" type="text" title="El usuario puede contener leras y números" maxlength="20"></div>
 								</div>
 
 								<div class="control-group">
 									<label class="control-label" for="contrasena">Contraseña</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="contrasena" name="contrasena" type="password" required></div>
+										<input class="input-xlarge focused" id="password" name="password" type="password"></div>
 								</div>
 
 								<div class="control-group">
-									<label class="control-label" for="estado">Estado</label>
-									<div class="controls">
-										<select id="estado" name="estado" data-rel="chosen" required>
+									<label class="control-label " for="estado">Estado</label>
+									<div class="controls ">
+										<select id="estado" name="estado" class="input-xlarge focused">
 											<option value="1">Habilitado</option>
 											<option value="0">Inhabilitado</option>
 										</select>
 									</div>
 								</div>
-								
 							</div>
 						</div>
-						<div class="tab-pane" id="tab2">
-							<div class="form-actions">
-									<button id="agregar_usuario" type="submit" class="btn btn-primary">Agregar</button>
-									<button id="btn-cancelar" class="btn">Cancelar</button>
+						<div class="tab-pane" id="tab2" data-source="<?php echo base_url();?>administracion/servicios/get_groupsbyUser/">
+							<div class="form-horizontal box-content span12">
+								<div class="span4 box-content">
+									<h4>Ventas</h4>
+									<hr>
+									<?php foreach ($groups_ventas as $group):?>
+										<label class="checkbox">
+											<div class="checker">
+												<span>
+													<input type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>"name="groups[]" value="<?php echo $group['id'];?>" style="opacity: 0;">
+												</span>
+											</div> <?php echo $group['name'];?>					
+										</label>
+									<?php endforeach?>
+								</div>
+								<div class="span4 box-content">
+									<h4>Logistica</h4>
+									<hr>
+									<?php foreach ($groups_logistica as $group):?>
+										<label class="checkbox">
+											<div class="checker">
+												<span>
+													<input type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" style="opacity: 0;">
+												</span>
+											</div> <?php echo $group['name'];?>					
+										</label>
+									<?php endforeach?>
+								</div>
+								<div class="span4 box-content">
+									<h4>Administracion</h4>
+									<hr>
+									<?php foreach ($groups_administracion as $group):?>
+										<label class="checkbox">
+											<div class="checker">
+												<span>
+													<input type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" style="opacity: 0;">
+												</span>
+											</div> <?php echo $group['name'];?>					
+										</label>
+									<?php endforeach?>
+								</div>
 							</div>
 						</div>
+					</div>
+					<div class="box-content">
+						<ul class="pager wizard">
+							<li class="previous"><a href="#">Anterior</a></li>
+						  	<li class="next"><a href="#">Siguiente</a></li>
+						  	<li class="next finish" id="btn-reg-usuario" style="display:none;"><a class="btn-info" href="javascript:;">Guardar</a></li>
+						</ul>
 					</div>
 				</form>
 			</div>
