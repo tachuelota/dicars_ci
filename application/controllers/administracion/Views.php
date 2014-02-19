@@ -117,12 +117,12 @@ class Views extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 	/**********************ZONA EDIT************************/
-	public function editar_zonas()
+	public function editar_zonasPersonal()
 	{
 		$dataheader['title'] = 'Dicars - Zona_Edit -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('administracion/editar_zonas.php');
+		$this->load->view('administracion/editar_zonasPersonal.php');
 		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/zona_edit.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);

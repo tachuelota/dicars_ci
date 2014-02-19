@@ -62,37 +62,37 @@
 									<div class="control-group">
 										<label class="control-label" for="nombres">Nombres</label>
 										<div class="controls">
-											<input class="input-xlarge focused" maxlength="50" title="Este campo debe ser sólo letras" name="nombres" id="focusedInput" type="text">
+											<input class="input-xlarge focused" maxlength="50" title="Este campo debe ser sólo letras" id="nombres" name="nombres" class="focusedInput" type="text">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="apellidos">Apellidos</label>
 										<div class="controls">
-											<input class="input-xlarge focused" maxlength="50" title="Este campo debe ser sólo letras" name="apellidos" id="focusedInput" type="text">
+											<input class="input-xlarge focused" maxlength="50" title="Este campo debe ser sólo letras" id="apellidos" name="apellidos" class="focusedInput" type="text">
 										</div>
 									</div>	
 									<div class="control-group">
 										<label class="control-label" for="dni">DNI</label>
 										<div class="controls">
-											<input class="input-xlarge focused" maxlength="8" title="Este campo debe tener 8 números" name="dni" id="focusedInput" type="text">
+											<input class="input-xlarge focused" maxlength="8" title="Este campo debe tener 8 números" id="dni" name="dni" class="focusedInput" type="text">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="direccion">Dirección</label>
 										<div class="controls">
-											<input class="input-xlarge focused" required pattern="|^([a-zA-ZñÑáÁéÉíÍóÓúÚüÜç0-9.]+\s*)+$" maxlength="200" name="direccion" id="focusedInput" type="text">
+											<input class="input-xlarge focused" maxlength="200" id="direccion"name="direccion" class="focusedInput" type="text">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="referencia">Referencia</label>
 										<div class="controls">
-											<input class="input-xlarge focused" value=" " required pattern="|^[a-zA-Z ñÑáÁéÉíÍóÓúÚüÜç0-9.]+$" maxlength="200" name="referencia" id="focusedInput" type="text">
+											<input class="input-xlarge focused" value=" " maxlength="200" id="referencia" name="referencia" class="focusedInput" type="text">
 										</div>
 									</div>	
 									<div class="control-group">
 										<label class="control-label" for="ocupacion">Ocupación</label>
 										<div class="controls">
-											<input class="input-xlarge focused" value=" " required pattern="|^[a-zA-Z ñÑáÁéÉíÍóÓúÚüÜç]+$|" title="Este campo debe ser sólo letras" maxlength="40" name="ocupacion" type="text">
+											<input class="input-xlarge focused" value=" " required title="Este campo debe ser sólo letras" id="ocupacion" name="ocupacion" type="text">
 										</div>
 									</div>
 									<div class="control-group">
@@ -130,13 +130,13 @@
 									  		<select id="zonas" name="zonas" class="ubigeo" data-source="<?php echo base_url();?>administracion/servicios/get_ZonaByUbigeo/">
 											</select>
 										</div>
-								  	</div>
+								  	</div> 
 						</fieldset>
 						</div>
 						<div class="modal-footer">
-							<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
-							<button id="btn-reg-clientes" class="btn btn-primary ">Registrar</button>
-							<button id="btn-editar-clientes" class="btn btn-primary " style="display:none">Editar</button>
+							<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>
+							<button id="btn-reg-clientes" type="button" class="btn btn-primary">Registrar</button>
+							<button id="btn-editar-clientes" type="button" class="btn btn-primary " style="display:none">Editar</button>
 						</div>
 					</form>
 				</div>

@@ -37,8 +37,8 @@ $(document).ready(function(){
 //---Inicio de Zonas
 	var BuscarZOptions = {
 		"aoColumns":[
-		    { "sWidth": "50%","mDataProp": "cZonaDesc"},
-		    { "sWidth": "50%","mDataProp": "des_ubigeo"}
+		    { "sWidth": "40%","mDataProp": "cZonaDesc"},
+		    { "sWidth": "30%","mDataProp": "des_ubigeo"}
 		],
 			"fnCreatedRow":getSimpleSelectRowCallBack(SelectZonaData)
 	};
@@ -70,20 +70,28 @@ $(document).ready(function(){
 
 
   	var ZonPerTA = new DTActions({
-		'conf': '001',
-		'DropFunction': function(nRow, aData, iDisplayIndex){	
-		var index = $(ZonasPersonalTable.fnGetData()).getIndexObj(aData,'nZonaPersonal_id');					
+		'conf': '011',
+		'idtable': 'zonapersonal_table',
+		'EditFunction': function(nRow, aData, iDisplayIndex) {
+			$("#btn-reg-usuario").hide();
+			$("#btn-editar-zona").show();	
+			$("#btn-trabajador").hide();
+			$("#nombre_trabajador").val(aData.persona);
+			$("#id_trabajador").val(aData.nPersonal_id);
+			$("#nombre_zona").val(aData.cZonaDesc);			
+			$("#id_zona").val(aData.nZona_id);
+	  		$("#idZonapersonal").val(aData.nZonaPersonal_id);
 		},
 	}); 
 
-
-   	$("#btn-reg-usuario").click(function(event){
+  	$("#btn-reg-usuario").click(function(event){
 		event.preventDefault();
+		$("#btn-cancelar").hide();	
 		if($("#ZonapersonalForm").validationEngine('validate'))
 			enviar($("#ZonapersonalForm").attr("action-1"),{formulario:$("#ZonapersonalForm").serializeObject()}, successZonaPersonal, null)
 	});
 
-	$("#btn-editar-zonper").click(function(event){
+	$("#btn-editar-zona").click(function(event){
 		event.preventDefault();
 		if($("#ZonapersonalForm").validationEngine('validate'))
 			enviar($("#ZonapersonalForm").attr("action-2"),{formulario:$("#ZonapersonalForm").serializeObject()}, successZonaPersonal, null)
@@ -100,9 +108,10 @@ $(document).ready(function(){
 
   	var UrlaDTable = $("#zonapersonal_table").attr("data-source");
 	FormatoDTable = [
-		              { "sWidth": "33%","mDataProp": "cZonaDesc"},
-		              { "sWidth": "33%","mDataProp": "persona"},
-		              { "sWidth": "33%","mDataProp": "des_ubigeo"},		              
+		              { "sWidth": "40%","mDataProp": "cZonaDesc"},
+		              { "sWidth": "20%","mDataProp": "persona"},
+		              { "sWidth": "20%","mDataProp": "des_ubigeo"},	    
+		    		  { "sWidth": "20%","mDataProp": "nZonapersonalEst"},	              
 		
 		              ];
 

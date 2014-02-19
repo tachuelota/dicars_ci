@@ -20,7 +20,6 @@ $(document).ready(function(){
 	  		$("#preciocredito").val(aData.nProductoPCredito);
 	  		$("#stockmax").val(aData.nProductoStockMax);
 	  		$("#stockmin").val(aData.nProductoStockMin);
-
 	  		$("#codigo").val(aData.nProducto_id);
 		},
 	});	

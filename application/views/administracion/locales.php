@@ -71,13 +71,13 @@
 								  	<div class="control-group">
 										<label class="control-label" for="direccion">Dirección</label>
 										<div class="controls">
-									  		<input class="input-xlarge focused" id="direccion" name="direccion" type="text" pattern="|^[a-zA-Z0-9 ñÑáÁéÉíÍóÓúÚüÜç]+$|" maxlength="150" required>
+									  		<input class="input-xlarge focused" id="direccion" name="direccion" type="text" maxlength="150" required>
 										</div>
 								  	</div>
 								  	<div class="control-group">
 										<label class="control-label" for="telefono">Teléfono</label>
 										<div class="controls">
-									  		<input class="input-xlarge focused" id="telefono" name="telefono" type="text" placeholder="999999999" pattern="|^[0-9]{9}$|" title="Sólo números de 9 dígitos" maxlength="9" required>
+									  		<input class="input-xlarge focused" id="telefono" name="telefono" type="text" placeholder="999999999" title="Sólo números de 9 dígitos" maxlength="9" required>
 										</div>
 								  	</div>
 								  	<div class="control-group">

@@ -28,13 +28,13 @@
 						<h2>ZONAS ASIGNADAS</h2>
 					</div>
 					<div class="box-content">
-						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar" data-source="<?php echo base_url();?>administracion/servicios/getUbigeo">
+						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar" action-2="<?php echo base_url();?>administracion/Zona_Personal/editar" data-source="<?php echo base_url();?>administracion/servicios/getUbigeo">
 							<input type="hidden" id="idZonapersonal" name="idZonapersonal">
 							<fieldset>
 								<div class="control-group">
 									<label class="control-label" for="nombre_trabajador">Trabajador</label>
 									<div class="controls">
-										<input class="input-xlarge" id="nombre_trabajador" type="text" readonly required>
+										<input class="input-xlarge" id="nombre_trabajador" type="text" readonly>
 										<input id="id_trabajador" name="id_trabajador" type="hidden">
 										<button class="btn btn-info" id="btn-trabajador" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
 									</div>
@@ -42,15 +42,16 @@
 								<div class="control-group">
 									<label class="control-label" for="nombre_zona">Zona</label>
 									<div class="controls">
-										<input class="input-xlarge" id="nombre_zona" type="text" readonly required>
+										<input class="input-xlarge" id="nombre_zona" type="text" readonly>
 										<input id="id_zona" name="id_zona" type="hidden">
 										<button class="btn btn-info" id="btn-zona" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
 									</div>
 								</div>
 								<div class="form-actions">									
-									<button id="btn-reg-usuario" type="button" class="btn btn-primary ">Asignar</button>
-									<button type="reset" class="btn">Limpiar Campos</button>
-							  	</div>
+									<button id="btn-reg-usuario" type="button" class="btn btn-primary ">Asignar</button>									
+									<button id="btn-editar-zona" type="button" class="btn btn-primary " style="display:none">Editar</button>	
+									<button type="reset" class="btn" id="btn-cancelar">Cancelar</button>
+								</div>
 							</fieldset>
 						</form>
 						<div class="modal hide fade" id="modalBuscarTrabajador">
@@ -89,6 +90,16 @@
 									</tr>
 								</thead>     
 								<tbody></tbody>
+								<tfoot>
+								  <tr>
+										<th class="input">
+											<input type="text" style="width: auto" value="nombre" class="search_init" />
+										</th>
+										<th class="input">
+											<input type="text"style="width: auto" value="ubigeo" class="search_init" />
+										</th>									
+								  </tr>
+								</tfoot>
 							</table>	
 							</div>
 							<div class="modal-footer">
@@ -104,6 +115,7 @@
 									  <th>Nombre</th>
 									  <th>Encargado</th>
 									  <th>Ubigeo</th>
+									  <th>Estado</th>
 								  </tr>
 							  </thead>   
 							  <tbody></tbody>

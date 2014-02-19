@@ -16,7 +16,6 @@ public function registrar(){
 		$ClienteZona = null;
 		$ClienteRef = null;
 		$ClienteLinOpe = null;
-		//$cClienteArcCredito = 0;
 		$ClienteOcup = null;			
 
 		if ($form != null)
@@ -38,7 +37,7 @@ public function registrar(){
 				'cClientecDir' => $ClienteDirec,
 			 	'nZona_id'=> $ClienteZona,
 			 	'nClienteLineaOp'=> $ClienteLinOpe,
-			 	//'cClienteArcCredito' =>"ejemplo",
+			 	'cClienteArcCredito' =>"0",
 			 	'cClienteOcup'=> $ClienteOcup);
 			if($this->climod->insert($Cliente))
 				$return = array("responseCode"=>200, "datos"=>"ok");
@@ -62,7 +61,7 @@ public function registrar(){
 		$ClienteDirec = null;
 		$ClienteLinOpe = null;	
 		$ClienteOcup = null;
-		//$ClienteZona = 1;
+		$ClienteZona = null;
 		
 		if ($form!=null){
 
@@ -73,7 +72,7 @@ public function registrar(){
 			$ClienteRef = $form["referencia"];
 			$ClienteDirec = $form["direccion"];			
 			$ClienteZona = $form["zonas"];				
-			$ClienteLinOpe = $form["lineaop"];			
+			$ClienteLinOpe = $form["lineaop"];				
 			$ClienteOcup = $form["ocupacion"];			
 			$data = array(
 				'cClienteNom'=> $ClienteNombre,
@@ -82,7 +81,7 @@ public function registrar(){
 			 	'cClienteRef' => $ClienteRef,
 				'cClientecDir' => $ClienteDirec,
 			 	'nZona_id'=> $ClienteZona,
-			 	'nClienteLineaOp'=> $ClienteLinOpe,
+			 	'nClienteLineaOp'=> $ClienteLinOpe,			 				
 			 	'cClienteOcup'=> $ClienteOcup);					
 			if($this->climod->update($nCliente_id,$data))
 				$return = array('responseCode'=>200, 'datos'=>$data);

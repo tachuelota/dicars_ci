@@ -5,7 +5,7 @@ $(document).ready(function(){
 	var CargosTA = new DTActions({
 		'conf': '010',
 		'idtable': 'cargos_table',
-		'EditFunction': function(nRow, aData, iDisplayIndex) {
+		'EditFunction': function(nRow, aData, iDisplayIndex) {		
 			$("#btn-reg-cargo").hide();
 			$("#btn-editar-cargo").show();
 	  		$('#modalCargo').modal('show');

@@ -18,7 +18,7 @@ $(document).ready(function(){
 	var ClientesTA = new DTActions({
 	'conf': '010',
 	'idtable': 'clientes_table',
-	'EditFunction': function(nRow, aData, iDisplayIndex) {	
+	'EditFunction': function(nRow, aData, iDisplayIndex) {
 		$("#btn-reg-clientes").hide();
 		$("#btn-editar-clientes").show();
 		$('#modalClientes').modal('show');
@@ -27,12 +27,14 @@ $(document).ready(function(){
 		$("#dni").val(aData.cClienteDNI);	
 		$("#referencia").val(aData.cClienteRef);	
 		$("#direccion").val(aData.cClientecDir);	
+		$("#zonas").val(aData.nZona_id);	
 		$("#lineaop").val(aData.nClienteLineaOp);	
-		$("#ocupacion").val(aData.cClienteOcup);
-		$("#zona").val(aData.nZona_id);	
+		$("#ocupacion").val(aData.cClienteOcup);		
 		$("#idClientes").val(aData.nCliente_id);
+		cargarZonas();
 		},
 	});
+
 //----------------------
    ClientesRowCBF = function(nRow, aData, iDisplayIndex){
 	ClientesTA.RowCBFunction(nRow, aData, iDisplayIndex);	
@@ -48,7 +50,7 @@ $(document).ready(function(){
 
 	];
 
-	    ClientesTable = createDataTable('clientes_table',UrlaDTable,FormatoClientes,null,ClientesRowCBF);
+	ClientesTable = createDataTable('clientes_table',UrlaDTable,FormatoClientes,null,ClientesRowCBF);
 
 
 	var successClientes = function(){
@@ -56,7 +58,14 @@ $(document).ready(function(){
 	ClientesTable.fnReloadAjax()
 	}
 
+
 	//--funcion de los botones
+
+	$('#modalClientes').on('hidden', function(){		
+		$("#ClienteForm").reset();
+		$("#btn-reg-clientes").show();
+		$("#btn-editar-clientes").hide();
+	});
 
 	$("#btn-reg-clientes").click(function(event){
 	event.preventDefault();

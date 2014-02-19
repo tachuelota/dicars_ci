@@ -192,8 +192,11 @@ class Servicios extends CI_Controller {
 	{
 		$this->load->model('administracion/ZonaPersonal_Model','zopermod');
 		$result = $this->zopermod->get_zonaspersonal();
-		echo json_encode(array('aaData' => $result));
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
 	}
+
 
 	public function getUbigeo()
 	{

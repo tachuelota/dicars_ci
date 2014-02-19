@@ -12,13 +12,13 @@
 			<div>
 				<ul class="breadcrumb">
 					<li>
-						<a href="index.html">Home</a> <span class="divider">/</span>
+						<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_homepage.html">Administración</a><span class="divider">/</span>
+						<a href="<?php echo base_url();?>administracion/">Administración</a><span class="divider">/</span>
 					</li>
 					<li>
-						<a href="admin_zonas.html">Zonas</a>
+						<a href="<?php echo base_url();?>administracion/views/zona_personal">Zonas Personal</a>
 					</li>
 				</ul>
 			</div>  
@@ -28,15 +28,14 @@
 						<h2>ZONAS ASIGNADAS</h2>
 					</div>
 					<div class="box-content">
-						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar"  action-2="<?php echo base_url();?>administracion/views/editar_zonas">
-							<input type="hidden" id="idZonapersonal" name="idZonapersonal">
-							<fieldset>
-								<div class="control-group">
+						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar">
+							<fieldset>								
+								<input type="hidden" name="idzonapersonal">
+									<div class="control-group">
 									<label class="control-label" for="nombre_trabajador">Trabajador</label>
 									<div class="controls">
 										<input class="input-xlarge" id="nombre_trabajador" type="text" readonly required>
-										<input id="id_trabajador" name="id_trabajador" type="hidden">
-										<button class="btn btn-info" id="btn-trabajador" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
+										<input id="id_trabajador" name="id_trabajador" type="hidden">	
 									</div>
 								</div>
 								<div class="control-group">
@@ -46,10 +45,10 @@
 										<input id="id_zona" name="id_zona" type="hidden">
 										<button class="btn btn-info" id="btn-zona" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
 									</div>
-								</div>
-								<div class="form-actions">									
-									<button id="btn-reg-usuario" type="button" class="btn btn-primary ">Asignar</button>
-									<button type="reset" class="btn">Limpiar Campos</button>
+								</div>							
+								<div class="form-actions">
+									<button id="agregar_usuario" type="submit" class="btn btn-primary">Asignar</button>
+									<a class="btn" href="<?php echo base_url();?>administracion/views/zona_personal">Cancelar</a>
 							  	</div>
 							</fieldset>
 						</form>
@@ -81,15 +80,24 @@
 								<h3>Zonas</h3>
 							</div>
 							<div class="modal-body">							
-							<table id="select_zona_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source= "<?php echo base_url();?>administracion/servicios/getzonas">
+							<table id="select_zona_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>administracion/servicios/get_zonas_activos">
 								<thead>
 									<tr>
 										<th>Nombre</th>
-										<th>Estado</th>
 										<th>Ubigeo</th>
 									</tr>
 								</thead>     
 								<tbody></tbody>
+								<tfoot>
+								  <tr>
+										<th class="input">
+											<input type="text" style="width: auto" value="nombre" class="search_init" />
+										</th>
+										<th class="input">
+											<input type="text"style="width: auto" value="ubigeo" class="search_init" />
+										</th>									
+								  </tr>
+								</tfoot>
 							</table>	
 							</div>
 							<div class="modal-footer">
