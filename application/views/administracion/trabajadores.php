@@ -56,13 +56,13 @@
 										  <div class="control-group">
 											<label class="control-label" for="nombres">Nombres</label>
 											<div class="controls">
-											  <input class="input-xlarge focused" maxlength="50" title="Este campo debe ser sólo letras" id="nombres" name="nombres" type="text" required>
+											  <input class="input-xlarge focused validate[required]" maxlength="50" title="Este campo debe ser sólo letras" id="nombres" name="nombres" type="text">
 											</div>
 										  </div>
 										  <div class="control-group">
 											<label class="control-label" for="apellidos">Apellidos</label>
 											<div class="controls">
-											  <input class="input-xlarge focused" maxlength="50"  title="Este campo debe ser sólo letras" id="apellidos" name="apellidos" type="text" required>
+											  <input class="input-xlarge focused validate[required]" maxlength="50"  title="Este campo debe ser sólo letras" id="apellidos" name="apellidos" type="text">
 											</div>
 										  </div>
 										  <div class="control-group">
@@ -74,7 +74,7 @@
 										  <div class="control-group">
 											<label class="control-label" for="edad">Edad</label>
 											<div class="controls">
-											  <input class="input-xlarge focused" maxlength="2" title="Este campo sólo admite números" id="edad" name="edad" type="text" required>
+											  <input class="input-xlarge focused validate[required]" maxlength="2" title="Este campo sólo admite números" id="edad" name="edad" type="text">
 											</div>
 										  </div>
 										  <div class="control-group">
