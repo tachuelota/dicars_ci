@@ -100,27 +100,26 @@ class IngresoProductos extends CI_Controller
 			{
 			foreach ($tabla as $key => $row)
 				{
-					$tabla[$key]["nIngProd_id"] = intval($IngProducto_id);
-					//$idDetalle=$row["nDetIngProd_id"];
-					$detalle=array(
+					
+					
+					switch ($row["band"]) {
+						case 0	:
+							$idDetalle=$row["nDetIngProd_id"];
+							if(!$this->detingpro->delete($idDetalle))
+							$band = false;		
+							break;
+						
+						case 2:
+							$tabla[$key]["nIngProd_id"] = intval($IngProducto_id);
+							$detalle=array(
 							 'nIngProd_id'=>intval($IngProducto_id),
 							 'nProducto_id'=>$row["nProducto_id"],
 							 'nDetIngProdCant'=>$row["nDetIngProdCant"],
 							 'nDetIngProdPrecUnt'=>$row["nDetIngProdPrecUnt"],
 							 'nDetIngProdTot'=>$row["nDetIngProdTot"]);
-					switch ($row["band"]) {
-						case 1:
-							if(!$this->detingpro->delete($IngProducto_id))
-							$band = false;		
-							break;
-						
-						case 2:
 							if(!$this->detingpro->insert($detalle))
 							$band = false;	
 							break;
-						default:
-							$band=true;	
-							break;	
 					}
 				}
 			}

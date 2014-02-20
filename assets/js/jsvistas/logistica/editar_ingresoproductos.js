@@ -55,6 +55,7 @@ $(document).ready(function(){
 			SelectProductosData[0].nDetIngProdCant = $("#cantidad").val();
 			SelectProductosData[0].nDetIngProdPrecUnt = $("#precio_uni").val();
 			SelectProductosData[0].nDetIngProdTot = $("#cantidad").val() * $("#precio_uni").val();
+			$(SelectProductosData).AddAttr("nDetIngProd_id", 0);
 			$(SelectProductosData).AddAttr("estadolabel", "<span class='label label-success'>Activo</span>");
 			$(SelectProductosData).AddAttr("band", 2);
 			DetalleProductosTable.fnAddData(SelectProductosData);

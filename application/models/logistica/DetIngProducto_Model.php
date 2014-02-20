@@ -39,7 +39,7 @@ class DetIngProducto_Model extends CI_Model {
 
 	public function delete($id){
 
-		$this->db->where('nIngProd_id', $id);
+		$this->db->where('nDetIngProd_id', $id);
 		$this->db->delete('log_detingprod'); 
 		if ($this->db->trans_status() === FALSE)
 		{
