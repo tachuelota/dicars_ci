@@ -13,6 +13,7 @@
 		"fnCreatedRow":getSimpleSelectRowCallBack(SelectTrabajadoresData)
 		};
 
+
 		BuscarTrabajadoresTable = createDataTable2('select_trabajador_table',BuscarTraOptions);
 		//datatable de productos
 		var BuscarProdOptions = {
@@ -35,4 +36,10 @@
 			e.preventDefault();
 			$('#modalBuscarProducto').modal('show');
 		});
+
+		$('#btn-buscar-trabajador').click(function(e){
+			e.preventDefault();
+			$('#modalBuscarTrabajador').modal('show');
+		});
+
 	});

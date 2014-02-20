@@ -67,7 +67,12 @@
 									<div class="controls">
 										<input class="input-xlarge focused" id="solicitante" name="solicitante" type="text" readonly>
 										<input class="input-xlarge focused" id="solicitante_id" name="solicitante_id" type="hidden">
+<<<<<<< Updated upstream
 										<button id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i></button>
+=======
+										<button id="btn-buscar-trabajador" name="btn-buscar-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
+										</button>
+>>>>>>> Stashed changes
 									</div>
 								</div>
 							</div>
