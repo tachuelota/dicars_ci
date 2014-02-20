@@ -23,7 +23,7 @@ class Servicios extends CI_Controller {
 		}
 		echo json_encode(array('aaData' => $cargos));			
 	}
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 	//Tipo de Categoria Activo get_categoria_activo
 
 	public function getCategoria_Activo()
@@ -34,7 +34,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
 	}	
-=======
+//=======
 	//Tipo de Categoria Activo 
 	
 	public function getTipoIGVActivo()
@@ -45,7 +45,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
 	}
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 
 	public function getCategoria()
 	{		
@@ -142,14 +142,14 @@ class Servicios extends CI_Controller {
 
 	//CARGAR TIPO IGV
 
-	public function getTipoIGVActivo()
+	/*public function getTipoIGVActivo()
 	{
 		$this->load->model('administracion/TipoIGV_Model','igvm');
 		$result = $this->igvm->get_activo();
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
-	}
+	}*/
 
 	public function getTipoIGV(){
 	$this->load->model('administracion/TipoIGV_Model','igvm');

@@ -38,7 +38,7 @@
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly value="Arturo Méndez"></div>
+										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="motivo">Motivo</label>
@@ -53,7 +53,7 @@
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly value="Local 1"></div>
+										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly></div>
 								</div>
 							</div>
 							<div class="span6">
@@ -67,7 +67,7 @@
 									<div class="controls">
 										<input class="input-xlarge focused" id="solicitante" name="solicitante" type="text" readonly>
 										<input class="input-xlarge focused" id="solicitante_id" name="solicitante_id" type="hidden">
-										<button class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
+										<button id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
 										</button>
 									</div>
 								</div>
@@ -174,6 +174,7 @@
 						<a  id="select_producto" href="#" class="btn btn-primary">Seleccionar</a>
 					</div>
 				</div>
+				<!------------------------Modal TRABAJADOR---------------------------------------->
 				<div class="modal hide fade" id="modalBuscarTrabajador">
 					<div class="modal-header">
 						<h3>Trabajadores</h3>
