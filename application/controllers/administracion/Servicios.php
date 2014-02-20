@@ -277,7 +277,7 @@ class Servicios extends CI_Controller {
 		$usuarios = $this->us->get_usuarios();
 
 		foreach ($usuarios as $key => $usuario) {
-			switch ($usuario["estado"]) {
+			switch ($usuario["active"]) {
 			    case 0:
 			        $usuarios[$key]["estadolabel"] = '<span class="label label-important">Inhabilitado</span>';
 			        break;

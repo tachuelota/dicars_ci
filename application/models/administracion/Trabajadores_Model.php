@@ -34,6 +34,12 @@ class Trabajadores_Model extends CI_Model {
         $this->db->where('nPersonal_id',$id);
 		$this->db->update('ven_personal',$data);
 
+		if(isset($data['cPersonalEmail']))
+		{
+			$this->db->where('nPersonal_id',$id);
+			$this->db->update('users',array("email"=>$data['cPersonalEmail']));
+		}
+
 		if ($this->db->trans_status() === FALSE)
 		{
 			$this->db->trans_rollback();

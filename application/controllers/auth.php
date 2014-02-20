@@ -271,233 +271,91 @@ class Auth extends CI_Controller {
 	//activate the user
 	function activate($id, $code=false)
 	{
-		if ($code !== false)
+		if(isset($_POST) && !empty($_POST))
 		{
-			$activation = $this->ion_auth->activate($id, $code);
+			$activation = $this->ion_auth->activate($this->input->post('user_id'));
+			if (!$activation)
+				$this->output->set_status_header('400');
 		}
-		else if ($this->ion_auth->is_admin())
-		{
-			$activation = $this->ion_auth->activate($id);
-		}
+			
 
-		if ($activation)
-		{
-			//redirect them to the auth page
-			$this->session->set_flashdata('message', $this->ion_auth->messages());
-			redirect("auth", 'refresh');
-		}
-		else
-		{
-			//redirect them to the forgot password page
-			$this->session->set_flashdata('message', $this->ion_auth->errors());
-			redirect("auth/forgot_password", 'refresh');
-		}
+		$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode("finish"));
 	}
 
 	//deactivate the user
-	function deactivate($id = NULL)
+	function deactivate()
 	{
-		$id = $this->config->item('use_mongodb', 'ion_auth') ? (string) $id : (int) $id;
-
-		$this->load->library('form_validation');
-		$this->form_validation->set_rules('confirm', $this->lang->line('deactivate_validation_confirm_label'), 'required');
-		$this->form_validation->set_rules('id', $this->lang->line('deactivate_validation_user_id_label'), 'required|alpha_numeric');
-
-		if ($this->form_validation->run() == FALSE)
-		{
-			// insert csrf check
-			$this->data['csrf'] = $this->_get_csrf_nonce();
-			$this->data['user'] = $this->ion_auth->user($id)->row();
-
-			$this->_render_page('auth/deactivate_user', $this->data);
-		}
+		if(isset($_POST) && !empty($_POST))
+			if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
+				$this->ion_auth->deactivate($this->input->post('user_id'));
+			else
+				$this->output->set_status_header('400');
 		else
-		{
-			// do we really want to deactivate?
-			if ($this->input->post('confirm') == 'yes')
-			{
-				// do we have a valid request?
-				if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id'))
-				{
-					show_error($this->lang->line('error_csrf'));
-				}
+			$this->output->set_status_header('400');
 
-				// do we have the right userlevel?
-				if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
-				{
-					$this->ion_auth->deactivate($id);
-				}
-			}
-
-			//redirect them back to the auth page
-			redirect('auth', 'refresh');
-		}
+		$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode("finish"));
 	}
 
 	//create a new user
 	function create_user()
 	{
-
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
-			redirect('auth', 'refresh');
+			redirect('login', 'refresh');
 		}
-
-		$formserialized = $this->input->post("formulario");
-		$form = array();
-		parse_str($formserialized,$form);
-
-		if ($form != null)
+		if(isset($_POST) && !empty($_POST))
 		{
-			$username = $form["usuario_id"];
-			$email    = $form["email"];
-			$password = $form["password"];
-
-			$additional_data = array(
-				'nPersonal_id' => $form["nPersonal_id"],
-			);
-			$user_id = $this->ion_auth->register($username, $password, $email, $additional_data);
-			if ($user_id != FALSE)
-			{
-				$this->ion_auth->remove_from_group('', $user_id);
-
-				foreach ($form["groups"] as $grp) {
-					$this->ion_auth->add_to_group($grp, $user_id);
-				}
-				$return = "ok";
-			}
-			else
-			{				
-				$return = "bad";
-			}
+			$formserialized = $this->input->post("formulario");
+			$form = array();
+			parse_str($formserialized,$form);
+			if ($this->ion_auth->register($form["username"],  $form["password"], $form["email"], array(
+				'nPersonal_id' => $form["nPersonal_id"]), $form["groups"])===FALSE)
+				$this->output->set_status_header('400');
 		}
 		else
-		{
-			$return = "bad";
-		}			
+			$this->output->set_status_header('400');
 
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode($user_id));
-
+				->set_output(json_encode("finish"));
 	}
 
 	//edit a user
-	function edit_user($id)
+	function edit_user()
 	{
-		$this->data['title'] = "Edit User";
-
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
-			redirect('auth', 'refresh');
+			redirect('login', 'refresh');
 		}
-
-		$user = $this->ion_auth->user($id)->row();
-		$groups=$this->ion_auth->groups()->result_array();
-		$currentGroups = $this->ion_auth->get_users_groups($id)->result();
-
-		//validate form input
-		$this->form_validation->set_rules('first_name', $this->lang->line('edit_user_validation_fname_label'), 'required|xss_clean');
-		$this->form_validation->set_rules('last_name', $this->lang->line('edit_user_validation_lname_label'), 'required|xss_clean');
-		$this->form_validation->set_rules('phone', $this->lang->line('edit_user_validation_phone_label'), 'required|xss_clean');
-		$this->form_validation->set_rules('company', $this->lang->line('edit_user_validation_company_label'), 'required|xss_clean');
-		$this->form_validation->set_rules('groups', $this->lang->line('edit_user_validation_groups_label'), 'xss_clean');
-
-		if (isset($_POST) && !empty($_POST))
+		if(isset($_POST) && !empty($_POST))
 		{
-			// do we have a valid request?
-			if ($this->_valid_csrf_nonce() === FALSE || $id != $this->input->post('id'))
+			$formserialized = $this->input->post("formulario");
+			$form = array();
+			parse_str($formserialized,$form);
+			$user_id = $form["user_id"];
+
+			if($form["password"]!="")
 			{
-				show_error($this->lang->line('error_csrf'));
+				$data = array("password" => $form["password"]);
+				$this->ion_auth->update($user_id, $data);
 			}
 
-			$data = array(
-				'first_name' => $this->input->post('first_name'),
-				'last_name'  => $this->input->post('last_name'),
-				'company'    => $this->input->post('company'),
-				'phone'      => $this->input->post('phone'),
-			);
-
-			//Update the groups user belongs to
-			$groupData = $this->input->post('groups');
-
-			if (isset($groupData) && !empty($groupData)) {
-
-				$this->ion_auth->remove_from_group('', $id);
-
-				foreach ($groupData as $grp) {
-					$this->ion_auth->add_to_group($grp, $id);
-				}
-
-			}
-
-			//update the password if it was posted
-			if ($this->input->post('password'))
+			$this->ion_auth->remove_from_group('', $user_id);
+			foreach ($form["groups"] as $grp)
 			{
-				$this->form_validation->set_rules('password', $this->lang->line('edit_user_validation_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[password_confirm]');
-				$this->form_validation->set_rules('password_confirm', $this->lang->line('edit_user_validation_password_confirm_label'), 'required');
-
-				$data['password'] = $this->input->post('password');
-			}
-
-			if ($this->form_validation->run() === TRUE)
-			{
-				$this->ion_auth->update($user->id, $data);
-
-				//check to see if we are creating the user
-				//redirect them back to the admin page
-				$this->session->set_flashdata('message', "User Saved");
-				redirect("auth", 'refresh');
+				$this->ion_auth->add_to_group($grp, $user_id);
 			}
 		}
+		else
+			$this->output->set_status_header('400');
 
-		//display the edit user form
-		$this->data['csrf'] = $this->_get_csrf_nonce();
-
-		//set the flash data error message if there is one
-		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
-
-		//pass the user to the view
-		$this->data['user'] = $user;
-		$this->data['groups'] = $groups;
-		$this->data['currentGroups'] = $currentGroups;
-
-		$this->data['first_name'] = array(
-			'name'  => 'first_name',
-			'id'    => 'first_name',
-			'type'  => 'text',
-			'value' => $this->form_validation->set_value('first_name', $user->first_name),
-		);
-		$this->data['last_name'] = array(
-			'name'  => 'last_name',
-			'id'    => 'last_name',
-			'type'  => 'text',
-			'value' => $this->form_validation->set_value('last_name', $user->last_name),
-		);
-		$this->data['company'] = array(
-			'name'  => 'company',
-			'id'    => 'company',
-			'type'  => 'text',
-			'value' => $this->form_validation->set_value('company', $user->company),
-		);
-		$this->data['phone'] = array(
-			'name'  => 'phone',
-			'id'    => 'phone',
-			'type'  => 'text',
-			'value' => $this->form_validation->set_value('phone', $user->phone),
-		);
-		$this->data['password'] = array(
-			'name' => 'password',
-			'id'   => 'password',
-			'type' => 'password'
-		);
-		$this->data['password_confirm'] = array(
-			'name' => 'password_confirm',
-			'id'   => 'password_confirm',
-			'type' => 'password'
-		);
-
-		$this->_render_page('auth/edit_user', $this->data);
+		$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode("finish"));
 	}
 
 	// create a new group

@@ -49,7 +49,7 @@
 					  <div class="bar"></div>
 					</div>
 				</div>
-				<form id="UsuarioForm" action-1="<?php echo base_url();?>auth/create_user">
+				<form id="UsuarioForm" action-1="<?php echo base_url();?>auth/create_user" action-2="<?php echo base_url();?>auth/edit_user">
 					<div class="tab-content">
 						<div class="tab-pane" id="tab1">
 							<div class="form-horizontal box-content">
@@ -58,31 +58,22 @@
 									<div class="controls">
 										<input class="input-xlarge" id="nombre_trabajador" type="text" readonly>
 										<input id="trabajador" name="nPersonal_id" type="hidden">
+										<input id="user_id" name="user_id" type="hidden" >
 										<input id="email" name="email" type="hidden">
 										<button type="button" id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-trabajador" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
 										</button>
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="usuario_id">Usuario ID</label>
+									<label class="control-label" for="username">Usuario ID</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="usuario_id" name="usuario_id" type="text" title="El usuario puede contener leras y números" maxlength="20"></div>
+										<input class="input-xlarge focused" id="username" name="username" type="text" title="El usuario puede contener leras y números" maxlength="20"></div>
 								</div>
 
 								<div class="control-group">
 									<label class="control-label" for="contrasena">Contraseña</label>
 									<div class="controls">
 										<input class="input-xlarge focused" id="password" name="password" type="password"></div>
-								</div>
-
-								<div class="control-group">
-									<label class="control-label " for="estado">Estado</label>
-									<div class="controls ">
-										<select id="estado" name="estado" class="input-xlarge focused">
-											<option value="1">Habilitado</option>
-											<option value="0">Inhabilitado</option>
-										</select>
-									</div>
 								</div>
 							</div>
 						</div>
@@ -134,7 +125,9 @@
 						<ul class="pager wizard">
 							<li class="previous"><a href="#">Anterior</a></li>
 						  	<li class="next"><a href="#">Siguiente</a></li>
-						  	<li class="next finish" id="btn-reg-usuario" style="display:none;"><a class="btn-info" href="javascript:;">Guardar</a></li>
+						  	<li class="next finish cancel" id="btn_cancelar"><a href="javascript:;">Cancelar</a></li>
+						  	<li class="next finish current" id="btn-reg-usuario" style="display:none;"><a class="btn-info" href="javascript:;">Registrar</a></li>						  	
+						  	<li class="next finish" id="btn-update-usuario" style="display:none;"><a class="btn-info" href="javascript:;">Guardar</a></li>
 						</ul>
 					</div>
 				</form>

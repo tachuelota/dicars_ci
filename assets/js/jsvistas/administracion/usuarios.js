@@ -1,9 +1,12 @@
 	$(document).ready(function(){
-
 		var SelectUsuarioData = new Array();
 		var DataToSend = {};
 
 		var SelectUsuarioData = new Array();
+		var isEdit = false;
+		var numTab = 1;
+
+		$("#UsuarioForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 
 		$('#rootwizard').bootstrapWizard({
 		onNext: function(tab, navigation, index) 
@@ -14,13 +17,19 @@
 				var $current = index+1;
 				var $percent = ($current/$total) * 100;
 				$('#rootwizard').find('.bar').css({width:$percent+'%'});
-				if($current >= $total) {
+				if($current >= $total)
+				{
 					$('#rootwizard').find('.pager .next').hide();
-					$('#rootwizard').find('.pager .finish').show();
-					$('#rootwizard').find('.pager .finish').removeClass('disabled');
-				} else {
+					$('#rootwizard').find('.pager .cancel').show();
+					$('#rootwizard').find('.pager .cancel').removeClass('disabled');
+					$('#rootwizard').find('.pager .current').show();
+					$('#rootwizard').find('.pager .current').removeClass('disabled');
+				} 
+				else 
+				{
 					$('#rootwizard').find('.pager .next').show();
 					$('#rootwizard').find('.pager .finish').hide();
+					$('#rootwizard').find('.pager .cancel').show();
 				}
 			}
 		});
@@ -29,14 +38,29 @@
 			'conf': '010',
 			'idtable': 'marcas_table',
 			'EditFunction': function(nRow, aData, iDisplayIndex) {
+				$('#btn-update-usuario').addClass("current");
+				$('#btn-reg-usuario').removeClass("current");
+				$('#rootwizard').bootstrapWizard('show',0);
+				$("#UsuarioForm").reset();
 				$('#tab2 input:checkbox').removeAttr('checked');
 				var groups = getAjaxObject($("#tab2").attr("data-source")+aData.id);
 				$(groups).each(function(index){
-					$("#group"+this.id).attr("checked","checked");
-					console.log("#group"+this.id);
+					$("#group"+this.id).attr("checked","checked");					
 				});
-				$("input:checkbox, input:radio, input:file").not('[data-no-uniform="true"],#uniform-is-ajax').uniform();
+				$('#tab2 input:checkbox').uniform();
+				$("#username").val(aData.username);
+				$("#password").val("");
+				$("#nombre_trabajador").val(aData.nomape);
+				$("#user_id").val(aData.id);
 			}
+		});
+
+		$("#btn_cancelar").click(function(event){
+			event.preventDefault();
+			console.log("hola");
+			$('#rootwizard').bootstrapWizard('show',0);
+			$('#btn-reg-usuario').addClass("current");
+			$('#btn-update-usuario').removeClass("current");
 		});
 
 
@@ -58,6 +82,11 @@
 			enviar($("#UsuarioForm").attr("action-1"),{formulario:$("#UsuarioForm").serialize()}, logdata, null);
 		});
 
+		$('#btn-update-usuario').click(function(event){
+			event.preventDefault();
+			enviar($("#UsuarioForm").attr("action-2"),{formulario:$("#UsuarioForm").serialize()}, logdata, null);
+		});
+
 		var BuscarUOptions = {
 		"aoColumns":[
 		              { "sWidth": "5%","mDataProp": "cPersonalNom"},
@@ -71,7 +100,7 @@
 
 		var UsuarioOptions = {
 		"aoColumns":[
-					  { "sWidth": "20%","mDataProp": "id"},	
+					  { "sWidth": "20%","mDataProp": "username"},	
 		              { "sWidth": "20%","mDataProp": "nomape"},		             
 		              { "sWidth": "20%","mDataProp": "ultimologin"},
 		               { "sWidth": "20%","mDataProp": "estadolabel"},
