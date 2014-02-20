@@ -17,6 +17,21 @@ $(document).ready(function(){
 			e.preventDefault();
 			$('#modalBuscarZona').modal('show');
 		}); 
+
+		$('#btn-regreso').click(function(e){			
+			$("#btn-trabajador").show();
+			$("#btn-reg-usuario").show();
+			$("#btn-editar-zona").hide();
+		}); 
+
+		$('#btn-reg-usuario').click(function(e){
+			$("#ZonapersonalForm").reset();
+		});
+	
+		$('#btn-editar-zona').click(function(e){
+			$("#ZonapersonalForm").reset();
+		});
+
     // fin de botones	
 
 		$('#select_trabajador').click(function(event){
@@ -72,21 +87,33 @@ $(document).ready(function(){
   	var ZonPerTA = new DTActions({
 		'conf': '011',
 		'idtable': 'zonapersonal_table',
-		'EditFunction': function(nRow, aData, iDisplayIndex) {
+		'EditFunction': function(nRow, aData, iDisplayIndex) {		
 			$("#btn-reg-usuario").hide();
 			$("#btn-editar-zona").show();	
+			$("#btn-regreso").show();
 			$("#btn-trabajador").hide();
+			$("#btn-cancelar").hide();
+			$("#btn-eliminar").hide();
 			$("#nombre_trabajador").val(aData.persona);
 			$("#id_trabajador").val(aData.nPersonal_id);
-			$("#nombre_zona").val(aData.cZonaDesc);			
+			//$("#nombre_zona").val(aData.cZonaDesc);			
 			$("#id_zona").val(aData.nZona_id);
 	  		$("#idZonapersonal").val(aData.nZonaPersonal_id);
 		},
+		'DropFunction': function(nRow, aData, iDisplayIndex) {
+			$('#modalEliminar').modal('show');						
+	  		$("#idZonapersonal").val(aData.nZonaPersonal_id);
+		} 
+
 	}); 
+	
+	var successZonaPersonal = function(){
+		$('#modalEliminar').modal('hide');
+		ZonasPersonalTable.fnReloadAjax()
+	}
 
   	$("#btn-reg-usuario").click(function(event){
-		event.preventDefault();
-		$("#btn-cancelar").hide();	
+		event.preventDefault();	
 		if($("#ZonapersonalForm").validationEngine('validate'))
 			enviar($("#ZonapersonalForm").attr("action-1"),{formulario:$("#ZonapersonalForm").serializeObject()}, successZonaPersonal, null)
 	});
@@ -97,10 +124,13 @@ $(document).ready(function(){
 			enviar($("#ZonapersonalForm").attr("action-2"),{formulario:$("#ZonapersonalForm").serializeObject()}, successZonaPersonal, null)
 	});
 
-	var successZonaPersonal = function(){
-		//$('#ZonapersonalForm').modal('hide');
-		ZonasPersonalTable.fnReloadAjax()
-	}
+	$("#btn-eliminar-todo").click(function(event){
+		event.preventDefault();
+		if($("#ZonapersonalForm").validationEngine('validate'))
+			enviar($("#ZonapersonalForm").attr("action-3"),{formulario:$("#ZonapersonalForm").serializeObject()}, successZonaPersonal, null)
+	});
+
+	
 
   	ZonPersRowCBF = function(nRow, aData, iDisplayIndex){
 		ZonPerTA.RowCBFunction(nRow, aData, iDisplayIndex);	
@@ -108,10 +138,9 @@ $(document).ready(function(){
 
   	var UrlaDTable = $("#zonapersonal_table").attr("data-source");
 	FormatoDTable = [
-		              { "sWidth": "40%","mDataProp": "cZonaDesc"},
-		              { "sWidth": "20%","mDataProp": "persona"},
-		              { "sWidth": "20%","mDataProp": "des_ubigeo"},	    
-		    		  { "sWidth": "20%","mDataProp": "nZonapersonalEst"},	              
+		              { "sWidth": "25%","mDataProp": "cZonaDesc"},
+		              { "sWidth": "30%","mDataProp": "persona"},
+		              { "sWidth": "45%","mDataProp": "des_ubigeo"},	    	              
 		
 		              ];
 

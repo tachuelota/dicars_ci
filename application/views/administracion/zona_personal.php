@@ -28,7 +28,7 @@
 						<h2>ZONAS ASIGNADAS</h2>
 					</div>
 					<div class="box-content">
-						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar" action-2="<?php echo base_url();?>administracion/Zona_Personal/editar" data-source="<?php echo base_url();?>administracion/servicios/getUbigeo">
+						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar" action-2="<?php echo base_url();?>administracion/Zona_Personal/editar" action-3="<?php echo base_url();?>administracion/Zona_Personal/eliminar"data-source="<?php echo base_url();?>administracion/servicios/getUbigeo">
 							<input type="hidden" id="idZonapersonal" name="idZonapersonal">
 							<fieldset>
 								<div class="control-group">
@@ -51,6 +51,8 @@
 									<button id="btn-reg-usuario" type="button" class="btn btn-primary ">Asignar</button>									
 									<button id="btn-editar-zona" type="button" class="btn btn-primary " style="display:none">Editar</button>	
 									<button type="reset" class="btn" id="btn-cancelar">Cancelar</button>
+									<button id="btn-eliminar" type="button" class="btn btn-primary " style="display:none">Eliminar</button>
+									<button type="reset" class="btn" id="btn-regreso" style="display:none">Cancelar</button>
 								</div>
 							</fieldset>
 						</form>
@@ -109,17 +111,33 @@
 							</div>
 						</div>							
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonapersonal_table" data-source="<?php echo base_url();?>administracion/servicios/getZonasPersonal">
+					<table class="table table-striped table-bordered bootstrap-datatable datatable" id="zonapersonal_table" data-source="<?php echo base_url();?>administracion/servicios/getZonasPersonal">
 							  <thead>
 								  <tr>
 									  <th>Nombre</th>
 									  <th>Encargado</th>
 									  <th>Ubigeo</th>
-									  <th>Estado</th>
 								  </tr>
 							  </thead>   
 							  <tbody></tbody>
-						</table>
+					</table>
+					<div class="modal hide fade" id="modalEliminar">
+						<div class="modal-header">
+								<h3>Eliminar</h3>
+						</div>
+							<form id="eliminarForm" class="form-horizontal" method="post" action="">
+								<div class="modal-body">
+									<input id="zonaper_id" name="zonaper_id" type="hidden" required>
+									<div class="alert alert-error">
+										¿Desea realmente <strong>Eliminar</strong> este registro?
+									</div>
+								</div>								
+								<div class="modal-footer">
+									<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
+									<a  id="btn-eliminar-todo" href="#" class="btn btn-primary">Eliminar</a>							
+								</div>
+							</form>
+						</div>
 					</div>
 				</div><!--/span-->
 			</div><!-- content ends -->

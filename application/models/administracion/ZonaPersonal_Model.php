@@ -46,6 +46,25 @@ class ZonaPersonal_Model extends CI_Model {
 				
 	}
 
+	function drop($id, $data){
+			
+		$this->db->trans_begin();
+		$this->db->where('nZonaPersonal_id',$id);	
+		$this->db->update('ven_zonapersonal',$data);
+
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
+				
+	}
+
 	public function get_zonaspersonal($nZonaPersonal_id = FALSE)
 	{
 		if($nZonaPersonal_id === FALSE )

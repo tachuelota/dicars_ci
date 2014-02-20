@@ -16,6 +16,7 @@ $(document).ready(function(){
 
  	//-------- nombreTableAccion (..ta)
 	var ClientesTA = new DTActions({
+<<<<<<< Updated upstream
 	'conf': '010',
 	'idtable': 'clientes_table',
 	'EditFunction': function(nRow, aData, iDisplayIndex) {
@@ -32,6 +33,23 @@ $(document).ready(function(){
 		$("#ocupacion").val(aData.cClienteOcup);		
 		$("#idClientes").val(aData.nCliente_id);
 		cargarZonas();
+=======
+		'conf': '010',
+		'idtable': 'clientes_table',
+		'EditFunction': function(nRow, aData, iDisplayIndex) {		
+			$("#btn-reg-clientes").hide();
+			$("#btn-editar-clientes").show();
+	  		$('#modalClientes').modal('show');
+	  		$("#nombres").val(aData.cClienteNom);	  				
+	  		$("#apellidos").val(aData.cClienteApe);
+	  		$("#dni").val(aData.cClienteDNI);	  		
+	  		$("#referencia").val(aData.cClienteRef);	  		
+	  		$("#direccion").val(aData.cClientecDir);	  		
+	  		$("#lineaop").val(aData.nClienteLineaOp);	  		
+	  		$("#ocupacion").val(aData.cClienteOcup);
+	  		//$("#zona").val(aData.nZona_id);	 
+	  		$("#idClientes").val(aData.nCliente_id);
+>>>>>>> Stashed changes
 		},
 	});
 

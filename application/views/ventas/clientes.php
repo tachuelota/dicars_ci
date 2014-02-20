@@ -100,6 +100,7 @@
 										<div class="controls">
 											<input class="input-xlarge focused" name="lineaop" id="lineaop" type="number" step="0.10" min="0" max="1000" required>
 										</div>
+<<<<<<< Updated upstream
 									</div>
 									<h4>Ubigeo</h4>
 									<hr>
@@ -112,6 +113,16 @@
 								  	</div>
 								  	<div class="control-group">
 										<label class="control-label" for="prov">Provincia</label>
+=======
+										<div class="control-group">
+											<label class="control-label" for="lineaop">Línea Operativa</label>
+											<div class="controls">
+											  <input class="input-xlarge focused" name="lineaop" id="lineaop" type="number" step="0.10" min="0" max="1000" required>
+											</div>
+										</div>										
+										<div class="control-group">
+										<label class="control-label" for="zona">Zona</label>
+>>>>>>> Stashed changes
 										<div class="controls">
 									  		<select id="prov" name="prov" class="ubigeo">
 											</select>
