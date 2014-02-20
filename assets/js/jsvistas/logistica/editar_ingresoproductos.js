@@ -92,13 +92,14 @@ $(document).ready(function(){
 		var successEditarProducto = function(){
 		//alert("Hola Como estas");
 		//$('#modalProductos').modal('hide');
-		//TipoProductoTable.fnReloadAjax()
+		DetalleProductosTable.fnReloadAjax()
 	}
 
 		//editar
 		$("#btn_enviar_cambios").click(function(event){
 		event.preventDefault();
 		if($("#RegistrarIngresoForm").validationEngine('validate'))
-			enviar($("#RegistrarIngresoForm").attr("action-1"),{formulario:$("#RegistrarIngresoForm").serializeObject()}, successEditarProducto, null)
+			enviar($("#RegistrarIngresoForm").attr("action-1"),{formulario:$("#RegistrarIngresoForm").serializeObject(),
+			tabla: CopyArray(DetalleProductosTable.fnGetData(),["nProducto_id","nDetIngProdCant","nDetIngProdPrecUnt","nDetIngProdTot","band","nDetIngProd_id"])}, successEditarProducto, null)
 	});
 });

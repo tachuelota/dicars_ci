@@ -75,8 +75,9 @@ class IngresoProductos extends CI_Controller
 	public function editar(){
 
 		$form = $this->input->post('formulario');
-		//$tabla = $this->input->post('tabla',true);		
-		
+		$tabla = $this->input->post('tabla',true);
+		$detalle=array();
+		$idDetalle=null;		
 		if ($form!=null){
 			//CABECERA
 			$id=$form["idingprod"];
@@ -88,7 +89,7 @@ class IngresoProductos extends CI_Controller
 			'cIngProdObsv'=>$Observacion);
 
 			$band = true;
-			//$this->db->trans_begin();
+			$this->db->trans_begin();
 			$IngProducto_id = $this->ingpro->update($IngProducto,$id);
 			if($IngProducto_id === FALSE)
 			{ 
@@ -97,22 +98,40 @@ class IngresoProductos extends CI_Controller
 			} 
 			else
 			{
-			//	foreach ($tabla as $key => $row)
-			//	{
-			//		$tabla[$key]["nIngProd_id"] = intval($IngProducto_id);
-
-			//	}
-			//	if(!$this->detingpro->insert_batch($tabla))
-				//	$band = false;
+			foreach ($tabla as $key => $row)
+				{
+					$tabla[$key]["nIngProd_id"] = intval($IngProducto_id);
+					//$idDetalle=$row["nDetIngProd_id"];
+					$detalle=array(
+							 'nIngProd_id'=>intval($IngProducto_id),
+							 'nProducto_id'=>$row["nProducto_id"],
+							 'nDetIngProdCant'=>$row["nDetIngProdCant"],
+							 'nDetIngProdPrecUnt'=>$row["nDetIngProdPrecUnt"],
+							 'nDetIngProdTot'=>$row["nDetIngProdTot"]);
+					switch ($row["band"]) {
+						case 1:
+							if(!$this->detingpro->delete($IngProducto_id))
+							$band = false;		
+							break;
+						
+						case 2:
+							if(!$this->detingpro->insert($detalle))
+							$band = false;	
+							break;
+						default:
+							$band=true;	
+							break;	
+					}
+				}
 			}
 
-			//if($band)
-			//	$this->db->trans_commit();
-			//else
-			//{
-			//	$this->db->trans_rollback();
-			//	$this->output->set_status_header('400');
-			//}
+			if($band)
+				$this->db->trans_commit();
+			else
+				{
+				$this->db->trans_rollback();
+				$this->output->set_status_header('400');
+			}
 		}
 		else 
 		{
