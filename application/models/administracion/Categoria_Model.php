@@ -59,11 +59,12 @@ class Categoria_Model extends CI_Model {
 		return $query->row_array();
 	}
 
-<<<<<<< Updated upstream
-	function get_categoria_activo(){
-=======
+//<<<<<<< Updated upstream
+	/*function get_categoria_activo(){
+	}*/
+//=======
 	function get_activo(){
->>>>>>> Stashed changes
+//>>>>>>> Stashed changes
 		$query = $this->db->get_where('ven_categoria', array('cCategoriaEst' => 1));
 		return $query -> result_array();
 	}
