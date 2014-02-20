@@ -144,7 +144,7 @@ class Views extends CI_Controller
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
 		$this->load->view('logistica/reg_salidaproductos.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/reg_salidaproductos.js';
+		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/reg_salidaproductos.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
 	}

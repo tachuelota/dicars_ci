@@ -49,5 +49,12 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $detalles)));		
 	}
+	public function get_trabajadores_activos(){
+		//CARGAR PRODUCTOS
+		
+		$this->load->model('administracion/Trabajadores_Model','tra');
+		$result = $this->tra->get_trabajadores_activos();
+		echo json_encode(array('aaData' => $result));
+	}
 
 }

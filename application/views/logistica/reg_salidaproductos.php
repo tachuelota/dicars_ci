@@ -67,12 +67,7 @@
 									<div class="controls">
 										<input class="input-xlarge focused" id="solicitante" name="solicitante" type="text" readonly>
 										<input class="input-xlarge focused" id="solicitante_id" name="solicitante_id" type="hidden">
-<<<<<<< Updated upstream
-										<button id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
-=======
-										<button id="btn-buscar-trabajador" name="btn-buscar-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
->>>>>>> Stashed changes
-										</button>
+										<button id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i></button>
 									</div>
 								</div>
 							</div>
@@ -94,7 +89,7 @@
 						<label class="control-label" for="producto">Producto</label>
 						<div class="controls">
 							<input class="input-xlarge focused" id="producto" name="producto" type="text" readonly>
-							<button type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+							<button id="btn-productos" name="btn-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 								Buscar
 							</button>
 							<label style="display:inline;" for="cantidad">Cantidad</label>
@@ -141,12 +136,13 @@
 						Guardar
 					</button>
 				</div>
+				<!-------MODAL PRODUCTOS---------->
 				<div class="modal hide fade" id="modalBuscarProducto">
 					<div class="modal-header">
 						<h3>Productos</h3>
 					</div>
 					<div class="modal-body">
-						<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getProductos">
 							<thead>
 								<tr>
 									<th>Producto</th>
@@ -155,21 +151,6 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th>Producto 2</th>
-									<th>200</th>
-									<th>30</th>
-								</tr>
-								<tr>
-									<th>Producto 3</th>
-									<th>500</th>
-									<th>10</th>
-								</tr>
-								<tr>
-									<th>Producto 4</th>
-									<th>100</th>
-									<th>60</th>
-								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -184,7 +165,7 @@
 						<h3>Trabajadores</h3>
 					</div>
 					<div class="modal-body">
-						<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/get_trabajadores_activos">
 							<thead>
 								<tr>
 									<th>Nombres</th>
@@ -194,18 +175,6 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th>Diego</th>
-									<th>Molina</th>
-									<th>12345678</th>
-									<th>147852369</th>
-								</tr>
-								<tr>
-									<th>Arturo</th>
-									<th>Méndez</th>
-									<th>98765432</th>
-									<th>963258741</th>
-								</tr>
 							</tbody>
 						</table>
 					</div>
