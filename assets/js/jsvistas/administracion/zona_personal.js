@@ -106,7 +106,7 @@ $(document).ready(function(){
 		} 
 
 	}); 
-	
+
 	var successZonaPersonal = function(){
 		$('#modalEliminar').modal('hide');
 		ZonasPersonalTable.fnReloadAjax()
