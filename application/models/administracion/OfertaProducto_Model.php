@@ -20,8 +20,8 @@ class OfertaProducto_Model extends CI_Model
 		intval($data['band']),
 		intval($data['descuento']));
 		$result = $this->db->query($sql,$params);
-		$result->next_result(); // Dump the extra resultset.
-		$result->free_result(); // Does what it says.
+		$result->next_result();
+		$result->free_result();
 		if ($this->db->trans_status() === FALSE)
 		{
 			return false;

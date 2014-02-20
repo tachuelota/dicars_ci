@@ -72,6 +72,61 @@ class IngresoProductos extends CI_Controller
 	}
 
 
+	public function editar(){
+
+		$form = $this->input->post('formulario');
+		//$tabla = $this->input->post('tabla',true);		
+		
+		if ($form!=null){
+			//CABECERA
+			$id=$form["idingprod"];
+			$DocNumero = $form["edit_numdoc"];
+			$Motivo = $form["tipo"];
+			$Observacion = $form["observacion"];
+						
+			$IngProducto = array('nIngProd_id'=>$id,'nIngProdMotivo' => $Motivo,'cIngProdDocNro' => $DocNumero,
+			'cIngProdObsv'=>$Observacion);
+
+			$band = true;
+			//$this->db->trans_begin();
+			$IngProducto_id = $this->ingpro->update($IngProducto,$id);
+			if($IngProducto_id === FALSE)
+			{ 
+				$this->output->set_status_header('400');
+				$band = false;
+			} 
+			else
+			{
+			//	foreach ($tabla as $key => $row)
+			//	{
+			//		$tabla[$key]["nIngProd_id"] = intval($IngProducto_id);
+
+			//	}
+			//	if(!$this->detingpro->insert_batch($tabla))
+				//	$band = false;
+			}
+
+			//if($band)
+			//	$this->db->trans_commit();
+			//else
+			//{
+			//	$this->db->trans_rollback();
+			//	$this->output->set_status_header('400');
+			//}
+		}
+		else 
+		{
+			$this->output->set_status_header('400');
+			$return = "bad";
+		} 
+	
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode("ok"));
+	}
+
+
+
 }
 
 ?>

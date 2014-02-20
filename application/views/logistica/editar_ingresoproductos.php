@@ -33,20 +33,20 @@
 				<h2>INGRESO DE PRODUCTOS: EDITAR</h2>
 			</div>
 			<div class="box-content">
-				<form id="RegistrarIngresoForm" class="form-horizontal" method="post" action="">
+				<form id="RegistrarIngresoForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>logistica/IngresoProductos/editar">
 					<fieldset>
 						<div class="row-fluid">
 							<div class="span6">
 								<div class="control-group">
 									<label class="control-label" for="codigo">Número Ingreso</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">000001</span>
-										<input type="hidden" id="idingprod" name="idingprod" value="{{ id }}"></div>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cIngProdNro;?></span>
+										<input type="hidden" id="idingprod" name="idingprod" value="<?php echo $nIngProd_id;?>"></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Diego Molina</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $nomape;?></span>
 									</div>
 								</div>
 								<div class="control-group">
@@ -62,7 +62,7 @@
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Local 1</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cLocalDesc;?></span>
 									</div>
 								</div>
 							</div>
@@ -70,14 +70,13 @@
 								<div class="control-group">
 									<label class="control-label" for="fecha">Fecha</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">01/02/2013</span>
-
+										<span class="help-inline" style="margin-top:5px;"><?php echo $dIngProdFecReg;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="solicitante">Número Documento</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">000001</span>
+										<input class="input-xlarge focused " name="edit_numdoc" id="edit_numdoc" type="text" value="<?php echo $cIngProdDocNro ?>">
 									</div>
 								</div>
 							</div>
@@ -85,7 +84,7 @@
 						<div class="control-group">
 							<label class="control-label" for="observaciones">Observaciones</label>
 							<div class="controls">
-								<span class="help-inline" style="margin-top:5px;">...</span>
+								<textarea id="observacion" name="observacion" class="input-xlarge"><?php echo $cIngProdObsv ?></textarea>
 							</div>
 						</div>
 					</fieldset>
@@ -94,8 +93,9 @@
 					<div class="control-group">
 						<label class="control-label" for="producto">Producto</label>
 						<div class="controls">
-							<input class="input-xlarge focused" id="producto" disabled type="text">
-							<button type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+							<input type="hidden" id="idProducto" name="idProducto">
+							<input class="input-xlarge focused" id="producto" name="producto" disabled type="text">
+							<button id="btn-buscar-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 								Buscar
 							</button>
 							<label style="display:inline;" for="cantidad">Cantidad</label>
@@ -111,29 +111,18 @@
 				<hr>
 				<h3>Detalle de Ingreso de Productos</h3>
 				<hr>
-				<table id="deting_productos_table" name="deting_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+				<table id="edit_ingresoproductos_table" name="edit_ingresoproductos_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url()."logistica/Servicios/get_log_detingprod/".$nIngProd_id;?>">
 					<thead>
 						<tr>
 							<th>Código Producto</th>
 							<th>Cantidad</th>
 							<th>Precio Unit</th>
 							<th>Total</th>
-							<th>Acciones</th>
+							<th>Estado</th>
+							
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>000001</td>
-							<td>2</td>
-							<td>20</td>
-							<td>40</td>
-							<td>
-								<a class='btn btn-info btn-editar' href='#'>
-									<i class='icon-edit icon-white'></i>
-									Editar
-								</a>
-							</td>
-						</tr>
 					</tbody>
 				</table>
 				<div class="form-actions">
@@ -147,31 +136,13 @@
 					</button>
 				</div>
 			</div>
-			<div class="modal hide fade" id="modalEditarDatos" >
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">x</button>
-					<h3>Editar Datos del Ingreso</h3>
-				</div>
-				<div class="modal-body">
-					<form id="EditarIngresoForm" class="form-horizontal">
-						<div class="control-group">
-							<label class="control-label" for="tipo">Cantidad</label>
-							<div class="controls">
-								<input id="cantidadE" type="number" min="1"></div>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-					<a  id="edit_producto" href="#" class="btn btn-primary">Guardar</a>
-				</div>
-			</div>
+
 			<div class="modal hide fade" id="modalBuscarProducto">
 				<div class="modal-header">
 					<h3>Productos</h3>
 				</div>
 				<div class="modal-body">
-					<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+					<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>logistica/Servicios/getProductos">
 						<thead>
 							<tr>
 								<th>Producto</th>
@@ -180,11 +151,6 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<th>Producto 2</th>
-								<th>300</th>
-								<th>10</th>
-							</tr>
 						</tbody>
 					</table>
 				</div>

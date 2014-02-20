@@ -21,5 +21,10 @@ class DetIngProducto_Model extends CI_Model {
 			return true;
 		}
 	}
+	public function get_DetIngProducto($nIngProd_id)
+	{
+		$query = $this->db->query("SELECT * FROM log_detingprod_all  where nIngProd_id =" .$nIngProd_id);
+		return $query->result_array();
+	}
 
 }

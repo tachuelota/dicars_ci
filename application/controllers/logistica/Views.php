@@ -74,11 +74,14 @@ class Views extends CI_Controller
 		$datafooter['active'] = 'ing_prod';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
-	public function editar_ingresoproductos(){
+	public function editar_ingresoproductos($nIngProd_id){
+
+		$this->load->model('logistica/IngProducto_Model','ingprod');		
+		$pagedata = $this->ingprod->get_IngProducto($nIngProd_id);		
 		$dataheader['title'] = 'Dicars - Ingreso Productos (Editar) - ';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/editar_ingresoproductos.php');
+		$this->load->view('logistica/editar_ingresoproductos.php',$pagedata);
 		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/editar_ingresoproductos.js';
 		$datafooter['active'] = 'ing_prod';
 		$this->load->view('templates/footer.php',$datafooter);

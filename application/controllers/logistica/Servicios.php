@@ -27,4 +27,27 @@ class Servicios extends CI_Controller {
 		$result = $this->pro->get_proveedor();
 		echo json_encode(array('aaData' => $result));
 	}
+	public function get_log_ingprod($Desde,$Hasta){		
+
+			$this->load->model('logistica/IngProducto_Model','ingprod');
+			$result = $this->ingprod->get_fromrange($Desde,$Hasta);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
+	}
+	public function get_log_detingprod($nIngProd_id){		
+
+			$this->load->model('logistica/DetIngProducto_Model','detingprod');
+			$detalles=$this->detingprod->get_DetIngProducto($nIngProd_id);
+			foreach ($detalles as $key => $detalle) 
+			{
+			    $detalles[$key]["estadolabel"] = '<span class="label label-success">Activo</span>';
+			    $detalles[$key]["band"] = 1;
+
+			}
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $detalles)));		
+	}
+
 }

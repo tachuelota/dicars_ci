@@ -13,7 +13,7 @@ $(document).ready(function(){
 				case 1:
 					OfertaProductoTable.fnUpdate('<span class="label label-important">Eliminar</span>',index,6);
 					aData.band = 0;
-					console.log(aData);
+					//console.log(aData);
 					break;
 				case 2:
 					OfertaProductoTable.fnDeleteRow(index); 
