@@ -130,14 +130,14 @@ class Servicios extends CI_Controller {
 
 	//CARGAR TIPO IGV
 
-	/*public function getTipoIGVActivo()
+	public function getTipoIGVActivo()
 	{
 		$this->load->model('administracion/TipoIGV_Model','igvm');
 		$result = $this->igvm->get_activo();
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
-	}*/
+	}
 
 	public function getTipoIGV(){
 	$this->load->model('administracion/TipoIGV_Model','igvm');
