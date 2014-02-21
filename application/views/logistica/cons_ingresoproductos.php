@@ -35,7 +35,7 @@
 				</div>
 			</div>
 			<div class="box-content">
-				<div id="IngProductosForm" name="IngProductosForm" class="form-horizontal" action-1="<?php echo base_url();?>logistica/Servicios/get_log_ingprod" action-2="<?php echo base_url();?>logistica/Views/editar_ingresoproductos">
+				<div id="IngProductosForm" name="IngProductosForm" class="form-horizontal" action-1="<?php echo base_url();?>logistica/Servicios/get_log_ingprod" action-2="<?php echo base_url();?>logistica/Views/editar_ingresoproductos" action-3="<?php echo base_url();?>logistica/Views/ver_ingresoproductos">
 					<!-- <div class="form-horizontal">-->
 						<fieldset>
 							<div class="control-group">

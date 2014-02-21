@@ -38,25 +38,25 @@
 								<div class="control-group">
 									<label class="control-label" for="codigo">Número Ingreso</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">000001</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cIngProdNro;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Diego Molina</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $nomape;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="motivo">Motivo</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Devolución</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $nIngProdMotivo ?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Local 1</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cLocalDesc;?></span>
 									</div>
 								</div>
 							</div>
@@ -64,13 +64,13 @@
 								<div class="control-group">
 									<label class="control-label" for="fecha">Fecha</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">01/02/2013</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $dIngProdFecReg;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="solicitante">Número Documento</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">100 - 00001</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cIngProdDocNro ?></span>
 									</div>
 								</div>
 							</div>
@@ -78,7 +78,7 @@
 						<div class="control-group">
 							<label class="control-label" for="observaciones">Observaciones</label>
 							<div class="controls">
-								<span class="help-inline" style="margin-top:5px;">...</span>
+								<span class="help-inline" style="margin-top:5px;"><?php echo $cIngProdObsv ?></span>
 							</div>
 						</div>
 					</fieldset>
@@ -86,7 +86,7 @@
 				<hr>
 				<h3>Detalle</h3>
 				<hr>
-				<table id="deting_productos_table" name="deting_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+				<table id="deting_productos_table" name="deting_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url()."logistica/Servicios/get_log_detingprod/".$nIngProd_id;?>">
 					<thead>
 						<tr>
 							<th>Serie Producto</th>
@@ -96,12 +96,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>000001</td>
-							<td>2</td>
-							<td>20</td>
-							<td>40</td>
-						</tr>
 					</tbody>
 				</table>
 				<div class="form-actions">

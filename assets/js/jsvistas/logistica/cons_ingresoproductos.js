@@ -2,12 +2,16 @@
 $(document).ready(function(){
 	$("#IngProductosForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 	var IngresoProductosTA = new DTActions({
-		'conf': '010',
+		'conf': '110',
 		'idtable': 'ingreso_productos_table',
 		'EditFunction': function(nRow, aData, iDisplayIndex) {
 			//location.href = $("#IngProductosForm").attr("action-2")+aData.nOferta_id;
 			location.href = $("#IngProductosForm").attr("action-2")+"/"+aData.nIngProd_id;
+			
 		},
+		'ViewFunction':function(nRow, aData, iDisplayIndex){
+			location.href = $("#IngProductosForm").attr("action-3")+"/"+aData.nIngProd_id;
+		}
 	});
 
 	IngresoProductosRowCBF = function(nRow, aData, iDisplayIndex){

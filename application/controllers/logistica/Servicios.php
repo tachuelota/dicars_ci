@@ -57,4 +57,28 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
+	public function get_log_salprod($Desde,$Hasta){		
+
+			$this->load->model('logistica/SalProducto_Model','salpro');
+			$result = $this->salpro->get_fromrange($Desde,$Hasta);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
+	}
+	//CARGAR DETALLE DE SALIDA DE PRODUCTOS
+	public function get_log_detsalprod($nSalProd_id){		
+
+			$this->load->model('logistica/DetSalProducto_Model','detsalprod');
+			$detalles=$this->detsalprod->get_DetIngProducto($nSalProd_id);
+			foreach ($detalles as $key => $detalle) 
+			{
+			    $detalles[$key]["estadolabel"] = '<span class="label label-success">Activo</span>';
+			    $detalles[$key]["band"] = 1;
+
+			}
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $detalles)));		
+	}
+
 }

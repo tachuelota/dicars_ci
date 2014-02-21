@@ -44,25 +44,25 @@
 								<div class="control-group">
 									<label class="control-label" for="codigo">N° Sal. Productos</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">000001</span>
+										<span class="help-inline" style="margin-top:5px;"></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Diego Molina</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $registrador;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="motivo">Motivo</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Traslado</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $nSalProdMotivo;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Local 1</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cLocalDesc;?></span>
 									</div>
 								</div>
 							</div>
@@ -70,13 +70,13 @@
 								<div class="control-group">
 									<label class="control-label" for="fecha">Fecha</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">01/02/2013</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $dSalProdFecReg;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="solicitante">Solicitante</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Arturo Méndez</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $solicitante;?></span>
 									</div>
 								</div>
 							</div>
@@ -84,7 +84,7 @@
 						<div class="control-group">
 							<label class="control-label" for="observaciones">Observaciones</label>
 							<div class="controls">
-								<span class="help-inline" style="margin-top:5px;">Para Local 2.</span>
+								<span class="help-inline" style="margin-top:5px;"><?php echo $cSalProdObsv;?></span>
 							</div>
 						</div>
 					</fieldset>
@@ -92,7 +92,7 @@
 				<hr>
 				<h3>Detalle Salida Productos</h3>
 				<hr>
-				<table id="salida_productos_table" name="salida_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+				<table id="salida_productos_table" name="salida_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable"  data-source="<?php echo base_url()."logistica/Servicios/get_log_detsalprod/".$nSalProd_id;?>">
 					<thead>
 						<tr>
 							<th>Producto</th>
@@ -100,10 +100,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Producto 2</td>
-							<td>300</td>
-						</tr>
 					</tbody>
 				</table>
 				<div class="form-actions">
@@ -112,6 +108,7 @@
 					</a>
 				</div>
 			</div>
+			<!----------------Modal EXPORTAR-------------------->
 			<div class="modal hide fade" id="exportmodal">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">×</button>

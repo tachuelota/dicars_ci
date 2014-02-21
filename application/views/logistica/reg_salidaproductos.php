@@ -31,13 +31,14 @@
 				<h2>SALIDA DE PRODUCTOS: REGISTRAR</h2>
 			</div>
 			<div class="box-content">
-				<form id="RegistrarSalidaForm" class="form-horizontal" method="post">
+				<form id="RegistrarSalidaForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>logistica/SalidaProductos/registrar">
 					<fieldset>
 						<div class="row-fluid">
 							<div class="span6">
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
+										<input class="input-xlarge focused" id="registrador_id" name="registrador_id" type="hidden" value="4">
 										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly></div>
 								</div>
 								<div class="control-group">
@@ -53,26 +54,21 @@
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly></div>
+										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly value="2"></div>
 								</div>
 							</div>
 							<div class="span6">
 								<div class="control-group">
 									<label class="control-label" for="fecha">Fecha</label>
 									<div class="controls">
-										<input class="input-xlarge" id="fecha" name="fecha" type="text" required readonly></div>
+										<input class="input-xlarge" id="fecha" name="fecha" type="text" required readonly value="13/02/2014"></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="solicitante">Solicitante</label>
 									<div class="controls">
 										<input class="input-xlarge focused" id="solicitante" name="solicitante" type="text" readonly>
 										<input class="input-xlarge focused" id="solicitante_id" name="solicitante_id" type="hidden">
-<<<<<<< Updated upstream
 										<button id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i></button>
-=======
-										<button id="btn-buscar-trabajador" name="btn-buscar-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
-										</button>
->>>>>>> Stashed changes
 									</div>
 								</div>
 							</div>
@@ -85,7 +81,8 @@
 						</div>
 					</fieldset>
 					<input id="serie" name="serie" type="hidden" required>
-					<input id="numero" name="numero" type="hidden" required></form>
+					<input id="numero" name="numero" type="hidden" required>
+				</form>
 				<hr>
 				<h3>Detalle Salida Productos</h3>
 				<hr>
@@ -94,12 +91,13 @@
 						<label class="control-label" for="producto">Producto</label>
 						<div class="controls">
 							<input class="input-xlarge focused" id="producto" name="producto" type="text" readonly>
+							<input class="input-xlarge focused" id="producto_id" name="producto_id" type="hidden">
 							<button id="btn-productos" name="btn-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 								Buscar
 							</button>
 							<label style="display:inline;" for="cantidad">Cantidad</label>
 							<input id="cantidad" name="cantidad" type="number" min=1 style="margin: 0 18px 0 0;">
-							<button type="submit" class="btn btn-primary">
+							<button type="submit" class="btn btn-primary" id="btn-agregar-detalle" name="btn-agregar-detalle">
 								<i class="icon-plus icon-white"></i>
 								Agregar
 							</button>
@@ -113,21 +111,9 @@
 							<th>Código</th>
 							<th>Nombre</th>
 							<th>Cantidad</th>
-							<th>Acciones</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th>000001</th>
-							<th>Producto 1</th>
-							<th>10</th>
-							<th>
-								<a class='btn btn-danger' href='#'>
-									<i class='icon-trash icon-white'></i>
-									Eliminar
-								</a>
-							</th>
-						</tr>
 					</tbody>
 				</table>
 				<hr>

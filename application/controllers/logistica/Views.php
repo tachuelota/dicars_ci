@@ -86,11 +86,13 @@ class Views extends CI_Controller
 		$datafooter['active'] = 'ing_prod';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
-	public function ver_ingresoproductos(){
+	public function ver_ingresoproductos($nIngProd_id){
+		$this->load->model('logistica/IngProducto_Model','ingprod');		
+		$pagedata = $this->ingprod->get_IngProducto($nIngProd_id);		
 		$dataheader['title'] = 'Dicars - Ingreso Productos (Ver) - ';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/ver_ingresoproductos.php');
+		$this->load->view('logistica/ver_ingresoproductos.php',$pagedata);
 		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/ver_ingresoproductos.js';
 		$datafooter['active'] = 'ing_prod';
 		$this->load->view('templates/footer.php',$datafooter);
@@ -149,11 +151,14 @@ class Views extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 
-	public function ver_salidaproductos(){
+	public function ver_salidaproductos($nSalProd_id){
+		$this->load->model('logistica/SalProducto_Model','salprod');		
+		$pagedata = $this->salprod->get_SalProducto($nSalProd_id);
+			
 		$dataheader['title'] = 'Dicars - Salida Productos (Ver) - ';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/ver_salidaproductos.php');
+		$this->load->view('logistica/ver_salidaproductos.php',$pagedata);
 		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/ver_salidaproductos.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);

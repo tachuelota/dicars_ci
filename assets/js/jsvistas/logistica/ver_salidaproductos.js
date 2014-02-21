@@ -1,23 +1,12 @@
-	var urlExportXLS = "extensiones/reportes_xls/formato_reporte_logistica.php";
-	var urlExportPDF = "extensiones/reportes_pdf/formato_reporte_logistica.php";
-
+	
 	$(document).ready(function(){
-		$("#pdfgen").click(function(){
-			$("#title").val("ORDEN DE SALIDA");
-			$("#exportmodal").modal('show');		
-		});
-		
-		$("#pdfbutton").click(function(e){
-			e.preventDefault();
-			$("#CreatePDFForm").attr("action",urlExportPDF);
-			$("#CreatePDFForm").submit();
-			$("#exportmodal").modal('hide');
-		});
-		
-		$("#xlsutton").click(function(e){
-			e.preventDefault();
-			$("#CreatePDFForm").attr("action",urlExportXLS);
-			$("#CreatePDFForm").submit();
-			$("#exportmodal").modal('hide');
-		});
+		BuscarSalidaProductosdOptions = {
+		"aoColumns":[
+			{ "sWidth": "12%","mDataProp": "cProductoDesc"},
+			{ "sWidth": "12%","mDataProp": "DetSalProdCant"}
+		              ],
+		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
+		//"fnCreatedRow":SalProductosDetalleActions.RowCBFunction
+		};
+		DetalleProductosTable = createDataTable2('salida_productos_table',BuscarSalidaProductosdOptions);
 	});
