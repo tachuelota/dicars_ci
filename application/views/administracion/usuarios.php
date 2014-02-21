@@ -195,6 +195,23 @@
 					<a id="btn_drop_usuario" href="#" class="btn" data-dismiss="modal">Aceptar</a>
 				</div>
 			</div>
+			<div class="modal hide fade" id="is_admin">
+				<div class="modal-header">
+					<h3>Atención</h3>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-error">
+						<p>
+							<i class="icon icon-alert icon-red"></i>
+							No puede desactivar a este usuario.
+						</p>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<a id="btn_drop_usuario" href="#" class="btn" data-dismiss="modal">Aceptar</a>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- content ends -->

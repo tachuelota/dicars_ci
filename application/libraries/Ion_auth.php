@@ -437,6 +437,13 @@ class Ion_auth
 		return null;
 	}
 
+	public function get_admin_group()
+	{
+		$admin_group_name = $this->config->item('admin_group', 'ion_auth');
+		$admin_group = $this->ion_auth_model->groups_byname($admin_group_name);
+		return $admin_group->row_array();
+	}
+
 
 	/**
 	 * is_admin

@@ -81,6 +81,16 @@ $(document).ready(function(){
 		clearForm();
 	};
 
+	var successDesactive = function(data){
+		UsuariosTable.fnReloadAjax();
+		BuscarPersonalTable.fnReloadAjax();		
+		$('#btn-reg-usuario').addClass("current");			
+		$('#btn-update-usuario').removeClass("current");		
+		clearForm();
+		if(data.is_admin)
+			$("#is_admin").modal("show");
+	};
+
 	var clearForm = function(data){			
 		$('#rootwizard').bootstrapWizard('show',0);
 		$("#UsuarioForm").reset();
@@ -102,7 +112,7 @@ $(document).ready(function(){
 	});
 	$("#btn_drop_usuario").click(function(event){
 		event.preventDefault();
-		enviar($("#UsuarioForm").attr("action-4"),{user_id:current_user}, successUsuario, null);
+		enviar($("#UsuarioForm").attr("action-4"),{user_id:current_user}, successDesactive, null);
 	});
 
 

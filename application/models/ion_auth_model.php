@@ -1473,6 +1473,16 @@ class Ion_auth_model extends CI_Model
 		return array();
 	}
 
+	public function groups_byname($name = NULL)
+	{
+		if (isset($name))
+		{
+			$query = $this->db->get_where($this->tables['groups'], array('name' => $name));
+			return $query;
+		}
+		return array();
+	}
+
 	/**
 	 * update
 	 *
