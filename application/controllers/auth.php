@@ -269,7 +269,7 @@ class Auth extends CI_Controller {
 
 
 	//activate the user
-	function activate($id, $code=false)
+	function activate()
 	{
 		if(isset($_POST) && !empty($_POST))
 		{
@@ -277,8 +277,6 @@ class Auth extends CI_Controller {
 			if (!$activation)
 				$this->output->set_status_header('400');
 		}
-			
-
 		$this->output
 				->set_content_type('application/json')
 				->set_output(json_encode("finish"));
@@ -288,16 +286,15 @@ class Auth extends CI_Controller {
 	function deactivate()
 	{
 		if(isset($_POST) && !empty($_POST))
-			if ($this->ion_auth->logged_in() && $this->ion_auth->is_admin())
-				$this->ion_auth->deactivate($this->input->post('user_id'));
-			else
-				$this->output->set_status_header('400');
+		{
+			$this->ion_auth->deactivate($this->input->post('user_id'));
+		}
 		else
 			$this->output->set_status_header('400');
 
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode("finish"));
+				->set_output(json_encode($this->input->post('user_id')));
 	}
 
 	//create a new user
@@ -357,7 +354,7 @@ class Auth extends CI_Controller {
 
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode($form));
+				->set_output(json_encode($this->ion_auth->get_user_id()));
 	}
 
 	// create a new group

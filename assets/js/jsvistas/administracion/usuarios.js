@@ -5,6 +5,7 @@ $(document).ready(function(){
 	var SelectUsuarioData = new Array();
 	var isEdit = false;
 	var validate = true;
+	var current_user = null
 
 	$("#UsuarioForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 
@@ -36,23 +37,39 @@ $(document).ready(function(){
 	});
 
 	var UsuariosDTA = new DTActions({
-		'conf': '010',
+		'conf': '011',
 		'idtable': 'marcas_table',
 		'EditFunction': function(nRow, aData, iDisplayIndex)
 		{			
 			clearForm();
 			$('#btn-update-usuario').addClass("current");
 			$('#btn-reg-usuario').removeClass("current");
-			$("#username").attr('readonly','true');
 			$("#btn-trabajador").hide();
 			var groups = getAjaxObject($("#tab2").attr("data-source")+aData.id);
 			$(groups).each(function(index){
 				$("#group"+this.id).attr("checked","checked");					
 			});
 			$('#tab2 input:checkbox').uniform();
+			$("#username").attr('readonly','true');
+			$("#username").removeClass("validate[required]");
 			$("#username").val(aData.username);
 			$("#nombre_trabajador").val(aData.nomape);
+			$("#nombre_trabajador").removeClass("validate[required]");
+			$("#password").removeClass("validate[required]");
 			$("#user_id").val(aData.id);
+		},
+		'DropFunction':function(nRow, aData, iDisplayIndex)
+		{
+			if(aData.active == "1")
+			{
+				$("#show_user").text(aData.nomape);
+				current_user = aData.id;
+				$("#comfir_desactivar").modal("show");
+			}
+			else
+			{
+				enviar($("#UsuarioForm").attr("action-3"),{user_id:aData.id}, successUsuario, null);
+			}
 		}
 	});
 
@@ -71,6 +88,9 @@ $(document).ready(function(){
 		$('#tab2 input:checkbox').uniform();
 		$("#username").removeAttr('readonly');
 		$("#btn-trabajador").show();
+		$("#username").addClass("validate[required]");
+		$("#nombre_trabajador").addClass("validate[required]");
+		$("#password").addClass("validate[required]");
 	};
 
 
@@ -79,6 +99,10 @@ $(document).ready(function(){
 		$('#btn-reg-usuario').addClass("current");			
 		$('#btn-update-usuario').removeClass("current");
 		clearForm();
+	});
+	$("#btn_drop_usuario").click(function(event){
+		event.preventDefault();
+		enviar($("#UsuarioForm").attr("action-4"),{user_id:current_user}, successUsuario, null);
 	});
 
 

@@ -53,7 +53,7 @@
 						  <div class="bar"></div>
 						</div>
 					</div>
-					<form id="UsuarioForm" action-1="<?php echo base_url();?>auth/create_user" action-2="<?php echo base_url();?>auth/edit_user">
+					<form id="UsuarioForm" action-1="<?php echo base_url();?>auth/create_user" action-2="<?php echo base_url();?>auth/edit_user" action-3="<?php echo base_url();?>auth/activate" action-4="<?php echo base_url();?>auth/deactivate">
 						<div class="tab-content">
 							<div class="tab-pane" id="tab1">
 								<div class="form-horizontal box-content">
@@ -71,13 +71,13 @@
 									<div class="control-group">
 										<label class="control-label" for="username">Usuario ID</label>
 										<div class="controls">
-											<input class="input-xlarge focused validate[required]" id="username" name="username" type="text" title="El usuario puede contener leras y números" maxlength="20"></div>
+											<input class="input-xlarge focused validate[required] validate[custom[onlyLetterNumberSp]]" id="username" name="username" type="text" title="El usuario puede contener leras y números" maxlength="20"></div>
 									</div>
 
 									<div class="control-group">
 										<label class="control-label" for="contrasena">Contraseña</label>
 										<div class="controls">
-											<input class="input-xlarge focused validate[equals[password],minSize[8]]" id="password" name="password" type="password">
+											<input class="input-xlarge focused validate[required] validate[minSize[8]]" id="password" name="password" type="password">
 										</div>
 									</div>
 									<div class="control-group">
@@ -176,6 +176,23 @@
 				<div class="modal-footer">
 					<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 					<a  id="select_trabajador" href="#" class="btn btn-primary">Seleccionar</a>
+				</div>
+			</div>
+			<div class="modal hide fade" id="comfir_desactivar">
+				<div class="modal-header">
+					<h3>Atención</h3>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-error">
+						<p>
+							<i class="icon icon-alert icon-red"></i>
+							Desea desactivar a <span id="show_user"></span> ?
+						</p>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<a id="btn_drop_usuario" href="#" class="btn" data-dismiss="modal">Aceptar</a>
 				</div>
 			</div>
 		</div>
