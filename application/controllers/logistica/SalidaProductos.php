@@ -21,16 +21,14 @@ class SalidaProductos extends CI_Controller
 			//CABECERA
 			$idPersonal = $form["registrador_id"];
 			$idLocal = $form["tienda"];
-			$Serie = "1";
-			$Numero = "1";
 			$Fecha=$form["fecha"];
 			$Motivo = $form["motivo"];
 			$idSolicitante = $form["solicitante_id"];
 			$Observacion = $form["observaciones"];
 			//$Observacion = $form["observacion"];
 							
-			$SalProducto = array('nPersonal_id' => $idPersonal,'nLocal_id' =>$idLocal,'cSalProdSerie'=>$Serie,
-			'cSalProdNro'=> $Numero,'dSalProdFecReg' => $Fecha,'nSalProdMotivo' => $Motivo,'nSolicitante_id' => $idSolicitante,
+			$SalProducto = array('nPersonal_id' => $idPersonal,'nLocal_id' =>$idLocal,
+			'dSalProdFecReg' => $Fecha,'nSalProdMotivo' => $Motivo,'nSolicitante_id' => $idSolicitante,
 			'cSalProdObsv'=>$Observacion);
 
 			$band = true;

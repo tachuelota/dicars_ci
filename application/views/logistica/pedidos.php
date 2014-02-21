@@ -32,7 +32,7 @@
 					<div class="box-header well" data-original-title>
 						<h2>LISTA DE PEDIDOS</h2>
 						<div class="box-icon">
-							<a href="logistica_pedidos_registrar.html" class="btn btn-round" alt="Registrar Pedido"><i class="icon-plus"></i></a>
+							<a href="<?php echo base_url();?>logistica/views/reg_pedidos/" class="btn btn-round" alt="Registrar Pedido"><i class="icon-plus"></i></a>
 						</div>
 					</div>
 					<div class="box-content">

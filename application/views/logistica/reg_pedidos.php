@@ -88,7 +88,7 @@
 								<label class="control-label" for="producto">Producto</label>
 								<div class="controls">
 									<input class="input-xlarge focused" id="producto" type="text" readonly>
-								  	<button type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"><i class="icon-search icon-white"></i>Buscar</button>
+								  	<button id="btn-productos" name="btn-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"><i class="icon-search icon-white"></i>Buscar</button>
 									<label style="display:inline;" for="cantidad">Cantidad</label>
 									<input id="cantidad" type="number" style="margin: 0 18px 0 0;" min="1" required>
 									<button id="agregar_producto" type="submit" class="btn btn-primary"><i class="icon-plus icon-white"></i>Agregar</button>
@@ -129,21 +129,6 @@
 									  	</tr>
 								  	</thead>   
 								  	<tbody>
-								  		<tr>			  	
-											<td>Producto 1</td>				  
-										  	<td>100</td>
-										  	<td>50.5</td>
-									  	</tr>
-									  	<tr>			  	
-											<td>Producto 2</td>				  
-										  	<td>500</td>
-										  	<td>90</td>
-									  	</tr>
-									  	<tr>			  	
-											<td>Producto 3</td>				  
-										  	<td>50</td>
-										  	<td>60</td>
-									  	</tr>
 								  	</tbody>
 							  </table>
 							</div>

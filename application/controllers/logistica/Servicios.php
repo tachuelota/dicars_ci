@@ -80,5 +80,12 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $detalles)));		
 	}
+	public function getOrdenPedido(){
+		//CARGAR PRODUCTOS
+		
+		$this->load->model('logistica/OrdPedido_Model','ordpe');
+		$result = $this->ordpe->get_ordenpedido();
+		echo json_encode(array('aaData' => $result));
+	}
 
 }

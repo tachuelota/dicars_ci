@@ -55,6 +55,16 @@
 										<textarea id="observaciones" name="observaciones" class="input-xlarge"></textarea>
 									</div>
 								</div>
+								<div class="control-group">
+									<label class="control-label" for="serie">Serie</label>
+									<div class="controls">
+										<input class="input-xlarge focused" id="doc_serie" name="doc_serie" type="text" ></div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="serie">Numero</label>
+									<div class="controls">
+										<input class="input-xlarge focused" id="doc_numero" name="doc_numero" type="text" ></div>
+								</div>
 							</div>
 							<div class="span6">
 								<div class="control-group">
@@ -114,7 +124,7 @@
 								<div class="control-group">
 									<label class="control-label" for="preciod">Importe</label>
 									<div class="controls">
-										<input id="imported" type="number" step="0.01" min="1" style="margin: 0 18px 0 0;">
+										<input id="imported" name="imported" type="number" step="0.01" min="1" style="margin: 0 18px 0 0;">
 										<label style="display:inline;" for="cantidadd"> <strong>Cantidad</strong>
 										</label>
 										<input id="cantidadd" type="number" style="margin: 0 18px 0 0;" min="1">
@@ -132,7 +142,8 @@
 									<label class="control-label" for="producto">Producto</label>
 									<div class="controls">
 										<input class="input-xlarge focused" id="producto" type="text" readonly>
-										<button type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;">
+										<input id="producto_id" name="producto_id" type="hidden">
+										<button id="btn-producto" name="btn-producto" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;">
 											<i class="icon-search icon-white"></i>
 										</button>
 									</div>
@@ -140,11 +151,11 @@
 								<div class="control-group">
 									<label class="control-label" for="precio">Importe</label>
 									<div class="controls">
-										<input id="importe" type="number" step="0.01" min="1" style="margin: 0 18px 0 0;" >
+										<input id="importe" name="importe" type="number" step="0.01" min="1" style="margin: 0 18px 0 0;" >
 										<label style="display:inline;" for="cantidad"> <strong>Cantidad</strong>
 										</label>
 										<input id="cantidad" type="number" style="margin: 0 18px 0 0;" min="1">
-										<button id="agregar_producto" type="button" class="btn btn-primary">
+										<button id="agregar_producto" name="agregar_producto" type="button" class="btn btn-primary">
 											<i class="icon-plus icon-white"></i>
 											Agregar
 										</button>
@@ -156,37 +167,14 @@
 					<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
 						<thead>
 							<tr>
-								<th>Pedido</th>
 								<th>Producto</th>
 								<th>Cantidad</th>
-								<th>Precio S/.</th>
+								<th>Precio Unitario</th>
 								<th>Importe S/.</th>
 								<th>Fecha de registro</th>
-								<th></th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>000001</td>
-								<td>Producto 1</td>
-								<td>50</td>
-								<td>20</td>
-								<td>1000</td>
-								<td>01/02/2013</td>
-								<td>
-									<a class='btn btn-info btn-editar' href='#'>
-										<i class='icon-edit icon-white'></i>
-										Editar
-									</a>
-								</td>
-								<td>
-									<a class='btn btn-danger' href='#'>
-										<i class='icon-trash icon-white'></i>
-										Eliminar
-									</a>
-								</td>
-							</tr>
 						</tbody>
 					</table>
 					<div class="form-actions" style="padding-left: 17px;">
@@ -224,13 +212,13 @@
 							<a id="select_proveedor" href="#" class="btn btn-primary">Seleccionar</a>
 						</div>
 					</div>
-					<!-----------Modal Pedido-------------------->
+					<!-----------Modal ORDEN Pedido-------------------->
 					<div class="modal hide fade" id="modalBuscarOrdPed" style="width: 650px;">
 						<div class="modal-header">
 							<h3>Detalles de Pedido</h3>
 						</div>
 						<div class="modal-body">
-							<table id="select_ordped_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+							<table id="select_ordped_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getOrdenPedido">
 								<thead>
 									<tr>
 										<th rowspan="2">Producto</th>
@@ -247,15 +235,6 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td rowspan="2">Producto 1</td>
-										<td rowspan="2">Diego Molina</td>
-										<td>50</td>
-										<td>50</td>
-										<td>0</td>
-										<td rowspan="2">01/02/2013</td>
-										<td rowspan="2">123456789456132</td>
-									</tr>
 								</tbody>
 							</table>
 						</div>
@@ -264,12 +243,13 @@
 							<a id="select_ordped" href="#" class="btn btn-primary">Seleccionar</a>
 						</div>
 					</div>
+					<!--------------MODAL PRODUCTO------------------------>
 					<div class="modal hide fade" id="modalBuscarProducto">
 						<div class="modal-header">
 							<h3>Productos</h3>
 						</div>
 						<div class="modal-body">
-							<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+							<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getProductos" >
 								<thead>
 									<tr>
 										<th>Código</th>
@@ -278,11 +258,6 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>000001</td>
-										<td>Producto 2</td>
-										<td>300</td>
-									</tr>
 								</tbody>
 							</table>
 						</div>

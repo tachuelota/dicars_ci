@@ -11,13 +11,11 @@ class SalProducto_Model extends CI_Model
 		$this->load->database();
 	}
 	public function insert($SalProducto){
-		$procedure="call sp_ins_logsalprod(?,?,?,?,?,?,?)";
+		$procedure="call sp_ins_logsalprod(?,?,?,?,?)";
 
 		$params =array(
 			intval($SalProducto['nPersonal_id']),
 			intval($SalProducto['nLocal_id']),
-			$SalProducto['cSalProdSerie'],
-			$SalProducto['cSalProdNro'],
 			intval($SalProducto['nSalProdMotivo']),
 			intval($SalProducto['nSolicitante_id']),
 			$SalProducto['cSalProdObsv']

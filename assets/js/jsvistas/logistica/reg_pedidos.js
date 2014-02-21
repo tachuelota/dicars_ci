@@ -43,27 +43,25 @@ var urlES =  "js/es_ES.txt";
 		
 
 		$(document).ready(function(){
-			$('.btn-buscarp').click(function(e){
+
+			var SelectProductosData = new Array();
+
+			//creamos el datatable de proveedor
+			var BuscarProOptions = {
+			"aoColumns":[
+			              { "sWidth": "5%","mDataProp": "nProveedor_id"},
+			              { "sWidth": "5%","mDataProp": "cProveedorRazSocial"},
+			              { "sWidth": "5%","mDataProp": "cProveedorRuc"},
+			              { "sWidth": "5%","mDataProp": "cProveedorTel"}
+			              ],
+			"fnCreatedRow":getSimpleSelectRowCallBack(SelectProductosData)
+			};
+
+			BuscarProductos	Table = createDataTable2('select_proveedor_table',BuscarProOptions);
+
+			//llamar al modal BUSCAR PRODUCTOS
+			$('#btn-productos').click(function(e){
 				e.preventDefault();
-				UnselectRow("select_producto_table");
 				$('#modalBuscarProducto').modal('show');
-			});
-
-			$("#select_producto").click(function(e){
-				e.preventDefault();
-				$('#modalBuscarProducto').modal('hide');
-			});
-
-			$("#btn_enviar_pedido").click(function(e){
-				if($('#id-checkgerencia').is(':checked'))
-					$('#email').val(1);//enviado a gerencia
-				else
-					$('#email').val(0);//NO enviado a gerencia
-				e.preventDefault();
-				$.blockUI({ 
-			    	message: "Registrando...",
-			    	css: { padding: '15px'},
-		    		timeout: 2000
-				});
-			});
+		});
 		});
