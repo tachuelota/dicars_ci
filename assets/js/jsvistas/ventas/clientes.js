@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	$("#ClienteForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 	var Ubigeos = getAjaxObject($("#ClienteForm").attr("data-source"));
 	cargarUbigeo(Ubigeos,"dist", "prov", "dep");
@@ -14,9 +15,7 @@ $(document).ready(function(){
 	};
 	cargarZonas();
 
- 	//-------- nombreTableAccion (..ta)
 	var ClientesTA = new DTActions({
-<<<<<<< Updated upstream
 	'conf': '010',
 	'idtable': 'clientes_table',
 	'EditFunction': function(nRow, aData, iDisplayIndex) {
@@ -33,27 +32,9 @@ $(document).ready(function(){
 		$("#ocupacion").val(aData.cClienteOcup);		
 		$("#idClientes").val(aData.nCliente_id);
 		cargarZonas();
-=======
-		'conf': '010',
-		'idtable': 'clientes_table',
-		'EditFunction': function(nRow, aData, iDisplayIndex) {		
-			$("#btn-reg-clientes").hide();
-			$("#btn-editar-clientes").show();
-	  		$('#modalClientes').modal('show');
-	  		$("#nombres").val(aData.cClienteNom);	  				
-	  		$("#apellidos").val(aData.cClienteApe);
-	  		$("#dni").val(aData.cClienteDNI);	  		
-	  		$("#referencia").val(aData.cClienteRef);	  		
-	  		$("#direccion").val(aData.cClientecDir);	  		
-	  		$("#lineaop").val(aData.nClienteLineaOp);	  		
-	  		$("#ocupacion").val(aData.cClienteOcup);
-	  		//$("#zona").val(aData.nZona_id);	 
-	  		$("#idClientes").val(aData.nCliente_id);
->>>>>>> Stashed changes
 		},
 	});
 
-//----------------------
    ClientesRowCBF = function(nRow, aData, iDisplayIndex){
 	ClientesTA.RowCBFunction(nRow, aData, iDisplayIndex);	
 	};
@@ -125,4 +106,4 @@ $(document).ready(function(){
 	$("#exportmodal").modal('hide');
 	});
 	  // fin
-	});
+});

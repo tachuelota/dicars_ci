@@ -327,7 +327,7 @@ class Auth extends CI_Controller {
 	//edit a user
 	function edit_user()
 	{
-		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
+		if (!$this->ion_auth->logged_in())
 		{
 			redirect('login', 'refresh');
 		}
@@ -345,9 +345,11 @@ class Auth extends CI_Controller {
 			}
 
 			$this->ion_auth->remove_from_group('', $user_id);
-			foreach ($form["groups"] as $grp)
-			{
-				$this->ion_auth->add_to_group($grp, $user_id);
+			if (isset($form["groups"]) && !empty($form["groups"])) {
+				foreach ($form["groups"] as $grp)
+				{
+					$this->ion_auth->add_to_group($grp, $user_id);
+				}
 			}
 		}
 		else
@@ -355,7 +357,7 @@ class Auth extends CI_Controller {
 
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode("finish"));
+				->set_output(json_encode($form));
 	}
 
 	// create a new group
