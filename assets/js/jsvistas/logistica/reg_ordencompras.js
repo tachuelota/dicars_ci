@@ -40,11 +40,34 @@ $('#xlscuadrecaja').click(function(e){
 	$('#table_cuadrecaja').val('');
 	$('#modalcuadrecaja').modal('hide');
 });
-$(document).ready(function(){
+//**********************************************************/
+	$(document).ready(function(){
+		var SelectProveeedoresData = new Array();
 
-	$("#date01,#date02").val(fechaAhora());
+		//creamos el datatable de proveedor
+		var BuscarProOptions = {
+		"aoColumns":[
+		              { "sWidth": "5%","mDataProp": "nProveedor_id"},
+		              { "sWidth": "5%","mDataProp": "cProveedorRazSocial"},
+		              { "sWidth": "5%","mDataProp": "cProveedorRuc"},
+		              { "sWidth": "5%","mDataProp": "cProveedorTel"}
+		              ],
+		"fnCreatedRow":getSimpleSelectRowCallBack(SelectProveeedoresData)
+		};
 
-	$('.btn-danger').click(function(){
-		$("#EliminarOrdCompraAlert").modal('show');
+
+		BuscarProveedoresTable = createDataTable2('select_proveedor_table',BuscarProOptions);
+
+		//llamar al modal proveedor
+		$('#btn-proveedor').click(function(e){
+			e.preventDefault();
+			$('#modalBuscarProveedor').modal('show');
+		});
+		//llamar al modal pedido
+		$('#btn-pedido').click(function(e){
+			e.preventDefault();
+			$('#modalBuscarOrdPed').modal('show');
+		});
+
+
 	});
-});

@@ -45,7 +45,7 @@
 									<div class="controls">
 										<input class="input-xlarge focused" id="proveedor" name="proveedor" type="text" readonly>
 										<input id="proveedor_id" name="proveedor_id" type="hidden">
-										<button type="button" class="btn btn-info btn-proveedor" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+										<button id="btn-proveedor" name="btn-proveedor" type="button" class="btn btn-info btn-proveedor" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 										</button>
 									</div>
 								</div>
@@ -98,7 +98,7 @@
 									<label class="control-label" for="ordped">Pedido</label>
 									<div class="controls">
 										<input class="input-xlarge focused" id="ordped" name="ordped" type="text" readonly>
-										<button type="button" class="btn btn-info btn-ordped" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+										<button id="btn-pedido" name="btn.pedido" type="button" class="btn btn-info btn-ordped" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 										</button>
 									</div>
 								</div>
@@ -199,12 +199,14 @@
 							Guardar
 						</button>
 					</div>
+					<!-------------MODAL PROVEEDOR------------------>
 					<div class="modal hide fade" id="modalBuscarProveedor">
 						<div class="modal-header">
 							<h3>Proveedores</h3>
 						</div>
 						<div class="modal-body">
-							<table id="select_proveedor_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+							<table id="select_proveedor_table" class="table table-striped table-bordered bootstrap-datatable datatable"
+							data-source="<?php echo base_url();?>logistica/Servicios/getProveedor">
 								<thead>
 									<tr>
 										<th>Código</th>
@@ -213,13 +215,7 @@
 										<th>Teléfono</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>000001</td>
-										<td>Proveedor 1</td>
-										<td>12345678912</td>
-										<td>123456</td>
-									</tr>
+								<tbody>	
 								</tbody>
 							</table>
 						</div>
@@ -228,6 +224,7 @@
 							<a id="select_proveedor" href="#" class="btn btn-primary">Seleccionar</a>
 						</div>
 					</div>
+					<!-----------Modal Pedido-------------------->
 					<div class="modal hide fade" id="modalBuscarOrdPed" style="width: 650px;">
 						<div class="modal-header">
 							<h3>Detalles de Pedido</h3>

@@ -30,7 +30,7 @@
 			<div class="box-header well" data-original-title>
 				<h2>ORDENES DE COMPRA</h2>
 				<div class="box-icon">
-					<a href="logistica_orden_compra_registrar.html" class="btn btn-round" alt="Registrar Orden de Compra"> <i class="icon-plus"></i>
+					<a href="<?php echo base_url();?>logistica/Views/reg_ordencompra/" class="btn btn-round" alt="Registrar Orden de Compra"> <i class="icon-plus"></i>
 					</a>
 				</div>
 			</div>
