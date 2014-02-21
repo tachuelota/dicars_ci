@@ -38,13 +38,13 @@
 				</a>
 			</li>
 			<li id="ventas_rep">
-				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_zonas">
+				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_ventas">
 					<i class="icon icon-black icon-page"></i>
 					<span class="hidden-tablet">Reporte de Ventas Tienda/Zona</span>
 				</a>
 			</li>
 			<li id="clienteszonas_rep">
-				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_ventas">
+				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_zonas  ">
 					<i class="icon icon-black icon-page"></i>
 					<span class="hidden-tablet">Reporte Clientes/Zona</span>
 				</a>

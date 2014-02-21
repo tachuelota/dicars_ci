@@ -59,18 +59,18 @@
 								<div class="control-group">
 									<label class="control-label" for="nom_categoria">Nombre de Categoría</label>
 									<div class="controls">
-										<input class="input focused validate[required,custom[onlyLetterNumberSp]]" id="nom_categoria" name="nom_categoria" type="text" ></div>
+										<input class="input focused validate[required,custom[onlyLetterNumberSp]]" id="nom_categoria" name="nom_categoria" type="text" data-prompt-position="topLeft"></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="desc_categoria">Descripción</label>
 									<div class="controls">
-										<textarea class="input focused validate[required,custom[onlyLetterNumberSp]]" id="desc_categoria" name="desc_categoria"></textarea>
+										<textarea class="input focused validate[required]" id="desc_categoria" name="desc_categoria" data-prompt-position="topLeft"></textarea>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="selectEstado">Estado</label>
 									<div class="controls">
-										<select id="selectEstado" name="selectEstado" required>
+										<select id="selectEstado" name="selectEstado" class="validate[required]">
 											<option value="1">Habilitado</option>
 											<option value="0">Inhabilitado</option>
 										</select>

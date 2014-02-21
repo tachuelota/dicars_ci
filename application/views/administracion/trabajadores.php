@@ -56,49 +56,49 @@
 										  <div class="control-group">
 											<label class="control-label" for="nombres">Nombres</label>
 											<div class="controls">
-											  <input class="input-xlarge focused validate[required]" maxlength="50" title="Este campo debe ser sólo letras" id="nombres" name="nombres" type="text">
+											  <input class="input-xlarge focused validate[required,custom[onlyLetterSp]]" maxlength="50" title="Este campo debe ser sólo letras" id="nombres" name="nombres" type="text"  data-prompt-position="topLeft">
 											</div>
 										  </div>
 										  <div class="control-group">
 											<label class="control-label" for="apellidos">Apellidos</label>
 											<div class="controls">
-											  <input class="input-xlarge focused validate[required]" maxlength="50"  title="Este campo debe ser sólo letras" id="apellidos" name="apellidos" type="text">
+											  <input class="input-xlarge focused validate[required,custom[onlyLetterSp]]" maxlength="50"  title="Este campo debe ser sólo letras" id="apellidos" name="apellidos" type="text" data-prompt-position="topLeft">
 											</div>
 										  </div>
 										  <div class="control-group">
 											<label class="control-label" for="fechanacimiento">Fecha de Nacimiento</label>
 											<div class="controls">
-											  <input type="text" placeholder="dd/mm/YYYY"  maxlength="10" title="Debe ingresar un formato de fecha correcto" class="input-xlarge datepicker" id="fechanacimiento" name="fechanacimiento" required>
+											  <input type="text" placeholder="dd/mm/YYYY"  maxlength="10" title="Debe ingresar un formato de fecha correcto" class="input-xlarge datepicker validate[required,custom[date]]" id="fechanacimiento" name="fechanacimiento" data-prompt-position="topLeft">
 											</div>
 										  </div>					  
 										  <div class="control-group">
 											<label class="control-label" for="edad">Edad</label>
 											<div class="controls">
-											  <input class="input-xlarge focused validate[required]" maxlength="2" title="Este campo sólo admite números" id="edad" name="edad" type="text">
+											  <input class="input-xlarge focused validate[required,custom[onlyLetterNumber]]" maxlength="2" title="Este campo sólo admite números" id="edad" name="edad" type="text" data-prompt-position="topLeft">
 											</div>
 										  </div>
 										  <div class="control-group">
 											<label class="control-label" for="dni">DNI</label>
 											<div class="controls">
-											  <input class="input-xlarge focused" maxlength="8"  title="Este campo debe tener 8 números" id="dni" name="dni" type="text" required>
+											  <input class="input-xlarge focused validate[required,custom[onlyLetterNumber]]"  maxlength="8"  title="Este campo debe tener 8 números" id="dni" name="dni" type="text" data-prompt-position="topLeft">
 											</div>
 										  </div>
 										  <div class="control-group">
 											<label class="control-label" for="telefono">Teléfono</label>
 											<div class="controls">
-											  <input class="input-xlarge focused" placeholder="999999999"  maxlength="12" title="Este campo sólo acepta 9 números obligatorios" id="telefono" name="telefono" type="text" required>
+											  <input class="input-xlarge focused validate[required,custom[onlyLetterNumber]]" placeholder="999999999"  maxlength="12" title="Este campo sólo acepta 9 números obligatorios" id="telefono" name="telefono" type="text" data-prompt-position="topLeft">
 											</div>
 										  </div>
 										  <div class="control-group">
 											<label class="control-label" for="email">Email</label>
 											<div class="controls">
-											  <input class="input-xlarge focused" maxlength="100" placeholder="example@domain.com" title="Debe ingresar un formato de email correcto" id="email" name="email" type="email" required>
+											  <input class="input-xlarge focused validate[required,custom[email]]" maxlength="100" placeholder="example@domain.com" title="Debe ingresar un formato de email correcto" id="email" name="email" type="email" data-prompt-position="topLeft">
 											</div>
 										  </div>					  
 										  <div class="control-group">
 											<label class="control-label" for="sexo">Sexo</label>
 											<div class="controls">
-											  <select id="sexo" name="sexo" > 
+											  <select id="sexo" name="sexo" class="validate[required]" data-prompt-position="topLeft"> 
 												<option value="M">M</option>
 												<option value="F">F</option>
 											  </select>
@@ -107,14 +107,14 @@
 										  <div class="control-group">
 											<label class="control-label" for="cargo">Cargo</label>
 											<div class="controls">
-											  <select id="cargo" class="SelectAjax" name="cargo" data-source="<?php echo base_url();?>administracion/servicios/getcargos" attrval="nCargo_id" attrdesc="nCargoDesc">
+											  <select id="cargo" class="SelectAjax validate[required]" name="cargo" data-source="<?php echo base_url();?>administracion/servicios/getcargos" attrval="nCargo_id" attrdesc="nCargoDesc" data-prompt-position="topLeft">
 											  </select>
 											</div>
 										  </div>					  
 										  <div class="control-group">
 											<label class="control-label" for="estado">Estado</label>
 											<div class="controls">
-											  <select id="estado" name="estado" required>
+											  <select id="estado" name="estado" class="validate[required]" data-prompt-position="topLeft">
 												<option value="1">Habilitado</option>
 												<option value="0">Inhabilitado</option>
 											  </select>

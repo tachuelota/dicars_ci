@@ -52,12 +52,6 @@ $(document).ready(function(){
 	ClientesTable = createDataTable('clientes_table',UrlaDTable,FormatoClientes,null,ClientesRowCBF);
 
 
-	var successClientes = function(){
-	$('#modalClientes').modal('hide');
-	ClientesTable.fnReloadAjax()
-	}
-
-
 	//--funcion de los botones
 
 	$('#modalClientes').on('hidden', function(){		
@@ -67,19 +61,23 @@ $(document).ready(function(){
 	});
 
 	$("#btn-reg-clientes").click(function(event){
-	event.preventDefault();
-	if($("#ClienteForm").validationEngine('validate'))
-	{
-	enviar($("#ClienteForm").attr("action-1"),{formulario:$("#ClienteForm").serializeObject()}, successClientes, null);
-	}
+		event.preventDefault();
+		if($("#ClienteForm").validationEngine('validate'))
+		{
+		enviar($("#ClienteForm").attr("action-1"),{formulario:$("#ClienteForm").serializeObject()}, successClientes, null);
+		}
 	});
+
 	$("#btn-editar-clientes").click(function(event){
-	event.preventDefault();
-	if($("#ClienteForm").validationEngine('validate'))
-	enviar($("#ClienteForm").attr("action-2"),{formulario:$("#ClienteForm").serializeObject()}, successClientes, null);
+		event.preventDefault();
+		if($("#ClienteForm").validationEngine('validate'))
+		enviar($("#ClienteForm").attr("action-2"),{formulario:$("#ClienteForm").serializeObject()}, successClientes, null);
 	});
 
-
+	var successClientes = function(){
+		$('#modalClientes').modal('hide');
+		ClientesTable.fnReloadAjax()
+	}
 
 	//codigo del php anterior
 	$('.btn-registrar').click(function(e){

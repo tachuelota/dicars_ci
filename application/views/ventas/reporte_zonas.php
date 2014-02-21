@@ -9,20 +9,15 @@
 	</div>
 </noscript>
 
-<div id="content" class="span10">
-	<!-- content starts -->
-
-	<div>
-		<ul class="breadcrumb">
-			<li>
-				<a href="<?php echo base_url();?>ventas">Home</a>
-				<span class="divider">/</span>
-			</li>
-		</ul>
-	</div>
-
-	<!-- content ends -->
-</div>
-<!--/#content.span10-->
-</div>
-<!--/fluid-row-->
+	<div id="content" class="span10">
+			<!-- content starts -->	
+			<div>
+				<ul class="breadcrumb">
+					<li>
+						<a href="index.html">Home</a> <span class="divider">/</span>
+					</li>
+				</ul>
+			</div>  
+       
+					<!-- content ends -->
+			</div><!--/#content.span10-->

@@ -56,7 +56,7 @@
 									<div class="control-group">
 										<label class="control-label" for="desc">Nombre de la Zona</label>
 										<div class="controls">
-									  		<input class="input-xlarge focused" id="desc" name="desc" type="text" >
+									  		<input class="input-xlarge focused validate[required,custom[onlyLetterNumberSp]]" id="desc" name="desc" type="text" data-prompt-position="topLeft">
 										</div>
 								  	</div>
 								  	<div class="control-group">

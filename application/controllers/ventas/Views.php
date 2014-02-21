@@ -68,7 +68,7 @@ class Views extends CI_Controller
 		$this->load->view('templates/menu.php');
 		$this->load->view('ventas/reporte_zonas.php');
 		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/reporte_zonas.js';
-		$datafooter['active'] = 'movimientos';
+		$datafooter['active'] = 'clienteszonas_rep';
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 
@@ -132,14 +132,14 @@ class Views extends CI_Controller
 
 	public function reporte_ventas()
 	{
-      	$dataheader['title'] = 'Dicars - Ventas -(registrar)';
+      	$dataheader['title'] = 'Dicars - Ventas -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
 		$this->load->view('ventas/reporte_ventas.php');
 		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/reporte_ventas.js';
-		$datafooter['active'] = 'ventas_rep';
+		$datafooter['active'] ='ventas_rep';
 		$this->load->view('templates/footer.php',$datafooter);
-	}
+	} 
 
 	/*******************MOVIMIENTOS*******************/
 	public function movimientos()

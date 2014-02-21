@@ -56,13 +56,13 @@
 									<div class="control-group">
 										<label class="control-label" for="nombre_tienda">Nombre de la Tienda</label>
 										<div class="controls">
-									  		<input class="input-xlarge focused" id="nombre_tienda" name="nombre_tienda" type="text">
+									  		<input class="input-xlarge focused validate[required]" id="nombre_tienda" name="nombre_tienda" type="text" data-prompt-position="topLeft">
 										</div>
 								  	</div>
 								  	<div class="control-group">
 										<label class="control-label" for="estado">Estado</label>
 										<div class="controls">
-									  		<select id="estado" name="estado">
+									  		<select id="estado" name="estado" class="validate[required]">
 												<option value="1">Habilitado</option>
 												<option value="0">Inhabilitado</option>
 											</select>
@@ -71,19 +71,19 @@
 								  	<div class="control-group">
 										<label class="control-label" for="direccion">Dirección</label>
 										<div class="controls">
-									  		<input class="input-xlarge focused" id="direccion" name="direccion" type="text" maxlength="150" required>
+									  		<input class="input-xlarge focused validate[required]" id="direccion" name="direccion" type="text" maxlength="150" data-prompt-position="topLeft">
 										</div>
 								  	</div>
 								  	<div class="control-group">
 										<label class="control-label" for="telefono">Teléfono</label>
 										<div class="controls">
-									  		<input class="input-xlarge focused" id="telefono" name="telefono" type="text" placeholder="999999999" title="Sólo números de 9 dígitos" maxlength="9" required>
+									  		<input class="input-xlarge focused validate[required]" id="telefono" name="telefono" type="text" placeholder="999999999" title="Sólo números de 9 dígitos" maxlength="11" data-prompt-position="topLeft">
 										</div>
 								  	</div>
 								  	<div class="control-group">
 										<label class="control-label" for="tiprub">Tipo de Rubro</label>
 										<div class="controls">
-									  		<select id="tiprub" name="tiprub" class="SelectAjax" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/3" attrval="cConstanteValor" attrdesc="cConstanteDesc">
+									  		<select id="tiprub" name="tiprub" class="SelectAjax validate[required]" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/3" attrval="cConstanteValor" attrdesc="cConstanteDesc">
 									  		</select>
 										</div>
 								  	</div>

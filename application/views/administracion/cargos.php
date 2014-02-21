@@ -52,21 +52,20 @@
 									  	<div class="control-group">
 											<label class="control-label" for="nom_cargo">Nombre de Cargo</label>
 											<div class="controls">
-										  		<input class="input-xlarge focused" id="nom_cargo" name="nom_cargo" type="text" >
+										  		<input class="input-xlarge focused validate[required]" id="nom_cargo" name="nom_cargo" type="text" data-prompt-position="topLeft">
 											</div>
 									  	</div>
 									  	<div class="control-group">
 											<label class="control-label" for="selectEstado">Estado</label>
 											<div class="controls">
-										  		<select id="selectEstado" name="selectEstado" required>
+										  		<select id="selectEstado validate[required]" name="selectEstado" >
 													<option value="1">Habilitado</option>
 													<option value="0">Inhabilitado</option>
 												</select>
 											</div>
 									  	</div>
 									</fieldset>
-								</div>
-								
+								</div>								
 								<div class="modal-footer">
 									<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
 									<button id="btn-reg-cargo" type="button" class="btn btn-primary ">Registrar</button>
