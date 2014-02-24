@@ -11,29 +11,29 @@ class Producto_model extends CI_Model
 		$this->load->database();
 	}
 
-	function insert($data){
-		
-		$this->db->trans_start(true);
-		
-		$this->db->trans_begin();
-
-		$this->db->query("call sp_ins_producto('$data[cProductoSerie]','$data[cProductoTalla]',$data[nProductoMarca],
-												$data[nProductoTipo],'$data[cProductoDesc]',$data[nProductoPContado],
-							   					$data[nProductoPCredito],$data[nProductoPCosto],'$data[cProductoImage]',
-							   					$data[nCategoria_id],$data[nProductoStockMin],
-							   					$data[nProductoStockMax],$data[nProductoStock],'$data[cProductoEst]',
-							   					$data[nProductoPorcUti],$data[nProductoUtiBruta])"
-						);
-
+	function insert($Producto){
+		$procedure=("call sp_ins_producto
+			($Producto[cProductoSerie],'$Producto[cProductoTalla]',$Producto[nProductoMarca],
+			  $Producto[nProductoTipo],'$Producto[cProductoDesc]',$Producto[nProductoPContado],
+			  $Producto[nProductoPCredito],$Producto[nProductoPCosto],'$Producto[cProductoImage]',
+			  $Producto[nCategoria_id],$Producto[nProductoStockMin],$Producto[nProductoStockMax],
+			  $Producto[nProductoStock],'$Producto[cProductoEst]',$Producto[nProductoPorcUti],
+			  $Producto[nProductoUtiBruta])");
+		$params =array(
+			intval($Producto['nLocal_id']),
+			$Producto['clocalProducto_Estado'],
+			);
+		$result = $this->db->query($procedure,$params);
+		$id = $result->row_array()["id"];
+		$result->next_result();
+		$result->free_result();
 		if ($this->db->trans_status() === FALSE)
 		{
-			$this->db->trans_rollback();
 			return false;
 		}
 		else
 		{
-			$this->db->trans_commit();
-			return true;
+			return $id;
 		}
 	}
 
@@ -85,6 +85,21 @@ class Producto_model extends CI_Model
 	{
 		$productos = $this->db->query("SELECT * FROM ven_productosventa");
 		return $productos->result_array();
+	}
+
+	public function insert_det($data){
+
+		$this->db->insert_det('local_producto',$data);
+		if ($this->db->trans_status() === FALSE)
+		{
+			$this->db->trans_rollback();
+			return false;
+		}
+		else
+		{
+			$this->db->trans_commit();
+			return true;
+		}
 	}
 
 }

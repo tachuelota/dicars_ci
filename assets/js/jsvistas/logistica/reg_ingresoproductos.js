@@ -1,5 +1,4 @@
-
-		$(document).ready(function(){
+$(document).ready(function(){
 
 		var SelectProductosData = new Array();
 		var DataToSend = {};
@@ -17,6 +16,7 @@
 		//	Agregar a la tabla
 		$('#agregar_producto').click(function(event){
 			event.preventDefault();
+			$("#ProductoForm").validationEngine('validate');
 			SelectProductosData[0].nDetIngProdCant = $("#cantidad").val();
 			SelectProductosData[0].nDetIngProdPrecUnt = $("#precio_uni").val();
 			SelectProductosData[0].nDetIngProdTot = 	$("#cantidad").val() * $("#precio_uni").val();
@@ -95,7 +95,6 @@
 	$("#enviar_ingreso_producto").click(function(event){
 		event.preventDefault();
 		if($("#IngresoProductosForm").validationEngine('validate'))
-			
 			enviar($("#IngresoProductosForm").attr("action-1"),{formulario:$("#IngresoProductosForm").serializeObject(),
 				tabla: CopyArray(IngresoProductosTable.fnGetData(),["nProducto_id","nDetIngProdCant","nDetIngProdPrecUnt","nDetIngProdTot"])}, successIngresoProductos, null)
 	});

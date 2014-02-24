@@ -29,9 +29,15 @@ class IngresoProductos extends CI_Controller
 			$DocNumero = $form["docnumero"];
 			$Observacion = $form["observacion"];
 							
-			$IngProducto = array('nPersonal_id' => $idPersonal,'nLocal_id' =>$idLocal,'cIngProdSerie'=>$Serie,
-			'cIngProdNro'=> $Numero,'nIngProdMotivo' => $Motivo,'cIngProdDocSerie' => $DocSerie,'cIngProdDocNro' => $DocNumero,
-			'cIngProdObsv'=>$Observacion);
+			$IngProducto = array(
+				'nPersonal_id' => $idPersonal,
+				'nLocal_id' =>$idLocal,
+				'cIngProdSerie'=>$Serie,
+				'cIngProdNro'=> $Numero,
+				'nIngProdMotivo' => $Motivo,
+				'cIngProdDocSerie' => $DocSerie,
+				'cIngProdDocNro' => $DocNumero,
+				'cIngProdObsv'=>$Observacion);
 
 			$band = true;
 			$this->db->trans_begin();

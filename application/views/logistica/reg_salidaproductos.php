@@ -44,7 +44,7 @@
 								<div class="control-group">
 									<label class="control-label" for="motivo">Motivo</label>
 									<div class="controls">
-										<select class="input-xlarge focused" id="motivo" name="motivo" required>
+										<select class="input-xlarge focused validate[required]" id="motivo" name="motivo">
 											<option value="1">Traslado</option>
 											<option value="2">Para Tienda</option>
 											<option value="3">Otros</option>
@@ -61,7 +61,7 @@
 								<div class="control-group">
 									<label class="control-label" for="fecha">Fecha</label>
 									<div class="controls">
-										<input class="input-xlarge" id="fecha" name="fecha" type="text" required readonly value="13/02/2014"></div>
+										<input class="input-xlarge validate[required]" id="fecha" name="fecha" type="text" readonly value="13/02/2014"></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="solicitante">Solicitante</label>
@@ -80,8 +80,8 @@
 							</div>
 						</div>
 					</fieldset>
-					<input id="serie" name="serie" type="hidden" required>
-					<input id="numero" name="numero" type="hidden" required>
+					<input id="serie" name="serie" type="hidden" class="validate[required]">
+					<input id="numero" name="numero" type="hidden" class="validate[required]">
 				</form>
 				<hr>
 				<h3>Detalle Salida Productos</h3>
@@ -90,13 +90,13 @@
 					<div class="control-group">
 						<label class="control-label" for="producto">Producto</label>
 						<div class="controls">
-							<input class="input-xlarge focused" id="producto" name="producto" type="text" readonly>
+							<input class="input-xlarge focused validate[required]" id="producto" name="producto" type="text" readonly>
 							<input class="input-xlarge focused" id="producto_id" name="producto_id" type="hidden">
 							<button id="btn-productos" name="btn-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 								Buscar
 							</button>
 							<label style="display:inline;" for="cantidad">Cantidad</label>
-							<input id="cantidad" name="cantidad" type="number" min=1 style="margin: 0 18px 0 0;">
+							<input class="validate[required,custom[onlyNumberSp]]" id="cantidad" name="cantidad" type="number" min=1 style="margin: 0 18px 0 0;" data-prompt-position="topLeft">
 							<button type="submit" class="btn btn-primary" id="btn-agregar-detalle" name="btn-agregar-detalle">
 								<i class="icon-plus icon-white"></i>
 								Agregar
