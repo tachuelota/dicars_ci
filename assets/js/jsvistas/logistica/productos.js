@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	$("#ProductoForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 

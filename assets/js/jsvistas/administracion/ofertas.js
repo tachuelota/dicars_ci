@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$("#OfertasForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 	//mostrar Registrar Trabajador------------------------------------>
 	$('.btn-registrar').click(function(event){
 		event.preventDefault();
@@ -7,6 +8,7 @@ $(document).ready(function(){
 	//mostrar Editar Trabajador------------------------------------>
 	$('#enviar_oferta_btn').click(function(event){
 		event.preventDefault();
+		if($("#OfertasForm").validationEngine('validate'))
 		enviar($("#OfertasForm").attr("action-1"),{formulario:$("#OfertasForm").serializeObject()}, successOferta, null)
 	});
 

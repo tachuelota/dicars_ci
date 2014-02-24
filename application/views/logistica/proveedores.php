@@ -66,32 +66,32 @@
 							<div class="control-group">
 								<label class="control-label" for="ruc">RUC</label>
 								<div class="controls">
-									<input class="input-xlarge focused" maxlength="11" id="ruc" name="ruc" type="text"></div>
+									<input class="input-xlarge focused validate[required,custom[onlyNumberSp]] validate[maxSize[11]] validate[minSize[11]]" id="ruc" name="ruc" type="text" data-prompt-position="topLeft"></div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="razonsocial">Razón Social</label>
 								<div class="controls">
-									<input class="input-xlarge focused" type="text" id="razonsocial" name="razonsocial" ></div>
+									<input class="input-xlarge focused validate[required,custom[onlyLetterNumberSp]]" type="text" id="razonsocial" name="razonsocial" data-prompt-position="topLeft"></div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="ccorriente">Cuenta Corriente</label>
 								<div class="controls">
-									<input class="input-xlarge focused" id="ccorriente" name="ccorriente" type="text" maxlength="20"></div>
+									<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" id="ccorriente" name="ccorriente" type="text" maxlength="20" data-prompt-position="topLeft"></div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="direccion">Dirección</label>
 								<div class="controls">
-									<input class="input-xlarge focused" id="direccion" name="direccion" type="text"></div>
+									<input class="input-xlarge focused validate[required]" id="direccion" name="direccion" type="text" data-prompt-position="topLeft"></div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="telefono">Teléfono</label>
 								<div class="controls">
-									<input class="input-xlarge focused" placeholder="999999999" maxlength="9" id="telefono" name="telefono" type="text"></div>
+									<input class="input-xlarge focused validate[required,custom[onlyNumberSp]] validate[maxSize[9]] " placeholder="999999999" id="telefono" name="telefono" type="text" data-prompt-position="topLeft"></div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="email">Email</label>
 								<div class="controls">
-									<input class="input-xlarge focused"  id="email" name="email" type="email"></div>
+									<input class="input-xlarge focused validate[required,custom[email]]"  id="email" name="email" type="email" data-prompt-position="topLeft"></div>
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="paginaweb">Página Web</label>

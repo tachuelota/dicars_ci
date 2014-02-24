@@ -74,25 +74,25 @@
 										  <div class="control-group">
 											<label class="control-label" for="edad">Edad</label>
 											<div class="controls">
-											  <input class="input-xlarge focused validate[required,custom[onlyLetterNumber]]" maxlength="2" title="Este campo sólo admite números" id="edad" name="edad" type="text" data-prompt-position="topLeft">
+											  <input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" maxlength="2" title="Este campo sólo admite números" id="edad" name="edad" type="text" data-prompt-position="topLeft">
 											</div>
 										  </div>
 										  <div class="control-group">
 											<label class="control-label" for="dni">DNI</label>
 											<div class="controls">
-											  <input class="input-xlarge focused validate[required,custom[onlyLetterNumber]]"  maxlength="8"  title="Este campo debe tener 8 números" id="dni" name="dni" type="text" data-prompt-position="topLeft">
+											  <input class="input-xlarge focused validate[required,custom[onlyNumberSp]] validate[maxSize[8]]" title="Este campo debe tener 8 números" id="dni" name="dni" type="text" data-prompt-position="topLeft">
 											</div>
 										  </div>
 										  <div class="control-group">
 											<label class="control-label" for="telefono">Teléfono</label>
 											<div class="controls">
-											  <input class="input-xlarge focused validate[required,custom[onlyLetterNumber]]" placeholder="999999999"  maxlength="12" title="Este campo sólo acepta 9 números obligatorios" id="telefono" name="telefono" type="text" data-prompt-position="topLeft">
+											  <input class="input-xlarge focused validate[required,custom[onlyLetterNumber]]" placeholder="999999999"  maxlength="12" id="telefono" name="telefono" type="text" data-prompt-position="topLeft">
 											</div>
 										  </div>
 										  <div class="control-group">
 											<label class="control-label" for="email">Email</label>
 											<div class="controls">
-											  <input class="input-xlarge focused validate[required,custom[email]]" maxlength="100" placeholder="example@domain.com" title="Debe ingresar un formato de email correcto" id="email" name="email" type="email" data-prompt-position="topLeft">
+											  <input class="input-xlarge focused validate[required,custom[email]]" maxlength="100" placeholder="example@domain.com" id="email" name="email" type="email" data-prompt-position="topLeft">
 											</div>
 										  </div>					  
 										  <div class="control-group">

@@ -58,7 +58,7 @@
 								<div class="control-group">
 									<label class="control-label" for="desc_marca">Nombre de Marca</label>
 									<div class="controls">
-										<input class="input-xlarge focused validate[required,custom[onlyLetterSp]]" id="desc_marca" name="desc_marca" type="text" data-prompt-position="topLeft"></div>
+										<input class="input-xlarge focused validate[required,custom[onlyLetterNumberSp]]" id="desc_marca" name="desc_marca" type="text" data-prompt-position="topLeft"></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="selectEstado">Estado</label>

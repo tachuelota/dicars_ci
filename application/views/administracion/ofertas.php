@@ -60,24 +60,24 @@
 								<div class="control-group">
 									<label class="control-label" for="fecha_ini">Fecha de Inicio</label>
 									<div class="controls">
-										<input type="text" class="input-xlarge datepicker" id="fecha_ini" name="fecha_ini"></div>
+										<input type="text" class="input-xlarge datepicker validate[required,custom[date]]" id="fecha_ini" name="fecha_ini" data-prompt-position="topLeft"></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="fecha_fin">Fecha de Vencimiento</label>
 									<div class="controls">
-										<input type="text" class="input-xlarge datepicker" id="fecha_fin" name="fecha_fin"></div>
+										<input type="text" class="input-xlarge datepicker validate[required,custom[date]]" id="fecha_fin" name="fecha_fin" data-prompt-position="topLeft"></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="descripcion">Descripción</label>
 									<div class="controls">
-										<textarea class="input-xlarge" name="descripcion" maxlength="200" id="descripcion" rows="2" cols=""></textarea>
+										<textarea class="input-xlarge validate[required]" name="descripcion" maxlength="200" id="descripcion" rows="2" data-prompt-position="topLeft"></textarea>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="descuento">Venta Descuento</label>
 									<div class="controls">
 										<div class="input-prepend input-append">
-											<input class="input-xlarge focused " name="descuento" id="descuento" type="text">
+											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" name="descuento" id="descuento" type="text" data-prompt-position="topLeft">
 											<span id="spandesc" class="add-on">%</span>
 										</div>
 									</div>

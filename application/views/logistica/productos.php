@@ -66,13 +66,13 @@
 									<div class="control-group">
 										<label class="control-label" for="serie">Serie</label>
 										<div class="controls">
-											<input maxlength="15" id="serie" name="serie" type="text"></div>
+											<input class=" validate[required,custom[onlyLetterNumber]]" maxlength="15" id="serie" name="serie" type="text"></div>
 									</div>
 
 									<div class="control-group">
 										<label class="control-label" for="talla">Talla</label>
 										<div class="controls">
-											<input required maxlength="15" id="talla" name="talla" type="text"></div>
+											<input class="validate[required,custom[onlyNumberSp]]" maxlength="15" id="talla" name="talla" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="marca">Marca</label>
@@ -95,14 +95,15 @@
 									<div class="control-group">
 										<label class="control-label" for="descripcion">Descripción</label>
 										<div class="controls">
-											<textarea class="input-xlarge" required name="descripcion" maxlength="200" id="descripcion" rows="2" cols=""></textarea>
+											<textarea class="input-xlarge  validate[required]" name="descripcion" maxlength="200" id="descripcion" rows="2" cols=""></textarea>
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="imagen">Subir Imágen</label>
 										<div class="controls">
 											<input type="file" class="input-xlarge" name="imagen" id="imagen">
-											<input type="hidden" name="nombrearchivo" id="nombrearchivo" val=""></div>
+											<input type="hidden" name="nombrearchivo" id="nombrearchivo" >
+										</div>
 									</div>
 									<div class="control-group">
 										<div class="controls">
@@ -111,30 +112,31 @@
 										</div>
 									</div>
 									<div class="control-group">
-										<label class="control-label" for="preciocosto">Precio Costo</label>
+										<label class="control-label " for="preciocosto">Precio Costo</label>
 										<div class="controls">
-											<input required name="preciocosto" id="preciocosto" type="text"></div>
+											<input  class="validate[required,custom[onlyNumberSp]]" name="preciocosto" id="preciocosto" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="preciocontado">Precio Contado</label>
 										<div class="controls">
-											<input required name="preciocontado" id="preciocontado" type="text"></div>
+											<input class="validate[required,custom[onlyNumberSp]]" name="preciocontado" id="preciocontado" type="text"></div>
 									</div>
 
 									<div class="control-group">
 										<label class="control-label" for="preciocredito">Precio Credito</label>
 										<div class="controls">
-											<input required name="preciocredito" id="preciocredito" type="text"></div>
+											<input class="validate[required,custom[onlyNumberSp]]" name="preciocredito" id="preciocredito" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="stockmin">Stock Min</label>
 										<div class="controls">
-											<input required maxlength="11" name="stockmin" id="stockmin" type="text"</div>
+											<input  maxlength="11" name="stockmin" id="stockmin" type="text">
+										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="stockmax">Stock Max</label>
 										<div class="controls">
-											<input required maxlength="11" name="stockmax" id="stockmax" type="text"></div>
+											<input class="validate[required,custom[onlyNumberSp]]" maxlength="11" name="stockmax" id="stockmax" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="estado">Estado</label>
