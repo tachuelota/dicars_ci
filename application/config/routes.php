@@ -40,8 +40,8 @@
 
 $route['default_controller'] = "principal";
 $route['404_override'] = '';
-$route['login'] = "login/login/index";
-$route['logout'] = "login/login/logout";
+$route['login'] = "auth/login";
+$route['logout'] = "auth/logout";
 $route['logistica'] = "logistica/views/index";
 $route['ventas'] = "ventas/views/index";
 $route['administracion'] = "administracion/views/index";

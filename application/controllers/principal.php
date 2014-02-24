@@ -4,10 +4,10 @@ class Principal extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->helper('html');
-		$this->load->library('ion_auth');
-		$this->load->database();
-		$this->lang->load('auth');
+		if (!$this->ion_auth->logged_in())
+		{
+			redirect('login', 'refresh');
+		}
 	}
 	public function index()
 	{

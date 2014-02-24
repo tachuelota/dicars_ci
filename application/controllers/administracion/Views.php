@@ -9,6 +9,10 @@ class Views extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if (!$this->ion_auth->logged_in())
+		{
+			redirect('login', 'refresh');
+		}
 	}
 
 	public function index()
@@ -108,6 +112,8 @@ class Views extends CI_Controller
 	/**************USUARIOS¨¨¨¨¨¨¨¨*******************/
 	public function usuarios()
 	{
+		$this->load->model('administracion/Local_Model','lo');
+		$dataview["locales"] = $this->lo->get_activos();
 		$dataview["groups_ventas"] = $this->ion_auth->groups_bytipo(1);
 		$dataview["groups_logistica"] = $this->ion_auth->groups_bytipo(2);
 		$dataview["groups_administracion"] = $this->ion_auth->groups_bytipo(3);
@@ -190,6 +196,18 @@ class Views extends CI_Controller
 		$this->load->view('templates/menu.php');
 		$this->load->view('administracion/editar_ofertas.php',$pagedata);
 		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/editar_ofertas.js';
+		$datafooter['active'] = '';
+		$this->load->view('templates/footer.php',$datafooter);
+	}
+
+	//Editar Ofertas
+	public function change_password()
+	{
+		$dataheader['title'] = 'Dicars - Cambiar contraseña -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('administracion/change_password.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/administracion/change_password.js';
 		$datafooter['active'] = '';
 		$this->load->view('templates/footer.php',$datafooter);
 	}

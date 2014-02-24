@@ -60,4 +60,16 @@ class Local_Model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function get_activos()
+	{
+		$query = $this ->db->get_where('local',array('nLocalEst' => 1));
+		return $query->result_array();
+	}
+
+	public function by_user($user_id)
+	{
+		$query = $this ->db->query ('SELECT * FROM log_local_users_all where id='.$user_id);
+		return $query -> result_array();
+	}
+
 }

@@ -94,11 +94,10 @@
 	<script src="<?php echo base_url();?>assets/js/prettify.js"></script>
 	<script src="<?php echo base_url();?>assets/js/jquery.bootstrap.wizard.min.js"></script>
 	<script type="text/javascript">
+		var base_url = "<?php echo base_url();?>";
 		$(document).ready(function(){
-			var urlES =  "js/es_ES.txt";
-			var urlExportCierreXLS = "extensiones/reportes_xls/formato_reporte_cuadrecaja.php";
-			var urlExportCierrePDF = "extensiones/reportes_pdf/formato_reporte_cuadrecaja.php";
-
+			var urlExportCierreXLS = base_url + "assets/extensiones/reportes_xls/formato_reporte_cuadrecaja.php";
+			var urlExportCierrePDF = base_url + "assets/extensiones/reportes_pdf/formato_reporte_cuadrecaja.php";			
 			$('#lanza-cierremes').click(function(e){
 				e.preventDefault();
 				$('#modalcierremes').modal('show');
@@ -107,7 +106,7 @@
 			$('#btn-cierremes').click(function(){
 				$('#modalcierremes').modal('hide');
 				var ajax = $.ajax({
-					url: "{{ path('dicars_logistica_servicio_cierremes',{'idlocal':''}) }}/"+2,
+					url: "<?php echo base_url();?>"+2,
 					dataType: "json",
 					async: false
 				});
@@ -136,7 +135,6 @@
 				$('#table_cuadrecaja').val('');
 				$('#modalcuadrecaja').modal('hide');
 			});
-			var urlES =  "<?php echo base_url();?>assets/js/es_ES.txt";
 			$('#<?=$active ?>').addClass('active');
 		});
 	</script>
