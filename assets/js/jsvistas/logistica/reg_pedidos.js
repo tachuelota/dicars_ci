@@ -72,7 +72,7 @@ var urlES =  "js/es_ES.txt";
 			"aoColumns":[
 				{ "sWidth": "12%","mDataProp": "nProducto_id"},
 				{ "sWidth": "12%","mDataProp": "cProductoDesc"},
-				{ "sWidth": "12%","mDataProp": "DetSalProdCant"}
+				{ "sWidth": "12%","mDataProp": "nDetOrdPedCant"}
 				//{ "sWidth": "12%","mDataProp": "nDetIngProdPrecUnt"}			
 			              ],
 			"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
@@ -98,12 +98,24 @@ var urlES =  "js/es_ES.txt";
 				event.preventDefault();
 				SelectProductosData[0].nProducto_id = $("#idProducto").val();
 				SelectProductosData[0].cProductoDesc = $("#producto").val();
-				SelectProductosData[0].DetSalProdCant = $("#cantidad").val();
+				SelectProductosData[0].nDetOrdPedCant = $("#cantidad").val();
 				//SelectProductosData[0].nProducto_id = $("#idProducto").val();
 				DetalleProductosTable.fnAddData(SelectProductosData);
 				$("#producto").val("");
 				$("#idProducto").val("");
 				$("#cantidad").val("");
 		});
+
+			var successIngresoProductos = function(){
+
+			}
+
+			$("#btn_enviar_pedido").click(function(event){
+				event.preventDefault();
+				if($("#RegistrarPedidoForm").validationEngine('validate'))			
+			enviar($("#RegistrarPedidoForm").attr("action-1"),{formulario:$("#RegistrarPedidoForm").serializeObject(),
+				tabla: CopyArray(DetalleProductosTable.fnGetData(),["nProducto_id","nDetOrdPedCant"])}, successIngresoProductos, null)
+	});
+
 
 });

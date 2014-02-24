@@ -32,7 +32,7 @@
 						<h2>PEDIDOS: REGISTRAR</h2>
 					</div>
 					<div class="box-content">
-						<form id="RegistrarPedidoForm" class="form-horizontal" method="post" action="logistica_registrar_pedido.html">
+						<form id="RegistrarPedidoForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>logistica/OrdenPedido/registrar"> 
 							<fieldset>
 								<div class="row-fluid">
 									<div class="span6">
@@ -72,7 +72,7 @@
 										<div class="control-group">
 											<div class="controls">
 												<label class="checkbox inline">
-													<input type="checkbox" id="checkgerencia">Enviar Correo a Gerencia
+													<input type="checkbox" id="checkgerencia" name="checkgerencia">Enviar Correo a Gerencia
 													<input type="hidden" id="email" name="email">
 												</label>
 											</div>
@@ -113,7 +113,7 @@
 						<hr>
 						<div class="form-actions">
 							<a href="logistica_pedidos.html" type="reset" class="btn btn-success btn-cancelar" ><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
-							<button id="btn_enviar_pedido" type="button" class="btn btn-primary" style="float: right;"><i class="icon icon-white icon-save"></i> Guardar</button>
+							<button id="btn_enviar_pedido" name="btn-enviar-pedido" type="button" class="btn btn-primary" style="float: right;"><i class="icon icon-white icon-save"></i> Guardar</button>
 						</div>
 						<!---------------MODAL PRODUCTO---------------------------->
 						<div class="modal hide fade" id="modalBuscarProducto">

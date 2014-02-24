@@ -46,3 +46,33 @@ var urlES =  "js/es_ES.txt";
 		$('.btn-danger').click(function(){
 			$("#EliminarPedidoAlert").modal('show');
 		});
+
+		$(document).ready(function(){
+
+		var OrdenPedidoTA = new DTActions({
+		'conf': '100',
+		'idtable': 'ingreso_productos_table',
+		//'EditFunction': function(nRow, aData, iDisplayIndex) {
+			//location.href = $("#IngProductosForm").attr("action-2")+aData.nOferta_id;
+		//	location.href = $("#IngProductosForm").attr("action-2")+"/"+aData.nIngProd_id;
+			
+		//},
+		'ViewFunction':function(nRow, aData, iDisplayIndex){
+			location.href = $("#IngProductosForm").attr("action-3")+"/"+aData.nIngProd_id;
+		}
+	});
+
+	OrdenPedidoRowCBF = function(nRow, aData, iDisplayIndex){
+		OrdenPedidoTA.RowCBFunction(nRow, aData, iDisplayIndex);	
+	};
+	var UrlaDTable = $("#pedidos_table").attr("data-source");
+	FormatoDTable = [
+		              { "sWidth": "15%","mDataProp": "nomape"},
+		              { "sWidth": "10%","mDataProp": "nOrdPed_id"},
+		              { "sWidth": "20%","mDataProp": "dOrdPedFecReg"},
+		              { "sWidth": "20%","mDataProp": "dOrdePedFecEnt"},
+		              { "sWidth": "10%","mDataProp": "cLocalDesc"},
+		              ];
+
+	OrdenPedidoTable = createDataTable('pedidos_table',UrlaDTable,FormatoDTable,null, OrdenPedidoRowCBF);
+});

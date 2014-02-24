@@ -36,7 +36,7 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<table id="pedidos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table id="pedidos_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getOrdenPedido/">
 						  	<thead>
 							  	<tr>
 									<th>Registrador</th>
@@ -44,20 +44,9 @@
 								  	<th>Fecha de Registro</th>
 								  	<th>Fecha de Entrega</th>
 								  	<th>Local</th>
-								  	<th></th>
-								  	<th></th>
 							  	</tr>
 						  	</thead>   
 						  	<tbody>
-						  		<tr>
-									<td>Diego Molina</td>
-								  	<td>000001</td>
-								  	<td>01/01/2013</td>
-								  	<td>01/02/2013</td>
-								  	<td>Local 1</td>
-								  	<td><a class='btn btn-success btn-datos' href='#'><i class='icon-zoom-in icon-white'></i>Ver Datos</a></td>
-								  	<td><a class='btn btn-danger' href='#'><i class='icon-trash icon-white'></i>Eliminar</a></td>
-							  	</tr>
 						  	</tbody>
 					  </table>       
 					</div>
