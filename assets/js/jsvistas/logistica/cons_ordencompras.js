@@ -40,11 +40,35 @@ $('#xlscuadrecaja').click(function(e){
 	$('#table_cuadrecaja').val('');
 	$('#modalcuadrecaja').modal('hide');
 });
-$(document).ready(function(){
-
-	$("#date01,#date02").val(fechaAhora());
-
-	$('.btn-danger').click(function(){
-		$("#EliminarOrdCompraAlert").modal('show');
+	$(document).ready(function(){
+		$("#OrdCompraForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
+	var OrdenCompraTA = new DTActions({
+		'conf': '100',
+		'idtable': 'ordcom_table',
+		'ViewFunction':function(nRow, aData, iDisplayIndex){
+			location.href = $("#OrdCompraForm").attr("action-2")+"/"+aData.nOrdenCom_id;
+		}
 	});
-});
+	OrdenCompraRowCBF = function(nRow, aData, iDisplayIndex){
+		OrdenCompraTA.RowCBFunction(nRow, aData, iDisplayIndex);	
+	};
+	var UrlaDTable = $("#ordcom_table").attr("data-source");
+	FormatoDTable = [
+		              { "sWidth": "10%","mDataProp": "nOrdenCom_id"},
+		              { "sWidth": "15%","mDataProp": "OrdComFecReg"},
+		              { "sWidth": "20%","mDataProp": "cPersonalNom"},
+		              { "sWidth": "20%","mDataProp": "cProveedorRazSocial"},
+		              { "sWidth": "10%","mDataProp": "nOrdComTotal"}
+		              //{ "sWidth": "10%","mDataProp": "cLocalDesc"}
+		              ];
+
+	OrdenCompraTable = createDataTable('ordcom_table',UrlaDTable,FormatoDTable,null, OrdenCompraRowCBF);
+
+	$("#buscarfecha").click(function(event){
+		date1 = new Date($("#date01").datepicker("getDates"));
+		date2 = new Date($("#date02").datepicker("getDates"));
+		OrdenCompraTable.fnReloadAjax($("#OrdCompraForm").attr("action-1")+"/"+fechaFormatoSQL(date1)+"/"+fechaFormatoSQL(date2))
+	});
+
+	});
+

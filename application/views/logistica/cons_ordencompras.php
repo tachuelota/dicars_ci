@@ -35,15 +35,15 @@
 				</div>
 			</div>
 			<div class="box-content">
-				<div class="form-horizontal">
+				<div id="OrdCompraForm" name="OrdCompraForm" class="form-horizontal" action-1="<?php echo base_url();?>logistica/Servicios/get_log_ordcompra_rangefechas" action-2="<?php echo base_url();?>logistica/Views/ver_ordencompras">
 					<fieldset>
 						<div class="control-group">
 							<label class="control-label">Del</label>
 							<div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" value="02/06/2013" style="margin: 0 18px 0 0;">
+								<input type="text" class="input-xlarge datepicker" id="date01" name="date01">
 								<label style="display:inline;">Al</label>
-								<input type="text" class="input-xlarge datepicker" id="date02" value="02/06/2013" style="margin: 0 18px;">
-								<button id="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+								<input type="text" class="input-xlarge datepicker" id="date02" name="date02">
+								<button id="buscarfecha" name="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 									Buscar
 								</button>
 							</div>
@@ -58,30 +58,9 @@
 							<th>Registrador</th>
 							<th>Proveedor</th>
 							<th>Total S/.</th>
-							<th></th>
-							<th></th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>000001</td>
-							<td>01/01/2013</td>
-							<td>Diego Molina</td>
-							<td>Proveedor 1</td>
-							<td>1000</td>
-							<td>
-								<a class='btn btn-success btn-datos' href='logistica_orden_compra_ver.html'>
-									<i class='icon-zoom-in icon-white'></i>
-									Ver Datos
-								</a>
-							</td>
-							<td>
-								<a class='btn btn-danger' href='#'>
-									<i class='icon-trash icon-white'></i>
-									Eliminar
-								</a>
-							</td>
-						</tr>
 					</tbody>
 				</table>
 			</div>

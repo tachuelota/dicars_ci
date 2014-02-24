@@ -88,4 +88,28 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 
+	//buscar por rango de fechas orden de compras
+	public function get_log_ordcompra_rangefechas($Desde,$Hasta){		
+
+			$this->load->model('logistica/OrdCompra_Model','ordcomp');
+			$result = $this->ordcomp->get_fromrange($Desde,$Hasta);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
+	}
+	public function get_log_ordcompras($nOrdenCom_id){		
+
+			$this->load->model('logistica/DetOrdCompra_Model','detordcompra');
+			$detalles=$this->detordcompra->get_DetOrdCompra($nOrdenCom_id);
+			foreach ($detalles as $key => $detalle) 
+			{
+			    //$detalles[$key]["estadolabel"] = '<span class="label label-success">Activo</span>';
+			    //$detalles[$key]["band"] = 1;
+
+			}
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $detalles)));		
+	}
+
 }

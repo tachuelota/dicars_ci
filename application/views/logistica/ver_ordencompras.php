@@ -46,31 +46,31 @@
 								<div class="control-group">
 									<label class="control-label" for="fec_reg">Fecha de Registro</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">01/01/2013</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $OrdComFecReg;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="codigo">N° Orden Compra</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">000001</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdenCom_id;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Diego Molina</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cPersonalNom;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="proveedor">Proveedor</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Proveedor 1</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cProveedorRazSocial;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="observaciones">Observaciones</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">.</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cOrdComObsv;?></span>
 									</div>
 								</div>
 							</div>
@@ -78,25 +78,25 @@
 								<div class="control-group">
 									<label class="control-label" for="subtotal">Subtotal</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">S/. 1620</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdComSubTotal;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="igv">IGV</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">18 %</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdComIGV;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="descuento">Descuento</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">0 %</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdComDesct;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="total">Total</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">S/. 1000</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdComTotal;?></span>
 									</div>
 								</div>
 							</div>
@@ -106,7 +106,7 @@
 				<hr>
 				<h3>Detalle Orden de Compra</h3>
 				<hr>
-				<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+				<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url()."logistica/Servicios/get_log_ordcompras/".$nOrdenCom_id;?>">
 					<thead>
 						<tr>
 							<th>Producto</th>
@@ -117,13 +117,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Producto 1</td>
-							<td>50</td>
-							<td>20</td>
-							<td>1000</td>
-							<td>000001</td>
-						</tr>
 					</tbody>
 				</table>
 				<div class="form-actions">

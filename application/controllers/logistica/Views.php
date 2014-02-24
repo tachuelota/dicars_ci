@@ -44,12 +44,14 @@ class Views extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 
-	public function ver_ordencompras()
+	public function ver_ordencompras($nOrdenCom_id)
 	{
+		$this->load->model('logistica/OrdCompra_Model','ordcomp');
+		$pagedata = $this->ordcomp->get_OrdCompra_views($nOrdenCom_id);	
 		$dataheader['title'] = 'Dicars - OrdenCompras (Ver) -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/ver_ordencompras.php');
+		$this->load->view('logistica/ver_ordencompras.php',$pagedata);
 		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/ver_ordencompras.js';
 		$datafooter['active'] = 'ord_com';
 		$this->load->view('templates/footer.php',$datafooter);

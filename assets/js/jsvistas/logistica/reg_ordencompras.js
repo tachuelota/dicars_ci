@@ -101,7 +101,7 @@ $('#xlscuadrecaja').click(function(e){
 
 		BuscarOrdenPedidodOptions = {
 		"aoColumns":[
-			{ "sWidth": "12%","mDataProp": "idPedido"},
+			{ "sWidth": "12%","mDataProp": "nOrdPed_id"},
 			{ "sWidth": "12%","mDataProp": "cProductoDesc"},
 			{ "sWidth": "12%","mDataProp": "nDetCompraCant"},
 			{ "sWidth": "12%","mDataProp": "PrecioUnitario"},
@@ -154,7 +154,7 @@ $('#xlscuadrecaja').click(function(e){
 		$('#select_ordped').click(function(event){
 			event.preventDefault();
 			//$("#producto_id").val(SelectProductosData[0].nProducto_id);
-			//$('#producto').val(SelectProductosData[0].cProductoDesc);
+			$('#id_pedido').val(SelectOrdenPedidoData[0].nOrdPed_id);
 			$('#ordped').val(SelectOrdenPedidoData[0].cOrdPedSerie+" "+SelectOrdenPedidoData[0].cOrdPedNro+" - "+SelectOrdenPedidoData[0].cProductoDesc);
 			$('#cantidadd').val(SelectOrdenPedidoData[0].nDetOrdPedCant);
 			$('#modalBuscarOrdPed').modal('hide');
@@ -163,7 +163,7 @@ $('#xlscuadrecaja').click(function(e){
 		//	Agregar a la tabla
 		$('#agregar_producto').click(function(event){
 			event.preventDefault();
-			SelectProductosData[0].idPedido = 0;
+			SelectProductosData[0].nOrdPed_id = 0;
 			SelectProductosData[0].cProductoDesc = $("#producto").val();
 			SelectProductosData[0].nDetCompraCant = $("#cantidad").val();
 			SelectProductosData[0].PrecioUnitario = 	$("#importe").val()/ $("#cantidad").val();
@@ -178,23 +178,23 @@ $('#xlscuadrecaja').click(function(e){
 			//console.log(IngresoProductosTable.fnGetData());
 		});
 		//	Agregar a la tabla
-		/*$('#agregar_detalle').click(function(event){
+		$('#agregar_detalle').click(function(event){
 			event.preventDefault();
-			//alert("Hola");
-			SelectOrdenPedidoData[0].nOrdPed_id =1;
-			SelectOrdenPedidoData[0].cProductoDesc = $("#producto").val();
-			SelectOrdenPedidoData[0].nDetCompraCant = $("#cantidad").val();
-			SelectOrdenPedidoData[0].PrecioUnitario = 	$("#importe").val()/ $("#cantidad").val();
-			SelectOrdenPedidoData[0].nDetCompraImporte = $("#importe").val();
-			SelectOrdenPedidoData[0].dOrdPedFecReg = fechanow() ;
+			SelectOrdenPedidoData[0].nOrdPed_id = $("#id_pedido").val();
+			SelectOrdenPedidoData[0].cProductoDesc = $("#ordped").val();
+			SelectOrdenPedidoData[0].nDetCompraCant = $("#cantidadd").val();
+			SelectOrdenPedidoData[0].PrecioUnitario = $("#imported").val()/ $("#cantidadd").val();
+			SelectOrdenPedidoData[0].nDetCompraImporte = $("#imported").val();
+			//SelectOrdenPedidoData[0].dOrdPedFecReg = fechanow() ;
 			OrdenCompraTable.fnAddData(SelectOrdenPedidoData);
-			$("#cantidad").val("");
-			$("#precio_uni").val("");
-			$("#producto").val("");
-			$("#idProducto").val("");
-			$("#importe").val("");
+			//$("#cantidad").val("");
+			//$("#precio_uni").val("");
+			//$("#producto").val("");
+			//$("#idProducto").val("");
+			//$("#importe").val("");
 			//console.log(IngresoProductosTable.fnGetData());
-		});*/
+		});
+
 		var successOrdenCompra = function(){
 		}
 

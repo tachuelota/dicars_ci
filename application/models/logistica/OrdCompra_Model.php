@@ -37,6 +37,23 @@ class OrdCompra_Model extends CI_Model
 			return $id;
 		}
 	}
+
+	public function get_fromrange($Desde,$Hasta)
+	{
+		$query = $this->db->query("select * from log_ordcom_all where OrdComFecReg between '".$Desde."' and '".$Hasta."'");
+		return $query -> result_array();
+	}
+	
+	public function get_OrdCompra_views($nOrdenCom_id = FALSE)
+	{
+		if($nOrdenCom_id === FALSE )
+		{
+			$query = $this ->db->query ('SELECT * FROM log_ordcom_all');
+			return $query -> result_array();
+		}
+		$query = $this->db->query("SELECT * FROM log_ordcom_all  where nOrdenCom_id =" .$nOrdenCom_id);
+		return $query->row_array();
+	}
 	
 }
 

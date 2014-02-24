@@ -108,6 +108,7 @@
 								<div class="control-group">
 									<label class="control-label" for="ordped">Pedido</label>
 									<div class="controls">
+										<input id="id_pedido" name="id_pedido" type="hidden">
 										<input class="input-xlarge focused" id="ordped" name="ordped" type="text" readonly>
 										<button id="btn-pedido" name="btn.pedido" type="button" class="btn btn-info btn-ordped" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 										</button>
@@ -125,11 +126,11 @@
 								<div class="control-group">
 									<label class="control-label" for="preciod">Importe</label>
 									<div class="controls">
-										<input type="hidden" id="idpedido" name="idpedido" />
+										
 										<input id="imported" name="imported" type="number" step="0.01" min="1" style="margin: 0 18px 0 0;">
 										<label style="display:inline;" for="cantidadd"> <strong>Cantidad</strong>
 										</label>
-										<input id="cantidadd" type="number" style="margin: 0 18px 0 0;" min="1">
+										<input id="cantidadd" name="cantidadd" type="number" style="margin: 0 18px 0 0;" min="1">
 										<button id="agregar_detalle" name="agregar_detalle" type="button" class="btn btn-primary">
 											<i class="icon-plus icon-white"></i>
 											Agregar
@@ -223,6 +224,7 @@
 						<div class="modal-body">
 							<table id="select_ordped_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getOrdenPedido">
 								<thead>
+
 									<tr>
 										<th rowspan="2">Producto</th>
 										<th rowspan="2">Registrante</th>

@@ -51,12 +51,12 @@ class DetOrdCompra_Model extends CI_Model {
 			$this->db->trans_commit();
 			return true;
 		}
-	}
-
-	public function get_DetIngProducto($nSalProd_id)
-	{
-		$query = $this->db->query("SELECT * FROM log_detsalprod_all  where nSalProd_id =" .$nSalProd_id);
-		return $query->result_array();
 	}*/
+
+	public function get_DetOrdCompra($nOrdenCom_id)
+	{
+		$query = $this->db->query("SELECT * FROM log_ordcom_all  where nOrdenCom_id =" .$nOrdenCom_id);
+		return $query->result_array();
+	}
 
 }
