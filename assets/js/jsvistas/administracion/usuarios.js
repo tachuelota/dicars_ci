@@ -7,9 +7,13 @@ $(document).ready(function(){
 	var validate = true;
 	var current_user = null
 
-	$("#UsuarioForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
+	$("#UsuarioForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000, promptPosition : "centerRight"});
 
 	$('#rootwizard').bootstrapWizard({
+		onTabClick: function(tab, navigation, index)
+		{
+		return false;
+		},
 		onNext: function(tab, navigation, index) 
 		{
 			if(!$("#UsuarioForm").validationEngine("validate"))
@@ -17,7 +21,7 @@ $(document).ready(function(){
 				return false;
 			}
 		},
-		onTabShow: function(tab, navigation, index) {
+		onTabShow: function(tab, navigation, index){
 			var $total = navigation.find('li').length;
 			var $current = index+1;
 			var $percent = ($current/$total) * 100;
@@ -45,11 +49,16 @@ $(document).ready(function(){
 			$('#btn-update-usuario').addClass("current");
 			$('#btn-reg-usuario').removeClass("current");
 			$("#btn-trabajador").hide();
-			var groups = getAjaxObject($("#tab2").attr("data-source")+aData.id);
+			var groups = getAjaxObject(base_url+"administracion/servicios/get_groupsbyUser/"+aData.id);
 			$(groups).each(function(index){
 				$("#group"+this.id).attr("checked","checked");					
 			});
-			$('#tab2 input:checkbox').uniform();
+
+			var locales = getAjaxObject(base_url+"administracion/servicios/get_LocalbyUser/"+aData.id);
+			$(locales).each(function(index){
+				$("#local"+this.nLocal_id).attr("checked","checked");					
+			});
+			$('#rootwizard input:checkbox').uniform();
 			$("#username").attr('readonly','true');
 			$("#username").removeClass("validate[required]");
 			$("#username").val(aData.username);
@@ -94,8 +103,8 @@ $(document).ready(function(){
 	var clearForm = function(data){			
 		$('#rootwizard').bootstrapWizard('show',0);
 		$("#UsuarioForm").reset();
-		$('#tab2 input:checkbox').removeAttr('checked');
-		$('#tab2 input:checkbox').uniform();
+		$('#rootwizard input:checkbox').removeAttr('checked');
+		$('#rootwizard input:checkbox').uniform();
 		$("#username").removeAttr('readonly');
 		$("#btn-trabajador").show();
 		$("#username").addClass("validate[required]");

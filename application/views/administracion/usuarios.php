@@ -31,10 +31,6 @@
 		<div class="box span12">
 			<div class="box-header well" data-original-title>
 				<h2>USUARIOS</h2>
-				<div class="box-icon">
-					<a href="#" class="btn btn-round btn-registrar" alt="Registrar Categoría"> <i class="icon-plus"></i>
-					</a>
-				</div>
 			</div>
 			<div class="box-content">
 				<div id="rootwizard">
@@ -45,6 +41,9 @@
 							</li>
 							<li>
 								<a href="#tab2" data-toggle="tab">PERMISOS</a>
+							</li>
+							<li>
+								<a href="#tab3" data-toggle="tab">LOCALES</a>
 							</li>
 						</ul>
 					</div>
@@ -88,7 +87,7 @@
 									</div>									
 								</div>
 							</div>
-							<div class="tab-pane" id="tab2" data-source="<?php echo base_url();?>administracion/servicios/get_groupsbyUser/">
+							<div class="tab-pane" id="tab2">
 								<div class="form-horizontal row-fluid">
 									<div class="span4 box-content">
 										<h4 class="top-block">Ventas</h4>
@@ -96,7 +95,7 @@
 											<label class="checkbox">
 												<div class="checker">
 													<span>
-														<input class="validate[required] validate[minCheckbox[1]]" type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>"name="groups[]" value="<?php echo $group['id'];?>" style="opacity: 0;">
+														<input class="validate[required] validate[minCheckbox[1]]" type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>"name="groups[]" style="opacity: 0;">
 													</span>
 												</div> <?php echo $group['name'];?>					
 											</label>
@@ -108,7 +107,7 @@
 											<label class="checkbox">
 												<div class="checker">
 													<span>
-														<input class="validate[minCheckbox[1]]" type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" style="opacity: 0;">
+														<input class="validate[minCheckbox[1]]" type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" name="groups[]" style="opacity: 0;">
 													</span>
 												</div> <?php echo $group['name'];?>					
 											</label>
@@ -120,12 +119,35 @@
 											<label class="checkbox">
 												<div class="checker">
 													<span>
-														<input class="validate[minCheckbox[1]]" type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" style="opacity: 0;">
+														<input class="validate[minCheckbox[1]]" type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" name="groups[]" style="opacity: 0;">
 													</span>
 												</div> <?php echo $group['name'];?>					
 											</label>
 										<?php endforeach?>
 									</div>
+								</div>
+							</div>
+							<div class="tab-pane" id="tab3">
+									<?php $count = 0; ?>
+									<?php foreach ($locales as $local):?>
+										<?php if($count == 0): ?>
+											<div class="row-fluid">
+										<?php endif ?>
+										<div class="span4">
+											<label class="checkbox">
+												<div class="checker">
+													<span>
+														<input class="validate[minCheckbox[1]]" type="checkbox" id="local<?php echo $local['nLocal_id'];?>" name="locales[]" value="<?php echo $local['nLocal_id'];?>" name="groups[]" style="opacity: 0;">
+													</span>
+												</div><?php echo $local["cLocalDesc"];?>					
+											</label>
+										</div>
+										<?php $count++;  ?>
+										<?php if($count == 3):?>
+											</div>
+											<?php $count = 0;?>
+										<?php endif ?>
+									<?php endforeach?>
 								</div>
 							</div>
 						</div>
@@ -192,6 +214,7 @@
 
 				</div>
 				<div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal">Close</a>
 					<a id="btn_drop_usuario" href="#" class="btn" data-dismiss="modal">Aceptar</a>
 				</div>
 			</div>

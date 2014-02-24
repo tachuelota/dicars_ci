@@ -9,16 +9,10 @@ class Auth extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->helper('url');
 
-		// Load MongoDB library instead of native db driver if required
-		//$this->config->item('use_mongodb', 'ion_auth') ?
-		//$this->load->library('mongo_db') :
-
-		$this->load->database();
-
-		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));
-
-		$this->lang->load('auth');
+		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));		
 	}
+
+	
 
 	//redirect if needed, otherwise display the user list
 	function index()
@@ -50,6 +44,69 @@ class Auth extends CI_Controller {
 		}
 	}
 
+	public function login()
+	{
+		if(isset($_POST['username']) && isset($_POST['password']))
+		{
+			$remember = (bool) $this->input->post('remember');
+			if ($this->ion_auth->login($this->input->post('username'), $this->input->post('password'),$remember))
+			{
+				$this->session->set_flashdata('message', $this->ion_auth->messages());
+				redirect('/', 'refresh');
+			}
+			else
+			{
+				$this->session->set_flashdata('message', $this->ion_auth->errors());
+				redirect('login', 'refresh'); 
+			}
+		}
+		else
+		{
+			$dataheader['title'] = 'Dicars - Login -';
+			$dataheader['isloginview'] = true;
+			$this->load->view('templates/headers.php',$dataheader);
+			$this->data['message'] = $this->session->flashdata('message');
+			$this->load->view('login/login.php', $this->data);
+			$datafooter['jsvista'] = '';
+			$datafooter['active'] = '';
+			$this->load->view('templates/footer.php',$datafooter);
+		}
+	}
+	public function logout()
+	{
+		$this->data['title'] = "Logout";
+		$logout = $this->ion_auth->logout();
+		$this->session->set_flashdata('message', $this->ion_auth->messages());
+		redirect('login', 'refresh');
+	}
+
+	public function select_local()
+	{
+		$this->load->model('administracion/Local_Model','lo');
+		if ($this->ion_auth->logged_in())
+		{
+			if(isset($_POST) && !empty($_POST))
+			{
+				$current_local = $this->lo->get_locales($this->input->post('local'));
+				$this->session->set_userdata('current_local', $current_local);
+			}
+			else
+			{
+				$user = $this->ion_auth->user()->row();
+				$dataview["locales"] = $this->lo->by_user($user["id"]);
+				$dataheader['title'] = 'Dicars - Select Local';
+				$this->load->view('templates/headers.php',$dataheader);
+				$this->load->view('login/select_local.php', $dataview);
+				$datafooter['jsvista'] = '';
+				$datafooter['active'] = '';
+				$this->load->view('templates/footer.php',$datafooter);
+			}
+		}
+		else
+			redirect('login', 'refresh');
+	}
+
+
 	public function getUsersAll(){
 		$result = $this->ion_auth->users_personal();
 		$this->output
@@ -62,69 +119,27 @@ class Auth extends CI_Controller {
 	//change password
 	function change_password()
 	{
-		$this->form_validation->set_rules('old', $this->lang->line('change_password_validation_old_password_label'), 'required');
-		$this->form_validation->set_rules('new', $this->lang->line('change_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_confirm]');
-		$this->form_validation->set_rules('new_confirm', $this->lang->line('change_password_validation_new_password_confirm_label'), 'required');
-
 		if (!$this->ion_auth->logged_in())
 		{
-			redirect('auth/login', 'refresh');
+			redirect('login', 'refresh');
 		}
+
+		$form = $this->input->post('formulario');
 
 		$user = $this->ion_auth->user()->row();
+		
+		$identity = $this->session->userdata($this->config->item('identity', 'ion_auth'));
 
-		if ($this->form_validation->run() == false)
-		{
-			//display the form
-			//set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+		$change = $this->ion_auth->change_password($identity,$form["oldpassword"], $form["password"]);
 
-			$this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
-			$this->data['old_password'] = array(
-				'name' => 'old',
-				'id'   => 'old',
-				'type' => 'password',
-			);
-			$this->data['new_password'] = array(
-				'name' => 'new',
-				'id'   => 'new',
-				'type' => 'password',
-				'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
-			);
-			$this->data['new_password_confirm'] = array(
-				'name' => 'new_confirm',
-				'id'   => 'new_confirm',
-				'type' => 'password',
-				'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
-			);
-			$this->data['user_id'] = array(
-				'name'  => 'user_id',
-				'id'    => 'user_id',
-				'type'  => 'hidden',
-				'value' => $user->id,
-			);
-
-			//render
-			$this->_render_page('auth/change_password', $this->data);
-		}
+		/*if ($change)
+			$this->logout();
 		else
-		{
-			$identity = $this->session->userdata($this->config->item('identity', 'ion_auth'));
+			$this->output->set_status_header('400');*/
 
-			$change = $this->ion_auth->change_password($identity, $this->input->post('old'), $this->input->post('new'));
-
-			if ($change)
-			{
-				//if the password was successfully changed
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				$this->logout();
-			}
-			else
-			{
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect('auth/change_password', 'refresh');
-			}
-		}
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($user["id"]));
 	}
 
 	//forgot password
@@ -277,11 +292,10 @@ class Auth extends CI_Controller {
 			if (!$activation)
 				$this->output->set_status_header('400');
 		}
-		$val = $this->ion_auth->logged_in() && $this->ion_auth->is_admin();
 
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode($val));
+				->set_output(json_encode("finish"));
 	}
 
 	//deactivate the user
@@ -307,6 +321,7 @@ class Auth extends CI_Controller {
 	//create a new user
 	function create_user()
 	{
+		$this->load->model('administracion/UserLocal_Model','ulom');
 		if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
 		{
 			redirect('login', 'refresh');
@@ -316,9 +331,19 @@ class Auth extends CI_Controller {
 			$formserialized = $this->input->post("formulario");
 			$form = array();
 			parse_str($formserialized,$form);
-			if ($this->ion_auth->register($form["username"],  $form["password"], $form["email"], array(
-				'nPersonal_id' => $form["nPersonal_id"]), $form["groups"])===FALSE)
+			$user_id = $this->ion_auth->register($form["username"],  $form["password"], $form["email"], array(
+				'nPersonal_id' => $form["nPersonal_id"]), $form["groups"]);
+
+			if ($user_id === FALSE)
 				$this->output->set_status_header('400');
+			else
+			{
+				$UserLocal = array();
+				foreach ($form["locales"] as $local) 
+					$UserLocal[] = array("nLocal_id"=>$local,"users_id"=> $user_id);
+				if(!$this->ulom->insert_batch($UserLocal))
+					$this->output->set_status_header('400');
+			}
 		}
 		else
 			$this->output->set_status_header('400');
@@ -331,6 +356,7 @@ class Auth extends CI_Controller {
 	//edit a user
 	function edit_user()
 	{
+		$this->load->model('administracion/UserLocal_Model','ulom');
 		if (!$this->ion_auth->logged_in())
 		{
 			redirect('login', 'refresh');
@@ -358,6 +384,14 @@ class Auth extends CI_Controller {
 					{
 						$this->ion_auth->add_to_group($grp, $user_id);
 					}
+				}
+				if($this->ulom->clear($user_id))
+				{
+					$UserLocal = array();
+					foreach ($form["locales"] as $local) 
+						$UserLocal[] = array("nLocal_id"=>$local,"users_id"=> $user_id);
+					if(!$this->ulom->insert_batch($UserLocal))
+						$this->output->set_status_header('400');
 				}
 			}
 		}

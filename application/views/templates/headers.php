@@ -81,12 +81,9 @@
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
-						<li>
-							<a href="{{path('fos_user_profile_edit')}}">Perfil</a>
-						</li>
 						<li class="divider"></li>
 						<li>
-							<a href="{{path('fos_user_change_password')}}">Cambiar Contraseña</a>
+							<a href="<?php echo base_url();?>administracion/views/change_password">Cambiar Contraseña</a>
 						</li>
 						<li class="divider"></li>
 						<li>

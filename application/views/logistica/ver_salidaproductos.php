@@ -44,25 +44,25 @@
 								<div class="control-group">
 									<label class="control-label" for="codigo">N° Sal. Productos</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"></span>
+										<span class="help-inline" style="margin-top:5px;" id="serie_nro"><?php echo $cSalProdSerie." - ".$dSalProdFecReg;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $registrador;?></span>
+										<span class="help-inline" style="margin-top:5px;" id="registrador"><?php echo $registrador;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="motivo">Motivo</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $nSalProdMotivo;?></span>
+										<span class="help-inline" style="margin-top:5px;" id="motivo"><?php echo $nSalProdMotivo;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $cLocalDesc;?></span>
+										<span class="help-inline" style="margin-top:5px;" id="local"><?php echo $cLocalDesc;?></span>
 									</div>
 								</div>
 							</div>
@@ -70,13 +70,13 @@
 								<div class="control-group">
 									<label class="control-label" for="fecha">Fecha</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $dSalProdFecReg;?></span>
+										<span class="help-inline" style="margin-top:5px;" id="fec_reg"><?php echo $dSalProdFecReg;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="solicitante">Solicitante</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $solicitante;?></span>
+										<span class="help-inline" style="margin-top:5px;" id="solicitante"><?php echo $solicitante;?></span>
 									</div>
 								</div>
 							</div>
@@ -84,7 +84,7 @@
 						<div class="control-group">
 							<label class="control-label" for="observaciones">Observaciones</label>
 							<div class="controls">
-								<span class="help-inline" style="margin-top:5px;"><?php echo $cSalProdObsv;?></span>
+								<span class="help-inline" style="margin-top:5px;" id="observacion"><?php echo $cSalProdObsv;?></span>
 							</div>
 						</div>
 					</fieldset>
@@ -101,6 +101,12 @@
 					</thead>
 					<tbody>
 					</tbody>
+					<tfoot>
+						<tr>
+							<th>Total</th>
+							<th id="totalprod"></th>
+						</tr>
+					</tfoot>
 				</table>
 				<div class="form-actions">
 					<a href="logistica_cons_salidaproductos.html" class="btn btn-success"> <i class="icon icon-white icon-arrowthick-w"></i>

@@ -296,4 +296,14 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode($result->result_array()));
 	}
+
+	public function get_LocalbyUser($user_id)
+	{
+		$this->load->model('administracion/UserLocal_Model','ulom');
+		$result = $this->ulom->get_byuser($user_id);
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($result));
+	}
+
 }
