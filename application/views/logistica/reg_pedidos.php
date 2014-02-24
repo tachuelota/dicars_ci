@@ -87,11 +87,12 @@
 							<div class="control-group">
 								<label class="control-label" for="producto">Producto</label>
 								<div class="controls">
-									<input class="input-xlarge focused" id="producto" type="text" readonly>
+									<input type="hidden" name="idProducto" id="idProducto">
+									<input class="input-xlarge focused" id="producto" name="producto" type="text" readonly>
 								  	<button id="btn-productos" name="btn-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"><i class="icon-search icon-white"></i>Buscar</button>
 									<label style="display:inline;" for="cantidad">Cantidad</label>
-									<input id="cantidad" type="number" style="margin: 0 18px 0 0;" min="1" required>
-									<button id="agregar_producto" type="submit" class="btn btn-primary"><i class="icon-plus icon-white"></i>Agregar</button>
+									<input id="cantidad" name="cantidad" type="number" style="margin: 0 18px 0 0;" min="1" required>
+									<button id="agregar_producto" name="agregar_producto" type="submit" class="btn btn-primary"><i class="icon-plus icon-white"></i>Agregar</button>
 								</div>
 							</div>
 						</form>
@@ -104,7 +105,6 @@
 									  <th>Código</th>
 									  <th>Nombre</th>
 									  <th>Cantidad</th>
-									  <th>Acciones</th>
 								  </tr>
 							</thead>   
 							<tbody>
@@ -115,12 +115,13 @@
 							<a href="logistica_pedidos.html" type="reset" class="btn btn-success btn-cancelar" ><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
 							<button id="btn_enviar_pedido" type="button" class="btn btn-primary" style="float: right;"><i class="icon icon-white icon-save"></i> Guardar</button>
 						</div>
+						<!---------------MODAL PRODUCTO---------------------------->
 						<div class="modal hide fade" id="modalBuscarProducto">
 							<div class="modal-header">
 								<h3>Productos</h3>
 							</div>
 							<div class="modal-body">
-								<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+								<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getProductos/">
 								  	<thead>
 										<tr>			  	
 											<th>Producto</th>				  

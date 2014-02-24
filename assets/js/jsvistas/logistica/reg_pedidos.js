@@ -43,25 +43,67 @@ var urlES =  "js/es_ES.txt";
 		
 
 		$(document).ready(function(){
-
+			//DATATABLES
 			var SelectProductosData = new Array();
 
 			//creamos el datatable de proveedor
 			var BuscarProOptions = {
 			"aoColumns":[
-			              { "sWidth": "5%","mDataProp": "nProveedor_id"},
-			              { "sWidth": "5%","mDataProp": "cProveedorRazSocial"},
-			              { "sWidth": "5%","mDataProp": "cProveedorRuc"},
-			              { "sWidth": "5%","mDataProp": "cProveedorTel"}
+			              { "sWidth": "5%","mDataProp": "cProductoDesc"},
+			              { "sWidth": "5%","mDataProp": "nProductoStock"},
+			              { "sWidth": "5%","mDataProp": "nProductoPCosto"}
+			              //{ "sWidth": "5%","mDataProp": ""}
 			              ],
 			"fnCreatedRow":getSimpleSelectRowCallBack(SelectProductosData)
 			};
 
-			BuscarProductos	Table = createDataTable2('select_proveedor_table',BuscarProOptions);
+			ProductosTable = createDataTable2('select_producto_table',BuscarProOptions);
+			//DATATABLE DETALLE
+			//datatable del detalle de productos
+			var DetalleProductosActions = new DTActions({
+			'conf': '001',
+			'DropFunction': function(nRow, aData, iDisplayIndex) {
+						var index = $(DetalleProductosTable.fnGetData()).getIndexObj(aData,'nProducto_id');
+						DetalleProductosTable.fnDeleteRow(index); 
+				}
+			});
+
+			ProductosdOptions = {
+			"aoColumns":[
+				{ "sWidth": "12%","mDataProp": "nProducto_id"},
+				{ "sWidth": "12%","mDataProp": "cProductoDesc"},
+				{ "sWidth": "12%","mDataProp": "DetSalProdCant"}
+				//{ "sWidth": "12%","mDataProp": "nDetIngProdPrecUnt"}			
+			              ],
+			"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
+			"fnCreatedRow":DetalleProductosActions.RowCBFunction
+			};
+			DetalleProductosTable = createDataTable2('productos_table',ProductosdOptions);	
 
 			//llamar al modal BUSCAR PRODUCTOS
 			$('#btn-productos').click(function(e){
 				e.preventDefault();
 				$('#modalBuscarProducto').modal('show');
+			});
+			
+			//SELECCIONAR PRODUCTO EN EL MODAL
+			$('#select_producto').click(function(event){
+			event.preventDefault();
+			$("#idProducto").val(SelectProductosData[0].nProducto_id);
+			$('#producto').val(SelectProductosData[0].cProductoDesc);
+			$('#modalBuscarProducto').modal('hide');
+			});
+			//agregar a la tabla
+			$('#agregar_producto').click(function(event){
+				event.preventDefault();
+				SelectProductosData[0].nProducto_id = $("#idProducto").val();
+				SelectProductosData[0].cProductoDesc = $("#producto").val();
+				SelectProductosData[0].DetSalProdCant = $("#cantidad").val();
+				//SelectProductosData[0].nProducto_id = $("#idProducto").val();
+				DetalleProductosTable.fnAddData(SelectProductosData);
+				$("#producto").val("");
+				$("#idProducto").val("");
+				$("#cantidad").val("");
 		});
-		});
+
+});

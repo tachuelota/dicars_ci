@@ -31,7 +31,7 @@
 				<h2>ORDEN DE COMPRA: REGISTRAR</h2>
 			</div>
 			<div class="box-content">
-				<form id="RegistrarOrdenCompraForm" class="form-horizontal" method="post" action="">
+				<form id="RegistrarOrdenCompraForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>logistica/OrdenCompras/registrar">
 					<fieldset>
 						<div class="row-fluid">
 							<div class="span6">
@@ -56,12 +56,12 @@
 									</div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="serie">Serie</label>
+									<label class="control-label" for="serie">Documento Serie</label>
 									<div class="controls">
 										<input class="input-xlarge focused" id="doc_serie" name="doc_serie" type="text" ></div>
 								</div>
 								<div class="control-group">
-									<label class="control-label" for="serie">Numero</label>
+									<label class="control-label" for="serie">Documento Numero</label>
 									<div class="controls">
 										<input class="input-xlarge focused" id="doc_numero" name="doc_numero" type="text" ></div>
 								</div>
@@ -98,6 +98,7 @@
 							</div>
 						</div>
 					</fieldset>
+				</form>
 					<hr>
 					<h3>Detalle Orden de Compra</h3>
 					<hr>
@@ -124,11 +125,12 @@
 								<div class="control-group">
 									<label class="control-label" for="preciod">Importe</label>
 									<div class="controls">
+										<input type="hidden" id="idpedido" name="idpedido" />
 										<input id="imported" name="imported" type="number" step="0.01" min="1" style="margin: 0 18px 0 0;">
 										<label style="display:inline;" for="cantidadd"> <strong>Cantidad</strong>
 										</label>
 										<input id="cantidadd" type="number" style="margin: 0 18px 0 0;" min="1">
-										<button id="agregar_detalle" type="button" class="btn btn-primary">
+										<button id="agregar_detalle" name="agregar_detalle" type="button" class="btn btn-primary">
 											<i class="icon-plus icon-white"></i>
 											Agregar
 										</button>
@@ -167,6 +169,7 @@
 					<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
 						<thead>
 							<tr>
+								<th>Codigo</th>
 								<th>Producto</th>
 								<th>Cantidad</th>
 								<th>Precio Unitario</th>
@@ -266,7 +269,7 @@
 							<a  id="select_producto" href="#" class="btn btn-primary">Seleccionar</a>
 						</div>
 					</div>
-				</form>
+				<!--</form>-->
 				<div class="modal hide fade" id="modalEditarCantidad" >
 					<div class="modal-header">
 						<h3>Datos del Producto</h3>

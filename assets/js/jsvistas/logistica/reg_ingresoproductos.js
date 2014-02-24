@@ -15,7 +15,7 @@
 			$('#modalBuscarProducto').modal('hide');
 		});
 		//	Agregar a la tabla
-		$('#select_producto').click(function(event){
+		$('#agregar_producto').click(function(event){
 			event.preventDefault();
 			SelectProductosData[0].nDetIngProdCant = $("#cantidad").val();
 			SelectProductosData[0].nDetIngProdPrecUnt = $("#precio_uni").val();
