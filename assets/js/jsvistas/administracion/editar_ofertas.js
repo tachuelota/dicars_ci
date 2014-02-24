@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	$("#OfertasForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 	var SelectProductoData = new Array();
 
 	var OfertaProductoActions = new DTActions({
@@ -56,6 +57,7 @@ $(document).ready(function(){
 
 	$('#enviar_editar').click(function(event){
 		event.preventDefault();
+		if($("#OfertasForm").validationEngine('validate'))
 		enviar($("#OfertasForm").attr("action-1"),PrepararDatosOferta(), successEditarOferta, null)
 	});
 

@@ -53,19 +53,19 @@
 									  	<div class="control-group">
 											<label class="control-label" for="desc_tipomoneda">Nombre de la Moneda</label>
 											<div class="controls">
-										  		<input class="input-xlarge focused" id="desc_tipomoneda" name="desc_tipomoneda" type="text">
+										  		<input class="input-xlarge focused validate[required,custom[onlyLetterSp]]" id="desc_tipomoneda" name="desc_tipomoneda" type="text" data-prompt-position="topLeft">
 											</div>
 									  	</div>
 									  	<div class="control-group">
 											<label class="control-label" for="monto">Monto</label>
 											<div class="controls">
-										  		<input id="monto" name="monto" type="text">
+										  		<input id="monto" name="monto" type="text" class="validate[required,custom[onlyNumberSp]]" data-prompt-position="topLeft">
 											</div>
 									  	</div>
 									  	<div class="control-group">
 											<label class="control-label" for="selectEstado">Estado</label>
 											<div class="controls">
-										  		<select id="selectEstado" name="selectEstado" required>
+										  		<select id="selectEstado" name="selectEstado">
 													<option value="1">Habilitado</option>
 													<option value="0">Inhabilitado</option>
 												</select>

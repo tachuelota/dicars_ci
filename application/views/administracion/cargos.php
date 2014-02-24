@@ -52,7 +52,7 @@
 									  	<div class="control-group">
 											<label class="control-label" for="nom_cargo">Nombre de Cargo</label>
 											<div class="controls">
-										  		<input class="input-xlarge focused validate[required]" id="nom_cargo" name="nom_cargo" type="text" data-prompt-position="topLeft">
+										  		<input class="input-xlarge focused validate[required,custom[onlyLetterSp]]" id="nom_cargo" name="nom_cargo" type="text" data-prompt-position="topLeft">
 											</div>
 									  	</div>
 									  	<div class="control-group">

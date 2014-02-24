@@ -40,10 +40,10 @@
 					<table class="table table-striped table-bordered bootstrap-datatable datatable" id="clientes_table" data-source="<?php echo base_url();?>ventas/servicios/getclientes">
 						<thead>
 							<tr>
-							<th>Nombres</th>
-							<th>Apellidos</th>
-							<th>DNI</th>
-							<th>Línea de Crédito</th>	
+								<th>Nombres</th>
+								<th>Apellidos</th>
+								<th>DNI</th>
+								<th>Línea de Crédito</th>	
 							</tr>
 						</thead>
 						<tbody>
@@ -62,43 +62,43 @@
 									<div class="control-group">
 										<label class="control-label" for="nombres">Nombres</label>
 										<div class="controls">
-											<input class="input-xlarge focused" maxlength="50" title="Este campo debe ser sólo letras" id="nombres" name="nombres" class="focusedInput" type="text">
+											<input class="input-xlarge focused validate[required,custom[onlyLetterSp]]" maxlength="50" id="nombres" name="nombres" class="focusedInput" type="text" data-prompt-position="topLeft">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="apellidos">Apellidos</label>
 										<div class="controls">
-											<input class="input-xlarge focused" maxlength="50" title="Este campo debe ser sólo letras" id="apellidos" name="apellidos" class="focusedInput" type="text">
+											<input class="input-xlarge focused validate[required,custom[onlyLetterSp]]" maxlength="50" id="apellidos" name="apellidos" class="focusedInput" type="text" data-prompt-position="topLeft">
 										</div>
 									</div>	
 									<div class="control-group">
 										<label class="control-label" for="dni">DNI</label>
 										<div class="controls">
-											<input class="input-xlarge focused" maxlength="8" title="Este campo debe tener 8 números" id="dni" name="dni" class="focusedInput" type="text">
+											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]] validate[minSize[8]]" id="dni" name="dni" type="text" data-prompt-position="topLeft">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="direccion">Dirección</label>
 										<div class="controls">
-											<input class="input-xlarge focused" maxlength="200" id="direccion"name="direccion" class="focusedInput" type="text">
+											<input class="input-xlarge focused validate[required]" maxlength="200" id="direccion"name="direccion" type="text" data-prompt-position="topLeft">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="referencia">Referencia</label>
 										<div class="controls">
-											<input class="input-xlarge focused" value=" " maxlength="200" id="referencia" name="referencia" class="focusedInput" type="text">
+											<input class="input-xlarge focused validate[required]" value=" " maxlength="200" id="referencia" name="referencia" type="text" data-prompt-position="topLeft">
 										</div>
 									</div>	
 									<div class="control-group">
 										<label class="control-label" for="ocupacion">Ocupación</label>
 										<div class="controls">
-											<input class="input-xlarge focused" value=" " required title="Este campo debe ser sólo letras" id="ocupacion" name="ocupacion" type="text">
+											<input class="input-xlarge focused validate[required,custom[onlyLetterSp]] " id="ocupacion" name="ocupacion" type="text" data-prompt-position="topLeft">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="lineaop">Línea Operativa</label>
 										<div class="controls">
-											<input class="input-xlarge focused" name="lineaop" id="lineaop" type="number" step="0.10" min="0" max="1000" required>
+											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" name="lineaop" id="lineaop" type="number" step="0.10" min="0" max="1000" data-prompt-position="topLeft">
 										</div>
 
 									</div>

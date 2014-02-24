@@ -54,13 +54,13 @@
 										<div class="control-group">
 											<label class="control-label" for="tipo">Tipo IGV</label>
 											<div class="controls">
-										  		<input class="input-xlarge focused" id="tipo" name="tipo" type="text">
+										  		<input class="input-xlarge focused validate[required,custom[onlyLetterNumberSp]]" id="tipo" name="tipo" type="text" data-prompt-position="topLeft">
 											</div>
 									  	</div>
 									  	<div class="control-group">
 											<label class="control-label" for="porc">Porcentaje</label>
 											<div class="controls">
-										  		<input id="porc" name="porc" type="text" >
+										  		<input id="porc" name="porc" type="text" class="validate[required,custom[onlyNumberSp]]" data-prompt-position="topLeft">
 											</div>
 									  	</div>
 									  	<div class="control-group">
