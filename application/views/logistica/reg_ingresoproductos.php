@@ -70,14 +70,14 @@
 								<div class="control-group">
 									<label class="control-label" for="codigo">Número Documento</label>
 									<div class="controls">
-										<input id="docserie" name="docserie" type="text" required pattern="|^\d{4}$|" style="width:40px;" maxlength="4">
+										<input id="docserie" name="docserie" type="text" class="validate[required] validate[maxSize[4]]" style="width:40px;">
 										-
-										<input id="docnumero" name="docnumero" type="text" required pattern="|^\d{8}$|" style="width:60px;" maxlength="8"></div>
+										<input id="docnumero" name="docnumero" type="text" class="validate[required] validate[maxSize[8]]"  style="width:60px;" ></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="fecharegistro">Fecha</label>
 									<div class="controls">
-										<input class="input-xlarge" name="fecharegistro" id="fecharegistro" type="text" readonly value="13/02/2014"></div>
+										<input class="input-xlarge" name="fecharegistro" id="fecharegistro" type="text" readonly value=""></div>
 								</div>
 							</div>
 						</div>
@@ -93,16 +93,16 @@
 						<div class="controls">
 							<input type="hidden" id="idProducto" name="idProducto">
 							<input class="input-xlarge focused" id="producto" disabled type="text">
-							<button id="btn-buscar-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+						<button id="btn-buscar-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 								Buscar
-							</button>
-							<label style="display:inline;" for="cantidad">Cantidad</label>
-							<input id="cantidad" name="cantidad" type="number" min="1" style="margin: 0 18px 0 0;">
-							<label style="display:inline;">Precio/Unidad</label>
-							<input id="precio_uni" name="precio_uni" type="number" min="0" step="0.01" style="margin: 0 18px;" >
-							<button id="agregar_producto" type="submit" class="btn btn-primary"> <i class="icon-plus icon-white"></i>
+						</button>
+						<label style="display:inline;" for="cantidad">Cantidad</label>
+							<input class="validate[required,custom[onlyNumberSp]]" id="cantidad" name="cantidad" type="number" min="1" style="margin: 0 18px 0 0;">
+						<label style="display:inline;">Precio/Unidad</label>
+							<input class="validate[required,custom[onlyNumberSp]]" id="precio_uni" name="precio_uni" type="number" min="0" step="0.01" style="margin: 0 18px;" >
+						<button id="agregar_producto" type="submit" class="btn btn-primary"> <i class="icon-plus icon-white"></i>
 								Agregar
-							</button>
+						</button>
 						</div>
 					</div>
 				</form>

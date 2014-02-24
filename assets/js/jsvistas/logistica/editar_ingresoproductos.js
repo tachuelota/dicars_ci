@@ -51,7 +51,8 @@ $(document).ready(function(){
 		//agregar a la tabla detalle
 		//	Agregar a la tabla
 		$('#agregar_producto').click(function(event){
-			event.preventDefault();
+			event.preventDefault();		
+			$("#AgregarProductoForm").validationEngine('validate');
 			SelectProductosData[0].nDetIngProdCant = $("#cantidad").val();
 			SelectProductosData[0].nDetIngProdPrecUnt = $("#precio_uni").val();
 			SelectProductosData[0].nDetIngProdTot = $("#cantidad").val() * $("#precio_uni").val();
@@ -62,7 +63,7 @@ $(document).ready(function(){
 			$("#cantidad").val("");
 			$("#precio_uni").val("");
 			$("#producto").val("");
-			$("#idProducto").val("");
+			$("#idProducto").val("");		
 			//console.log(BuscarProductosTable.fnGetData());
 		});
 

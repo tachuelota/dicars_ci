@@ -76,7 +76,7 @@
 								<div class="control-group">
 									<label class="control-label" for="solicitante">Número Documento</label>
 									<div class="controls">
-										<input class="input-xlarge focused " name="edit_numdoc" id="edit_numdoc" type="text" value="<?php echo $cIngProdDocNro ?>">
+										<input class="input-xlarge focused validate[required]" name="edit_numdoc" id="edit_numdoc" type="text" value="<?php echo $cIngProdDocNro ?>">
 									</div>
 								</div>
 							</div>
@@ -94,14 +94,14 @@
 						<label class="control-label" for="producto">Producto</label>
 						<div class="controls">
 							<input type="hidden" id="idProducto" name="idProducto">
-							<input class="input-xlarge focused" id="producto" name="producto" disabled type="text">
+							<input class="input-xlarge focused validate[required]" id="producto" name="producto" disabled type="text">
 							<button id="btn-buscar-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 								Buscar
 							</button>
 							<label style="display:inline;" for="cantidad">Cantidad</label>
-							<input id="cantidad" name="cantidad" type="number" min=1 style="margin: 0 18px 0 0;">
+							<input class="validate[required,custom[onlyNumberSp]]" id="cantidad" name="cantidad" type="number" min=1 style="margin: 0 18px 0 0;">
 							<label style="display:inline;">Precio/Unidad</label>
-							<input id="precio_uni" name="precio_uni" type="number" min=0 style="margin: 0 18px;">
+							<input class="validate[required,custom[onlyNumberSp]]" id="precio_uni" name="precio_uni" type="number" min=0 style="margin: 0 18px;">
 							<button id="agregar_producto" type="submit" class="btn btn-primary"> <i class="icon-plus icon-white"></i>
 								Agregar
 							</button>

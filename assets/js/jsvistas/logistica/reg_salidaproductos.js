@@ -78,7 +78,8 @@
 		});
 		//	Agregar a la tabla
 		$('#btn-agregar-detalle').click(function(event){
-			event.preventDefault();
+			event.preventDefault();			
+			$("#AgregarProductoForm").validationEngine('validate');
 			SelectProductoData[0].DetSalProdCant = $("#cantidad").val();
 			SalidaProductosTable.fnAddData(SelectProductoData);
 			$("#producto").val("");
