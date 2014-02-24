@@ -30,7 +30,7 @@
 				<div>Logística</div>
 			</a>
 
-			<a data-rel="tooltip" class="well span3 top-block" href="<?php echo base_url();?>ventas/" style="width: 31.5%;">
+			<a data-rel="tooltip" class="well span3 top-block" href="<?php echo base_url();?>administracion/" style="width: 31.5%;">
 				<span class="icon32 icon-color icon-users"></span>
 				<div>Administración</div>
 			</a>

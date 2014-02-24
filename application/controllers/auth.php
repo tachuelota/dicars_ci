@@ -277,24 +277,31 @@ class Auth extends CI_Controller {
 			if (!$activation)
 				$this->output->set_status_header('400');
 		}
+		$val = $this->ion_auth->logged_in() && $this->ion_auth->is_admin();
+
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode("finish"));
+				->set_output(json_encode($val));
 	}
 
 	//deactivate the user
 	function deactivate()
 	{
+		$is_admin = FALSE;
 		if(isset($_POST) && !empty($_POST))
 		{
-			$this->ion_auth->deactivate($this->input->post('user_id'));
+			$user_id = $this->input->post('user_id');
+			if(!$this->ion_auth->is_admin($user_id))
+				$this->ion_auth->deactivate($user_id);
+			else
+				$is_admin = TRUE;
 		}
 		else
 			$this->output->set_status_header('400');
 
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode($this->input->post('user_id')));
+				->set_output(json_encode(array("is_admin"=>$is_admin)));
 	}
 
 	//create a new user
@@ -341,11 +348,16 @@ class Auth extends CI_Controller {
 				$this->ion_auth->update($user_id, $data);
 			}
 
-			$this->ion_auth->remove_from_group('', $user_id);
 			if (isset($form["groups"]) && !empty($form["groups"])) {
-				foreach ($form["groups"] as $grp)
+
+
+				if(!$this->ion_auth->is_admin($user_id))
 				{
-					$this->ion_auth->add_to_group($grp, $user_id);
+					$this->ion_auth->remove_from_group('', $user_id);
+					foreach ($form["groups"] as $grp)
+					{
+						$this->ion_auth->add_to_group($grp, $user_id);
+					}
 				}
 			}
 		}
