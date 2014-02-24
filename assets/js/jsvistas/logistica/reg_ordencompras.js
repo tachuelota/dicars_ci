@@ -178,7 +178,7 @@ $('#xlscuadrecaja').click(function(e){
 			//console.log(IngresoProductosTable.fnGetData());
 		});
 		//	Agregar a la tabla
-		$('#agregar_detalle').click(function(event){
+		/*$('#agregar_detalle').click(function(event){
 			event.preventDefault();
 			//alert("Hola");
 			SelectOrdenPedidoData[0].nOrdPed_id =1;
@@ -194,7 +194,7 @@ $('#xlscuadrecaja').click(function(e){
 			$("#idProducto").val("");
 			$("#importe").val("");
 			//console.log(IngresoProductosTable.fnGetData());
-		});
+		});*/
 		var successOrdenCompra = function(){
 		}
 
