@@ -12,16 +12,15 @@ class Producto_model extends CI_Model
 	}
 
 	function insert($Producto){
-		$procedure=("call sp_ins_producto
-			($Producto[cProductoSerie],'$Producto[cProductoTalla]',$Producto[nProductoMarca],
-			  $Producto[nProductoTipo],'$Producto[cProductoDesc]',$Producto[nProductoPContado],
-			  $Producto[nProductoPCredito],$Producto[nProductoPCosto],'$Producto[cProductoImage]',
-			  $Producto[nCategoria_id],$Producto[nProductoStockMin],$Producto[nProductoStockMax],
-			  $Producto[nProductoStock],'$Producto[cProductoEst]',$Producto[nProductoPorcUti],
-			  $Producto[nProductoUtiBruta])");
+		$procedure=("call sp_ins_producto(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+
 		$params =array(
-			intval($Producto['nLocal_id']),
-			$Producto['clocalProducto_Estado'],
+			$Producto['cProductoSerie'],$Producto['cProductoTalla'],$Producto['nProductoMarca'],
+			  $Producto['nProductoTipo'],$Producto['cProductoDesc'],$Producto['nProductoPContado'],
+			  $Producto['nProductoPCredito'],$Producto['nProductoPCosto'],$Producto['cProductoImage'],
+			  $Producto['nCategoria_id'],$Producto['nProductoStockMin'],$Producto['nProductoStockMax'],
+			  $Producto['nProductoStock'],$Producto['cProductoEst'],$Producto['nProductoPorcUti'],
+			  $Producto['nProductoUtiBruta']				
 			);
 		$result = $this->db->query($procedure,$params);
 		$id = $result->row_array()["id"];

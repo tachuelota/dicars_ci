@@ -46,6 +46,16 @@ $(document).ready(function(){
 		$('#modalProductos').modal('hide');
 		TipoProductoTable.fnReloadAjax()
 	}
+
+	/*function prepararDatos(){
+			DataToSend = {
+				formulario:$("#ProductoForm").serializeObject(),
+				productos:CopyArray(SelectProductosData,["nProducto_id"])
+				
+				};
+		} */
+
+
 	//Llamar al modal Registrar-Modal
 	$('.btn-registrar').click(function(e){
 	e.preventDefault();
@@ -62,8 +72,10 @@ $(document).ready(function(){
 	$("#btn-editar-prod").click(function(event){
 		event.preventDefault();
 		if($("#ProductoForm").validationEngine('validate'))
-			enviar($("#ProductoForm").attr("action-2"),{formulario:$("#ProductoForm").serializeObject()}, successProducto, null)
+			enviar($("#ProductoForm").attr("action-2"),{formulario:$("#ProductoForm").serializeObject()}, successProducto, null)		
 	});
+
+
 
 	//Modal verificar Acciones	
 	$('#modalProductos').on('hidden', function(){		

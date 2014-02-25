@@ -62,6 +62,7 @@
 						<form id="ProductoForm" class="form-horizontal" action-1="<?php echo base_url();?>logistica/Productos/registrar" action-2="<?php echo base_url();?>logistica/Productos/editar">
 							<div class="modal-body">
 								<input id="codigo" name="codigo" type="hidden">
+								<input type="hidden" name="idLocal" id="idLocal" value="2">
 								<fieldset>
 									<div class="control-group">
 										<label class="control-label" for="serie">Serie</label>
@@ -114,23 +115,23 @@
 									<div class="control-group">
 										<label class="control-label " for="preciocosto">Precio Costo</label>
 										<div class="controls">
-											<input  class="validate[required,custom[onlyNumberSp]]" name="preciocosto" id="preciocosto" type="text"></div>
+											<input  class="validate[required,custom[number]]" name="preciocosto" id="preciocosto" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="preciocontado">Precio Contado</label>
 										<div class="controls">
-											<input class="validate[required,custom[onlyNumberSp]]" name="preciocontado" id="preciocontado" type="text"></div>
+											<input class="validate[required,custom[number]]" name="preciocontado" id="preciocontado" type="text"></div>
 									</div>
 
 									<div class="control-group">
 										<label class="control-label" for="preciocredito">Precio Credito</label>
 										<div class="controls">
-											<input class="validate[required,custom[onlyNumberSp]]" name="preciocredito" id="preciocredito" type="text"></div>
+											<input class="validate[required,custom[number]]" name="preciocredito" id="preciocredito" type="text"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="stockmin">Stock Min</label>
 										<div class="controls">
-											<input  maxlength="11" name="stockmin" id="stockmin" type="text">
+											<input  class="validate[required,custom[onlyNumberSp]]" maxlength="11" name="stockmin" id="stockmin" type="text">
 										</div>
 									</div>
 									<div class="control-group">
