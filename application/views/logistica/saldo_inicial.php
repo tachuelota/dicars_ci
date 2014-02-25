@@ -48,12 +48,12 @@
 								<input id="xlsinigen" type="button" value="Reporte a Excel" class="btn btn-success" style="float: right; margin: 10px 10px 0 0;"/>
 							</div>
 						</div>
-						<div class="form-horizontal">
+						<div class="form-horizontal" id="SaldoInicialForm" name="SaldoInicialForm" action-1="<?php echo base_url();?>logistica/Servicios/get_log_saldoinicial_byfecha">
 							<fieldset>
 								<div class="control-group">
 									<div class="controls">
-										<input type="text" class="input-xlarge datepicker" id="date01" style="margin: 0 18px 0 0;">
-										<button id="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+										<input type="text" class="input-xlarge datepicker" id="date01" name="date01">
+										<button id="buscarfecha" name="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 											Buscar
 										</button>
 									</div>
@@ -72,30 +72,6 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th>2013</th>
-									<th>Enero</th>
-									<th>Producto 1</th>
-									<th>200</th>
-									<th>20</th>
-									<th>4000</th>
-								</tr>
-								<tr>
-									<th>2013</th>
-									<th>Enero</th>
-									<th>Producto 2</th>
-									<th>100</th>
-									<th>50</th>
-									<th>5000</th>
-								</tr>
-								<tr>
-									<th>2013</th>
-									<th>Enero</th>
-									<th>Producto 3</th>
-									<th>500</th>
-									<th>10</th>
-									<th>5000</th>
-								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -107,7 +83,7 @@
 								<input id="xlsactualgen" type="button" value="Reporte a Excel" class="btn btn-success" style="float: right; margin: 10px 10px 0 0;"/>
 							</div>
 						</div>
-						<div class="form-horizontal">
+						<div class="form-horizontal" id="SaldoActualForm" name="SaldoActualForm" action-1="<?php echo base_url();?>logistica/Servicios/get_saldoactual_byfecha">
 							<fieldset>
 								<div class="control-group">
 									<div class="controls">
@@ -131,30 +107,6 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<th>2013</th>
-									<th>Enero</th>
-									<th>Producto 1</th>
-									<th>100</th>
-									<th>20</th>
-									<th>2000</th>
-								</tr>
-								<tr>
-									<th>2013</th>
-									<th>Enero</th>
-									<th>Producto 2</th>
-									<th>50</th>
-									<th>50</th>
-									<th>2500</th>
-								</tr>
-								<tr>
-									<th>2013</th>
-									<th>Enero</th>
-									<th>Producto 3</th>
-									<th>300</th>
-									<th>10</th>
-									<th>3000</th>
-								</tr>
 							</tbody>
 						</table>
 

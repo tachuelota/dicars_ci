@@ -59,6 +59,24 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
+	public function get_log_saldoinicial_byfecha($fecha){
+			$fec = date_create_from_format('Y-m-d', $fecha);
+			$this->load->model('logistica/Saldo_Model','sal');
+			$result = $this->sal->get_saldoinicial_byfecha($fec);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
+	}
+	public function get_saldoactual_byfecha($fecha){
+			$fec = date_create_from_format('Y-m-d', $fecha);
+			$this->load->model('logistica/Saldo_Model','sal');
+			$result = $this->sal->get_saldoactual_byfecha($fec);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
+	}
+
+
 
 	//CARGAR DETALLES(TABLAS)
 	public function get_log_detingprod($nIngProd_id){		
