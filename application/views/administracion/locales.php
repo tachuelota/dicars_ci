@@ -77,7 +77,7 @@
 								  	<div class="control-group">
 										<label class="control-label" for="telefono">Teléfono</label>
 										<div class="controls">
-									  		<input class="input-xlarge focused validate[required]" id="telefono" name="telefono" type="text" placeholder="999999999" title="Sólo números de 9 dígitos" maxlength="11" data-prompt-position="topLeft">
+									  		<input class="input-xlarge focused validate[required,custom[onlyLetterNumber]]" id="telefono" name="telefono" type="text" placeholder="999999999" title="Sólo números de 9 dígitos" maxlength="11" data-prompt-position="topLeft">
 										</div>
 								  	</div>
 								  	<div class="control-group">
@@ -92,21 +92,21 @@
 								  	<div class="control-group">
 										<label class="control-label" for="dep">Departamento</label>
 										<div class="controls">
-									  		<select id="dep" name="dep">
+									  		<select id="dep" name="dep" class=["validate[required"]>
 											</select>
 										</div>
 								  	</div>
 								  	<div class="control-group">
 										<label class="control-label" for="prov">Provincia</label>
 										<div class="controls">
-									  		<select id="prov" name="prov">
+									  		<select id="prov" name="prov" class=["validate[required"]>
 											</select>
 										</div>
 								  	</div>
 								  	<div class="control-group">
 										<label class="control-label" for="dist">Distrito</label>
 										<div class="controls">
-									  		<select id="dist" name="dist">
+									  		<select id="dist" name="dist" class=["validate[required"]>
 											</select>
 										</div>
 								  	</div>

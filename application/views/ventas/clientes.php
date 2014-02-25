@@ -98,7 +98,7 @@
 									<div class="control-group">
 										<label class="control-label" for="lineaop">Línea Operativa</label>
 										<div class="controls">
-											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" name="lineaop" id="lineaop" type="number" step="0.10" min="0" max="1000" data-prompt-position="topLeft">
+											<input class="input-xlarge focused validate[required,custom[number]]" name="lineaop" id="lineaop" type="number" step="0.10" min="0" max="1000" data-prompt-position="topLeft">
 										</div>
 
 									</div>
