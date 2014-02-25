@@ -421,6 +421,11 @@ class Ion_auth
 		return (bool) $this->session->userdata('identity');
 	}
 
+	public function selected_local()
+	{
+		return (bool)$this->session->userdata('current_local');
+	}
+
 	/**
 	 * logged_in
 	 *
@@ -511,6 +516,31 @@ class Ion_auth
 				 */
 				return !$check_all;
 			}
+		}
+
+		/**
+		 * if !all (default), false
+		 * if all, true
+		 */
+		return $check_all;
+	}
+
+	public function in_group_type($check_group, $id=false)
+	{
+		$check_all = false;
+		$this->ion_auth_model->trigger_events('in_group');
+
+		$id || $id = $this->session->userdata('user_id');
+
+		$users_groups = $this->ion_auth_model->get_users_groups($id)->result();
+		$groups_array = array();
+		foreach ($users_groups as $group)
+		{
+			$groups_array[] = $group->tipo;
+		}
+		if (in_array($check_group, $groups_array) xor $check_all)
+		{
+			return !$check_all;
 		}
 
 		/**

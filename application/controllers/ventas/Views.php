@@ -9,17 +9,29 @@ class Views extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		if ($this->ion_auth->logged_in())
+		{
+			if(!$this->ion_auth->selected_local())
+				redirect('auth/select_local', 'refresh');
+		}
+		else
+			redirect('login', 'refresh');
 	}
 
 	public function index()
 	{
-		$dataheader['title'] = 'Dicars - Home Pages -';
-		$this->load->view('templates/headers.php',$dataheader);		
-		$this->load->view('templates/menu.php');
-		$this->load->view('ventas/homepages.php');
-		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/homepages.js';
-		$datafooter['active'] = '';
-		$this->load->view('templates/footer.php',$datafooter);
+		if($this->ion_auth->in_group_type(1))
+		{
+			$dataheader['title'] = 'Dicars - Home Pages -';
+			$this->load->view('templates/headers.php',$dataheader);		
+			$this->load->view('templates/menu.php');
+			$this->load->view('ventas/homepages.php');
+			$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/homepages.js';
+			$datafooter['active'] = '';
+			$this->load->view('templates/footer.php',$datafooter);
+		}
+		else
+			redirect('/', 'refresh');
 	}
 
 

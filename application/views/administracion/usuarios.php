@@ -92,36 +92,36 @@
 									<div class="span4 box-content">
 										<h4 class="top-block">Ventas</h4>
 										<?php foreach ($groups_ventas as $group):?>
-											<label class="checkbox">
+											<label class="checkbox" title="<?php echo $group['function'];?>" data-placement="top" data-rel="tooltip">
 												<div class="checker">
 													<span>
 														<input class="validate[required] validate[minCheckbox[1]]" type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>"name="groups[]" style="opacity: 0;">
 													</span>
-												</div> <?php echo $group['name'];?>					
+												</div> <?php echo $group['description'];?>					
 											</label>
 										<?php endforeach?>
 									</div>
 									<div class="span4 box-content">
 										<h4 class="top-block">Logistica</h4>
 										<?php foreach ($groups_logistica as $group):?>
-											<label class="checkbox">
+											<label class="checkbox" title="<?php echo $group['function'];?>" data-placement="top" data-rel="tooltip">
 												<div class="checker">
 													<span>
 														<input class="validate[minCheckbox[1]]" type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" name="groups[]" style="opacity: 0;">
 													</span>
-												</div> <?php echo $group['name'];?>					
+												</div> <?php echo $group['description'];?>					
 											</label>
 										<?php endforeach?>
 									</div>
 									<div class="span4 box-content">
 										<h4 class="top-block">Administracion</h4>
 										<?php foreach ($groups_administracion as $group):?>
-											<label class="checkbox">
+											<label class="checkbox" title="<?php echo $group['function'];?>" data-placement="top" data-rel="tooltip">
 												<div class="checker">
 													<span>
 														<input class="validate[minCheckbox[1]]" type="checkbox" id="group<?php echo $group['id'];?>" name="groups[]" value="<?php echo $group['id'];?>" name="groups[]" style="opacity: 0;">
 													</span>
-												</div> <?php echo $group['name'];?>					
+												</div> <?php echo $group['description'];?>			
 											</label>
 										<?php endforeach?>
 									</div>

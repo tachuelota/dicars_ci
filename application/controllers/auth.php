@@ -5,11 +5,7 @@ class Auth extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->library('ion_auth');
 		$this->load->library('form_validation');
-		$this->load->helper('url');
-
-		$this->form_validation->set_error_delimiters($this->config->item('error_start_delimiter', 'ion_auth'), $this->config->item('error_end_delimiter', 'ion_auth'));		
 	}
 
 	
@@ -52,7 +48,7 @@ class Auth extends CI_Controller {
 			if ($this->ion_auth->login($this->input->post('username'), $this->input->post('password'),$remember))
 			{
 				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect('/', 'refresh');
+				redirect('auth/select_local', 'refresh');
 			}
 			else
 			{
@@ -82,18 +78,19 @@ class Auth extends CI_Controller {
 
 	public function select_local()
 	{
-		$this->load->model('administracion/Local_Model','lo');
 		if ($this->ion_auth->logged_in())
 		{
+			$this->load->model('administracion/Local_Model','lo');
 			if(isset($_POST) && !empty($_POST))
 			{
 				$current_local = $this->lo->get_locales($this->input->post('local'));
 				$this->session->set_userdata('current_local', $current_local);
+				redirect('/', 'refresh');
 			}
 			else
 			{
-				$user = $this->ion_auth->user()->row();
-				$dataview["locales"] = $this->lo->by_user($user["id"]);
+				$dataheader['isloginview'] = true;
+				$dataview["locales"] = $this->lo->by_user($this->session->userdata('user_id'));
 				$dataheader['title'] = 'Dicars - Select Local';
 				$this->load->view('templates/headers.php',$dataheader);
 				$this->load->view('login/select_local.php', $dataview);
@@ -119,169 +116,28 @@ class Auth extends CI_Controller {
 	//change password
 	function change_password()
 	{
-		if (!$this->ion_auth->logged_in())
-		{
-			redirect('login', 'refresh');
+		if ($this->ion_auth->logged_in())	
+		{	
+			if(isset($_POST) && !empty($_POST))
+			{
+				$form = $this->input->post('formulario');				
+				$identity = $this->session->userdata($this->config->item('identity', 'ion_auth'));
+				$change = $this->ion_auth->change_password($identity,$form["oldpassword"], $form["password"]);
+				if ($change)
+					$this->logout();
+				else
+					$this->output->set_status_header('400');
+			}	
+			else
+				$this->output->set_status_header('400');
 		}
-
-		$form = $this->input->post('formulario');
-
-		$user = $this->ion_auth->user()->row();
-		
-		$identity = $this->session->userdata($this->config->item('identity', 'ion_auth'));
-
-		$change = $this->ion_auth->change_password($identity,$form["oldpassword"], $form["password"]);
-
-		/*if ($change)
-			$this->logout();
 		else
-			$this->output->set_status_header('400');*/
+			$this->output->set_status_header('400');
 
 		$this->output
 			->set_content_type('application/json')
-			->set_output(json_encode($user["id"]));
+			->set_output(json_encode("finish"));
 	}
-
-	//forgot password
-	function forgot_password()
-	{
-		$this->form_validation->set_rules('email', $this->lang->line('forgot_password_validation_email_label'), 'required');
-		if ($this->form_validation->run() == false)
-		{
-			//setup the input
-			$this->data['email'] = array('name' => 'email',
-				'id' => 'email',
-			);
-
-			if ( $this->config->item('identity', 'ion_auth') == 'username' ){
-				$this->data['identity_label'] = $this->lang->line('forgot_password_username_identity_label');
-			}
-			else
-			{
-				$this->data['identity_label'] = $this->lang->line('forgot_password_email_identity_label');
-			}
-
-			//set any errors and display the form
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-			$this->_render_page('auth/forgot_password', $this->data);
-		}
-		else
-		{
-			// get identity for that email
-            $identity = $this->ion_auth->where('email', strtolower($this->input->post('email')))->users()->row();
-            if(empty($identity)) {
-                $this->ion_auth->set_message('forgot_password_email_not_found');
-                $this->session->set_flashdata('message', $this->ion_auth->messages());
-                redirect("auth/forgot_password", 'refresh');
-            }
-            
-			//run the forgotten password method to email an activation code to the user
-			$forgotten = $this->ion_auth->forgotten_password($identity->{$this->config->item('identity', 'ion_auth')});
-
-			if ($forgotten)
-			{
-				//if there were no errors
-				$this->session->set_flashdata('message', $this->ion_auth->messages());
-				redirect("auth/login", 'refresh'); //we should display a confirmation page here instead of the login page
-			}
-			else
-			{
-				$this->session->set_flashdata('message', $this->ion_auth->errors());
-				redirect("auth/forgot_password", 'refresh');
-			}
-		}
-	}
-
-	//reset password - final step for forgotten password
-	public function reset_password($code = NULL)
-	{
-		if (!$code)
-		{
-			show_404();
-		}
-
-		$user = $this->ion_auth->forgotten_password_check($code);
-
-		if ($user)
-		{
-			//if the code is valid then display the password reset form
-
-			$this->form_validation->set_rules('new', $this->lang->line('reset_password_validation_new_password_label'), 'required|min_length[' . $this->config->item('min_password_length', 'ion_auth') . ']|max_length[' . $this->config->item('max_password_length', 'ion_auth') . ']|matches[new_confirm]');
-			$this->form_validation->set_rules('new_confirm', $this->lang->line('reset_password_validation_new_password_confirm_label'), 'required');
-
-			if ($this->form_validation->run() == false)
-			{
-				//display the form
-
-				//set the flash data error message if there is one
-				$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
-
-				$this->data['min_password_length'] = $this->config->item('min_password_length', 'ion_auth');
-				$this->data['new_password'] = array(
-					'name' => 'new',
-					'id'   => 'new',
-				'type' => 'password',
-					'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
-				);
-				$this->data['new_password_confirm'] = array(
-					'name' => 'new_confirm',
-					'id'   => 'new_confirm',
-					'type' => 'password',
-					'pattern' => '^.{'.$this->data['min_password_length'].'}.*$',
-				);
-				$this->data['user_id'] = array(
-					'name'  => 'user_id',
-					'id'    => 'user_id',
-					'type'  => 'hidden',
-					'value' => $user->id,
-				);
-				$this->data['csrf'] = $this->_get_csrf_nonce();
-				$this->data['code'] = $code;
-
-				//render
-				$this->_render_page('auth/reset_password', $this->data);
-			}
-			else
-			{
-				// do we have a valid request?
-				if ($this->_valid_csrf_nonce() === FALSE || $user->id != $this->input->post('user_id'))
-				{
-
-					//something fishy might be up
-					$this->ion_auth->clear_forgotten_password_code($code);
-
-					show_error($this->lang->line('error_csrf'));
-
-				}
-				else
-				{
-					// finally change the password
-					$identity = $user->{$this->config->item('identity', 'ion_auth')};
-
-					$change = $this->ion_auth->reset_password($identity, $this->input->post('new'));
-
-					if ($change)
-					{
-						//if the password was successfully changed
-						$this->session->set_flashdata('message', $this->ion_auth->messages());
-						$this->logout();
-					}
-					else
-					{
-						$this->session->set_flashdata('message', $this->ion_auth->errors());
-						redirect('auth/reset_password/' . $code, 'refresh');
-					}
-				}
-			}
-		}
-		else
-		{
-			//if the code is invalid then send them back to the forgot password page
-			$this->session->set_flashdata('message', $this->ion_auth->errors());
-			redirect("auth/forgot_password", 'refresh');
-		}
-	}
-
 
 	//activate the user
 	function activate()
@@ -368,17 +224,16 @@ class Auth extends CI_Controller {
 			parse_str($formserialized,$form);
 			$user_id = $form["user_id"];
 
-			if($form["password"]!="")
+			if(!$this->ion_auth->is_admin($user_id))
 			{
-				$data = array("password" => $form["password"]);
-				$this->ion_auth->update($user_id, $data);
-			}
-
-			if (isset($form["groups"]) && !empty($form["groups"])) {
-
-
-				if(!$this->ion_auth->is_admin($user_id))
+				if($form["password"]!="")
 				{
+					$data = array("password" => $form["password"]);
+					$this->ion_auth->update($user_id, $data);
+				}
+
+				if (isset($form["groups"]) && !empty($form["groups"]))
+				{			
 					$this->ion_auth->remove_from_group('', $user_id);
 					foreach ($form["groups"] as $grp)
 					{
@@ -400,7 +255,7 @@ class Auth extends CI_Controller {
 
 		$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode($this->ion_auth->get_user_id()));
+				->set_output(json_encode("finish"));
 	}
 
 	// create a new group
@@ -427,8 +282,6 @@ class Auth extends CI_Controller {
 		}
 		else
 		{
-			//display the create group form
-			//set the flash data error message if there is one
 			$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
 			$this->_render_page('auth/create_group', $this->data);
@@ -436,7 +289,7 @@ class Auth extends CI_Controller {
 	}
 
 	//edit a group
-	function edit_group($id)
+	/*function edit_group($id)
 	{
 		// bail if no group id given
 		if(!$id || empty($id))
@@ -520,7 +373,7 @@ class Auth extends CI_Controller {
 		{
 			return FALSE;
 		}
-	}
+	}*/
 
 	function _render_page($view, $data=null, $render=false)
 	{

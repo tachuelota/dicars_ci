@@ -13,6 +13,6 @@ $(document).ready(function(){
 
 	$("#btn-guardar").click(function(event){
 		event.preventDefault();
-		enviar($("#ChangePasswordForm").attr("action-1"),{formulario:$("#ChangePasswordForm").serializeObject()}, logdata, badrequest);
+		enviar($("#ChangePasswordForm").attr("action-1"),{formulario:$("#ChangePasswordForm").serializeObject()}, successpassword, badrequest);
 	});
 });

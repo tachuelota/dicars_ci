@@ -81,6 +81,9 @@
 						<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu">
+						<li>
+							<a href="<?php echo base_url();?>auth/select_local">Seleccionar Local</a>
+						</li>
 						<li class="divider"></li>
 						<li>
 							<a href="<?php echo base_url();?>administracion/views/change_password">Cambiar Contraseña</a>

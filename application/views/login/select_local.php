@@ -2,19 +2,19 @@
 	<div class="row-fluid">		
 		<div class="row-fluid">
 			<div class="span12 center login-header">
-				<h2>Bienvenido al Sistema</h2>
+				<h2>Seleccione el Local</h2>
 			</div><!--/span-->
 		</div><!--/row-->
 		
 		<div class="row-fluid">
 			<div class="well span5 center login-box">
 				<div class="alert alert-info">
-					Por favor ingresa tu Usuario y tu Password.
+					Por favor seleccione el local a adminsitrar.
 				</div>
 				<form class="form-horizontal" method="post">
 					<fieldset>
-						<div class="input-prepend" title="Usuario" data-rel="tooltip">
-							<span class="add-on"><i class="icon-user"></i></span>
+						<div class="input-prepend">
+							<span class="add-on"><i class="icon-home"></i></span>
 							<select name="local">
 								<?php foreach ($locales as $local):?>
 									<option value="<?php echo $local["nLocal_id"]?>"><?php echo $local["cLocalDesc"];?></option>
