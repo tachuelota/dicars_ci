@@ -2,60 +2,61 @@
 <div class="span2 main-menu-span">
 	<div class="well nav-collapse sidebar-nav">
 		<ul class="nav nav-tabs nav-stacked main-menu">
-			<li class="nav-header hidden-tablet">Ventas</li>
-			<li id="venta_prod">
-				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/cons_ventas"> <i class="icon icon-black icon-cart"></i>
-					<span class="hidden-tablet">Venta de Productos</span>
-				</a>
-			</li>
-			<li id="cron_pago">
-				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/cronogramas"> <i class="icon icon-black icon-document"></i>
-					<span class="hidden-tablet">Cronograma de Pago</span>
-				</a>
-			</li>
-			<!--li id="mor_deu">
-				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/">
-					<i class="icon icon-black icon-users"></i>
-					<span class="hidden-tablet">Morosos y Deudores</span>
-				</a>
-			</li-->
-			<li id="tarj_cred">
-				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/tarjetascreditos">
-					<i class="icon icon-black icon-profile"></i>
-					<span class="hidden-tablet">Tarjeta de Crédito</span>
-				</a>
-			</li>
-			<li id="clientes">
-				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/clientes">
-					<i class="icon icon-black icon-users"></i>
-					<span class="hidden-tablet">Clientes</span>
-				</a>
-			</li>
-			<li id="movimientos">
-				<a href="<?php echo base_url();?>ventas/views/movimientos">
-					<i class="icon icon-black icon-transfer-ew"></i>
-					<span class="hidden-tablet">Movimientos</span>
-				</a>
-			</li>
-			<li id="ventas_rep">
-				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_ventas">
-					<i class="icon icon-black icon-page"></i>
-					<span class="hidden-tablet">Reporte de Ventas Tienda/Zona</span>
-				</a>
-			</li>
-			<li id="clienteszonas_rep">
-				<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_zonas  ">
-					<i class="icon icon-black icon-page"></i>
-					<span class="hidden-tablet">Reporte Clientes/Zona</span>
-				</a>
-			</li>
-			<li id="cuadre_caja">
-				<a class="ajax-link" href="#" id="lanza-cuadrecaja">
-					<i class="icon icon-black icon-page"></i>
-					<span class="hidden-tablet">Cuadre de Caja</span>
-				</a>
-			</li>
-
+			<?php if($this->ion_auth->in_group_type(1)): ?>
+				<li class="nav-header hidden-tablet">Ventas</li>
+				<li id="venta_prod">
+					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/cons_ventas"> <i class="icon icon-black icon-cart"></i>
+						<span class="hidden-tablet">Venta de Productos</span>
+					</a>
+				</li>
+				<li id="cron_pago">
+					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/cronogramas"> <i class="icon icon-black icon-document"></i>
+						<span class="hidden-tablet">Cronograma de Pago</span>
+					</a>
+				</li>
+				<!--li id="mor_deu">
+					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/">
+						<i class="icon icon-black icon-users"></i>
+						<span class="hidden-tablet">Morosos y Deudores</span>
+					</a>
+				</li-->
+				<li id="tarj_cred">
+					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/tarjetascreditos">
+						<i class="icon icon-black icon-profile"></i>
+						<span class="hidden-tablet">Tarjeta de Crédito</span>
+					</a>
+				</li>
+				<li id="clientes">
+					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/clientes">
+						<i class="icon icon-black icon-users"></i>
+						<span class="hidden-tablet">Clientes</span>
+					</a>
+				</li>
+				<li id="movimientos">
+					<a href="<?php echo base_url();?>ventas/views/movimientos">
+						<i class="icon icon-black icon-transfer-ew"></i>
+						<span class="hidden-tablet">Movimientos</span>
+					</a>
+				</li>
+				<li id="ventas_rep">
+					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_ventas">
+						<i class="icon icon-black icon-page"></i>
+						<span class="hidden-tablet">Reporte de Ventas Tienda/Zona</span>
+					</a>
+				</li>
+				<li id="clienteszonas_rep">
+					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_zonas  ">
+						<i class="icon icon-black icon-page"></i>
+						<span class="hidden-tablet">Reporte Clientes/Zona</span>
+					</a>
+				</li>
+				<li id="cuadre_caja">
+					<a class="ajax-link" href="#" id="lanza-cuadrecaja">
+						<i class="icon icon-black icon-page"></i>
+						<span class="hidden-tablet">Cuadre de Caja</span>
+					</a>
+				</li>				
+			<?php endif ?>
 			<li class="nav-header hidden-tablet">Logística</li>
 			<li id="admin_prod">
 				<a class="ajax-link" href="<?php echo base_url();?>logistica/views/productos">

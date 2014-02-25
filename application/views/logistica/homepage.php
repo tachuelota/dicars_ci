@@ -24,6 +24,7 @@
 		</ul>
 	</div>
 	<div class="row-fluid">
+		<?php if($this->ion_auth->in_group("log_prod")): ?>
 		<a data-rel="tooltip" title="Ver, Agregar y editar Productos." class="well span3 top-block" href="<?php echo base_url();?>
 			logistica/views/productos">
 			<span class="icon32 icon-color icon-inbox"></span>
@@ -32,13 +33,16 @@
 				<br>Productos</div>
 		</a>
 
+		<?php endif ?>
+		<?php if($this->ion_auth->in_group("log_prove")): ?>
 		<a data-rel="tooltip" title="Ver, Agregar y editar Proveedores." class="well span3 top-block" href="<?php echo base_url();?>logistica/views/proveedores/">
 			<span class="icon32 icon-color icon-users"></span>
 			<div>
 				Administrar
 				<br>Proveedores</div>
-		</a>
-
+		</a>		
+		<?php endif ?>
+		<?php if($this->ion_auth->in_group("log_ord_ped")): ?>
 		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Pedidos." class="well span3 top-block" href="<?php echo base_url();?>logistica/views/cons_pedidos/">
 			<span class="icon32 icon-color icon-compose"></span>
 			<div>
@@ -46,6 +50,8 @@
 				<br>de Pedido</div>
 		</a>
 
+		<?php endif ?>
+		<?php if($this->ion_auth->in_group("log_ord_comp")): ?>
 		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Orden Compra." class="well span3 top-block" href="<?php echo base_url();?>
 			logistica/views/cons_ordencompra">
 			<span class="icon32 icon-color icon-compose"></span>
@@ -53,16 +59,20 @@
 				Orden
 				<br>de Compra</div>
 		</a>
+
+		<?php endif ?>
 	</div>
 	<div class="row-fluid">
+		<?php if($this->ion_auth->in_group("log_ing_prod")): ?>
 		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Ingreso Productos." class="well span3 top-block" href="<?php echo base_url();?>
 			logistica/views/cons_ingresoproductos">
 			<span class="icon32 icon-color icon-archive"></span>
 			<div>
 				Ingreso
 				<br>de Productos</div>
-		</a>
-
+		</a>		
+		<?php endif ?>
+		<?php if($this->ion_auth->in_group("log_sal_prod")): ?>
 		<a data-rel="tooltip" title="Ver, Agregar, editar y eliminar Orden Salida." class="well span3 top-block" href="<?php echo base_url();?>
 			logistica/views/cons_salidaproductos">
 			<span class="icon32 icon-color icon-reply"></span>
@@ -70,6 +80,8 @@
 				Salida
 				<br>de Productos</div>
 		</a>
+		<?php endif ?>
+		<?php if($this->ion_auth->in_group("log_sal_ini")): ?>
 		<a data-rel="tooltip" title="Ver Saldo Inicial." class="well span3 top-block" href="<?php echo base_url();?>
 			logistica/views/saldo_inicial">
 			<span class="icon32 icon-color icon-document"></span>
@@ -77,6 +89,8 @@
 				Saldo
 				<br>Inicial</div>
 		</a>
+		<?php endif ?>
+		<?php if($this->ion_auth->in_group("log_gen_kardex")): ?>
 		<a data-rel="tooltip" title="Ver Kardex." class="well span3 top-block" href="<?php echo base_url();?>
 			logistica/views/kardex">
 			<span class="icon32 icon-color icon-document"></span>
@@ -84,6 +98,7 @@
 				Generar
 				<br>Kardex</div>
 		</a>
+		<?php endif ?>
 	</div>
 	<!-- content ends -->
 </div>

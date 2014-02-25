@@ -37,7 +37,7 @@ class Views extends CI_Controller
 	/************************Cargos***************************************/
 	public function cargos()
 	{
-		if($this->ion_auth->in_group("admin_cargos"))
+		if($this->ion_auth->in_group("admin_cargo"))
 		{
 			$dataheader['title'] = 'Dicars - Cargos -';
 			$this->load->view('templates/headers.php',$dataheader);		
