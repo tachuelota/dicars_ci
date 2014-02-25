@@ -167,7 +167,7 @@ class Views extends CI_Controller
 
 	public function productos()
 	{
-		if($this->ion_auth->in_group("log_prd"))
+		if($this->ion_auth->in_group("log_prod"))
 		{
 			$dataheader['title'] = 'Dicars - Productos -';
 			$this->load->view('templates/headers.php',$dataheader);		
