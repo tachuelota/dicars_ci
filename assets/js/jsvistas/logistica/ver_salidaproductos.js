@@ -26,10 +26,12 @@ $(document).ready(function(){
 		           	{'td1':'TIENDA:','td2': $("#local").text(),'td3':'FECHA DE EMISIÓN:','td4':$("#fec_reg").text(),},
 		           	{'td1':'OBSERVACIONES:','td2': $("#observacion").text(),'td3':'MOTIVO:','td4':$("#motivo").text(),}	];
 		
+		
 		tablaresumen = toHTML(crearTablaToArray("resume",null,null,
 				['td1','td2','td3','td4'],
 				['style="width: 25%;" class="impar" ','style="width:25%;" ','style="width: 25%;" class="impar" ','style="width: 25%;" '],
 				resumen));
+
 		tabladetalle = toHTML(crearTablaToArray("tproductos",
 				['Producto','Cantidad'],
 				['style="width: 80%;" class="prodth" ','style="width: 20%;" class="prodth" '],
@@ -40,8 +42,10 @@ $(document).ready(function(){
 				['td1','td2'],
 				['style="width: 80%;" class="upbold" ','style="width: 20%;"  class="verde"'],
 				total));
+
 		nombre = $("#serie_nro").text();
-		$('#nombrearchivo').val("salida_producto_"+nombre);
+		
+		$('#nombrearchivo').val("salida_producto_"+nombre+"-");
 		$("#title").val("ORDEN DE SALIDA");
 		$("#table_resumen").val(tablaresumen);
 		$("#table_producto").val(tabladetalle);

@@ -80,7 +80,7 @@
 										  <div class="control-group">
 											<label class="control-label" for="dni">DNI</label>
 											<div class="controls">
-											  <input class="input-xlarge focused validate[required,custom[onlyNumberSp]] validate[maxSize[8]]" title="Este campo debe tener 8 números" id="dni" name="dni" type="text" data-prompt-position="topLeft">
+											  <input class="input-xlarge focused validate[required,custom[onlyNumberSp]] validate[minSize[8]]" maxlength="8" title="Este campo debe tener 8 números" id="dni" name="dni" type="text" data-prompt-position="topLeft">
 											</div>
 										  </div>
 										  <div class="control-group">

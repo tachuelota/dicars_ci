@@ -60,7 +60,7 @@
 									  	<div class="control-group">
 											<label class="control-label" for="porc">Porcentaje</label>
 											<div class="controls">
-										  		<input id="porc" name="porc" type="text" class="validate[required,custom[onlyNumberSp]]" data-prompt-position="topLeft">
+										  		<input id="porc" name="porc" type="text" class="validate[required,custom[number]]" data-prompt-position="topLeft">
 											</div>
 									  	</div>
 									  	<div class="control-group">

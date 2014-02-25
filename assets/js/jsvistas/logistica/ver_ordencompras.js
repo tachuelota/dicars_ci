@@ -1,51 +1,62 @@
-var urlExportXLS = "extensiones/reportes_xls/formato_reporte_logistica.php";
-var urlExportPDF = "extensiones/reportes_pdf/formato_reporte_logistica.php";
+$(document).ready(function(){
 
-$("#pdfgen").click(function(){
-	$("#title").val("ORDEN DE COMPRA");
-	$("#exportmodal").modal('show');		
-});
+	var urlExportXLS = base_url +"assets/extensiones/reportes_xls/formato_reporte_logistica.php";
+	var urlExportPDF = base_url +"assets/extensiones/reportes_pdf/formato_reporte_logistica.php";
 
-$("#pdfbutton").click(function(e){
-	e.preventDefault();
-	$("#CreatePDFForm").attr("action",urlExportPDF);
-	$("#CreatePDFForm").submit();
-	$("#exportmodal").modal('hide');
-});
+	$("#pdfgen").click(function(){
 
-$("#xlsutton").click(function(e){
-	e.preventDefault();
-	$("#CreatePDFForm").attr("action",urlExportXLS);
-	$("#CreatePDFForm").submit();
-	$("#exportmodal").modal('hide');
-});
+		resumen = [	{'td1':'REGISTRADOR:','td2':$("#registrador").text(),'td3':'ORDEN:','td4':$("#codigo").text()},
+		           	{'td1':'PROVEEDOR:','td2':$("#proveedor").text(),'td3':'FECHA DE EMISIÓN:','td4':$("#fec_reg").text()},
+		           	{'td1':'OBSERVACIONES:','td2':$("#observaciones").text(),'td3':'','td4':''}	];
+		    
+		total = [	{'td1':'SUB TOTAL:','td2':'S/.'+$("#subtotal").text()},
+		         	{'td1':'DESCUENTO:','td2':'S/.'+$("#descuento").text()},
+		         	{'td1':'IGV:','td2':'S/.'+$("#igv").text()},
+		         	{'td1':'','td2':''},
+		         	{'td1':'CANT. TOTAL:','td2':'S/.'+$("#total").text()}	
+		         ];
+		
+		tablaresumen = toHTML(crearTablaToArray("resume",null,null,
+					['td1','td2','td3','td4'],
+					['style="width: 25%;" class="impar" ','style="width:25%;" ','style="width: 25%;" class="impar" ','style="width: 25%;" '],
+					resumen));
 
+		tableproductos = toHTML(crearTablaToArray("tproductos",
+				['Producto','Cantidad', 'Precio Unitario','Importe'],
+				['style="width: 45%;" class="prodth" ','style="width: 15%;" class="prodth" ','style="width: 20%;" class="prodth" ','style="width: 20%;" class="prodth" '],
+				['cProductoDesc','nDetCompraCant','nDetCompraPrecUnt','nDetCompraImporte'],
+				['style="width: 45%;" class="izquierda"','style="width: 15%;"','style="width: 20%;"','style="width: 20%;"'],
+				DetalleProductosTable.fnGetData()));
+		
+		tablatotal = toHTML(crearTablaToArray('total',null,null,
+			['td1','td2'],
+			['style="width: 80%;" class="upbold" ','style="width: 20%;"  class="verde"'],
+			total));
+
+
+		nombre = $("#codigo").text();
+		$('#nombrearchivo').val("orden_compra_"+nombre);
+		$("#title").val("ORDEN DE COMPRA");
+		$("#table_resumen").val(tablaresumen);
+		$("#table_producto").val(tableproductos);
+		$("#table_total").val(tablatotal);
+		$("#exportmodal").modal('show');		
+	});
 	
-	$(document).ready(function(){
-		//alert("Hola");
-		//creamos el datable detalle
-		var IngProductosDetalleActions = new DTActions({
-		'conf': '000',
-		'DropFunction': function(nRow, aData, iDisplayIndex) {
-					//var index = $(DetalleProductosTable.fnGetData()).getIndexObj(aData,'nProducto_id');
-					//DetalleProductosTable.fnDeleteRow(index);
-			/*switch (parseInt(aData.band)){
-				case 0:
-					DetalleProductosTable.fnUpdate('<span class="label label-success">Activo</span>',index,4);
-					aData.band = 1;
-					break;
-				case 1:
-					DetalleProductosTable.fnUpdate('<span class="label label-important">Eliminar</span>',index,4);
-					aData.band = 0;
-					//console.log(aData);
-					break;
-				case 2:
-					DetalleProductosTable.fnDeleteRow(index); 
-					BuscarProductosTable.fnAddData(aData);
-					break;
-			} */
-			}
-		});
+	$("#pdfbutton").click(function(e){
+		e.preventDefault();
+		$("#CreatePDFForm").attr("action",urlExportPDF);
+		$("#CreatePDFForm").submit();
+		$("#exportmodal").modal('hide');
+	});
+	
+	$("#xlsutton").click(function(e){
+		e.preventDefault();
+		$("#CreatePDFForm").attr("action",urlExportXLS);
+		$("#CreatePDFForm").submit();
+		$("#exportmodal").modal('hide');
+	});
+		
 		OrdenCompradOptions = {
 		"aoColumns":[
 			{ "sWidth": "15%","mDataProp": "cProductoDesc"},
@@ -53,9 +64,7 @@ $("#xlsutton").click(function(e){
 			{ "sWidth": "15%","mDataProp": "nDetCompraPrecUnt"},
 			{ "sWidth": "15%","mDataProp": "nDetCompraImporte"},
 			{ "sWidth": "15%","mDataProp": "nOrdenCom_id"}					
-		              ],
-		//"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
-		//"fnCreatedRow":OrdCompraDetalleActions.RowCBFunction
+		              ]
 		};
 		DetalleProductosTable = createDataTable2('productos_table',OrdenCompradOptions);
-	});
+});

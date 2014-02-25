@@ -32,7 +32,7 @@
 						<div class="span6">
 						</div>
 						<div class="span6">
-							<input id="pdfgen" type="button" value="Reporte" class="btn btn-success" style="float: right; margin: 10px 10px 0 0;"/>
+							<input id="pdfgen" name="pdfgen" type="button" value="Reporte" class="btn btn-success" style="float: right; margin: 10px 10px 0 0;"/>
 						</div>
 					</div>
 					<div class="box-content">
@@ -43,19 +43,19 @@
 										<div class="control-group">
 											<label class="control-label" for="codigo">N° de Pedido</label>
 											<div class="controls">
-												<span class="help-inline" style="margin-top:5px;"><?php echo $cOrdPedSerie;?></span>
+												<span id="codigo" class="help-inline" style="margin-top:5px;"><?php echo $cOrdPedSerie;?></span>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="registrador">Registrador</label>
 											<div class="controls">
-												<span class="help-inline" style="margin-top:5px;"><?php echo $nomape;?></span>
+												<span id="registrador" class="help-inline" style="margin-top:5px;"><?php echo $nomape;?></span>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="tienda">Tienda</label>
 											<div class="controls">
-											  	<span class="help-inline" style="margin-top:5px;"><?php echo $cLocalDesc;?></span>
+											  	<span id="tienda" class="help-inline" style="margin-top:5px;"><?php echo $cLocalDesc;?></span>
 											</div>
 										</div>
 									</div>
@@ -63,13 +63,13 @@
 										<div class="control-group">
 											<label class="control-label" for="fechapedido">Fecha de Pedido</label>
 											<div class="controls">
-												<span class="help-inline" style="margin-top:5px;"><?php echo $dOrdPedFecReg;?></span>
+												<span id="fechapedido" class="help-inline" style="margin-top:5px;"><?php echo $dOrdPedFecReg;?></span>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="fechaentrega">Fecha de Entrega</label>
 											<div class="controls">
-												<span class="help-inline" style="margin-top:5px;"><?php echo $dOrdePedFecEnt;?></span>
+												<span class="help-inline" id="fechaentrega" style="margin-top:5px;"><?php echo $dOrdePedFecEnt;?></span>
 											</div>
 										</div>
 									</div>
@@ -77,7 +77,7 @@
 								<div class="control-group">
 									<label class="control-label" for="observaciones">Observaciones</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $cOrdPedObsv;?></span>
+										<span id="observaciones" class="help-inline" style="margin-top:5px;"><?php echo $cOrdPedObsv;?></span>
 									</div>
 								</div>
 							</fieldset>
@@ -97,6 +97,12 @@
 							</thead>   
 							<tbody>
 							</tbody>
+							<tfoot>
+								<tr>
+									<th >Total</th>
+									<th id="totalprod" colspan="3"></th>
+								</tr>
+					</tfoot>
 						</table>			
 						<div class="form-actions">
 							<a href="logistica_pedidos.html" class="btn btn-success"><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
@@ -115,12 +121,12 @@
 								<input type="hidden" name="table_producto" id="table_producto"/>
 								<input type="hidden" name="table_total" id="table_total"/>
 								<div class="sortable row-fluid ui-sortable">
-									<a id="pdfbutton" data-rel="tooltip" class="well span3 top-block" style="width: 48%;" href="#" data-original-title="Exportar a PDF.">
+									<a id="pdfbutton" name="pdfbutton" data-rel="tooltip" class="well span3 top-block" style="width: 48%;" href="#" data-original-title="Exportar a PDF.">
 										<span class="icon32 icon-color icon-pdf"></span>
 										<div>PDF</div>
 									</a>
 					
-									<a id="xlsutton" data-rel="tooltip" class="well span3 top-block" style="width: 48%;" href="#" data-original-title="Exportar a Excel.">
+									<a id="xlsbutton" name="xlsbutton" data-rel="tooltip" class="well span3 top-block" style="width: 48%;" href="#" data-original-title="Exportar a Excel.">
 										<span class="icon32 icon-color icon-xls"></span>
 										<div>Excel</div>
 									</a>

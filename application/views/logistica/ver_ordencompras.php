@@ -46,31 +46,31 @@
 								<div class="control-group">
 									<label class="control-label" for="fec_reg">Fecha de Registro</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $OrdComFecReg;?></span>
+										<span id="fec_reg" class="help-inline" style="margin-top:5px;"><?php echo $OrdComFecReg;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="codigo">N° Orden Compra</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdenCom_id;?></span>
+										<span id="codigo" class="help-inline" style="margin-top:5px;"><?php echo $cOrdComDocSerie."-".$cOrdComDocNro;?></span>					
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $cPersonalNom;?></span>
+										<span id="registrador" class="help-inline" style="margin-top:5px;"><?php echo $cPersonalNom;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="proveedor">Proveedor</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $cProveedorRazSocial;?></span>
+										<span id="proveedor" class="help-inline" style="margin-top:5px;"><?php echo $cProveedorRazSocial;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="observaciones">Observaciones</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $cOrdComObsv;?></span>
+										<span id="observaciones" class="help-inline" style="margin-top:5px;"><?php echo $cOrdComObsv;?></span>
 									</div>
 								</div>
 							</div>
@@ -78,25 +78,25 @@
 								<div class="control-group">
 									<label class="control-label" for="subtotal">Subtotal</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdComSubTotal;?></span>
+										<span id="subtotal" class="help-inline" style="margin-top:5px;"><?php echo $nOrdComSubTotal;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="igv">IGV</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdComIGV;?></span>
+										<span id="igv" class="help-inline" style="margin-top:5px;"><?php echo $nOrdComIGV;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="descuento">Descuento</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdComDesct;?></span>
+										<span id="descuento" class="help-inline" style="margin-top:5px;"><?php echo $nOrdComDesct;?></span>
 									</div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="total">Total</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;"><?php echo $nOrdComTotal;?></span>
+										<span id="total" class="help-inline" style="margin-top:5px;"><?php echo $nOrdComTotal;?></span>
 									</div>
 								</div>
 							</div>
