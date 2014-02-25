@@ -47,7 +47,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function reg_ordencompra()
@@ -63,7 +63,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function ver_ordencompras($nOrdenCom_id)
@@ -81,7 +81,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function cons_ingresoproductos()
@@ -97,7 +97,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}	
 	public function reg_ingresoproductos()
 	{
@@ -112,7 +112,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 	public function editar_ingresoproductos($nIngProd_id)
 	{
@@ -129,7 +129,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 	public function ver_ingresoproductos($nIngProd_id)
 	{
@@ -142,11 +142,11 @@ class Views extends CI_Controller
 			$this->load->view('templates/menu.php');
 			$this->load->view('logistica/ver_ingresoproductos.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/ver_ingresoproductos.js';
-		$datafooter['active'] = 'ing_prod';
-		$this->load->view('templates/footer.php',$datafooter);
+			$datafooter['active'] = 'ing_prod';
+			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function kardex()
@@ -162,7 +162,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function productos()
@@ -178,7 +178,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function proveedores()
@@ -194,7 +194,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function cons_salidaproductos()
@@ -210,7 +210,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 	public function reg_salidaproductos()
 	{
@@ -225,7 +225,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function ver_salidaproductos($nSalProd_id)
@@ -244,7 +244,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function saldo_inicial()
@@ -260,7 +260,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function cons_pedidos()
@@ -276,7 +276,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function reg_pedidos()
@@ -292,7 +292,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 
 	public function ver_pedidos($nOrdPed_id)
@@ -310,7 +310,7 @@ class Views extends CI_Controller
 			$this->load->view('templates/footer.php',$datafooter);
 		}
 		else
-			redirect('/ventas', 'refresh');
+			redirect('/logistica', 'refresh');
 	}
 	
 }
