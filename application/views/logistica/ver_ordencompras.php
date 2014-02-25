@@ -106,7 +106,7 @@
 				<hr>
 				<h3>Detalle Orden de Compra</h3>
 				<hr>
-				<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url()."logistica/Servicios/get_log_ordcompras/".$nOrdenCom_id;?>">
+				<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url()."logistica/Servicios/get_log_detordcompras/".$nOrdenCom_id;?>">
 					<thead>
 						<tr>
 							<th>Producto</th>

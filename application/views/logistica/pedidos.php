@@ -35,6 +35,8 @@
 							<a href="<?php echo base_url();?>logistica/views/reg_pedidos/" class="btn btn-round" alt="Registrar Pedido"><i class="icon-plus"></i></a>
 						</div>
 					</div>
+					<div id="PedidoForm" name="PedidoForm" action-1="<?php echo base_url();?>logistica/Views/ver_pedidos/">
+					</div>
 					<div class="box-content">
 						<table id="pedidos_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getOrdenPedido/">
 						  	<thead>

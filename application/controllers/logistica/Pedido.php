@@ -3,7 +3,7 @@ if ( ! defined('BASEPATH')) exit('No se permite acceso directo al script');
 /**
 * 
 */
-class OrdenPedido extends CI_Controller
+class Pedido extends CI_Controller
 {
 	
 	function  __construct()

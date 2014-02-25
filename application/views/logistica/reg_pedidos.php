@@ -32,7 +32,7 @@
 						<h2>PEDIDOS: REGISTRAR</h2>
 					</div>
 					<div class="box-content">
-						<form id="RegistrarPedidoForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>logistica/OrdenPedido/registrar"> 
+						<form id="RegistrarPedidoForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>logistica/Pedido/registrar"> 
 							<fieldset>
 								<div class="row-fluid">
 									<div class="span6">

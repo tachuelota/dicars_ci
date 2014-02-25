@@ -198,12 +198,14 @@ class Views extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 	}
 
-	public function ver_pedidos()
+	public function ver_pedidos($nOrdPed_id)
 	{
+		$this->load->model('logistica/OrdPedido_Model','ordped');
+		$pagedata = $this->ordped->get_OrdPedido_Views($nOrdPed_id);
 		$dataheader['title'] = 'Dicars - Pedidos -';
 		$this->load->view('templates/headers.php',$dataheader);		
 		$this->load->view('templates/menu.php');
-		$this->load->view('logistica/ver_pedidos.php');
+		$this->load->view('logistica/ver_pedidos.php',$pagedata);
 		$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/ver_pedidos.js';
 		$datafooter['active'] = 'ord_ped';
 		$this->load->view('templates/footer.php',$datafooter);

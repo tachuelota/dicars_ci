@@ -46,24 +46,22 @@
 		var urlExportPDF = "extensiones/reportes_pdf/formato_reporte_logistica.php";
 
 		$(document).ready(function(){
-			$("#pdfgen").click(function(){
-				nombre = "000001";
-				$('#nombrearchivo').val("orden_pedido_");
-				$("#title").val("ORDEN DE PEDIDO");
-				$("#exportmodal").modal('show');		
-			});
+			var OrdPedidoActions = new DTActions({
+		'conf': '000',
+		'DropFunction': function(nRow, aData, iDisplayIndex) {
+			}
+		});
+		PedidoOptions = {
+		"aoColumns":[
+			{ "sWidth": "15%","mDataProp": "cProductoDesc"},
+			{ "sWidth": "15%","mDataProp": "nDetOrdPedCant"},
+			{ "sWidth": "15%","mDataProp": "nDetOrdPedCantAcept"},
+			{ "sWidth": "15%","mDataProp": "estadolabel"}
+			//{ "sWidth": "15%","mDataProp": "nOrdenCom_id"}					
+		              ],
+		//"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
+		//"fnCreatedRow":OrdPedidoActions.RowCBFunction
+		};
+		PedidosTable = createDataTable2('productos_table',PedidoOptions);
 			
-			$("#pdfbutton").click(function(e){
-				e.preventDefault();
-				$("#CreatePDFForm").attr("action",urlExportPDF);
-				$("#CreatePDFForm").submit();
-				$("#exportmodal").modal('hide');
-			});
-			
-			$("#xlsutton").click(function(e){
-				e.preventDefault();
-				$("#CreatePDFForm").attr("action",urlExportXLS);
-				$("#CreatePDFForm").submit();
-				$("#exportmodal").modal('hide');
-			});
 		});

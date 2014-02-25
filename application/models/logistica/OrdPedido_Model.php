@@ -43,6 +43,17 @@ class OrdPedido_Model extends CI_Model
 		$query = $this->db->query("SELECT * FROM log_ordped_all");
 		return $query->result_array();
 	}
+
+	public function get_OrdPedido_Views($nOrdPed_id = FALSE)
+	{
+		if($nOrdPed_id === FALSE )
+		{
+			$query = $this ->db->query ('SELECT * FROM log_ordped_all');
+			return $query -> result_array();
+		}
+		$query = $this->db->query("SELECT * FROM log_ordped_all  where nOrdPed_id =" .$nOrdPed_id);
+		return $query->row_array();
+	}
 	
 }
 

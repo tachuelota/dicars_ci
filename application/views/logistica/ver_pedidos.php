@@ -43,19 +43,19 @@
 										<div class="control-group">
 											<label class="control-label" for="codigo">N° de Pedido</label>
 											<div class="controls">
-												<span class="help-inline" style="margin-top:5px;">000001</span>
+												<span class="help-inline" style="margin-top:5px;"><?php echo $cOrdPedSerie;?></span>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="registrador">Registrador</label>
 											<div class="controls">
-												<span class="help-inline" style="margin-top:5px;">Diego Molina</span>
+												<span class="help-inline" style="margin-top:5px;"><?php echo $nomape;?></span>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="tienda">Tienda</label>
 											<div class="controls">
-											  	<span class="help-inline" style="margin-top:5px;">Local 1</span>
+											  	<span class="help-inline" style="margin-top:5px;"><?php echo $cLocalDesc;?></span>
 											</div>
 										</div>
 									</div>
@@ -63,13 +63,13 @@
 										<div class="control-group">
 											<label class="control-label" for="fechapedido">Fecha de Pedido</label>
 											<div class="controls">
-												<span class="help-inline" style="margin-top:5px;">01/01/2013</span>
+												<span class="help-inline" style="margin-top:5px;"><?php echo $dOrdPedFecReg;?></span>
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="fechaentrega">Fecha de Entrega</label>
 											<div class="controls">
-												<span class="help-inline" style="margin-top:5px;">01/02/2013</span>
+												<span class="help-inline" style="margin-top:5px;"><?php echo $dOrdePedFecEnt;?></span>
 											</div>
 										</div>
 									</div>
@@ -77,7 +77,7 @@
 								<div class="control-group">
 									<label class="control-label" for="observaciones">Observaciones</label>
 									<div class="controls">
-										<span class="help-inline" style="margin-top:5px;">Pedido por escasez del productos.</span>
+										<span class="help-inline" style="margin-top:5px;"><?php echo $cOrdPedObsv;?></span>
 									</div>
 								</div>
 							</fieldset>
@@ -85,7 +85,8 @@
 						<hr>
 						<h3>Detalle Pedido</h3>
 						<hr>
-						<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable" 
+						data-source="<?php echo base_url()."logistica/Servicios/get_log_detordpedido/".$nOrdPed_id;?>">
 							<thead>
 								<tr>
 									<th>Producto</th>
@@ -95,18 +96,6 @@
 								</tr>
 							</thead>   
 							<tbody>
-								<tr>
-									<td>Producto 1</td>
-									<td>1000</td>
-									<td>1000</td>
-									<td>Aceptado</td>						  
-								</tr>
-								<tr>
-									<td>Producto 2</td>
-									<td>1500</td>
-									<td>1000</td>
-									<td>Aceptado</td>						  
-								</tr>
 							</tbody>
 						</table>			
 						<div class="form-actions">

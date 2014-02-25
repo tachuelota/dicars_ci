@@ -58,7 +58,7 @@ var urlES =  "js/es_ES.txt";
 			
 		//},
 		'ViewFunction':function(nRow, aData, iDisplayIndex){
-			location.href = $("#IngProductosForm").attr("action-3")+"/"+aData.nIngProd_id;
+			location.href = $("#PedidoForm").attr("action-1")+"/"+aData.nOrdPed_id;
 		}
 	});
 
