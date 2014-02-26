@@ -15,25 +15,34 @@ class Servicios extends CI_Controller {
 	public function getProductos(){
 		$this->load->model('logistica/Producto_Model','prod');
 		$result = $this->prod->get_producto();
-		echo json_encode(array('aaData' => $result));
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
 	}
-	
+
 	public function getProveedor(){		
 		$this->load->model('logistica/Proveedor_Model','pro');
 		$result = $this->pro->get_proveedor();
-		echo json_encode(array('aaData' => $result));
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
 	}	
 	public function get_trabajadores_activos(){		
 		$this->load->model('administracion/Trabajadores_Model','tra');
 		$result = $this->tra->get_trabajadores_activos();
-		echo json_encode(array('aaData' => $result));
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
 	}	
 	public function getOrdenPedido(){
 		
 		$this->load->model('logistica/OrdPedido_Model','ordpe');
 		$result = $this->ordpe->get_ordenpedido();
-		echo json_encode(array('aaData' => $result));
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
 	}	
+
 	//CARGAR POR RANGO DE FECHAS
 	public function get_log_ingprod($Desde,$Hasta){		
 
@@ -43,6 +52,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
+	
 	public function get_log_salprod($Desde,$Hasta){		
 
 			$this->load->model('logistica/SalProducto_Model','salpro');
@@ -51,6 +61,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
+
 	public function get_log_ordcompra_rangefechas($Desde,$Hasta){		
 
 			$this->load->model('logistica/OrdCompra_Model','ordcomp');
@@ -59,6 +70,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
+
 	public function get_log_saldoinicial_byfecha($fecha){
 			$fec = date_create_from_format('Y-m-d', $fecha);
 			$this->load->model('logistica/Saldo_Model','sal');
@@ -67,6 +79,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
+
 	public function get_saldoactual_byfecha($fecha){
 			$fec = date_create_from_format('Y-m-d', $fecha);
 			$this->load->model('logistica/Saldo_Model','sal');
@@ -75,7 +88,6 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
-
 
 
 	//CARGAR DETALLES(TABLAS)
@@ -93,6 +105,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $detalles)));		
 	}
+
 	public function get_log_detsalprod($nSalProd_id){		
 
 			$this->load->model('logistica/DetSalProducto_Model','detsalprod');
@@ -107,6 +120,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $detalles)));		
 	}
+
 	public function get_log_detordcompras($nOrdenCom_id){		
 
 			$this->load->model('logistica/DetOrdCompra_Model','detordcompra');
@@ -115,6 +129,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $detalles)));		
 	}
+
 	public function get_log_detordpedido($nOrdPed_id){		
 
 			$this->load->model('logistica/DetOrdPedido_Model','detordped');

@@ -62,7 +62,7 @@
 						<form id="ProductoForm" class="form-horizontal" action-1="<?php echo base_url();?>logistica/Productos/registrar" action-2="<?php echo base_url();?>logistica/Productos/editar">
 							<div class="modal-body">
 								<input id="codigo" name="codigo" type="hidden">
-								<input type="hidden" name="idLocal" id="idLocal" value="2">
+								<input type="hidden" name="idLocal" id="idLocal" value="<?php echo $local["nLocal_id"];?>">
 								<fieldset>
 									<div class="control-group">
 										<label class="control-label" for="serie">Serie</label>

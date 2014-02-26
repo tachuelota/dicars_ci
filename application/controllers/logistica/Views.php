@@ -176,9 +176,10 @@ class Views extends CI_Controller
 		if($this->ion_auth->in_group("log_prod"))
 		{
 			$dataheader['title'] = 'Dicars - Productos -';
+			$pagedata["local"] = $this->session->userdata('current_local');
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('logistica/productos.php');
+			$this->load->view('logistica/productos.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/productos.js';
 			$datafooter['active'] = 'admin_prod';
 			$this->load->view('templates/footer.php',$datafooter);

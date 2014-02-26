@@ -59,30 +59,34 @@ class Producto_model extends CI_Model
 
 	public function get_producto($nProducto_id = FALSE)
 	{
+		$local = $this->session->userdata('current_local');
 		if($nProducto_id === FALSE )
 		{
-			$query = $this ->db->query('select * from ven_producto_all;');
+			$query = $this ->db->query('select * from ven_producto_all where nLocal_id='.$local["nLocal_id"]);
 			return $query -> result_array();
 		}
-		$query = $this->db->get_where('producto', array('nProducto_id' => $nProducto_id));
+		$query = $this ->db->query('select * from ven_producto_all where nLocal_id='.$local["nLocal_id"].' and nProducto_id='.$nProducto_id);
 		return $query->row_array();
 	}
 
 	public function get_byoferta($nOferta_id)
 	{
-		$productos = $this->db->query("SELECT * FROM ven_productosoferta where nOferta_id=".$nOferta_id);
+		$local = $this->session->userdata('current_local');
+		$productos = $this->db->query('SELECT * FROM ven_productosoferta where nLocal_id='.$local["nLocal_id"].' and nOferta_id='.$nOferta_id);
 		return $productos->result_array();
 	}
 
 	public function get_sinoferta()
 	{
-		$productos = $this->db->query("SELECT * FROM ven_productossinoferta");
+		$local = $this->session->userdata('current_local');
+		$productos = $this->db->query('SELECT * FROM ven_productossinoferta where nLocal_id='.$local["nLocal_id"]);
 		return $productos->result_array();
 	}
 
 	public function get_toventas()
 	{
-		$productos = $this->db->query("SELECT * FROM ven_productosventa");
+		$local = $this->session->userdata('current_local');
+		$productos = $this->db->query('SELECT * FROM ven_productosventa where nLocal_id='.$local["nLocal_id"]);
 		return $productos->result_array();
 	}
 
