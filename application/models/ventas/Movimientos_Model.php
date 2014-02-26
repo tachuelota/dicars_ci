@@ -27,25 +27,5 @@ class Movimiento_Model extends CI_Model {
 		}
 	}
 
-	function update($id,$data){
-		
-		$this->db->trans_start();
-		
-		$this->db->trans_begin();
-
-		$this->db->where('nMovimiento_id',$id);
-		$this->db->update('ven_movimiento',$data);
-
-		if ($this->db->trans_status() === FALSE)
-		{
-			$this->db->trans_rollback();
-			return false;
-		}
-		else
-		{
-			$this->db->trans_commit();
-			return true;
-		}
-	}
 	
 }

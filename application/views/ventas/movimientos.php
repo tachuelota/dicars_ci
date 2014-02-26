@@ -41,10 +41,11 @@
 					<div class="box-content">
 					<div class="form-horizontal">
 							<fieldset>
+							
 								<div class="control-group">
 									<label class="control-label">Del</label>
 									<div class="controls">
-										<input type="text" class="input-xlarge datepicker" id="date01" value="02/06/2013" style="margin: 0 18px 0 0;">
+										<input type="text" class="input-xlarge datepicker" id="date01" name="date01">
 										<label style="display:inline;">Al</label>
 								  		<input type="text" class="input-xlarge datepicker" id="date02" value="02/06/2013" style="margin: 0 18px;">
 										<button id="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"><i class="icon-search icon-white"></i>Buscar</button>
@@ -65,34 +66,20 @@
 							</thead>   
 							<tbody>
 								<tr>
-									<td>01/01/2013</td>
-									<td>Para Gasolina</td>
-									<td>100</td>
-									<td>Retiro</td>
-									<td>Contado</td>
-									<td>Diego Molina</td>
-								</tr>
-								<tr>
-									<td>01/01/2013</td>
-									<td>Para Gasolina</td>
-									<td>50</td>
-									<td>Retiro</td>
-									<td>Contado</td>
-									<td>Diego Molina</td>
-								</tr>
+								</tr>								
 							</tbody>
 						</table>
-						<div class="modal hide fade" id="modalRegistroMov">
+						<div class="modal hide fade" id="modalMov">
 							<div class="modal-header">
 								<h3>Registrar Movimiento</h3>
 							</div>
-							<form id="RegistrarMovForm" class="form-horizontal" method="post" action="{{ path('dicars_admin_registrar_mov') }}">
+							<form id="MovimientoForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/movimiento/registrar">
 								<div class="modal-body">
 									<fieldset>
 										<div class="control-group">
-											<label class="control-label" for="personal">Trabajador</label>
+											<label class="control-label" for="idRegistrado">Trabajador</label>
 											<div class="controls">
-										  		<input class="input-xlarge focused" id="personal" name="personal" type="text" readonly>
+										  		<input class="input-xlarge focused" id="idRegistrado" name="idRegistrado" type="text" value="<?php echo $trabajador["cPersonalNom"]." ".$trabajador["cPersonalApe"] ?>" readonly>
 											</div>
 									  	</div>
 									  	<div class="control-group">
@@ -110,14 +97,14 @@
 									  	<div class="control-group">
 											<label class="control-label" for="selectTipoMov">Tipo de Movimiento</label>
 											<div class="controls">
-										  		<select id="selectTipoMov" name="selectTipoMov" required>
+										  		<select id="selectTipoMov" name="selectTipoMov" class="SelectAjax" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/9" attrval="cConstanteValor" attrdesc="cConstanteDesc" required>
 												</select>
 											</div>
 									  	</div>
 									  	<div class="control-group">
 											<label class="control-label" for="selectTipoPag">Tipo de Pago</label>
 											<div class="controls">
-										  		<select id="selectTipoPag" name="selectTipoPag" required>
+										  		<select id="selectTipoPag" name="selectTipoPag" class="SelectAjax" data-source="<?php echo base_url();?>administracion/servicios/getConstantesByClase/2" attrval="cConstanteValor" attrdesc="cConstanteDesc" required>
 												</select>
 											</div>
 									  	</div>
@@ -125,7 +112,7 @@
 								</div>
 								<div class="modal-footer">
 									<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
-									<button type="submit" class="btn btn-primary ">Guardar</button>
+									<button id="btn-reg-movimiento" type="button" class="btn btn-primary ">Registrar</button>
 								</div>
 							</form>
 						</div>

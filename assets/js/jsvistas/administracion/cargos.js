@@ -27,7 +27,7 @@ $(document).ready(function(){
 	});
 	
 	//1.creas tu tabla 
-	var UrlaDTable = $("#cargos_table").attr("data-source");
+	var UrlaDTable = $("#mov_table").attr("data-source");
 	FormatoDTable = [
 		              { "sWidth": "33%","mDataProp": "nCargoDesc"},
 		              { "sWidth": "33%","mDataProp": "estadolabel"},
@@ -60,6 +60,7 @@ $(document).ready(function(){
 			// para vefiricar console.log($("#CargoForm").serializeObject());
 			enviar($("#CargoForm").attr("action-1"),{formulario:$("#CargoForm").serializeObject()}, successCargo, null)
 	});
+	
 	$("#btn-editar-cargo").click(function(event){
 		event.preventDefault();
 		if($("#CargoForm").validationEngine('validate'))
