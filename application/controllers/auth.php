@@ -224,8 +224,8 @@ class Auth extends CI_Controller {
 			parse_str($formserialized,$form);
 			$user_id = $form["user_id"];
 
-			if(!$this->ion_auth->is_admin($user_id))
-			{
+			//if(!$this->ion_auth->is_admin($user_id))
+			//{
 				if($form["password"]!="")
 				{
 					$data = array("password" => $form["password"]);
@@ -248,7 +248,7 @@ class Auth extends CI_Controller {
 					if(!$this->ulom->insert_batch($UserLocal))
 						$this->output->set_status_header('400');
 				}
-			}
+			//}
 		}
 		else
 			$this->output->set_status_header('400');
