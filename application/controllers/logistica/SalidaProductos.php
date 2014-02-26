@@ -20,7 +20,7 @@ class SalidaProductos extends CI_Controller
 		if ($form!=null){
 			//CABECERA
 			$idPersonal = $form["registrador_id"];
-			$idLocal = $form["tienda"];
+			$idLocal = $form["tienda_id"];
 			$Fecha=$form["fecha"];
 			$Motivo = $form["motivo"];
 			$idSolicitante = $form["solicitante_id"];

@@ -20,7 +20,7 @@ class OrdenCompras extends CI_Controller
 		
 		if ($form!=null){
 			//CABECERA
-			$idPersonal = 4;
+			$idPersonal = $form["id_registrador"];
 			$idProveedor=$form["proveedor_id"];
 			$subtotal = $form["subtotal"];
 			$descuento=$form["descuento"];

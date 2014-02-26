@@ -39,13 +39,15 @@
 										<div class="control-group">
 											<label class="control-label" for="registrador">Registrador</label>
 											<div class="controls">
-												<input class="input-xlarge" id="registrador" name="registrador" type="text" readonly>
+												<input type="hidden" id="registrador_id" name="registrador_id" value="<?php echo $trabajador["nPersonal_id"] ?>">
+												<input class="input-xlarge" id="registrador" name="registrador" type="text" readonly value="<?php echo $trabajador["cPersonalNom"]." ".$trabajador["cPersonalApe"] ?>">
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="tienda">Tienda</label>
 											<div class="controls">
-											  	<input class="input-xlarge" id="tienda" name="tienda" type="text" readonly>
+												<input type="hidden" id="tienda_id" name="tienda_id" value="<?php echo $local["nLocal_id"] ?>">
+											  	<input class="input-xlarge" id="tienda" name="tienda" value="<?php echo $local["cLocalDesc"] ?>" type="text" readonly>
 											</div>
 										</div>
 										<div class="control-group">

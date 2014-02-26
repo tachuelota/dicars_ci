@@ -54,10 +54,13 @@ class Views extends CI_Controller
 	{
 		if($this->ion_auth->in_group("log_ord_comp"))
 		{
+			$this->load->model('administracion/Trabajadores_Model','tra');
+			$pagedata["trabajador"] = $this->tra->get_trabajadores($this->ion_auth->user()->row()->nPersonal_id);
+			$pagedata["local"] = $this->session->userdata('current_local');
 			$dataheader['title'] = 'Dicars - OrdenCompras (Registrar) -';
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('logistica/reg_ordencompras.php');
+			$this->load->view('logistica/reg_ordencompras.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/reg_ordencompras.js';
 			$datafooter['active'] = 'ord_com';
 			$this->load->view('templates/footer.php',$datafooter);
@@ -219,10 +222,13 @@ class Views extends CI_Controller
 	{
 		if($this->ion_auth->in_group("log_sal_prod"))
 		{
+			$this->load->model('administracion/Trabajadores_Model','tra');
+			$pagedata["trabajador"] = $this->tra->get_trabajadores($this->ion_auth->user()->row()->nPersonal_id);
+			$pagedata["local"] = $this->session->userdata('current_local');
 			$dataheader['title'] = 'Dicars - Salida Productos (Registrar) - ';
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('logistica/reg_salidaproductos.php');
+			$this->load->view('logistica/reg_salidaproductos.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/reg_salidaproductos.js';
 			$datafooter['active'] = '';
 			$this->load->view('templates/footer.php',$datafooter);
@@ -286,10 +292,13 @@ class Views extends CI_Controller
 	{
 		if($this->ion_auth->in_group("log_ord_ped"))
 		{
+			$this->load->model('administracion/Trabajadores_Model','tra');
+			$pagedata["trabajador"] = $this->tra->get_trabajadores($this->ion_auth->user()->row()->nPersonal_id);
+			$pagedata["local"] = $this->session->userdata('current_local');
 			$dataheader['title'] = 'Dicars - Pedidos -';
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('logistica/reg_pedidos.php');
+			$this->load->view('logistica/reg_pedidos.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/reg_pedidos.js';
 			$datafooter['active'] = 'ord_ped';
 			$this->load->view('templates/footer.php',$datafooter);

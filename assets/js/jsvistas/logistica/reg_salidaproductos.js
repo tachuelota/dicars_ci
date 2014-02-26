@@ -12,9 +12,6 @@
 		              ],
 		"fnCreatedRow":getSimpleSelectRowCallBack(SelectTrabajadoresData)
 		};
-
-<<<<<<< Updated upstream
-
 		BuscarTrabajadoresTable = createDataTable2('select_trabajador_table',BuscarTraOptions);
 		//datatable de productos en la modal
 		var BuscarProdOptions = {
@@ -102,11 +99,9 @@
 				tabla: CopyArray(SalidaProductosTable.fnGetData(),["nProducto_id","DetSalProdCant"])}, successSalidaProductos, null)
 	});
 
-
-=======
 		$('#btn-buscar-trabajador').click(function(e){
 			e.preventDefault();
 			$('#modalBuscarTrabajador').modal('show');
 		});
->>>>>>> Stashed changes
+
 	});
