@@ -22,9 +22,7 @@ class IngresoProductos extends CI_Controller
 			//CABECERA
 			$idPersonal = $form["idRegistrado"];
 			$idLocal = $form["idLocal"];
-			$Serie = "1";
-			$Numero = "1";
-			$Motivo = 1;
+			$Motivo = $form["tipo"];
 			$DocSerie = $form["docserie"];
 			$DocNumero = $form["docnumero"];
 			$Observacion = $form["observacion"];
@@ -32,8 +30,6 @@ class IngresoProductos extends CI_Controller
 			$IngProducto = array(
 				'nPersonal_id' => $idPersonal,
 				'nLocal_id' =>$idLocal,
-				'cIngProdSerie'=>$Serie,
-				'cIngProdNro'=> $Numero,
 				'nIngProdMotivo' => $Motivo,
 				'cIngProdDocSerie' => $DocSerie,
 				'cIngProdDocNro' => $DocNumero,

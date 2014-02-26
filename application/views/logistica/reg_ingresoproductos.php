@@ -32,22 +32,20 @@
 			</div>
 			<div class="box-content">
 				<form class="form-horizontal" id="IngresoProductosForm" method="post" action-1="<?php echo base_url();?>logistica/IngresoProductos/registrar" >
-					<input type="hidden" name="serie_ingreso" id="serie_ingreso">
-					<input type="hidden" name="numero_ingreso" id="numero_ingreso">
-					<input type="hidden" name="idRegistrado" id="idRegistrado" value="4">
-					<input type="hidden" name="idLocal" id="idLocal" value="2">
+					<input type="hidden" name="idRegistrado" id="idRegistrado" value="<?php echo $trabajador["nPersonal_id"] ?>">
+					<input type="hidden" name="idLocal" id="idLocal" value="<?php echo $local["nLocal_id"] ?>">
 					<fieldset>
 						<div class="row-fluid">
 							<div class="span6">
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly></div>
+										<input class="input-xlarge focused" id="registrador" name="registrador" value="<?php echo $trabajador["cPersonalNom"]." ".$trabajador["cPersonalApe"] ?>" type="text" readonly></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly value=""></div>
+										<input class="input-xlarge focused" id="tienda" name="tienda"  type="text" readonly value="<?php echo $local["cLocalDesc"] ?>"></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="tipo">Tipo</label>
@@ -77,7 +75,7 @@
 								<div class="control-group">
 									<label class="control-label" for="fecharegistro">Fecha</label>
 									<div class="controls">
-										<input class="input-xlarge" name="fecharegistro" id="fecharegistro" type="text" readonly value=""></div>
+										<input class="input-xlarge" name="fecharegistro" id="fecharegistro" type="text" readonly value="<?php echo date("d/m/Y"); ?>"></div>
 								</div>
 							</div>
 						</div>
