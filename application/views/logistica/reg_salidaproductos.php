@@ -38,7 +38,10 @@
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
+<<<<<<< Updated upstream
 										<input class="input-xlarge focused" id="registrador_id" name="registrador_id" type="hidden" value="4">
+=======
+>>>>>>> Stashed changes
 										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly></div>
 								</div>
 								<div class="control-group">
@@ -54,7 +57,11 @@
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
+<<<<<<< Updated upstream
 										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly value="2"></div>
+=======
+										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly></div>
+>>>>>>> Stashed changes
 								</div>
 							</div>
 							<div class="span6">
@@ -68,7 +75,12 @@
 									<div class="controls">
 										<input class="input-xlarge focused" id="solicitante" name="solicitante" type="text" readonly>
 										<input class="input-xlarge focused" id="solicitante_id" name="solicitante_id" type="hidden">
+<<<<<<< Updated upstream
 										<button id="btn-trabajador" name="btn-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i></button>
+=======
+										<button id="btn-buscar-trabajador" name="btn-buscar-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
+										</button>
+>>>>>>> Stashed changes
 									</div>
 								</div>
 							</div>

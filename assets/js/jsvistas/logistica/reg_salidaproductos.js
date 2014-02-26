@@ -13,6 +13,7 @@
 		"fnCreatedRow":getSimpleSelectRowCallBack(SelectTrabajadoresData)
 		};
 
+<<<<<<< Updated upstream
 
 		BuscarTrabajadoresTable = createDataTable2('select_trabajador_table',BuscarTraOptions);
 		//datatable de productos en la modal
@@ -102,4 +103,10 @@
 	});
 
 
+=======
+		$('#btn-buscar-trabajador').click(function(e){
+			e.preventDefault();
+			$('#modalBuscarTrabajador').modal('show');
+		});
+>>>>>>> Stashed changes
 	});
