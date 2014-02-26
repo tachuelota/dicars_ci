@@ -9,8 +9,7 @@ class Ofertas extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
-		$this->
-load->model('administracion/Oferta_Model','ofertm');
+		$this->load->model('administracion/Oferta_Model','ofertm');
 		$this->load->model('administracion/OfertaProducto_Model','ofertprodm');
 	}
 

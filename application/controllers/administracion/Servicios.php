@@ -112,20 +112,32 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 	
-	public function getTipoMonedas(){
+	public function getTipoMonedas($nTipoMoneda = FALSE)
+	{
 		$this->load->model('administracion/TipoMoneda_Model','tmonmod');
-		$tipomoneda = $this->tmonmod->get_tipomoneda();
-		foreach ($tipomoneda as $key => $tipomonedas) {
-			switch ($tipomonedas["cTipoMonedaEst"]) {		
-			    case 0:
-			        $tipomoneda[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
-			        break;
-			    case 1:
-			        $tipomoneda[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
-			        break;
+		if($nTipoMoneda === FALSE)
+		{
+			$tipomoneda = $this->tmonmod->get_tipomoneda();
+			foreach ($tipomoneda as $key => $tipomonedas) {
+				switch ($tipomonedas["cTipoMonedaEst"]) {		
+				    case 0:
+				        $tipomoneda[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+				        break;
+				    case 1:
+				        $tipomoneda[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+				        break;
+				}
 			}
+			$tipomoneda = array('aaData' => $tipomoneda);
 		}
-		echo json_encode(array('aaData' => $tipomoneda));
+		else
+		{
+			$tipomoneda = $this->tmonmod->get_tipomoneda($nTipoMoneda);
+		}
+		
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($tipomoneda));
 	}
 
 	//CARGAR TIPO IGV
@@ -139,22 +151,30 @@ class Servicios extends CI_Controller {
 			->set_output(json_encode(array('aaData' => $result)));
 	}
 
-	public function getTipoIGV(){
-	$this->load->model('administracion/TipoIGV_Model','igvm');
-		$tipoigv = $this->igvm->get_tipoIGV();
-		foreach ($tipoigv as $key => $tipo_igv) {
-			switch ($tipo_igv["cTipoIGVEst"]) {				
-			    case 0:
-			        $tipoigv[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
-			        break;
-			    case 1:
-			        $tipoigv[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
-			        break;
+	public function getTipoIGV($nTipoIGV = FALSE)
+	{
+		$this->load->model('administracion/TipoIGV_Model','igvm');
+		if($nTipoIGV === FALSE)
+		{
+			$tipoigv = $this->igvm->get_tipoIGV();
+			foreach ($tipoigv as $key => $tipo_igv) {
+				switch ($tipo_igv["cTipoIGVEst"]) {				
+				    case 0:
+				        $tipoigv[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
+				        break;
+				    case 1:
+				        $tipoigv[$key]["estadolabel"] = '<span class="label label-success">Habilitado</span>';
+				        break;
+				}
 			}
+			$tipoigv = array('aaData' => $tipoigv);
 		}
+		else
+			$tipoigv = $this->igvm->get_tipoIGV($nTipoIGV);
+	
 		$this->output
 			->set_content_type('application/json')
-			->set_output(json_encode(array('aaData' => $tipoigv)));
+			->set_output(json_encode($tipoigv));
 	}
 
 	public function getZonas()

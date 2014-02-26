@@ -158,10 +158,13 @@ class Views extends CI_Controller
 	{
 		if($this->ion_auth->in_group("ven_ven_prod"))
 		{
+			$this->load->model('administracion/Trabajadores_Model','tra');
+			$pagedata["trabajador"] = $this->tra->get_trabajadores($this->ion_auth->user()->row()->nPersonal_id);
+			$pagedata["local"] = $this->session->userdata('current_local');
 	      	$dataheader['title'] = 'Dicars - Ventas -(registrar)';
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('ventas/reg_ventas.php');
+			$this->load->view('ventas/reg_ventas.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/reg_ventas.js';
 			$datafooter['active'] = 'venta_prod';
 			$this->load->view('templates/footer.php',$datafooter);

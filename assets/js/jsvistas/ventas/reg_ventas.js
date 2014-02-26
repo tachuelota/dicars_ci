@@ -1,15 +1,21 @@
 $(document).ready(function(){
 	var SelectProductoData = new Array();
 	var SelectClienteData = new Array();
+	var totalcontado = 0;
+	var totalcredito = 0;
+	var formapago = null;
 
 	var  VentaUpdate = function(){	
-		var igv = parseInt($("#tipo_igv option:selected").text());
 		var des = $("#descuento").val();
-		var formapago = $("#forma_pago").val();		
-		var montomoneda = parseFloat($("#tipo_moneda option:selected").attr('monto'));
+		var moneda = getAjaxObject(base_url+"administracion/servicios/getTipoMonedas/"+$("#tipo_moneda").val());
+		var tipoigv = getAjaxObject(base_url+"administracion/servicios/getTipoIGV/"+$("#tipo_igv").val());
+		var montomoneda = parseFloat(moneda.nTipoMonedaMont);
+		var igv = parseInt(tipoigv.nTipoIGVProc);
 		var montodesc;
 		var montoigv;
 		var montoproductos;
+
+		formapago = $("#forma_pago").val();	
 		
 		if($("#tipo_moneda").val()==1)
 			TipoMoneda = " - s/.";
@@ -49,7 +55,6 @@ $(document).ready(function(){
 			}
 		}
 		
-		CargarTablaResumen(formapago);
 		montodesc = (montoproductos*des/100).toFixed(2);
 		
 		$("#subtotal").val((montoproductos*(100/(igv+100))*(100-des)/100).toFixed(2));
@@ -98,12 +103,26 @@ $(document).ready(function(){
 	var CargarTablaResumen = function(formapago){
 		ResumenProdTable.fnClearTable();
 		Auxtable = VentaProdTable.fnGetData();
+		CloneAttr(Auxtable,'nOfertaProductoPorc','nDetVentaDscto');
 		if(formapago == 2)
-			CloneAttr(Auxtable,'PrecioContado_Dscto','pventa');
+			CloneAttr(Auxtable,'PrecioContado_Dscto','nDetVentaPrecUnt');
 		else
-			CloneAttr(Auxtable,'PrecioCredito_Dscto','pventa');
-		ResumenProdTable.fnAddData($(Auxtable).CopyArray(["cProductoCodBarra","cProductoDesc","cantidad","pventa"]));
+			CloneAttr(Auxtable,'PrecioCredito_Dscto','nDetVentaPrecUnt');
+		ResumenProdTable.fnAddData($(Auxtable).CopyArray(["nProducto_id","cProductoCodBarra","cProductoDesc","nDetVentaCant","nDetVentaPrecUnt","nDetVentaDscto"]));
 	};
+
+	var ResumenRCBF = function(nRow, aData, iDisplayIndex)
+	{
+		aData.nDetVentaTot = (parseFloat(aData.nDetVentaPrecUnt)*parseFloat(aData.nDetVentaCant)).toFixed(2);
+	};
+
+	var VentaProdActions = new DTActions({
+		'conf': '001',
+		'DropFunction': function(nRow, aData, iDisplayIndex) {
+			var index = $(VentaProdTable.fnGetData()).getIndexObj(aData,'nProducto_id');				
+			VentaProdTable.fnDeleteRow(index); 
+		}
+	});
 
 	$('#rootwizard').bootstrapWizard({
 		onNext: function(tab, navigation, index) {
@@ -115,13 +134,25 @@ $(document).ready(function(){
 				}
 				else
 					VentaUpdate();				
-			}			
+			}
+			if(index == 2)
+			{
+				CargarTablaResumen(formapago);
+			}
 		},
-			onTabShow: function(tab, navigation, index) {
+		onTabShow: function(tab, navigation, index) {
 			var $total = navigation.find('li').length;
 			var $current = index+1;
-			var $percent = ($current/$total) * 100;
-			$('#rootwizard').find('.bar').css({width:$percent+'%'});
+		
+			// If it's the last tab then hide the last button and show the finish instead
+			if($current >= $total) {
+				$('#rootwizard').find('.pager .next').hide();
+				$('#rootwizard').find('.pager .finish').show();
+				$('#rootwizard').find('.pager .finish').removeClass('disabled');
+			} else {
+				$('#rootwizard').find('.pager .next').show();
+				$('#rootwizard').find('.pager .finish').hide();
+			}
 		}
 	});
 
@@ -158,11 +189,11 @@ $(document).ready(function(){
 		"aoColumns":[
 			{ "mDataProp": "cProductoCodBarra"},
 			{ "mDataProp": "cProductoDesc"},
-			{ "mDataProp": "cantidad"},
+			{ "mDataProp": "nDetVentaCant"},
 			{ "mDataProp": "PrecioContado_Dscto"},			
 			{ "mDataProp": "PrecioCredito_Dscto"}
 		              ],
-		"fnCreatedRow":null
+		"fnCreatedRow":VentaProdActions.RowCBFunction
 	};
 	var VentaProdTable = createDataTable2('select_productos_venta',VentaProdOptions);
 
@@ -170,10 +201,10 @@ $(document).ready(function(){
 		"aoColumns":[
 			{ "sWidth": "25%","mDataProp": "cProductoCodBarra"},
 			{ "sWidth": "25%","mDataProp": "cProductoDesc"},
-			{ "sWidth": "25%","mDataProp": "cantidad"},
-			{ "sWidth": "25%","mDataProp": "pventa"}
+			{ "sWidth": "25%","mDataProp": "nDetVentaCant"},
+			{ "sWidth": "25%","mDataProp": "nDetVentaPrecUnt"}
 			],
-		"fnCreatedRow":null
+		"fnCreatedRow":ResumenRCBF
 	};
 	var ResumenProdTable = createDataTable2('tabla_resumen_productos',ResumenProdOptions);
 
@@ -187,11 +218,20 @@ $(document).ready(function(){
 
 	$('#cliente').val('ANONIMO ANONIMO');
 	$('#cliente_id').val('0');
-	$("#fechaR").text(fechaAhora());
+	$("#fechaR").text(fechanow());
 
-	volverConsultar = function(){
-		$(location).attr("href","ventas_consultar.html");
+	var volverConsultar = function(){
+		$(location).attr(base_url+"ventas/views/ventas");
 	};
+
+	var prepararDatos = function()
+	{
+		var datosVenta = {
+			formulario:$("#EnviarVentaForm").serializeObject(),
+			productos: CopyArray(ResumenProdTable.fnGetData(),["nProducto_id","nDetVentaCant","nDetVentaPrecUnt","nDetVentaDscto","nDetVentaTot"])
+		}
+		return datosVenta;
+	}
 
 	$("#wrapper").width($("#contenedor").width());
 	$("#steps").width($("#contenedor").width());
@@ -243,45 +283,44 @@ $(document).ready(function(){
 		$('#producto').val(data.cProductoCodBarra);
 		$('#cantidad').val("1");
 		$('#modalBuscarProducto').modal('hide');
-		//$('#cantidad').attr('max',data.stock);
 		$('#modpcontado').val(data.PrecioContado_Dscto);
-		//$('#modpcontado').attr('min',data.pcosto);
 		$('#modpcredito').val(data.PrecioCredito_Dscto);
-		//$('#modpcredito').attr('min',data.pcosto);
 	});
 
 	$("#agregar_producto").click(function(event){
 		event.preventDefault();
 		if(SelectProductoData.length > 0){
-			SelectProductoData[0].cantidad = $('#cantidad').val();
+			SelectProductoData[0].nDetVentaCant = $('#cantidad').val();
 			SelectProductoData[0].PrecioContado_Dscto = $('#modpcontado').val();
 			SelectProductoData[0].PrecioCredito_Dscto = $('#modpcredito').val();
-			SelectProductoData[0].totalcredito = SelectProductoData[0].pcredito*$('#cantidad').val();
-			SelectProductoData[0].totalcontado = SelectProductoData[0].pcontado*$('#cantidad').val();
 			VentaProdTable.fnAddData(SelectProductoData);
 			$('#producto').val("");
 			$('#cantidad').val("");
 			$('#modpcontado').val("");
 			$('#modpcredito').val("");
 			SelectProductoData.splice(0,SelectProductoData.length);
-			$("#total_contado").text(totalcontado = (sumArrayByAttr(VentaProdTable.fnGetData(),'PrecioContado_Dscto','cantidad')).toFixed(2));
-			$("#total_credito").text(totalcredito = (sumArrayByAttr(VentaProdTable.fnGetData(),'PrecioCredito_Dscto','cantidad')).toFixed(2));
+			$("#total_contado").text(totalcontado = (sumArrayByAttr(VentaProdTable.fnGetData(),'PrecioContado_Dscto','nDetVentaCant')).toFixed(2));
+			$("#total_credito").text(totalcredito = (sumArrayByAttr(VentaProdTable.fnGetData(),'PrecioCredito_Dscto','nDetVentaCant')).toFixed(2));
 		}
 	});
 
 	$("#btn-select-cliente").click(function(event){
 		event.preventDefault();
 		var data = SelectClienteData[0];
-		$('#cliente').val(data.nombre+" "+data.apellido);
-		$('#cliente_id').val(data.id);
-		$('#clienteR').text(data.nombre+" "+data.apellido);
-		$('#direccionR').text(data.direccion);
-		$('#modalBuscarCliente').modal('hide');
-		
+		$('#cliente').val(data.cClienteNom+" "+data.cClienteApe);
+		$('#cliente_id').val(data.nCliente_id);
+		$('#clienteR').text(data.cClienteNom+" "+data.cClienteApe);
+		$('#direccionR').text(data.cClientecDir);
+		$('#modalBuscarCliente').modal('hide');		
 	});
 
 	$("#EnviarVentaForm").change(function(event){
 		event.preventDefault();
 		VentaUpdate();
+	});
+
+	$("#btn-enviar-form").click(function(event){
+		event.preventDefault();
+		enviar($("#EnviarVentaForm").attr("action-1"),prepararDatos(), logdata, null);
 	});
 });

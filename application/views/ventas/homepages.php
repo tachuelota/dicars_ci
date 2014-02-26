@@ -42,18 +42,20 @@
 					<div>Tarjeta <br> de Crédito</div>
 				</a>				
 				<?php endif ?>
-				<?php if($this->ion_auth->in_group("ven_client")): ?>
-				<a data-rel="tooltip" title="Ver, agregar y editar Clientes." class="well span3 top-block" href="<?php echo base_url();?>ventas/views/clientes">
-					<span class="icon32 icon-color icon-users"></span>
-					<div>Clientes</div>
-				</a>
-				<?php endif ?>
 			</div>
 			<div class="row-fluid">
+				<?php if($this->ion_auth->in_group("ven_movi")): ?>
 				<a data-rel="tooltip" title="Ver y agregar Movimiento de Dinero." class="well span3 top-block" href="<?php echo base_url();?>ventas/views/movimientos">
 					<span class="icon32 icon-color icon-transfer-ew"></span>
 					<div>Registrar<br> Movimientos</div>
+				</a>				
+				<?php endif ?>
+				<?php if($this->ion_auth->in_group("ven_client")): ?>
+				<a data-rel="tooltip" title="Ver, agregar y editar Clientes." class="well span3 top-block" href="<?php echo base_url();?>ventas/views/clientes">
+					<span class="icon32 icon-color icon-users"></span>
+					<div>Administrar<br>Clientes</div>
 				</a>
+				<?php endif ?>
 			</div><!-- content ends -->
 			</div><!--/#content.span10-->
 				</div><!--/fluid-row-->

@@ -28,74 +28,70 @@
 	</div>
 	<div class="row-fluid">
 		<div class="box span12" id="contenedor">
-			<div id="rootwizard">
-				<div class="navbar">
-					<div class="navbar-inner">
-						<div class="container">
-							<ul>
-								<li>
-									<a href="#tab1" data-toggle="tab">First</a>
-								</li>
-								<li>
-									<a href="#tab2" data-toggle="tab">Second</a>
-								</li>
-								<li>
-									<a href="#tab3" data-toggle="tab">Third</a>
-								</li>
-							</ul>
-						</div>
+			<div class="box-header well" data-original-title>
+				<h2>VENTA DE PRODUCTOS</h2>
+			</div>
+			<div class="box-content">
+				<div id="rootwizard">
+					<div class="box-content">
+						<ul class="nav nav-tabs">
+							<li>
+								<a href="#tab1" data-toggle="tab">PRODUCTOS</a>
+							</li>
+							<li>
+								<a href="#tab2" data-toggle="tab">DETALLE</a>
+							</li>
+							<li>
+								<a href="#tab3" data-toggle="tab">RESUMEN</a>
+							</li>
+						</ul>
 					</div>
-				</div>
-				<div id="bar" class="progress progress-striped active">
-				  <div class="bar"></div>
-				</div>
-				<div class="tab-content box-content">
-					<div class="tab-pane" id="tab1">
-						<div class="form-horizontal">
-							<div class="control-group">
-								<label class="control-label" for="producto">Producto</label>
-								<div class="controls">
-									<input class="input focused" id="producto" type="text" readonly>
-									<button type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
-									</button>
-									<label style="display:inline;" for="modpcontado">P. Contado</label>
-									<input id="modpcontado" type="text" style="margin: 0 18px 0 0;width: 50px;">
-									<label style="display:inline;" for="modpcredito">P. Credito</label>
-									<input id="modpcredito" type="text" style="margin: 0 18px 0 0;width: 50px;">
-									<label style="display:inline;" for="cantidad">Cantidad</label>
-									<input id="cantidad" type="text" style="margin: 0 18px 0 0;width: 50px;">
-									<button id="agregar_producto" type="submit" class="btn btn-info"> <i class="icon-plus icon-white"></i>
-										Agregar
-									</button>
+					<div class="tab-content">
+						<div class="tab-pane" id="tab1">
+							<div class="form-horizontal">
+								<div class="control-group">
+									<label class="control-label" for="producto">Producto</label>
+									<div class="controls">
+										<input class="input focused" id="producto" type="text" readonly>
+										<button type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+										</button>
+										<label style="display:inline;" for="modpcontado">P. Contado</label>
+										<input id="modpcontado" type="text" style="margin: 0 18px 0 0;width: 50px;">
+										<label style="display:inline;" for="modpcredito">P. Credito</label>
+										<input id="modpcredito" type="text" style="margin: 0 18px 0 0;width: 50px;">
+										<label style="display:inline;" for="cantidad">Cantidad</label>
+										<input id="cantidad" type="text" style="margin: 0 18px 0 0;width: 50px;">
+										<button id="agregar_producto" type="submit" class="btn btn-info"> <i class="icon-plus icon-white"></i>
+											Agregar
+										</button>
+									</div>
 								</div>
 							</div>
+							<hr>
+							<h4>Productos Agregados</h4>
+							<hr>
+							<table id="select_productos_venta" class="table table-striped table-bordered bootstrap-datatable datatable">
+								<thead>
+									<tr>
+										<th>Código</th>
+										<th>Descripción</th>
+										<th>Cantidad</th>
+										<th>Prec. Contado</th>
+										<th>Prec. Credito</th>
+									</tr>
+								</thead>
+								<tbody></tbody>
+								<tfoot>
+									<tr>
+										<td colspan='3'>Total</td>
+										<td id='total_contado'>0</td>
+										<td id='total_credito'>0</td>
+									</tr>
+								</tfoo>
+							</table>
 						</div>
-						<hr>
-						<h4>Productos Agregados</h4>
-						<hr>
-						<table id="select_productos_venta" class="table table-striped table-bordered bootstrap-datatable datatable">
-							<thead>
-								<tr>
-									<th>Código</th>
-									<th>Descripción</th>
-									<th>Cantidad</th>
-									<th>Prec. Contado</th>
-									<th>Prec. Credito</th>
-								</tr>
-							</thead>
-							<tbody></tbody>
-							<tfoot>
-								<tr>
-									<td colspan='3'>Total</td>
-									<td id='total_contado'>0</td>
-									<td id='total_credito'>0</td>
-								</tr>
-							</tfoo>
-						</table>
-					</div>
-					<hr>
 					<div class="tab-pane" id="tab2">
-						<form id="EnviarVentaForm" class="form-horizontal" method="post" action="">
+						<form id="EnviarVentaForm" class="form-horizontal" action-1="<?php echo base_url();?>ventas/ventas/registrar">
 							<fieldset>
 								<div class="row-fluid">
 									<div class="span6">
@@ -230,13 +226,13 @@
 										<td style="width: 25%;">
 											<strong>Fec. Emisión</strong>
 										</td>
-										<td id="fechaR" style="width: 25%;"></td>
+										<td id="fechaR" style="width: 25%;"><?php echo date("d/m/Y"); ?></td>
 									</tr>
 									<tr>
 										<td>
 											<strong>Vendedor</strong>
 										</td>
-										<td id="vendedorR"></td>
+										<td id="vendedorR"><?php echo $trabajador["cPersonalNom"]."-".$trabajador["cPersonalApe"];?></td>
 										<td>
 											<strong>Tipo de Pago</strong>
 										</td>
@@ -313,10 +309,9 @@
 						</div>
 					</div>
 					<ul class="pager wizard">
-						<li class="previous first" style="display:none;"><a href="#">First</a></li>
 						<li class="previous"><a href="#">Previous</a></li>
-						<li class="next last" style="display:none;"><a href="#">Last</a></li>
 					  	<li class="next"><a href="#">Next</a></li>
+					  	<li class="next finish" id="btn-enviar-form" style="display:none;"><a class="btn-info" href="javascript:;">Registrar</a></li>
 					</ul>
 				</div>
 			</div>
