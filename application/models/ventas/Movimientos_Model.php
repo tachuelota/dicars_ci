@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Movimiento_Model extends CI_Model {
+class Movimientos_Model extends CI_Model {
 
 	
 	function __construct() {
@@ -13,7 +13,7 @@ class Movimiento_Model extends CI_Model {
 		
 		$this->db->trans_begin();
 
-		$this->db->insert('ven_movimiento',$data);
+		$this->db->insert('ven_movimiento',$data);		
 
 		if ($this->db->trans_status() === FALSE)
 		{
@@ -25,6 +25,12 @@ class Movimiento_Model extends CI_Model {
 			$this->db->trans_commit();
 			return true;
 		}
+	}
+
+	public function get_fromrange($Desde,$Hasta)
+	{
+		$query = $this->db->query("SELECT * FROM  ven_lista_movimiento where dMovimientoFecReg between '".$Desde."' and '".$Hasta."'");
+		return $query -> result_array();
 	}
 
 	

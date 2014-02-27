@@ -4,41 +4,39 @@ class Movimientos extends CI_Controller {
 
 	function __construct() {
 		parent::__construct();
-		$this->load->model('administracion/Movimiento_Model','amm');
+		$this->load->model('ventas/Movimientos_Model','amm');
 
-	}	
-
-	public function Registrar(){
-		
-		$form = $this->input->get('formulario',true);
-		
-		if ($form!=null){
-
-			$fecha_reg = new \DateTime();
-			$personal =$form["idRegistrado"];
-			$monto = $form["monto"];
-			$concepto = $form["concepto"];
-			$tipo_mov = $form["selectTipoMov"];
-			$tipo_pag = $form["selectTipoPag"];
-			
-			$Movimiento = array(
-				'nMovimientoMonto'=>$monto,
-				'cMovimientoConcepto'=>$concepto,
-				'nPersonal_id'=>$personal,
-				'dMovimientoFecReg'=>$fecha_reg,
-				'nMovimientoTip'=>$tipo_mov,
-				'nMovimientoTipPag'=>$tipo_pag);
-
-			if($this->amm->insert($Movimiento))
-				$return = array("responseCode"=>200, "datos"=>"ok");
-			else
-				$return = array("responseCode"=>400, "greeting"=>"Bad");
-		} 
-		else
-			$return = array("responseCode"=>400, "greeting"=>"Bad");
-
-		$return = json_encode($return);
-		echo $return;
 	}
 
+	public function registrar()
+	{		
+		$form = $this->input->post('formulario',true);    
+		if ($form!=null)
+		{
+			$concepto = $form["concepto"];
+			$personal =$form["idRegistrado"];
+			$monto = $form["monto"];
+			$tipo_mov = $form["selectTipoMov"];
+			$tipo_pag = $form["selectTipoPag"];
+			$fecha_reg = date("Y-m-d");
+			
+			$Movimiento = array(				
+				'cMovimientoConcepto'=>$concepto,				
+				'nPersonal_id'=>$personal,	
+				'nMovimientoMonto'=>$monto,			
+				'nMovimientoTip'=>$tipo_mov,
+				'nMovimientoTipPag'=>$tipo_pag,
+				'dMovimientoFecReg'=>$fecha_reg
+				);			
+
+			if(!$this->amm->insert($Movimiento))
+				$this->output->set_status_header('400');				
+		}	
+		else
+			$this->output->set_status_header('400');
+
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode("ok"));
+	}
 }
