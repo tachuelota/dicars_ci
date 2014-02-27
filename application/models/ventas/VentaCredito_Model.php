@@ -2,7 +2,7 @@
 /**
 * 
 */
-class Venta_Model extends CI_Model
+class VentaCredito_Model extends CI_Model
 {
 	
 	function __construct()
@@ -12,7 +12,7 @@ class Venta_Model extends CI_Model
 
 	public function insert($data)
 	{
-		$this->db->insert('ven_venta',$data);
+		$this->db->insert('ven_credito',$data);
 
 		if ($this->db->trans_status() === FALSE)
 		{
@@ -24,4 +24,4 @@ class Venta_Model extends CI_Model
 		}
 	}
 }
-?>
+ ?>

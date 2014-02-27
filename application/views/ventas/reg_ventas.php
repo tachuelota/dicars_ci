@@ -98,7 +98,7 @@
 										<div class="control-group">
 											<label class="control-label" for="cliente">Cliente</label>
 											<div class="controls">
-												<input class="input focused" id="cliente" name="cliente" type="text" readonly required>
+												<input class="input focused" id="cliente" type="text" readonly required>
 												<input type="hidden" id="cliente_id" name="cliente_id">
 												<button type="button" class="btn btn-info btn-buscarc" style="margin: 0 18px;">
 													<i class="icon-search icon-white"></i>
@@ -115,7 +115,7 @@
 										<div class="control-group">
 											<label class="control-label" for="tipo_moneda">Tipo moneda</label>
 											<div class="controls">
-												<select style="margin: 0 18px 0 0;" class="input focused SelectAjax" name="tipo_moneda" id="tipo_moneda" data-source="<?php echo base_url();?>administracion/servicios/getTipoMonedas" attrval="nTipoMoneda" attrdesc="cTipoMonedaDesc">
+												<select style="margin: 0 18px 0 0;" class="input focused" name="tipo_moneda" id="tipo_moneda" data-source="<?php echo base_url();?>administracion/servicios/getTipoMonedas" attrval="nTipoMoneda" attrdesc="cTipoMonedaDesc">
 												</select>
 											</div>
 										</div>
@@ -123,7 +123,7 @@
 											<label class="control-label" for="descuento">Venta Descuento</label>
 											<div class="controls">
 												<div class="input-prepend input-append">
-													<input class="input focused " name="descuento" id="descuento" type="text" value="0">
+													<input class="input focused validate[required,custom[number],min[0],max[100]]" name="descuento" id="descuento" type="text" value="0">
 													<span id="spandesc" class="add-on">%</span>
 												</div>
 											</div>
@@ -138,7 +138,7 @@
 											<label class="control-label" for="tipo_igv">IGV</label>
 											<div class="controls">
 												<div class="input-prepend input-append">
-													<select style="margin: 0 0px 0 0;" class="input focused SelectAjax" name="tipo_igv" id="tipo_igv" data-source="<?php echo base_url();?>administracion/servicios/getTipoIGVActivo" attrval="nTipoIGV" attrdesc="cTipoIGV">
+													<select style="margin: 0 0px 0 0;" class="input focused" name="tipo_igv" id="tipo_igv" data-source="<?php echo base_url();?>administracion/servicios/getTipoIGVActivo" attrval="nTipoIGV" attrdesc="cTipoIGV">
 													</select>
 													<span id="spanigv" class="add-on">%</span>
 												</div>
@@ -157,7 +157,7 @@
 												<label class="control-label" for="amortizacion">A cuenta</label>
 												<div class="controls">
 													<div class="input-prepend input-append">
-														<input class="input focused" style="margin: 0 0px 0 0;" name="amortizacion" id="amortizacion" type="text">
+														<input class="input focused validate[required,custom[number],min[0]]" style="margin: 0 0px 0 0;" name="amortizacion" id="amortizacion" type="text" val="0">
 														<span id="spanamort" class="add-on"></span>
 													</div>
 												</div>
@@ -174,7 +174,8 @@
 												<label class="control-label" for="num_cuotas">N° Cuotas</label>
 												<div class="controls">
 													<div class="input-prepend input-append">
-														<input class="input focused " name="num_cuotas" id="num_cuotas" type="text">
+														<input type="hidden" name="montocuota" id="montocuota">
+														<input class="input focused validate[required,custom[integer],min[0]]" name="num_cuotas" id="num_cuotas" type="text">
 														<span id="spancouota" class="add-on">x 0.00 S/.</span>
 													</div>
 												</div>
@@ -182,21 +183,20 @@
 											<div class="control-group">
 												<label class="control-label" for="prim_cuota">Fecha 1° Cuota</label>
 												<div class="controls">
-													<input type="text" placeholder="dd/mm/aaaa" class="input datepicker" id="prim_cuota" name="prim_cuota"></div>
+													<input type="text" placeholder="dd/mm/aaaa" class="input datepicker validate[required,custom[date]]" id="prim_cuota" name="prim_cuota"></div>
 											</div>
 										</div>
 										<div id="pagocont_block">
 											<div class="control-group">
 												<label class="control-label" for="importe">Importe</label>
 												<div class="controls">
-													<input id="importe" name="importe" type="text">
-													<span id="importe_help" style="color: red;" class="help-inline">
+													<input id="importe" name="importe" type="text" class="validate[required,custom[number],min[0]]">
 												</div>
 											</div>
 											<div class="control-group">
 												<label class="control-label" for="vuelto">Vuelto</label>
 												<div class="controls">
-													<input name="vuelto" id="vuelto" type="text" readonly></div>
+													<input id="vuelto" type="text" readonly></div>
 											</div>
 										</div>
 										<div class="control-group">

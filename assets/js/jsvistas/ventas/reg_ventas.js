@@ -4,13 +4,19 @@ $(document).ready(function(){
 	var totalcontado = 0;
 	var totalcredito = 0;
 	var formapago = null;
+	var moneda = getAjaxObject(base_url+"administracion/servicios/getTipoMonedas").aaData;
+	var tipoigv = getAjaxObject(base_url+"administracion/servicios/getTipoIGVActivo").aaData;
+
+	$("#EnviarVentaForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
+	$("#tipo_moneda").SelectAjax(moneda);
+	$("#tipo_igv").SelectAjax(tipoigv);
 
 	var  VentaUpdate = function(){	
 		var des = $("#descuento").val();
-		var moneda = getAjaxObject(base_url+"administracion/servicios/getTipoMonedas/"+$("#tipo_moneda").val());
-		var tipoigv = getAjaxObject(base_url+"administracion/servicios/getTipoIGV/"+$("#tipo_igv").val());
-		var montomoneda = parseFloat(moneda.nTipoMonedaMont);
-		var igv = parseInt(tipoigv.nTipoIGVProc);
+		var current_moneda = $(moneda).getObjectFromIndex("nTipoMoneda", $("#tipo_moneda").val());
+		var current_igv = $(tipoigv).getObjectFromIndex("nTipoIGV", $("#tipo_igv").val());
+		var montomoneda = parseFloat(current_moneda.nTipoMonedaMont);
+		var igv = parseInt(current_igv.nTipoIGVProc);
 		var montodesc;
 		var montoigv;
 		var montoproductos;
@@ -25,15 +31,15 @@ $(document).ready(function(){
 		}
 
 		if(formapago == 1){
+			$("#amortizacion").val(0);
+			$("#saldo").val(0);
 			$("#pagocont_block").show();
 			$("#cuotas_block").hide();
 			$("#saldo_block").hide();
 			$("#resume-credito").hide();
 			montoproductos = totalcontado;
-			tipoprecio = 'pcontado';
 		}
 		else{
-			$("#importe").attr("min", "0");
 			$("#saldo_block").show();
 			$("#pagocont_block").hide();
 			$("#resume-credito").show();
@@ -42,25 +48,19 @@ $(document).ready(function(){
 				UnselectRow("select_producto_table");
 				$("#cuotas_block").show();
 				montoproductos = totalcredito;
-				tipoprecio = 'pcredito';
-				$("#prim_cuota").attr("required",true);
 			}
 
 			else{
-				$("amortizacion").attr("required",true);
 				$("#cuotas_block").hide();
 				montoproductos = totalcontado;
-				tipoprecio = "pcontado";
-				$("#amortizacion").attr("min", "1");
 			}
 		}
 		
 		montodesc = (montoproductos*des/100).toFixed(2);
-		
 		$("#subtotal").val((montoproductos*(100/(igv+100))*(100-des)/100).toFixed(2));
 		montoigv = ($("#subtotal").val()*igv/100).toFixed(2);
 		$("#total").val(($("#subtotal").val()*(100+igv)/100).toFixed(2));
-		$("#saldo").val(($("#total").val()-$("#amortizacion").val()).toFixed(2));
+		$("#saldo").val(($("#total").val() - $("#amortizacion").val()).toFixed(2));
 		$("#spandesc").text("% "+TipoMoneda+" "+montodesc);
 		$("#spanigv").text("% "+TipoMoneda+" "+montoigv);
 		
@@ -80,24 +80,20 @@ $(document).ready(function(){
 		$("#amortizacionR").text($("#amortizacion").val());
 		$("#saldoR").text($("#saldo").val());
 		total = parseFloat($('#total').val());
-		$('#amortizacion').attr('max', total);	
-		if(formapago == 1){
+		if(formapago == 1)
+		{
 			$("#importeR").text($("#importe").val());
 			$("#vueltoR").text($("#vuelto").val());
-			$('#importe').attr('min', total);
-			
-			if($('#importe').val() >= total){
+			$("#montocuota").val(0);
+			if($('#importe').val() >= total)
+			{
 				$('#vuelto').val(($('#importe').val() - total).toFixed(2));
-				$('#importe_help').hide();
+				$("#amortizacion").val(total);
+				$("#saldo").val(0);
 			}
-			else if($('#importe').val() == 0){
+				
+			else 
 				$('#vuelto').val("0");
-				$('#importe_help').hide();
-			}
-			else{
-				$('#vuelto').val("0");
-				$('#importe_help').show();
-			}
 		}
 	}
 	var CargarTablaResumen = function(formapago){
@@ -108,7 +104,7 @@ $(document).ready(function(){
 			CloneAttr(Auxtable,'PrecioContado_Dscto','nDetVentaPrecUnt');
 		else
 			CloneAttr(Auxtable,'PrecioCredito_Dscto','nDetVentaPrecUnt');
-		ResumenProdTable.fnAddData($(Auxtable).CopyArray(["nProducto_id","cProductoCodBarra","cProductoDesc","nDetVentaCant","nDetVentaPrecUnt","nDetVentaDscto"]));
+		ResumenProdTable.fnAddData($(Auxtable).CopyArray(["nProducto_id","cProductoCodBarra","cProductoDesc","nDetVentaCant","nDetVentaPrecUnt","nDetVentaDscto","cDetVentaDesc"]));
 	};
 
 	var ResumenRCBF = function(nRow, aData, iDisplayIndex)
@@ -126,18 +122,39 @@ $(document).ready(function(){
 
 	$('#rootwizard').bootstrapWizard({
 		onNext: function(tab, navigation, index) {
-			if(index==1) {
-				if(VentaProdTable.fnSettings().fnRecordsTotal() == 0)
-				{
-					$("#rquiredproducts").modal('show');
-					return false;
-				}
-				else
-					VentaUpdate();				
-			}
-			if(index == 2)
+			switch (index)
 			{
-				CargarTablaResumen(formapago);
+				case 1:
+					if(VentaProdTable.fnSettings().fnRecordsTotal() == 0)
+					{
+						$("#rquiredproducts").modal('show');
+						return false;
+					}
+					else
+						VentaUpdate();
+					break;
+				case 2:
+					CargarTablaResumen(formapago);
+					if($("#EnviarVentaForm").validationEngine("validate"))
+					{
+						if(formapago == "1")
+						{							
+							if(parseFloat($("#total").val())>$('#importe').val())
+							{
+								$('#importe').validationEngine(
+									'showPrompt',
+									'El importe debe ser mayor que el total',
+									'error',
+									"topLeft" ,
+									true);
+								return false;
+							}
+						}
+					}
+					else
+						return false;
+					break;
+							
 			}
 		},
 		onTabShow: function(tab, navigation, index) {
@@ -166,7 +183,7 @@ $(document).ready(function(){
 			{ "mDataProp": "PrecioCredito_Dscto"},
 			{ "mDataProp": "cMarcaDesc"},
 			{ "mDataProp": "cCategoriaNom"},			
-			{ "mDataProp": "DescripcionOferta"},
+			{ "mDataProp": "cDetVentaDesc"},
 			{ "mDataProp": "nProductoStock"}
 		              ],
 		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
@@ -228,7 +245,7 @@ $(document).ready(function(){
 	{
 		var datosVenta = {
 			formulario:$("#EnviarVentaForm").serializeObject(),
-			productos: CopyArray(ResumenProdTable.fnGetData(),["nProducto_id","nDetVentaCant","nDetVentaPrecUnt","nDetVentaDscto","nDetVentaTot"])
+			productos: CopyArray(ResumenProdTable.fnGetData(),["nProducto_id","nDetVentaCant","nDetVentaPrecUnt","nDetVentaDscto","nDetVentaTot","cDetVentaDesc"])
 		}
 		return datosVenta;
 	}
