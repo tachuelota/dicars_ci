@@ -61,13 +61,13 @@
 										<div class="control-group">
 											<label class="control-label" for="fechapedido">Fecha de Pedido</label>
 											<div class="controls">
-												<input class="input-xlarge datepicker" id="fechapedido" name="fechapedido" type="text">
+												<input class="input-xlarge datepicker validate[required,custom[date]]" id="fechapedido" name="fechapedido" type="text" data-prompt-position="topLeft">
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="fechaentrega">Fecha de Entrega</label>
 											<div class="controls">
-												<input class="input-xlarge datepicker" id="fechaentrega" name="fechaentrega" type="text">
+												<input class="input-xlarge datepicker validate[required,custom[date]]" id="fechaentrega" name="fechaentrega" type="text" data-prompt-position="topLeft">
 											</div>
 										</div>
 										
@@ -138,6 +138,23 @@
 							<div class="modal-footer">
 								<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 								<a  id="select_producto" href="#" class="btn btn-primary">Seleccionar</a>
+							</div>
+						</div>
+						<div class="modal hide fade" id="rquiredproducts">
+							<div class="modal-header">
+								<h3>Atención</h3>
+							</div>
+							<div class="modal-body">
+								<div class="alert alert-error">
+									<p>
+										<i class="icon icon-alert icon-red"></i>
+										Necesita agregar productos
+									</p>
+								</div>
+
+							</div>
+							<div class="modal-footer">
+								<a href="#" class="btn" data-dismiss="modal">Aceptar</a>
 							</div>
 						</div>
 					</div>

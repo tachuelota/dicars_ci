@@ -3,6 +3,9 @@ $("#ClienteForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3
 	var Ubigeos = getAjaxObject($("#ClienteForm").attr("data-source"));
 	cargarUbigeo(Ubigeos,"dist", "prov", "dep");
 
+	var urlExportXLS = base_url +"assets/extensiones/reportes_xls/formato_reporte_clientes.php"
+	var urlExportPDF = base_url +"assets/extensiones/reportes_pdf/formato_reporte_clientes.php";
+
     //selector por clase 
 	$(".ubigeo").change(function(){
 		cargarZonas();
@@ -35,16 +38,16 @@ $("#ClienteForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3
 	});
 
    ClientesRowCBF = function(nRow, aData, iDisplayIndex){
-	ClientesTA.RowCBFunction(nRow, aData, iDisplayIndex);	
+		ClientesTA.RowCBFunction(nRow, aData, iDisplayIndex);	
 	};
 
 	var UrlaDTable = $("#clientes_table").attr("data-source");
 	//console.log(UrlaDTable);
-	FormatoClientes = [
-	{ "sWidth": "30%","mDataProp": "cClienteNom"},
-	{ "sWidth": "30%","mDataProp": "cClienteApe"},
-	{ "sWidth": "20%","mDataProp": "cClienteDNI"},	
-	{ "sWidth": "20%","mDataProp": "nClienteLineaOp"}
+		FormatoClientes = [
+		{ "sWidth": "30%","mDataProp": "cClienteNom"},
+		{ "sWidth": "30%","mDataProp": "cClienteApe"},
+		{ "sWidth": "20%","mDataProp": "cClienteDNI"},	
+		{ "sWidth": "20%","mDataProp": "nClienteLineaOp"}
 
 	];
 
@@ -80,27 +83,41 @@ $("#ClienteForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3
 
 	//codigo del php anterior
 	$('.btn-registrar').click(function(e){
-	e.preventDefault();
-	$('#modalClientes').modal('show');
+		e.preventDefault();
+		$('#modalClientes').modal('show');
 	});
 
 	$("#pdfgen").click(function(){
-	$("#title").val("LISTA DE CLIENTES");
-	$("#exportmodal").modal('show');	
+
+	//ClientesRowCBF = function (){
+		table_clientes = toHTML(crearTablaToArray("tclientes",
+				['ID','NOMBRE','DNI','LINEA OPERATIVA','ZONA','DIRECCIÓN'],
+				[	'style="width: 5%;" class="head" ','style="width: 25%;" class="head" ','style="width: 15%;" class="head" ',
+					'style="width: 15%;" class="head" ','style="width: 15%;" class="head" ','style="width: 25%;" class="head" ',],
+				['nCliente_id','cClienteNom','cClienteDNI','nClienteLineaOp','nZona_id','cClientecDir'],
+				[	'style="width: 5%;" ','style="width: 25%;" ','style="width: 15%;" ',
+					'style="width: 15%;" ','style="width: 15%;" ','style="width: 25%;" '],
+					ClientesTable.fnGetData()));
+		//};
+		$("#title").val("LISTA DE CLIENTES");
+		$("#table_clientes").val(table_clientes);
+		$("#exportmodal").modal('show');	
+		console.log(table_clientes);
 	});
 
+	
 	$("#pdfbutton").click(function(e){
-	e.preventDefault();
-	$("#CreatePDFForm").attr("action",urlExportPDF);
-	$("#CreatePDFForm").submit();
-	$("#exportmodal").modal('hide');
+		e.preventDefault();
+		$("#CreatePDFForm").attr("action",urlExportPDF);
+		$("#CreatePDFForm").submit();
+		$("#exportmodal").modal('hide');
 	});
 
 	$("#xlsutton").click(function(e){
-	e.preventDefault();
-	$("#CreatePDFForm").attr("action",urlExportXLS);
-	$("#CreatePDFForm").submit();
-	$("#exportmodal").modal('hide');
+		e.preventDefault();
+		$("#CreatePDFForm").attr("action",urlExportXLS);
+		$("#CreatePDFForm").submit();
+		$("#exportmodal").modal('hide');
 	});
 	  // fin
 });

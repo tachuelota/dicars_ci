@@ -39,7 +39,7 @@
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
 										<input type="hidden" id="id_registrador" name="id_registrador" value="<?php echo $trabajador["nPersonal_id"] ?>">
-										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly required value="<?php echo $trabajador["cPersonalNom"]." ".$trabajador["cPersonalApe"] ?>"></div>
+										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly required value="<?php echo $trabajador["cPersonalNom"]." ".$trabajador["cPersonalApe"] ?>" ></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="proveedor">Proveedor</label>
@@ -59,12 +59,12 @@
 								<div class="control-group">
 									<label class="control-label" for="serie">Documento Serie</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="doc_serie" name="doc_serie" type="text" ></div>
+										<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" id="doc_serie" name="doc_serie" type="text" ></div>
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="serie">Documento Numero</label>
 									<div class="controls">
-										<input class="input-xlarge focused" id="doc_numero" name="doc_numero" type="text" ></div>
+										<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" id="doc_numero" name="doc_numero" type="text" ></div>
 								</div>
 							</div>
 							<div class="span6">

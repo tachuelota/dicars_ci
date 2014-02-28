@@ -67,18 +67,18 @@
 									<div class="control-group">
 										<label class="control-label" for="serie">Serie</label>
 										<div class="controls">
-											<input class=" validate[required,custom[onlyLetterNumber]]" maxlength="15" id="serie" name="serie" type="text"></div>
+											<input class=" validate[required,custom[onlyLetterNumber]]" maxlength="15" id="serie" name="serie" type="text" data-prompt-position="topLeft"></div>
 									</div>
 
 									<div class="control-group">
 										<label class="control-label" for="talla">Talla</label>
 										<div class="controls">
-											<input class="validate[required,custom[onlyNumberSp]]" maxlength="15" id="talla" name="talla" type="text"></div>
+											<input class="validate[required,custom[onlyNumberSp]]" maxlength="15" id="talla" name="talla" type="text" data-prompt-position="topLeft"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="marca">Marca</label>
 										<div class="controls">
-											<select id="marca" class="SelectAjax" name="marca" data-source="<?php echo base_url();?>administracion/servicios/getMarcas_Activo" attrval="nMarca_id" attrdesc="cMarcaDesc"></select>
+											<select id="marca" class="SelectAjax" name="marca" data-source="<?php echo base_url();?>administracion/servicios/getMarcas_Activo" attrval="nMarca_id" attrdesc="cMarcaDesc" data-prompt-position="topLeft"></select>
 										</div>
 									</div>
 									<div class="control-group">
@@ -96,7 +96,7 @@
 									<div class="control-group">
 										<label class="control-label" for="descripcion">Descripción</label>
 										<div class="controls">
-											<textarea class="input-xlarge  validate[required]" name="descripcion" maxlength="200" id="descripcion" rows="2" cols=""></textarea>
+											<textarea class="input-xlarge  validate[required]" name="descripcion" maxlength="200" id="descripcion" rows="2" cols="" data-prompt-position="topLeft"></textarea>
 										</div>
 									</div>
 									<div class="control-group">
@@ -115,29 +115,29 @@
 									<div class="control-group">
 										<label class="control-label " for="preciocosto">Precio Costo</label>
 										<div class="controls">
-											<input  class="validate[required,custom[number]]" name="preciocosto" id="preciocosto" type="text"></div>
+											<input  class="validate[required,custom[number]]" name="preciocosto" id="preciocosto" type="text" data-prompt-position="topLeft"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="preciocontado">Precio Contado</label>
 										<div class="controls">
-											<input class="validate[required,custom[number]]" name="preciocontado" id="preciocontado" type="text"></div>
+											<input class="validate[required,custom[number]]" name="preciocontado" id="preciocontado" type="text" data-prompt-position="topLeft"></div>
 									</div>
 
 									<div class="control-group">
 										<label class="control-label" for="preciocredito">Precio Credito</label>
 										<div class="controls">
-											<input class="validate[required,custom[number]]" name="preciocredito" id="preciocredito" type="text"></div>
+											<input class="validate[required,custom[number]]" name="preciocredito" id="preciocredito" type="text" data-prompt-position="topLeft"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="stockmin">Stock Min</label>
 										<div class="controls">
-											<input  class="validate[required,custom[onlyNumberSp]]" maxlength="11" name="stockmin" id="stockmin" type="text">
+											<input  class="validate[required,custom[onlyNumberSp]]" maxlength="11" name="stockmin" id="stockmin" type="text" data-prompt-position="topLeft">
 										</div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="stockmax">Stock Max</label>
 										<div class="controls">
-											<input class="validate[required,custom[onlyNumberSp]]" maxlength="11" name="stockmax" id="stockmax" type="text"></div>
+											<input class="validate[required,custom[onlyNumberSp]]" maxlength="11" name="stockmax" id="stockmax" type="text" data-prompt-position="topLeft"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="estado">Estado</label>

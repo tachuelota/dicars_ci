@@ -1,6 +1,6 @@
 <?php
 $title = $_POST['title'];
-$table_movimiento = $_POST['table_movimiento'];
+$movimientotable = $_POST['movimientotable'];
 
 header('Content-type: application/x-msdownload; charset=utf-16');
 header('Content-Disposition: attachment; filename=reporte_movimiento_gen_'.date("d-m-Y").'.xls');
@@ -52,7 +52,7 @@ header('Expires: 0');
 			<h3><?php echo $title ?></h3>
 		</div>
 		<br>
-		<?php echo $table_movimiento ?><br>
+		<?php echo $movimientotable ?><br>
 		<br>
 		
     </body>
