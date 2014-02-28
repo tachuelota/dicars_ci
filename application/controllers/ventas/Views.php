@@ -107,11 +107,12 @@ class Views extends CI_Controller
 	public function tarjetascreditos()
 	{
 		if($this->ion_auth->in_group("ven_tarj_cred"))
-		{
+		{	
+			$pagedata["local"] = $this->session->userdata('current_local');
 			$dataheader['title'] = 'Dicars - Tarjetas de Creditos -';
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('ventas/tarjetascreditos.php');
+			$this->load->view('ventas/tarjetascreditos.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/tarjetascreditos.js';
 			$datafooter['active'] = 'tarj_cred';
 			$this->load->view('templates/footer.php',$datafooter);

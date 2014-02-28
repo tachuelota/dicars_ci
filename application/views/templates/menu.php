@@ -30,7 +30,7 @@
 					<li id="tarj_cred">
 						<a class="ajax-link" href="<?php echo base_url();?>ventas/views/tarjetascreditos">
 							<i class="icon icon-black icon-profile"></i>
-							<span class="hidden-tablet">Tarjeta de Crédito</span>
+							<span class="hidden-tablet">Linea de Crédito</span>
 						</a>
 					</li>
 				<?php endif ?>

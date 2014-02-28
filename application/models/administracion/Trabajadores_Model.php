@@ -78,4 +78,10 @@ class Trabajadores_Model extends CI_Model {
 		return $query -> result_array();
 	}
 
+	public function get_trabajadores_bylocal($nLocal_id)
+	{
+		$query = $this ->db->query("SELECT * FROM ven_personal_all  where id_local =" .$nLocal_id);
+		return $query -> result_array();
+	}
+
 }
