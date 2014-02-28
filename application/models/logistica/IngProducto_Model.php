@@ -10,13 +10,11 @@ class IngProducto_Model extends CI_Model
 	}
 
 	public function insert($IngProducto){
-		$procedure="call sp_ins_logingprod(?,?,?,?,?,?,?,?)";
+		$procedure="call sp_ins_logingprod(?,?,?,?,?,?)";
 
 		$params =array(
 			intval($IngProducto['nPersonal_id']),
 			intval($IngProducto['nLocal_id']),
-			$IngProducto['cIngProdSerie'],
-			$IngProducto['cIngProdNro'],
 			intval($IngProducto['nIngProdMotivo']),
 			$IngProducto['cIngProdDocSerie'],
 			$IngProducto['cIngProdDocNro'],

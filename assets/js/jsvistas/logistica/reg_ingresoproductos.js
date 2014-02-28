@@ -2,17 +2,6 @@ $(document).ready(function(){
 
 		var SelectProductosData = new Array();
 		var DataToSend = {};
-
-		//creamos datatble
-
-		
-
-		$('#select_producto').click(function(event){
-			event.preventDefault();
-			$("#idProducto").val(SelectProductosData[0].nProducto_id);
-			$('#producto').val(SelectProductosData[0].cProductoDesc);
-			$('#modalBuscarProducto').modal('hide');
-		});
 		//	Agregar a la tabla
 		$('#agregar_producto').click(function(event){
 			event.preventDefault();
@@ -25,19 +14,18 @@ $(document).ready(function(){
 			$("#precio_uni").val("");
 			$("#producto").val("");
 			$("#idProducto").val("");
-			//console.log(IngresoProductosTable.fnGetData());
 		});
-
-
-
+		$('#select_producto').click(function(event){
+			event.preventDefault();
+			$("#idProducto").val(SelectProductosData[0].nProducto_id);
+			$('#producto').val(SelectProductosData[0].cProductoDesc);
+			$('#modalBuscarProducto').modal('hide');
+		});
 		//LLAMAR AL MODAL
 		$('#btn-buscar-productos').click(function(e){
 			e.preventDefault();
 			$('#modalBuscarProducto').modal('show');
 		});
-
-
-
 		function prepararDatos(){
 			DataToSend = {
 				formulario:$("#ProductoForm").serializeObject(),
@@ -45,14 +33,6 @@ $(document).ready(function(){
 				
 				};
 		}
-
-		/*function PrepararDatos_IngresoProductos(){
-			DataToSend = {
-				formulario:$("#IngresoProductosForm").serializeObject(),
-				tabla: CopyArray(IngresoProductosTable.fnGetData(),["nProducto_id","cantidad","precio_uni"])
-				};
-		}	*/
-
 		var BuscarProOptions = {
 		"aoColumns":[
 		              { "sWidth": "5%","mDataProp": "cProductoDesc"},
@@ -86,10 +66,7 @@ $(document).ready(function(){
 
 
 		var successIngresoProductos = function(){
-		//alert("Hola Como estas");
-		//$('#modalProductos').modal('hide');
-		//TipoProductoTable.fnReloadAjax()
-	}
+		}
 		//
 		//Registrar
 	$("#enviar_ingreso_producto").click(function(event){

@@ -38,12 +38,12 @@
 						<input id="xlsvalorizadogen" type="button" value="Reporte Valorizado" class="btn btn-success" style="float: right; margin: 10px 10px 0 0;"/>
 					</div>
 				</div>
-				<div class="form-horizontal">
+				<div class="form-horizontal" id="KardexForm" name="KardexForm" action-1="<?php echo base_url();?>logistica/Servicios/get_kardex_byfecha">
 					<fieldset>
 						<div class="control-group">
 							<div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" style="margin: 0 18px 0 0;">
-								<button id="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+								<input type="text" class="input-xlarge datepicker" id="date01" name="date01">
+								<button id="buscarfecha" name="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 									Buscar
 								</button>
 							</div>
@@ -63,15 +63,6 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<th>Año</th>
-							<th>Mes</th>
-							<th>Producto</th>
-							<th>Tipo Ingreso</th>
-							<th>Cantidad</th>
-							<th>Prec. Unitario s/.</th>
-							<th>Total s/.</th>
-						</tr>
 					</tbody>
 				</table>
 			</div>

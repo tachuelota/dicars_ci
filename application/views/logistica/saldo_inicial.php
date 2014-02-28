@@ -80,7 +80,7 @@
 						<div class="row-fluid">
 							<div class="span6"></div>
 							<div class="span6">
-								<input id="xlsactualgen" type="button" value="Reporte a Excel" class="btn btn-success" style="float: right; margin: 10px 10px 0 0;"/>
+								<input id="xlsactualgen" name="xlsactualgen" type="button" value="Reporte a Excel" class="btn btn-success" style="float: right; margin: 10px 10px 0 0;"/>
 							</div>
 						</div>
 						<div class="form-horizontal" id="SaldoActualForm" name="SaldoActualForm" action-1="<?php echo base_url();?>logistica/Servicios/get_saldoactual_byfecha">
