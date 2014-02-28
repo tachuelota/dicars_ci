@@ -123,7 +123,7 @@
 						<div class="modal-body">
 							<form method="post" id="CreatePDFForm" target="_blank">
 								<input type="hidden" name="title" id="title"/>
-								<input type="hidden" name="table_movimiento" id="table_movimiento" value=""/>
+								<input type="hidden" name="movimientotable" id="movimientotable" value=""/>
 								<input type="hidden" name="table_ingresos" id="table_ingresos" value=""/>
 								<input type="hidden" name="table_salidas" id="table_salidas" value=""/>
 								<input type="hidden" name="total" id="total" value=""/>

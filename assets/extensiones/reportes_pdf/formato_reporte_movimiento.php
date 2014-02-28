@@ -1,6 +1,6 @@
 <?php
 $title = $_POST['title'];
-$table_movimiento = $_POST['table_movimiento'];
+$movimientotable = $_POST['movimientotable'];
 
 ob_start();
 ?>
@@ -71,7 +71,7 @@ ob_start();
 				</tr>
 			</table>
 			<br>
-			<?php echo $table_movimiento ?><br>
+			<?php echo $movimientotable ?><br>
 			<br>
 		</div>
     </page>

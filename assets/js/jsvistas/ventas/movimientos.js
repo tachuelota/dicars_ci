@@ -1,21 +1,28 @@
 $(document).ready(function(){
 	$("#MovimientosForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 	$(".SelectAjax").SelectAjax();
-	
+	var TablaIngresos = new Array();
+	var TablaSalidas = new Array();
 
-	MovimientosOptions = {
+	var urlExportXLS = null;
+	var urlExportPDF = null;
+
+	var urlExportXLS = null;
+	var urlExportPDF = null;
+
+	var MovimientosOptions = {
 		"aoColumns":[
-		               { "sWidth": "15%","mDataProp": "dMovimientoFecReg"},
-		              { "sWidth": "15%","mDataProp": "personal"},
-		              { "sWidth": "15%","mDataProp": "cMovimientoConcepto"}, 
-		              { "sWidth": "15%","mDataProp": "nMovimientoMonto"},
-		              { "sWidth": "15%","mDataProp": "nMovimientoTip"},	    	              
-		              { "sWidth": "15%","mDataProp": "nMovimientoTipPag"},
-		              ],
-		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
-		
+				{ "sWidth": "15%","mDataProp": "dMovimientoFecReg"},
+				{ "sWidth": "15%","mDataProp": "personal"},
+				{ "sWidth": "15%","mDataProp": "cMovimientoConcepto"}, 
+				{ "sWidth": "15%","mDataProp": "nMovimientoMonto"},
+				{ "sWidth": "15%","mDataProp": "nMovimientoTip"},	    	              
+				{ "sWidth": "15%","mDataProp": "nMovimientoTipPag"},
+				],
+		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",		
 	};
-	MovimientosTable = createDataTable2('movimientos_table',MovimientosOptions);
+
+	var MovimientosTable = createDataTable2('movimientos_table',MovimientosOptions);
 
 	var successMovimiento = function(){
 		$('#modalMov').modal('hide');
@@ -23,8 +30,8 @@ $(document).ready(function(){
 	}
 
 	$('.btn-registrar').click(function(e){
-	e.preventDefault();
-	$('#modalMov').modal('show');
+		e.preventDefault();
+		$('#modalMov').modal('show');
 	});
 
 	$("#btn-reg-movimiento").click(function(event){
@@ -42,48 +49,70 @@ $(document).ready(function(){
 		MovimientosTable.fnReloadAjax(base_url+"ventas/servicios/getMovimientos/"+fechaFormatoSQL(date1)+"/"+fechaFormatoSQL(date2))
 	});
 
-
 	//Reportes
-	$("#pdfgen").click(function(){
-		var urlExportXLS = base_url +"assets/extensiones/reportes_xls/formato_reporte_movimiento.php";
-		var urlExportPDF = base_url +"assets/extensiones/reportes_pdf/formato_reporte_movimiento.php";
 
-	    movimientostable = toHTML(crearTablaToArray("tmovimiento",
+	$("#pdfgen").click(function(){		
+		urlExportXLS = base_url +"assets/extensiones/reportes_xls/formato_reporte_movimiento.php";
+		urlExportPDF = base_url +"assets/extensiones/reportes_pdf/formato_reporte_movimiento.php";
+
+
+	    var movimientotable = toHTML(crearTablaToArray("tmovimiento",
 				['FECHA REGISTRO','CONCEPTO','MONTO','TIPO MOV','TIPO PAGO','PERSONAL'],
 				[	'style="width: 16%;" class="head" ','style="width: 16%;" class="head" ','style="width: 16%;" class="head" ',
 					'style="width: 16%;" class="head" ','style="width: 16%;" class="head" ','style="width: 16%;" class="head" '],
-				['dMovimientoFecReg','cMovimientoConcepto','nMovimientoMonto','nMovimientoMonto','nMovimientoTipPag','personal'],
+				['dMovimientoFecReg','cMovimientoConcepto','nMovimientoMonto','nMovimientoTip','nMovimientoTipPag','personal'],
 				[	'style="width: 16%;" ','style="width: 16%;" ','style="width: 16%;" ',
 					'style="width: 16%;" ','style="width: 16%;" ','style="width: 16%;" '],
 					MovimientosTable.fnGetData()));
 		$("#title").val("REPORTE DE MOVIMIENTOS");
-		$("#movimientos_table").val(movimientostable);
+		$("#movimientotable").val(movimientotable);
 		$("#exportmodal").modal('show');
+		console.log(movimientotable);
 
 	});
 
+	var PrepareData = function ()
+	{
+		var MovimientoArray = MovimientosTable.fnGetData();
+		Total = 0;
+		TablaIngresos = new Array();
+		TablaSalidas = new Array();
+		$(MovimientoArray).each(function(index){
+			if(this.cConstanteValor==1){
+				TablaIngresos.push(this);
+				Total += this.nMovimientoMonto;
+			}else if(this.cConstanteValor==2){
+				TablaSalidas.push(this);
+				Total -= this.nMovimientoMonto;
+			}
+		});
+		console.log(Total);
+		console.log(TablaIngresos);
+		console.log(TablaSalidas);
+	}
+
 	$("#pdfdet").click(function(){
-		urlExportXLS = "{{ asset('extensiones/reportes_xls/formato_reporte_movimientodet.php') }}";
-		urlExportPDF = "{{ asset('extensiones/reportes_pdf/formato_reporte_movimientodet.php') }}";
+		urlExportXLS = base_url +"assets/extensiones/reportes_xls/formato_reporte_movimientodet.php";
+		urlExportPDF = base_url +"assets/extensiones/reportes_pdf/formato_reporte_movimientodet.php";
+
 		PrepareData();		
 		var tableingresos = toHTML(crearTablaToArray("tmovimiento",
-				['FECHA','PERSONAL','CONCEPTO','FORMA DE PAGO','MONTO'],
-				[	'style="width: 20%;" class="head" ','style="width: 20%;" class="head" ','style="width: 20%;" class="head" ',
-					'style="width: 20%;" class="head" ','style="width: 20%;" class="head" '],
-				['fecha_reg','personal','cMovimientoConcepto','tipo_pago','monto'],
-				[	'style="width: 20%;" ','style="width: 20%;" ','style="width: 20%;" ',
-					'style="width: 20%;" ','style="width: 20%;" '],
-					TablaIngresos));
+			['FECHA','PERSONAL','CONCEPTO','FORMA DE PAGO','MONTO'],
+			[	'style="width: 20%;" class="head" ','style="width: 20%;" class="head" ','style="width: 20%;" class="head" ',
+				'style="width: 20%;" class="head" ','style="width: 20%;" class="head" '],
+			['dMovimientoFecReg','personal','cMovimientoConcepto','nMovimientoTipPag','nMovimientoMonto'],
+			[	'style="width: 20%;" ','style="width: 20%;" ','style="width: 20%;" ',
+				'style="width: 20%;" ','style="width: 20%;" '],
+				TablaIngresos));
 
 		var tablesalidas = toHTML(crearTablaToArray("tmovimiento",
-				['FECHA','PERSONAL','CONCEPTO','FORMA DE PAGO','MONTO'],
-				[	'style="width: 20%;" class="head" ','style="width: 20%;" class="head" ','style="width: 20%;" class="head" ',
-					'style="width: 20%;" class="head" ','style="width: 20%;" class="head" '],
-				['fecha_reg','personal','concepto','tipo_pago','monto'],
-				[	'style="width: 20%;" ','style="width: 20%;" ','style="width: 20%;" ',
-					'style="width: 20%;" ','style="width: 20%;" '],
-					TablaSalidas));
-		
+			['FECHA','PERSONAL','CONCEPTO','FORMA DE PAGO','MONTO'],
+			[	'style="width: 20%;" class="head" ','style="width: 20%;" class="head" ','style="width: 20%;" class="head" ',
+				'style="width: 20%;" class="head" ','style="width: 20%;" class="head" '],
+			['dMovimientoFecReg','personal','cMovimientoConcepto','nMovimientoTipPag','nMovimientoMonto'],
+			[	'style="width: 20%;" ','style="width: 20%;" ','style="width: 20%;" ',
+				'style="width: 20%;" ','style="width: 20%;" '],
+				TablaSalidas));		
 		$("#title").val("REPORTE DE MOVIMIENTOS");
 		$("#table_ingresos").val(tableingresos);
 		$("#table_salidas").val(tablesalidas);
@@ -102,6 +131,7 @@ $(document).ready(function(){
 		e.preventDefault();
 		$("#CreatePDFForm").attr("action",urlExportXLS);
 		$("#CreatePDFForm").submit();
-		$("#exportmodal").modal('hide');
+		$("#exportmodal").modal('hide'); 
 	});
+
 });
