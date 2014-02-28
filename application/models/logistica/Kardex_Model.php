@@ -13,5 +13,9 @@ class Kardex_Model extends CI_Model {
 		return $query -> result_array();
 		
 	}
+	public function get_reporte_valorizado($fecha){
+		$query = $this->db->query("select * from log_consultar_kardexvalorizado where Anio =" .$fecha->format('Y')." and NroMes=" .$fecha->format('m'));
+		return $query -> result_array();
+	}
 
 }
