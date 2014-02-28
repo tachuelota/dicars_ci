@@ -96,6 +96,33 @@ $(document).ready(function(){
 				$('#vuelto').val("0");
 		}
 	}
+
+	var prepararDatos = function(){
+		var tabladetalle = toHTML(crearTablaToArray("tdetalle",
+				['Producto','Cantidad', 'Precio Credito','Total'],
+				['style="width: 45%;" class="prodth" ','style="width: 15%;" class="prodth" ','style="width: 20%;" class="prodth" ','style="width: 20%;" class="prodth" '],
+				['desc','cantidad','precio','importe'],
+				['style="width: 45%;" class="izquierda"','style="width: 15%;"','style="width: 20%;"','style="width: 20%;"'],
+				CronogramaReport.detventas));
+
+		var tablacronograma = toHTML(crearTablaToArray("tcronograma",
+				['Cuota','Fecha Vencimiento', 'Deuda','Monto Pagado','Saldo','Estado'],
+				['style="width: 16%;" class="prodth" ','style="width: 18%;" class="prodth" ','style="width: 16%;" class="prodth" ','style="width: 16%;" class="prodth" ','style="width: 16%;" class="prodth" ','style="width: 18%;" class="prodth" '],
+				['nrocuota','fecpago','deuda','monto','saldo','estado'],
+				['style="width: 16%;" class="izquierda"','style="width: 18%;"','style="width: 16%;"','style="width: 16%;"','style="width: 16%;"','style="width: 18%;" '],
+				CronogramaReport.cuotas));
+		
+		resumen = [	{'td1':'','td2': '','td3':'NRO CREDITO:','td4':CronogramaReport.nro,},
+		           	{'td1':'CLIENTE:','td2': CronogramaReport.cliente,'td3':'','td4':'',},
+		           	{'td1':'FECHA REGISTRO CREDITO:','td2': CronogramaReport.fecreg,'td3':'MONTO TOTAL DEUDA:','td4':CronogramaReport.monto,}	];
+
+		tablaresumen = toHTML(crearTablaToArray("resume",null,null,['td1','td2','td3','td4'],['style="width: 25%;" class="impar" ','style="width:25%;" ','style="width: 25%;" class="impar" ','style="width: 25%;" '],resumen));
+	   	
+		$('#tdetalle').val(tabladetalle);
+		$('#tcronograma').val(tablacronograma);
+		$('#tresumen').val(tablaresumen);
+	}
+
 	var CargarTablaResumen = function(formapago){
 		ResumenProdTable.fnClearTable();
 		Auxtable = VentaProdTable.fnGetData();
@@ -225,10 +252,10 @@ $(document).ready(function(){
 	};
 	var ResumenProdTable = createDataTable2('tabla_resumen_productos',ResumenProdOptions);
 
-	unlockload = function(){
+	var unlockload = function(){
 		$.unblockUI({
             onUnblock: function(){
-	            $(location).attr("href","ventas_consultar.html"); 
+	            $(location).attr("href",base_url+"ventas/views/cons_ventas"); 
             } 
         });
 	};
@@ -250,37 +277,6 @@ $(document).ready(function(){
 		return datosVenta;
 	}
 
-	$("#wrapper").width($("#contenedor").width());
-	$("#steps").width($("#contenedor").width());
-	$(".step").width($("#contenedor").width());
-
-	$('#vercronograma').on('hidden', function(){
-		$(location).attr("href","ventas_consultar.html");
-	});
-
-	$("#pdfbutton").click(function(event){
-		event.preventDefault();
-		$("#CreatePDFForm").attr("action",urlExportPDF);
-		$("#CreatePDFForm").submit();
-	});
-	
-	$("#xlsutton").click(function(event){
-		event.preventDefault();
-		$("#CreatePDFForm").attr("action",urlExportXLS);
-		$("#CreatePDFForm").submit();
-	});
-
-	$("#finalizar_venta").click(function(event){
-		event.preventDefault();
-		$.blockUI({ 
-	    	message: $('#loadingDiv'),
-	    	css: { padding: '10px' }, 
-			timeout: 2000,
-			onBlock: function() { 
-				unlockload(); 
-        	}
-		});
-	});
 
 	$('.btn-buscarp').click(function(event){
 		event.preventDefault();
@@ -338,6 +334,11 @@ $(document).ready(function(){
 
 	$("#btn-enviar-form").click(function(event){
 		event.preventDefault();
-		enviar($("#EnviarVentaForm").attr("action-1"),prepararDatos(), logdata, null);
+		$.blockUI({ 
+			onBlock: function() { 
+				enviar($("#EnviarVentaForm").attr("action-1"),prepararDatos(), unlockload, null);
+				}
+        	});
+
 	});
 });

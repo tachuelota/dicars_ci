@@ -25,7 +25,6 @@ class SalidaProductos extends CI_Controller
 			$Motivo = $form["motivo"];
 			$idSolicitante = $form["solicitante_id"];
 			$Observacion = $form["observaciones"];
-			//$Observacion = $form["observacion"];
 							
 			$SalProducto = array(
 				$idPersonal,

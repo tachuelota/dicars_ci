@@ -59,48 +59,9 @@
 								  	<th>Tipo Pago</th>
 								  	<th>Total</th>
 								  	<th>Estado</th>
-								  	<th></th>
-								  	<th></th>
-								  	<th></th>
 							  	</tr>
 						  	</thead>   
 						  	<tbody>
-						  		<tr>
-									<td>01/01/2013</td>
-									<td>José Pérez</td>
-								  	<td>Diego Molina</td>
-								  	<td>12</td>
-								  	<td>Contado</td>
-								  	<td>120</td>
-								  	<td><span class='label label-success'>Pagada/Cancelada</span></td>
-								  	<td><a class='btn btn-success btn-datos' href='venta_ver.html'><i class='icon-zoom-in icon-white'></i>Ver Datos</a></td>
-								  	<td></td>
-								  	<td></td>
-							  	</tr>
-							  	<tr>
-									<td>01/01/2013</td>
-									<td>José Pérez</td>
-								  	<td>Diego Molina</td>
-								  	<td>12</td>
-								  	<td>Contado</td>
-								  	<td>120</td>
-								  	<td><span class='label label-important'>Pendiente/Deuda</span></td>
-								  	<td><a class='btn btn-success btn-datos' href='venta_ver.html'><i class='icon-zoom-in icon-white'></i>Ver Datos</a></td>
-								  	<td><a class='btn btn-danger btn-elim' href='#'><i class='icon-trash icon-white'></i>Anular</a></td>
-								  	<td></td>
-							  	</tr>
-							  	<tr>
-									<td>01/01/2013</td>
-									<td>José Pérez</td>
-								  	<td>Diego Molina</td>
-								  	<td>12</td>
-								  	<td>Contado</td>
-								  	<td>120</td>
-								  	<td><span class='label label-warning'>Separada</span></td>
-								  	<td></td>
-								  	<td><a class='btn btn-danger btn-elim' href='#'><i class='icon-trash icon-white'></i>Anular</a></td>
-								  	<td><a class='btn btn-info btn-editar' href='<?php echo base_url();?>ventas/views/editar_ventas'><i class='icon-edit icon-white'></i>Editar</a></td>
-							  	</tr>
 							</tbody>
 						</table>
 						<div class="modal hide fade" id="modalAnular">

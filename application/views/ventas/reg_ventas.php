@@ -405,36 +405,9 @@
 						Necesita agregar productos
 					</p>
 				</div>
-
 			</div>
 			<div class="modal-footer">
 				<a href="#" class="btn" data-dismiss="modal">Aceptar</a>
-			</div>
-		</div>
-		<div class="modal hide fade" id="vercronograma">
-			<div class="modal-header">
-				<h3>¿Desea exportar el Cronograma?</h3>
-			</div>
-			<div class="modal-body">
-				<form method="post" target="_blank" id="CreatePDFForm">
-					<input type="hidden" name="tcronograma" id="tcronograma"/>
-					<input type="hidden" name="tdetalle" id="tdetalle"/>
-					<input type="hidden" name="tresumen" id="tresumen"/>
-					<div class="row-fluid ui-sortable">
-						<a id="pdfbutton" data-rel="tooltip" class="well span3 top-block" style="width: 48%;" href="#" data-original-title="Exportar a PDF.">
-							<span class="icon32 icon-color icon-pdf"></span>
-							<div>PDF</div>
-						</a>
-
-						<a id="xlsutton" data-rel="tooltip" class="well span3 top-block" style="width: 48%;" href="#" data-original-title="Exportar a Excel.">
-							<span class="icon32 icon-color icon-xls"></span>
-							<div>Excel</div>
-						</a>
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 			</div>
 		</div>
 	</div>
