@@ -28,17 +28,12 @@
 						<h2><i class="icon-user"></i>Asignar Linea de Credito</h2>
 					</div>
 					<div class="box-content">
-						<form class="form-horizontal">
-							<fieldset>
-								<!--<div class="control-group">
-									<label class="control-label" for="codigotar">Código de Tarjeta</label>
-									<div class="controls">
-										<input class="input-xlarge focused" id="codigotar" type="text">
-									</div>
-								</div>-->
+						<form class="form-horizontal" id="LineaCreditoForm" method="post" action-1="<?php echo base_url();?>ventas/TarjetasCreditos/registrar">
+							<fieldset>							
 								<div class="control-group">
 									<label class="control-label" for="personal">Personal</label>
 									<div class="controls">
+										<input type="hidden" id="fecha" name="fecha">
 										<input type="hidden" id="id_personal" name="id_personal">
 										<input class="input-xlarge focused" id="personal" name="personal" readonly type="text">
 										<button id="buscar-personal" name="buscar-personal" type="button" class="btn btn-info"  style="margin-left: 15px;">Buscar</button>
@@ -67,7 +62,7 @@
 									</div>
 								</div>
 								<div class="form-actions">
-									<button type="submit" class="btn btn-primary">Registrar</button>
+									<button id="btn-reg-lineacreditos" name="btn-reg-lineacreditos" type="submit" class="btn btn-primary">Registrar</button>
 									<button class="btn" >Imprimir</button>
 								</div>
 							</fieldset>

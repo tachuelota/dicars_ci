@@ -35,6 +35,7 @@ $(document).ready(function(){
 	//SELECCIONAR UN PERSONAL
 	$('#select_trabajador').click(function(event){
 			event.preventDefault();
+			$('#fecha').val(fechanow());
 			$("#id_personal").val(SelectPersonalData[0].nPersonal_id);
 			$('#personal').val(SelectPersonalData[0].cPersonalNom);
 			$('#modalBuscarPersonal').modal('hide');
@@ -44,6 +45,20 @@ $(document).ready(function(){
 			$("#id_cliente").val(SelectClienteData[0].nCliente_id);
 			$('#cliente').val(SelectClienteData[0].cClienteNom);
 			$('#modalBuscarCliente').modal('hide');
+	});
+	var successLineaCredito = function(){
+		$("#cliente").val("");
+		$("#id_cliente").val("");
+		$("#fecha").val("");
+		$("#id_personal").val("");
+		$("#personal").val("");
+		$("#monto").val("");
+		}
+	//registrar
+	$("#btn-reg-lineacreditos").click(function(event){
+		event.preventDefault();
+		if($("#LineaCreditoForm").validationEngine('validate'))
+			enviar($("#LineaCreditoForm").attr("action-1"),{formulario:$("#LineaCreditoForm").serializeObject()}, successLineaCredito, null)
 	});
 
 });
