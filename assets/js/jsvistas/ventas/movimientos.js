@@ -79,11 +79,11 @@ $(document).ready(function(){
 		TablaSalidas = new Array();
 		$(MovimientoArray).each(function(index){
 			if(this.cConstanteValor==1){
-				TablaIngresos.push(this);
-				Total += this.nMovimientoMonto;
-			}else if(this.cConstanteValor==2){
 				TablaSalidas.push(this);
-				Total -= this.nMovimientoMonto;
+				Total -= parseFloat(this.nMovimientoMonto);
+			}else if(this.cConstanteValor==2){
+				TablaIngresos.push(this);
+				Total += parseFloat(this.nMovimientoMonto);
 			}
 		});
 		console.log(Total);

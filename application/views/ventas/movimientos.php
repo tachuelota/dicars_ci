@@ -89,7 +89,7 @@
 									  	<div class="control-group">
 											<label class="control-label" for="concepto">Concepto</label>
 											<div class="controls">
-										  		<textarea class="validate[required]" id="concepto" name="concepto"  ></textarea>
+										  		<textarea id="concepto" name="concepto" ></textarea>
 											</div>
 									  	</div>
 									  	<div class="control-group">
