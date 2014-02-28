@@ -27,9 +27,12 @@ class SalidaProductos extends CI_Controller
 			$Observacion = $form["observaciones"];
 			//$Observacion = $form["observacion"];
 							
-			$SalProducto = array('nPersonal_id' => $idPersonal,'nLocal_id' =>$idLocal,
-			'dSalProdFecReg' => $Fecha,'nSalProdMotivo' => $Motivo,'nSolicitante_id' => $idSolicitante,
-			'cSalProdObsv'=>$Observacion);
+			$SalProducto = array(
+				$idPersonal,
+				$idLocal,
+				$Motivo,
+				$idSolicitante,
+				$Observacion);
 
 			$band = true;
 			$this->db->trans_begin();

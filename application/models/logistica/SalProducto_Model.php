@@ -13,15 +13,7 @@ class SalProducto_Model extends CI_Model
 	public function insert($SalProducto){
 		$procedure="call sp_ins_logsalprod(?,?,?,?,?)";
 
-		$params =array(
-			intval($SalProducto['nPersonal_id']),
-			intval($SalProducto['nLocal_id']),
-			intval($SalProducto['nSalProdMotivo']),
-			intval($SalProducto['nSolicitante_id']),
-			$SalProducto['cSalProdObsv']
-			);
-
-		$result = $this->db->query($procedure,$params);
+		$result = $this->db->query($procedure,$SalProducto);
 		$id = $result->row_array()["id"];
 		$result->next_result();
 		$result->free_result();
