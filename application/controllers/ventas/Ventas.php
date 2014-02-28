@@ -9,6 +9,7 @@ class Ventas extends CI_Controller {
 		$this->load->model('logistica/DetSalProducto_Model','detsalprod');
 		$this->load->model('ventas/VentaCredito_Model','credm');
 		$this->load->model('ventas/VentaCronograma_Model','cronom');
+		$this->load->model('ventas/Transaccion_Model', "transm");
 	}
 
 	public function registrar()
@@ -19,6 +20,14 @@ class Ventas extends CI_Controller {
 			$productos = $this->input->post('productos',true);
 			if($form != null)
 			{
+
+				$nLocal_id = $this->session->userdata('current_local')["nLocal_id"];
+				$nPersonal_id = $this->ion_auth->user()->row()->nPersonal_id;
+				$datenow = date("Y-m-d");
+				$MontoTrans = $form["total"];
+				$DesTrans = "Venta al Contado";
+				$Estado = null;
+
 				if ($form["forma_pago"] == 1) 
 					$Estado = '2'; //pagada/cancelada
 				else if($form["saldo"] > 0 && $form["forma_pago"] == 3)
@@ -28,12 +37,11 @@ class Ventas extends CI_Controller {
 				else
 					$Estado = '0'; //anulada
 
-				$nLocal_id = $this->session->userdata('current_local')["nLocal_id"];
-
 				$this->db->trans_begin();
+
 				$venta = array(
 					"nCliente_id" => $form["cliente_id"],
-					"cVentaFecReg" => date("Y-m-d"),
+					"cVentaFecReg" => $datenow,
 					"nTipoMoneda"=> $form["tipo_moneda"],
 					"nVentaSubTotal" => $form["subtotal"],
 					"nVentaDscto" => $form["descuento"],
@@ -43,21 +51,24 @@ class Ventas extends CI_Controller {
 					"nVentaTotAmt" => $form["amortizacion"],
 					"nVentaSaldo" => $form["saldo"],
 					"nLocal_id" => $nLocal_id,
-					"nTipoIGV" => $form["tipo_igv"]
+					"nTipoIGV" => $form["tipo_igv"],
+					"cVentaEst" => $Estado
 					);
 
 				try {
+
 					$nVenta_id = $this->venm->insert($venta);
+
+					if($form["forma_pago"] == '3')
+					{
+						$DesTrans = "Venta Separada";
+						$MontoTrans = $form["amortizacion"];
+					}
+			
 
 					if($form["forma_pago"] != '3')
 					{
-						$SalProd = array(
-							"nPersonal_id" => $this->session->userdata('user_id'),
-							"nLocal_id" => $nLocal_id,
-							"nSalProdMotivo" => 2,
-							"nSolicitante_id" => $this->session->userdata('user_id'),
-							"cSalProdObsv" => "Salida por ventas"
-							);
+						$SalProd = array($nPersonal_id,$nLocal_id,2,$nPersonal_id,"Salida por ventas");
 						$nSalProd_id = $this->salprod->insert($SalProd);
 					}
 
@@ -73,15 +84,14 @@ class Ventas extends CI_Controller {
 							);
 						
 						$idCredito = $this->credm->insert($Credito);
-						$FechaDiaPago = date_create_from_format('d/m/Y', $datos["prim_cuota"]);
+						$FechaDiaPago = date_create_from_format('d/m/Y', $form["prim_cuota"]);
 						$CronoPago = array();
 						for($i = 0 ; $i < $form["num_cuotas"]; $i++)
 						{
-							$FechaPagoReg = date_create_from_format('d/m/Y', $FechaDiaPago -> format("d/m/Y"));
 							$CronoPago[] = array(
 								"nCronPagoNroCuota" => $i+1,
-								"nCronPagoFecReg" => date("Y-m-d"),
-								"nCronPagoFecPago" => $FechaPagoReg,
+								"nCronPagoFecReg" => $datenow,
+								"nCronPagoFecPago" => $FechaDiaPago->format("Y-m-d"),
 								"nCronPagoMonCouApg" => $form["montocuota"],
 								"nVenCredito_id" => $idCredito,
 								);													
@@ -91,7 +101,7 @@ class Ventas extends CI_Controller {
 						$this->cronom->insert_batch($CronoPago);
 							
 						$DesTrans = "Venta Credito";
-						$MontoTrans = $datos["amortizacion"];
+						$MontoTrans = $form["amortizacion"];
 					}					
 					$DetalleSalProd = array();
 					foreach ($productos as $key => $prod)
@@ -101,12 +111,30 @@ class Ventas extends CI_Controller {
 							"nSalProd_id" => $nSalProd_id,
 							"nProducto_id" => $prod["nProducto_id"],
 							"DetSalProdCant" => $prod["nDetVentaCant"],
-							"cDetSalProdEst" => 1,
+							"cDetSalProdEst" => 1
 							);
 					}
+
+					$transaccion = array(
+						"nPersonal_id" => $nPersonal_id,
+						"nVenta_id" => $nVenta_id,
+						"cTransaccionDesc" => $DesTrans,
+						"nTransaccionMont" => $MontoTrans,
+						"dTransaccionFecReg" => $datenow,
+ 						"nTransaccionTipPag" => $form["forma_pago"]
+						);
+
+					$this->transm->insert($transaccion);
 					$this->detvenm->insert_batch($productos);
 					$this->detsalprod->insert_batch($DetalleSalProd);
-					$this->db->trans_commit();
+					if ($this->db->trans_status() === FALSE)
+					{
+						$this->db->trans_rollback();
+					}
+					else
+					{
+						$this->db->trans_commit();
+					}	
 
 				} catch (Exception $e) {
 					$this->db->trans_rollback();
@@ -121,7 +149,7 @@ class Ventas extends CI_Controller {
 
 		$this->output
 			->set_content_type('application/json')
-			->set_output(json_encode($Estado));
+			->set_output(json_encode("ok"));
 	}
 }
 ?>
