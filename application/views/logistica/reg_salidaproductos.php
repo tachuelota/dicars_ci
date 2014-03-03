@@ -38,9 +38,13 @@
 								<div class="control-group">
 									<label class="control-label" for="registrador">Registrador</label>
 									<div class="controls">
+<<<<<<< Updated upstream
 										<input class="input-xlarge focused" id="registrador_id" name="registrador_id" type="hidden" value="<?php echo $trabajador["nPersonal_id"] ?>">
 										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly value="<?php echo $trabajador["cPersonalNom"]." ".$trabajador["cPersonalApe"] ?>"></div>
 
+=======
+										<input class="input-xlarge focused" id="registrador" name="registrador" type="text" readonly></div>
+>>>>>>> Stashed changes
 								</div>
 								<div class="control-group">
 									<label class="control-label" for="motivo">Motivo</label>
@@ -55,9 +59,13 @@
 								<div class="control-group">
 									<label class="control-label" for="tienda">Tienda</label>
 									<div class="controls">
+<<<<<<< Updated upstream
 										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly value="<?php echo $local["cLocalDesc"] ?>">
 										<input class="input-xlarge focused" id="tienda_id" name="tienda_id" type="hidden" value="<?php echo $local["nLocal_id"] ?>">
 									</div>
+=======
+										<input class="input-xlarge focused" id="tienda" name="tienda" type="text" readonly></div>
+>>>>>>> Stashed changes
 								</div>
 							</div>
 							<div class="span6">
@@ -69,8 +77,13 @@
 								<div class="control-group">
 									<label class="control-label" for="solicitante">Solicitante</label>
 									<div class="controls">
+<<<<<<< Updated upstream
 										<input class="input-xlarge focused validate[required]" id="solicitante" name="solicitante" type="text" readonly data-prompt-position="topLeft">
 										<input class="input-xlarge focused" id="solicitante_id" name="solicitante_id" type="hidden"  >
+=======
+										<input class="input-xlarge focused" id="solicitante" name="solicitante" type="text" readonly>
+										<input class="input-xlarge focused" id="solicitante_id" name="solicitante_id" type="hidden">
+>>>>>>> Stashed changes
 										<button id="btn-buscar-trabajador" name="btn-buscar-trabajador" class="btn btn-info btn-solicitante" style="margin-left: 15px;"> <i class="icon-user icon-white"></i>
 										</button>
 

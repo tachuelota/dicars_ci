@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 $(document).ready(function(){
 	$("#RegistrarSalidaForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 	var SelectTrabajadoresData = new Array();
@@ -114,3 +115,12 @@ $(document).ready(function(){
 
 
 });
+=======
+	$(document).ready(function(){
+
+		$('#btn-buscar-trabajador').click(function(e){
+			e.preventDefault();
+			$('#modalBuscarTrabajador').modal('show');
+		});
+	});
+>>>>>>> Stashed changes
