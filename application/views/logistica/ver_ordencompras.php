@@ -13,17 +13,15 @@
 	<!-- content starts -->
 
 	<div>
-		<ul class="breadcrumb">
+	<ul class="breadcrumb">
 			<li>
-				<a href="index.html">Home</a>
-				<span class="divider">/</span>
+				<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
 			</li>
 			<li>
-				<a href="logistica_homepage.html">Logística</a>
-				<span class="divider">/</span>
+				<a href="<?php echo base_url();?>logistica/">Logística</a> <span class="divider">/</span>
 			</li>
 			<li>
-				<a href="logistica_orden_compra_consultar.html">Orden de Compra</a>
+				<a href="<?php echo base_url();?>logistica/views/cons_ordencompra/">Orden Compra</a>
 			</li>
 		</ul>
 	</div>
@@ -120,7 +118,7 @@
 					</tbody>
 				</table>
 				<div class="form-actions">
-					<a href="logistica_orden_compra_consultar.html" class="btn btn-success"> <i class="icon icon-white icon-arrowthick-w"></i>
+					<a href="<?php echo base_url();?>logistica/views/cons_ordencompra/" class="btn btn-success"> <i class="icon icon-white icon-arrowthick-w"></i>
 						Volver
 					</a>
 				</div>

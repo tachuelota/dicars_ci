@@ -21,7 +21,7 @@
 				<a href="<?php echo base_url();?>logistica/">Logística</a> <span class="divider">/</span>
 			</li>
 			<li>
-				<a href="<?php echo base_url();?>logistica/views/cons_ordencompra/">Orden Compra</a>
+				<a href="<?php echo base_url();?>logistica/views/reg_ordencompra/">Orden Compra</a>
 			</li>
 		</ul>
 	</div>
@@ -183,7 +183,7 @@
 						</tbody>
 					</table>
 					<div class="form-actions" style="padding-left: 17px;">
-						<a href="logistica_orden_compra_consultar.html" type="reset" class="btn btn-success btn-cancelar" >
+						<a href="<?php echo base_url();?>logistica/views/cons_ordencompra/" type="reset" class="btn btn-success btn-cancelar" >
 							<i class="icon icon-white icon-arrowthick-w"></i>
 							Volver
 						</a>
@@ -247,7 +247,7 @@
 						<div class="modal-footer">
 							<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 							<a id="select_ordped" href="#" class="btn btn-primary">Seleccionar</a>
-						</div>
+						</div>					
 					</div>
 					<!--------------MODAL PRODUCTO------------------------>
 					<div class="modal hide fade" id="modalBuscarProducto">
@@ -270,7 +270,7 @@
 						<div class="modal-footer">
 							<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 							<a  id="select_producto" href="#" class="btn btn-primary">Seleccionar</a>
-						</div>
+						</div>						
 					</div>
 				<!--</form>-->
 				<div class="modal hide fade" id="modalEditarCantidad" >
@@ -300,7 +300,24 @@
 					<div class="modal-footer">
 						<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 						<a  id="" href="#" class="btn btn-primary btn-guardar">Guardar</a>
+					</div>				
+				</div>
+			</div>
+			<div class="modal hide fade" id="agregarproductos">
+				<div class="modal-header">
+					<h3>Atención</h3>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-error">
+						<p>
+							<i class="icon icon-alert icon-red"></i>
+							Necesitas agregar un Pedido o Producto
+						</p>
 					</div>
+
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal">Aceptar</a>
 				</div>
 			</div>
 		</div>

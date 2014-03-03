@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$("#CargoForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 
+
  //--------  nombreTableAccion (..ta)
 	var CargosTA = new DTActions({
 		'conf': '010',
@@ -17,7 +18,7 @@ $(document).ready(function(){
 //Init------------------------------------>
 
 	CargosRowCBF = function(nRow, aData, iDisplayIndex){
-		CargosTA.RowCBFunction(nRow, aData, iDisplayIndex);	
+		CargosTA.RowCBFunction(nRow, aData, iDisplayIndex);			
 	};
 
 	//mostrar Registrar Cliente------------------------------------>
@@ -27,24 +28,29 @@ $(document).ready(function(){
 	});
 	
 	//1.creas tu tabla 
-	var UrlaDTable = $("#mov_table").attr("data-source");
+	var UrlaDTable = $("#cargos_table").attr("data-source");
 	FormatoDTable = [
 		              { "sWidth": "33%","mDataProp": "nCargoDesc"},
-		              { "sWidth": "33%","mDataProp": "estadolabel"},
+		              { "sWidth": "33%","mDataProp": "estadolabel"},		              
 
-		              ];
+		];
+
+	CargosTable = createDataTable('cargos_table',UrlaDTable,FormatoDTable,null, CargosRowCBF);
+
+
 
 
 	var successCargo = function(){
 		$('#modalCargo').modal('hide');
 		CargosTable.fnReloadAjax()
+		console.log(CargosTable);
 	}
 
 
 	$('#modalCargo').on('hidden', function(){		
 		$("#CargoForm").reset();
 		$("#btn-reg-cargo").show();
-		$("#btn-editar-cargo").hide();
+		$("#btn-editar-cargo").hide();		
 	});
 
 	 //--funcion de los botones
@@ -67,6 +73,5 @@ $(document).ready(function(){
 			enviar($("#CargoForm").attr("action-2"),{formulario:$("#CargoForm").serializeObject()}, successCargo, null)
 	});
 	
-	CargosTable = createDataTable('cargos_table',UrlaDTable,FormatoDTable,null, CargosRowCBF);
-
+	
 });
