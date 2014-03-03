@@ -23,5 +23,9 @@ class VentaCredito_Model extends CI_Model
 			return $this->db->insert_id();
 		}
 	}
+	public function get_Creditos_ByClientes($nCliente_id){
+		$query = $this->db->query("SELECT * FROM ven_credito_by_idcliente  where id_cliente =" .$nCliente_id);
+		return $query->result_array();
+	}
 }
  ?>

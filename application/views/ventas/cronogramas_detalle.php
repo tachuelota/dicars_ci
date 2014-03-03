@@ -29,31 +29,23 @@
        		<div class="row-fluid">		
 				<div class="box span12">
 					<div class="box-header well" data-original-title>
-						<h2>CRÉDITOS DE José Pérez</h2>
+						<h2>CRÉDITOS DE:  <?php echo $cClienteNom." ".$cClienteApe; ?></h2>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="creditos_table">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="creditos_table"
+						data-source="<?php echo base_url().'ventas/Servicios/get_detallecronograma_bycliente/'.$nCliente_id;?>">
 						  <thead>
 							  <tr>
 								  <th>Fecha de la Venta</th>
 								  <th>Monto Total</th>
 								  <th>Monto Pagado</th>
 								  <th>Nro de Cuotas</th>
-								  <th>Estado</th>
 								  <th></th>
-								  <th></th>
+								  <th></th>	
+								  <th></th>							 
 							  </tr>
 						  </thead>
 						  	<tbody>
-						  		<tr>
-								  	<th>01/01/2013</th>
-								  	<th>120</th>
-								  	<th>100</th>
-								  	<th>2</th>
-								  	<th>Pendiente</th>
-								  	<th><a class='btn btn-success btn-pagar' href='#'>Pagar Cuotas</a></th>
-								  	<th><button type='button' class='btn btn-success btn-cronograma' data-loading-text='Cargando...'>Reporte del Crédito</button></th>
-							  	</tr>
 						  	</tbody>
 					  </table>
 					</div>
@@ -85,19 +77,7 @@
 									  	<th>Monto Aplicado</th>
 								  	</tr>
 							  	</thead>   
-							  	<tbody>
-							  		<tr>
-									  	<th>01/02/2013</th>
-									  	<th>1</th>
-									  	<th>100</th>
-									  	<th>100</th>
-								  	</tr>	
-							  		<tr>
-									  	<th>01/03/2013</th>
-									  	<th>2</th>
-									  	<th>20</th>
-									  	<th>0</th>
-								  	</tr>		
+							  	<tbody>		
 							  	</tbody>
 						  </table> 
 						</div>
@@ -106,6 +86,7 @@
 							<a id='guardar_pago' href="#" class="btn btn-primary btn-guardar">Guardar</a>
 						</div>
 					</div>
+					<!----Modal-->
 					<div class="form-actions">
 						<a href="ventas_cronograma.html" class="btn btn-success"><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
 					</div> 

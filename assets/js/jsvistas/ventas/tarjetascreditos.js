@@ -37,13 +37,13 @@ $(document).ready(function(){
 			event.preventDefault();
 			$('#fecha').val(fechanow());
 			$("#id_personal").val(SelectPersonalData[0].nPersonal_id);
-			$('#personal').val(SelectPersonalData[0].cPersonalNom);
+			$('#personal').val(SelectPersonalData[0].cPersonalNom+' '+SelectPersonalData[0].cPersonalApe);
 			$('#modalBuscarPersonal').modal('hide');
 	});
 	$('#select_cliente').click(function(event){
 			event.preventDefault();
 			$("#id_cliente").val(SelectClienteData[0].nCliente_id);
-			$('#cliente').val(SelectClienteData[0].cClienteNom);
+			$('#cliente').val(SelectClienteData[0].cClienteNom+" "+SelectClienteData[0].cClienteApe);
 			$('#modalBuscarCliente').modal('hide');
 	});
 	var successLineaCredito = function(){

@@ -1,25 +1,26 @@
-	var urlExportXLS = "extensiones/reportes_xls/formato_reporte_cronpago.php";
-		var urlExportPDF = "extensiones/reportes_pdf/formato_reporte_cronpago.php";
+$(document).ready(function(){
 
-		$('.btn-pagar').click(function(){
-			$('#modalCuotas').modal('show');
-		});
-		$('.btn-guardar').click(function(){
-			$('#modalCuotas').modal('hide');
-		});
+	var CreditosDetalleOptions = {
+		"aoColumns":[
+				{ "sWidth": "10%","mDataProp": "fechaVenta"},
+				{ "sWidth": "8%","mDataProp": "montoTotal"},
+				{ "sWidth": "9%","mDataProp": "montoPagado"}, 
+				{ "sWidth": "8%","mDataProp": "cuotas"},
+				{ "sWidth": "6%","mDataProp": "estadolabel"},
+				{ "sWidth": "10%","mDataProp": "btnpagar"},
+				{ "sWidth": "15%","mDataProp": "btnreporte"}    
+				],
+		"fnCreatedRow":function(nRow, aData, iDisplayIndex)
+		{
+			$(nRow).find(".btn-pagar").click(function(e){
+				e.preventDefault();
+				$('#modalCuotas').modal('show');
+			});
+		},
+		"fnInitComplete": function
+	};
 
-		$('.btn-cronograma').click(function(){
-			$('#vercronograma').modal('show');
-		});
+	CreditosDetalleTable = createDataTable2('creditos_table',CreditosDetalleOptions);
 
-		$("#pdfbutton").click(function(e){
-			e.preventDefault();
-			$("#CreatePDFForm").attr("action",urlExportPDF);
-			$("#CreatePDFForm").submit();
-		});
-		
-		$("#xlsutton").click(function(e){
-			e.preventDefault();
-			$("#CreatePDFForm").attr("action",urlExportXLS);
-			$("#CreatePDFForm").submit();
-		});
+	
+});

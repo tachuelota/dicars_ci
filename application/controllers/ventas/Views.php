@@ -71,14 +71,16 @@ class Views extends CI_Controller
 			redirect('/ventas', 'refresh');
 	}
 
-	public function cronogramas_detalle()
+	public function cronogramas_detalle($nCliente_id)
 	{
 		if($this->ion_auth->in_group("ven_crono"))
 		{
+			$this->load->model('ventas/Clientes_Model','cli');
+			$pagedata = $this->cli->get_clientes($nCliente_id);			
 			$dataheader['title'] = 'Dicars - Ventas -';
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('ventas/cronogramas_detalle.php');
+			$this->load->view('ventas/cronogramas_detalle.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/cronogramas_detalle.js';
 			$datafooter['active'] = 'cron_pago';
 			$this->load->view('templates/footer.php',$datafooter);
@@ -86,7 +88,6 @@ class Views extends CI_Controller
 		else
 			redirect('/ventas', 'refresh');
 	}
-
     //Reporte Zona
 	public function reporte_zonas()
 	{

@@ -26,34 +26,24 @@
 			</li>
 		</ul>
 	</div>
-	<div class="row-fluid">
+	<div class="row-fluid" id="ClientesForm" name="ClientesForm" action-1="<?php echo base_url();?>ventas/Views/cronogramas_detalle">
 		<div class="box span12">
 			<div class="box-header well" data-original-title>
 				<h2>CLIENTES</h2>
 			</div>
-			<div class="box-content">
-				<table class="table table-striped table-bordered bootstrap-datatable datatable" id="clientes_table">
+			<div class="box-content" >
+				<table class="table table-striped table-bordered bootstrap-datatable datatable" id="clientes_table"
+				data-source="<?php echo base_url();?>ventas/Servicios/getClientes_cronograma">
 					<thead>
 						<tr>
 							<th>Nombres</th>
 							<th>Apellidos</th>
 							<th>DNI</th>
 							<th>Línea de Crédito</th>
-							<th></th>
+							<th>Opciones</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>José</td>
-							<td>Pérez</td>
-							<td>12345678</td>
-							<td>1000</td>
-							<td>
-								<a class='btn btn-success btn-pagar' href='<?php echo base_url();?>ventas/views/cronogramas_detalle'> <i class='icon-zoom-in icon-white'></i>
-									Ver Creditos
-								</a>
-							</td>
-						</tr>
 					</tbody>
 				</table>
 			</div>
