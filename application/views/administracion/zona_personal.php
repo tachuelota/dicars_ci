@@ -44,7 +44,7 @@
 									<div class="controls">
 										<input class="input-xlarge" id="nombre_zona" type="text" readonly>
 										<input id="id_zona" name="id_zona" type="hidden">
-										<button class="btn btn-info validate[required]" id="btn-zona" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
+										<button class="btn btn-info" id="btn-zona" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
 									</div>
 								</div>
 								<div class="form-actions">									

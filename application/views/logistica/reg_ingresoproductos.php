@@ -119,7 +119,7 @@
 				</table>
 				<hr>
 				<div class="form-actions">
-					<a href="logistica_cons_ingresoproductos.html" class="btn btn-success">
+					<a href="<?php echo base_url();?>logistica/views/cons_ingresoproductos/" class="btn btn-success">
 						<i class="icon icon-white icon-arrowthick-w"></i>
 						Volver
 					</a>
@@ -128,9 +128,7 @@
 						Guardar
 					</button>
 				</div>
-
-<!---------------------------------------------------->
-
+				<!---------------------------------------------------->
 				<div class="modal hide fade" id="modalBuscarProducto">
 					<div class="modal-header">
 						<h3>Productos</h3>
@@ -155,6 +153,23 @@
 				</div>
 			</div>
 		</div>
+			<div class="modal hide fade" id="agregarproductos">
+				<div class="modal-header">
+					<h3>Atención</h3>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-error">
+						<p>
+							<i class="icon icon-alert icon-red"></i>
+							Necesitas agregar Productos
+						</p>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<a href="#" class="btn" data-dismiss="modal">Aceptar</a>
+				</div>
+			</div>
 	</div>
 	<!-- content ends -->
 </div>

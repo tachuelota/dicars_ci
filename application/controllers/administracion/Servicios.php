@@ -12,7 +12,7 @@ class Servicios extends CI_Controller {
 		$this->load->model('administracion/Cargo_Model','acam');
 		$cargos = $this->acam->get_cargos();
 		foreach ($cargos as $key => $cargo) {
-		switch ($cargo["cCargoEst"]) {				
+		switch ($cargo["cCargosEst"]) {				
 			    case 0:
 			        $cargos[$key]["estadolabel"] = '<span class="label label-info">Inhabilitado</span>';
 			        break;

@@ -55,17 +55,17 @@
 									<div class="control-group">
 										<label class="control-label" for="clase">Nro de Clase</label>
 										<div class="controls">
-											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" id="clase" name="clase" type="text" ></div>
+											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" id="clase" name="clase" type="text" data-prompt-position="topLeft"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="nom_clase">Nombre de Clase</label>
 										<div class="controls">
-											<input class="input-xlarge focused validate[required,custom[onlyLetterNumberSp]]" id="nom_clase" name="nom_clase" type="text" ></div>
+											<input class="input-xlarge focused validate[required,custom[onlyLetterNumberSp]]" id="nom_clase" name="nom_clase" type="text" data-prompt-position="topLeft"></div>
 									</div>
 									<div class="control-group">
 										<label class="control-label" for="valor">Valor</label>
 										<div class="controls">
-											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" id="valor" name="valor" type="text" ></div>
+											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" id="valor" name="valor" type="text" data-prompt-position="topLeft"></div>
 									</div>
 								</fieldset>
 							</div>

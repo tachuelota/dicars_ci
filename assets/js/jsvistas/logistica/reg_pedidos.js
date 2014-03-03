@@ -41,60 +41,6 @@ var urlES =  "js/es_ES.txt";
 		$('#modalcuadrecaja').modal('hide');
 	});
 	
-	$('#rootwizard').bootstrapWizard({
-		onNext: function(tab, navigation, index) {
-			switch (index)
-			{
-				case 1:
-					if(VentaProdTable.fnSettings().fnRecordsTotal() == 0)
-					{
-						$("#rquiredproducts").modal('show');
-						return false;
-					}
-					else
-						VentaUpdate();
-					break;
-				case 2:
-					CargarTablaResumen(formapago);
-					if($("#EnviarVentaForm").validationEngine("validate"))
-					{
-						if(formapago == "1")
-						{							
-							if(parseFloat($("#total").val())>$('#importe').val())
-							{
-								$('#importe').validationEngine(
-									'showPrompt',
-									'El importe debe ser mayor que el total',
-									'error',
-									"topLeft" ,
-									true);
-								return false;
-							}
-						}
-					}
-					else
-						return false;
-					break;
-							
-			}
-		},
-		onTabShow: function(tab, navigation, index) {
-			var $total = navigation.find('li').length;
-			var $current = index+1;
-		
-			// If it's the last tab then hide the last button and show the finish instead
-			if($current >= $total) {
-				$('#rootwizard').find('.pager .next').hide();
-				$('#rootwizard').find('.pager .finish').show();
-				$('#rootwizard').find('.pager .finish').removeClass('disabled');
-			} else {
-				$('#rootwizard').find('.pager .next').show();
-				$('#rootwizard').find('.pager .finish').hide();
-			}
-		}
-	});
-
-
 	$(document).ready(function(){
 		//DATATABLES
 		var SelectProductosData = new Array();
@@ -123,7 +69,7 @@ var urlES =  "js/es_ES.txt";
 
 		ProductosdOptions = {
 		"aoColumns":[
-			{ "sWidth": "12%","mDataProp": "nProducto_id"},
+			{ "sWidth": "12%","mDataProp": "cProductoCodBarra"},
 			{ "sWidth": "12%","mDataProp": "cProductoDesc"},
 			{ "sWidth": "12%","mDataProp": "nDetOrdPedCant"}
 			//{ "sWidth": "12%","mDataProp": "nDetIngProdPrecUnt"}			
@@ -166,9 +112,14 @@ var urlES =  "js/es_ES.txt";
 
 	$("#btn_enviar_pedido").click(function(event){
 		event.preventDefault();
-		if($("#RegistrarPedidoForm").validationEngine('validate'))			
-		enviar($("#RegistrarPedidoForm").attr("action-1"),{formulario:$("#RegistrarPedidoForm").serializeObject(),
-		tabla: CopyArray(DetalleProductosTable.fnGetData(),["nProducto_id","nDetOrdPedCant"])}, successIngresoProductos, null)
+		if(DetalleProductosTable.fnSettings().fnRecordsTotal() > 0)
+		{
+			if($("#RegistrarPedidoForm").validationEngine('validate'))		
+			enviar($("#RegistrarPedidoForm").attr("action-1"),{formulario:$("#RegistrarPedidoForm").serializeObject(),
+			tabla: CopyArray(DetalleProductosTable.fnGetData(),["nProducto_id","nDetOrdPedCant"])}, successIngresoProductos, null);			
+		}
+		else
+			$("#agregarproductos").modal('show');
 	});
 
 

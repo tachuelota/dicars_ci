@@ -105,7 +105,7 @@
 					</tfoot>
 						</table>			
 						<div class="form-actions">
-							<a href="logistica_pedidos.html" class="btn btn-success"><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
+							<a href="<?php echo base_url();?>logistica/views/cons_pedidos/" class="btn btn-success"><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
 						</div>
 					</div>
 					<div class="modal hide fade" id="exportmodal">

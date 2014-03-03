@@ -22,7 +22,7 @@
 						<a href="<?php echo base_url();?>logistica/">Logística</a> <span class="divider">/</span>
 					</li>
 					<li>
-						<a href="<?php echo base_url();?>logistica/views/cons_pedidos/">Pedidos</a>
+						<a href="<?php echo base_url();?>logistica/views/reg_pedidos/">Pedidos</a>
 					</li>
 				</ul>
 			</div>  
@@ -93,7 +93,7 @@
 									<input class="input-xlarge focused" id="producto" name="producto" type="text" readonly>
 								  	<button id="btn-productos" name="btn-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"><i class="icon-search icon-white"></i>Buscar</button>
 									<label style="display:inline;" for="cantidad">Cantidad</label>
-									<input id="cantidad" name="cantidad" type="number" style="margin: 0 18px 0 0;" min="1" required>
+									<input id="cantidad" name="cantidad" type="number" style="margin: 0 18px 0 0;" min="1" class="validate[required]">
 									<button id="agregar_producto" name="agregar_producto" type="submit" class="btn btn-primary"><i class="icon-plus icon-white"></i>Agregar</button>
 								</div>
 							</div>
@@ -114,7 +114,7 @@
 						</table>
 						<hr>
 						<div class="form-actions">
-							<a href="logistica_pedidos.html" type="reset" class="btn btn-success btn-cancelar" ><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
+							<a href="<?php echo base_url();?>logistica/views/cons_pedidos/" type="reset" class="btn btn-success btn-cancelar" ><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
 							<button id="btn_enviar_pedido" name="btn-enviar-pedido" type="button" class="btn btn-primary" style="float: right;"><i class="icon icon-white icon-save"></i> Guardar</button>
 						</div>
 						<!---------------MODAL PRODUCTO---------------------------->
@@ -140,7 +140,7 @@
 								<a  id="select_producto" href="#" class="btn btn-primary">Seleccionar</a>
 							</div>
 						</div>
-						<div class="modal hide fade" id="rquiredproducts">
+						<div class="modal hide fade" id="agregarproductos">
 							<div class="modal-header">
 								<h3>Atención</h3>
 							</div>
@@ -148,7 +148,7 @@
 								<div class="alert alert-error">
 									<p>
 										<i class="icon icon-alert icon-red"></i>
-										Necesita agregar productos
+										Necesitas agregar productos
 									</p>
 								</div>
 

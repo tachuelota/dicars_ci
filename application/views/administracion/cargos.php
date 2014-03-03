@@ -31,7 +31,7 @@
 						</div>
 					</div>
 					<div class="box-content">
-						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="cargos_table" data-source = "<?php echo base_url();?>administracion/servicios/getcargos">
+						<table class="table table-striped table-bordered bootstrap-datatable datatable" id="cargos_table" data-source = "<?php echo base_url();?>administracion/servicios/getCargos">
 							<thead>
 								<tr>
 									<th>Nombre del Cargo</th>
