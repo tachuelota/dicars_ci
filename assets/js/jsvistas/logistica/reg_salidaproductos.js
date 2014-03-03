@@ -23,6 +23,7 @@
 		"fnCreatedRow":getSimpleSelectRowCallBack(SelectProductoData)
 		};
 
+<<<<<<< Updated upstream
 		BuscarProductosTable = createDataTable2('select_producto_table',BuscarProdOptions);
 		//datatable del detalle de productos
 		var SalidaProductosActions = new DTActions({
@@ -104,4 +105,10 @@
 			$('#modalBuscarTrabajador').modal('show');
 		});
 
+=======
+		$('#btn-buscar-trabajador').click(function(e){
+			e.preventDefault();
+			$('#modalBuscarTrabajador').modal('show');
+		});
+>>>>>>> Stashed changes
 	});
