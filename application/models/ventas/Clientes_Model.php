@@ -58,4 +58,15 @@ class Clientes_Model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function get_clientesmorosos()
+	{
+		$query = $this->db->query("SELECT * FROM  ven_listaclientedeudores");
+		return $query -> result_array();
+	}
+	public function get_clientesmorosos_detallado()
+	{
+		$query = $this->db->query("SELECT * FROM  ven_listaclientedeudores_detallado");
+		return $query -> result_array();
+	}
+
 }

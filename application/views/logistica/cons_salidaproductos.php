@@ -54,6 +54,7 @@
 				<table id="salida_prod_table" class="table table-striped table-bordered bootstrap-datatable datatable">
 					<thead>
 						<tr>
+							<th>Documento</th>
 							<th>Fec. Registro</th>
 							<th>Registrante</th>
 							<th>Solicitante</th>

@@ -51,8 +51,8 @@
 									<label class="control-label" for="tipo">Tipo</label>
 									<div class="controls">
 										<select id="tipo" name="tipo">
-											<option value="1">Devolución</option>
-											<option value="2">Pedido Almacén</option>
+											<option value="1">Compra</option>
+											<option value="2">Devolucion</option>
 											<option value="3">Otros</option>
 										</select>
 									</div>

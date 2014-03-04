@@ -64,6 +64,7 @@ class Servicios extends CI_Controller {
 			->set_output(json_encode(array('aaData' => $result)));
 	}	
 
+
 	public function getVentas($Desde,$Hasta)
 	{
 		$this->load->model('ventas/Venta_Model','venm');
@@ -86,9 +87,40 @@ class Servicios extends CI_Controller {
 			}
 		}
 
+
+	public function getClienteZona($nZona_id)
+	{
+		$this->load->model('ventas/ReporteZonas_Model','rptzm');
+		$result = $this->rptzm->get_clinZon($nZona_id);
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
+	}
+
+	public function get_clientemorosos()
+	{
+		$this->load->model('ventas/Clientes_Model','cli');
+		$result = $this->cli->get_clientesmorosos();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}
+	public function get_clientemorosos_detallado()
+	{
+		$this->load->model('ventas/Clientes_Model','cli');
+		$result = $this->cli->get_clientesmorosos_detallado();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}	
+
+	public function get_reporteIngEgre_byfecha($fecha){
+			$fec = date_create_from_format('Y-m-d', $fecha);
+			$this->load->model('ventas/ReporteIngEgr_Model','rpteim');
+			$result = $this->rpteim->get_reporteIngEgre_byfecha($fec);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
 	}
 	
 }

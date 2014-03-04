@@ -19,12 +19,12 @@
 					</li>
 				<?php endif ?>
 				<?php if($this->ion_auth->in_group("ven_deud_mor")): ?>
-					<!--li id="mor_deu">
-						<a class="ajax-link" href="<?php echo base_url();?>ventas/views/">
+					<li id="mor_deu">
+						<a class="ajax-link" href="<?php echo base_url();?>ventas/Views/clientes_morosos">
 							<i class="icon icon-black icon-users"></i>
 							<span class="hidden-tablet">Morosos y Deudores</span>
 						</a>
-					</li-->
+					</li>
 				<?php endif ?>
 				<?php if($this->ion_auth->in_group("ven_tarj_cred")): ?>
 					<li id="tarj_cred">
@@ -60,9 +60,17 @@
 				<?php endif ?>
 				<?php if($this->ion_auth->in_group("ven_rep_clienzon")): ?>
 				<li id="clienteszonas_rep">
-					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_zonas  ">
+					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_zonas">
 						<i class="icon icon-black icon-page"></i>
 						<span class="hidden-tablet">Reporte Clientes/Zona</span>
+					</a>
+				</li>
+				<?php endif ?>
+				<?php if($this->ion_auth->in_group("ven_rep_ing_egr")): ?>
+				<li id="ingrEgre_rep">
+					<a class="ajax-link" href="<?php echo base_url();?>ventas/views/reporte_ing_egr">
+						<i class="icon icon-black icon-page"></i>
+						<span class="hidden-tablet">Reporte Ingreso/Egreso</span>
 					</a>
 				</li>
 				<?php endif ?>
@@ -72,8 +80,8 @@
 							<i class="icon icon-black icon-page"></i>
 							<span class="hidden-tablet">Cuadre de Caja</span>
 						</a>
-					</li>				
-				<?php endif ?>
+					</li>		
+				<?php endif ?>	
 			<?php endif ?>
 			<?php if($this->ion_auth->in_group_type(2)): ?>
 				<li class="nav-header hidden-tablet">Logística</li>

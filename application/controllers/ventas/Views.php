@@ -91,7 +91,7 @@ class Views extends CI_Controller
     //Reporte Zona
 	public function reporte_zonas()
 	{
-		if($this->ion_auth->in_group("ven_report_zona"))
+		if($this->ion_auth->in_group("ven_rep_clienzon"))
 		{
 			$dataheader['title'] = 'Dicars - Reporte Zonas -';
 			$this->load->view('templates/headers.php',$dataheader);		
@@ -224,6 +224,7 @@ class Views extends CI_Controller
 			$this->load->model('administracion/Trabajadores_Model','tra');
 			$dataheader['title'] = 'Dicars - Movimientos -';
 			$pagedata["trabajador"] = $this->tra->get_trabajadores($this->ion_auth->user()->row()->nPersonal_id);
+			$pagedata["local"] = $this->session->userdata('current_local');
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
 			$this->load->view('ventas/movimientos.php',$pagedata);
@@ -233,5 +234,35 @@ class Views extends CI_Controller
 		}
 		else
 			redirect('/ventas', 'refresh');
-	}	
+
+	}
+	/****************CLIENTES MOROSOS**************************/
+	public function clientes_morosos()
+	{		
+		$dataheader['title'] = 'Dicars - Clientes-Morosos -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('ventas/clientesmorosos.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/clientesmorosos.js';
+		$datafooter['active'] = '';
+		$this->load->view('templates/footer.php',$datafooter);
+		
+	}		
+	
+	public function reporte_ing_egr()
+	{
+		if($this->ion_auth->in_group("ven_rep_ing_egr"))
+		{
+			$dataheader['title'] = 'Dicars - Reporte Ingreso/Egreso -';
+			$this->load->view('templates/headers.php',$dataheader);		
+			$this->load->view('templates/menu.php');
+			$this->load->view('ventas/reporte_ing_egr.php');
+			$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/reporte_ing_egr.js';
+			$datafooter['active'] = 'ingrEgre_rep';
+			$this->load->view('templates/footer.php',$datafooter);
+		}
+		else
+			redirect('/ventas', 'refresh');
+	}
+
 }

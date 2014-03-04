@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 $(document).ready(function(){
 	$("#RegistrarSalidaForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 	var SelectTrabajadoresData = new Array();
