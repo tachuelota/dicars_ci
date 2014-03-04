@@ -70,8 +70,9 @@
 							<div class="modal-header">
 								<h3>Registrar Movimiento</h3>
 							</div>
-							<form id="MovimientoForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>ventas/movimientos/registrar/">
+							<form id="MovimientoForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>ventas/movimientos/registrar/">							
 								<input type="hidden" name="idRegistrado" id="idRegistrado" value="<?php echo $trabajador["nPersonal_id"] ?>">
+								<input type="hidden" name="idLocal" id="idLocal" value="<?php echo $local["nLocal_id"] ?>">
 								<div class="modal-body">
 									<fieldset>
 										<div class="control-group">

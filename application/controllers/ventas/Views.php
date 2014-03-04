@@ -91,7 +91,7 @@ class Views extends CI_Controller
     //Reporte Zona
 	public function reporte_zonas()
 	{
-		if($this->ion_auth->in_group("ven_report_zona"))
+		if($this->ion_auth->in_group("ven_rep_clienzon"))
 		{
 			$dataheader['title'] = 'Dicars - Reporte Zonas -';
 			$this->load->view('templates/headers.php',$dataheader);		
@@ -216,6 +216,7 @@ class Views extends CI_Controller
 			$this->load->model('administracion/Trabajadores_Model','tra');
 			$dataheader['title'] = 'Dicars - Movimientos -';
 			$pagedata["trabajador"] = $this->tra->get_trabajadores($this->ion_auth->user()->row()->nPersonal_id);
+			$pagedata["local"] = $this->session->userdata('current_local');
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
 			$this->load->view('ventas/movimientos.php',$pagedata);

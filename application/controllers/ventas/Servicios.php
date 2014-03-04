@@ -62,5 +62,14 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
 	}	
+
+	public function getClienteZona($nZona_id)
+	{
+		$this->load->model('ventas/ReporteZonas_Model','rptzm');
+		$result = $this->rptzm->get_clinZon($nZona_id);
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}	
 	
 }

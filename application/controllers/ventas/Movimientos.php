@@ -19,6 +19,7 @@ class Movimientos extends CI_Controller {
 			$tipo_mov = $form["selectTipoMov"];
 			$tipo_pag = $form["selectTipoPag"];
 			$fecha_reg = date("Y-m-d");
+			$idLocal=$form["idLocal"];	
 			
 			$Movimiento = array(				
 				'cMovimientoConcepto'=>$concepto,				
@@ -26,7 +27,8 @@ class Movimientos extends CI_Controller {
 				'nMovimientoMonto'=>$monto,			
 				'nMovimientoTip'=>$tipo_mov,
 				'nMovimientoTipPag'=>$tipo_pag,
-				'dMovimientoFecReg'=>$fecha_reg
+				'dMovimientoFecReg'=>$fecha_reg,
+				'nLocal_id'=>$idLocal
 				);			
 
 			if(!$this->amm->insert($Movimiento))
