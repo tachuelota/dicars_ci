@@ -226,5 +226,17 @@ class Views extends CI_Controller
 		}
 		else
 			redirect('/ventas', 'refresh');
-	}	
+	}
+	/****************CLIENTES MOROSOS**************************/
+	public function clientes_morosos()
+	{		
+		$dataheader['title'] = 'Dicars - Clientes-Morosos -';
+		$this->load->view('templates/headers.php',$dataheader);		
+		$this->load->view('templates/menu.php');
+		$this->load->view('ventas/clientesmorosos.php');
+		$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/clientesmorosos.js';
+		$datafooter['active'] = '';
+		$this->load->view('templates/footer.php',$datafooter);
+		
+	}		
 }

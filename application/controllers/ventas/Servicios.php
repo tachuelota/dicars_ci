@@ -70,6 +70,23 @@ class Servicios extends CI_Controller {
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
+	}
+
+	public function get_clientemorosos()
+	{
+		$this->load->model('ventas/Clientes_Model','cli');
+		$result = $this->cli->get_clientesmorosos();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}
+	public function get_clientemorosos_detallado()
+	{
+		$this->load->model('ventas/Clientes_Model','cli');
+		$result = $this->cli->get_clientesmorosos_detallado();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
 	}	
 	
 }

@@ -19,12 +19,12 @@
 					</li>
 				<?php endif ?>
 				<?php if($this->ion_auth->in_group("ven_deud_mor")): ?>
-					<!--li id="mor_deu">
-						<a class="ajax-link" href="<?php echo base_url();?>ventas/views/">
+					<li id="mor_deu">
+						<a class="ajax-link" href="<?php echo base_url();?>ventas/Views/clientes_morosos">
 							<i class="icon icon-black icon-users"></i>
 							<span class="hidden-tablet">Morosos y Deudores</span>
 						</a>
-					</li-->
+					</li>
 				<?php endif ?>
 				<?php if($this->ion_auth->in_group("ven_tarj_cred")): ?>
 					<li id="tarj_cred">
