@@ -115,7 +115,7 @@ $(document).ready(function(){
 
 
 });
-=======
+
 	$(document).ready(function(){
 
 		$('#btn-buscar-trabajador').click(function(e){
@@ -123,4 +123,4 @@ $(document).ready(function(){
 			$('#modalBuscarTrabajador').modal('show');
 		});
 	});
->>>>>>> Stashed changes
+

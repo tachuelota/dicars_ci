@@ -93,6 +93,7 @@
 	<script src="<?php echo base_url();?>assets/js/datatables.actions.js"></script>
 	<script src="<?php echo base_url();?>assets/js/prettify.js"></script>
 	<script src="<?php echo base_url();?>assets/js/jquery.bootstrap.wizard.min.js"></script>
+
 	<script type="text/javascript">
 		var base_url = "<?php echo base_url();?>";
 		$(document).ready(function(){
@@ -114,7 +115,7 @@
 					$('#aftercierremes').modal('show');
 				});
 			});
-
+		///CUADRE DE CAJA
 			$('#lanza-cuadrecaja').click(function(e){
 				e.preventDefault();
 				$('#modalcuadrecaja').modal('show');
@@ -122,9 +123,12 @@
 
 			$('#pdfcuadrecaja').click(function(e){
 				e.preventDefault();
-				$("#FormCuadreCaja").attr("action",urlExportCierrePDF);
-				$('#FormCuadreCaja').submit();
-				$('#table_cuadrecaja').val('');
+				//$("#FormCuadreCaja").attr("action",urlExportCierrePDF);
+				/*$('#FormCuadreCaja').submit();
+				$('#table_cuadrecaja').val('');*/
+
+				date1 = new Date($("#date01").datepicker("getDates"));
+				enviar($("#FormCuadreCaja").attr("action-1")+"/"+fechaFormatoSQL(date1))	
 				$('#modalcuadrecaja').modal('hide');
 			});
 

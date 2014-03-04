@@ -17,7 +17,10 @@ $(document).ready(function(){
 				$('#modalCuotas').modal('show');
 			});
 		},
-		"fnInitComplete": function
+		"fnInitComplete":function(nRow, aData, iDisplayIndex)
+		{
+
+		}
 	};
 
 	CreditosDetalleTable = createDataTable2('creditos_table',CreditosDetalleOptions);

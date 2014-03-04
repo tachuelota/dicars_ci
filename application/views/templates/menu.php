@@ -194,26 +194,27 @@
 	</div>
 </div>
 
+<!----MODAL CUANDRE DE CAJA-->
 <div class="modal hide fade" id="modalcuadrecaja">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal">×</button>
 		<h3>EXPORTAR</h3>
 	</div>
 	<div class="modal-body">
-		<form method="post" target="_blank" id="FormCuadreCaja">
+		<form method="post" target="_blank" id="FormCuadreCaja" action-1="<?php echo base_url();?>ventas/CuadreCaja/get_cuadrecaja">
 			<input type="hidden" name="table_cuadrecaja" id="table_cuadrecaja"/>
 			<div class="form-horizontal">
 				<fieldset>
 					<div class="control-group">
 						<label class="control-label" for="datecuadrecaja">Fecha</label>
 						<div class="controls">
-							<input type="text" class="input-xlarge datepicker" id="datecuadrecaja" style="margin: 0 18px 0 0;"></div>
+							<input id="date01" name="date01" type="text" class="input-xlarge datepicker"  style="margin: 0 18px 0 0;"></div>
 					</div>
 				</fieldset>
 			</div>
 			<p>Escoga el formato en que desea exportar el Cuadre de Caja</p>
 			<div class="sortable row-fluid ui-sortable">
-				<a id="pdfcuadrecaja" data-rel="tooltip" class="well span3 top-block" style="width: 48%;" href="#" data-original-title="Exportar a PDF.">
+				<a id="pdfcuadrecaja" data-rel="tooltip" class="well span3 top-block" style="width: 48%;"  data-original-title="Exportar a PDF.">
 					<span class="icon32 icon-color icon-pdf"></span>
 					<div>PDF</div>
 				</a>
