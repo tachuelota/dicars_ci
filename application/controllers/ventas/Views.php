@@ -226,6 +226,7 @@ class Views extends CI_Controller
 		}
 		else
 			redirect('/ventas', 'refresh');
+
 	}
 	/****************CLIENTES MOROSOS**************************/
 	public function clientes_morosos()
@@ -239,4 +240,21 @@ class Views extends CI_Controller
 		$this->load->view('templates/footer.php',$datafooter);
 		
 	}		
+	
+	public function reporte_ing_egr()
+	{
+		if($this->ion_auth->in_group("ven_rep_ing_egr"))
+		{
+			$dataheader['title'] = 'Dicars - Reporte Ingreso/Egreso -';
+			$this->load->view('templates/headers.php',$dataheader);		
+			$this->load->view('templates/menu.php');
+			$this->load->view('ventas/reporte_ing_egr.php');
+			$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/reporte_ing_egr.js';
+			$datafooter['active'] = 'ingrEgre_rep';
+			$this->load->view('templates/footer.php',$datafooter);
+		}
+		else
+			redirect('/ventas', 'refresh');
+	}
+
 }
