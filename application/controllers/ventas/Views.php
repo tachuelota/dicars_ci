@@ -140,14 +140,18 @@ class Views extends CI_Controller
 			redirect('/ventas', 'refresh');
 	} 
 
-	public function editar_ventas()
+	public function editar_ventas($nVenta_id)
 	{
 		if($this->ion_auth->in_group("ven_ven_prod"))
 		{
+			$this->load->model('ventas/Venta_Model','venm');
+			$this->load->model('ventas/DetalleVenta_Model','detvenm');
+			$pagedata["venta"] = $this->venm->get_venta($nVenta_id);
+			$pagedata["dettale"] = $this->detvenm->get_detalles($nVenta_id);
 	      	$dataheader['title'] = 'Dicars - Ventas -(editar)';
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('ventas/editar_ventas.php');
+			$this->load->view('ventas/editar_ventas.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/editar_ventas.js';
 			$datafooter['active'] = 'venta_prod';
 			$this->load->view('templates/footer.php',$datafooter);
@@ -175,14 +179,18 @@ class Views extends CI_Controller
 			redirect('/ventas', 'refresh');
 	} 
 
-	public function ver_ventas()
+	public function ver_ventas($nVenta_id)
 	{
 		if($this->ion_auth->in_group("ven_ven_prod"))
 		{
+			$this->load->model('ventas/Venta_Model','venm');
+			$this->load->model('ventas/DetalleVenta_Model','detvenm');
+			$pagedata["venta"] = $this->venm->get_venta($nVenta_id);
+			$pagedata["dettale"] = $this->detvenm->get_detalles($nVenta_id);
 	      	$dataheader['title'] = 'Dicars - Ventas -(registrar)';
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('ventas/ver_ventas.php');
+			$this->load->view('ventas/ver_ventas.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/ventas/ver_ventas.js';
 			$datafooter['active'] = 'venta_prod';
 			$this->load->view('templates/footer.php',$datafooter);

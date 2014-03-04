@@ -97,7 +97,8 @@ $(document).ready(function(){
 		}
 	}
 
-	var prepararDatos = function(){
+	var prepararDatos = function()
+	{
 		var tabladetalle = toHTML(crearTablaToArray("tdetalle",
 				['Producto','Cantidad', 'Precio Credito','Total'],
 				['style="width: 45%;" class="prodth" ','style="width: 15%;" class="prodth" ','style="width: 20%;" class="prodth" ','style="width: 20%;" class="prodth" '],
@@ -143,7 +144,7 @@ $(document).ready(function(){
 		'conf': '001',
 		'DropFunction': function(nRow, aData, iDisplayIndex) {
 			var index = $(VentaProdTable.fnGetData()).getIndexObj(aData,'nProducto_id');				
-			VentaProdTable.fnDeleteRow(index); 
+			VentaProdTable.fnDeleteRow(index);
 		}
 	});
 

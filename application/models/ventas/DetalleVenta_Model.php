@@ -23,5 +23,11 @@
 				return true;
 			}
 		}
+
+		public function get_detalles($nVenta_id)
+		{
+			$query = $this->db->query("SELECT * FROM ven_consultadetalleventa_byventa where nVenta_id=".$nVenta_id);
+			return $query -> result_array();
+		}
 	}
 ?>

@@ -39,9 +39,9 @@
 								<div class="control-group">
 									<label class="control-label">Del</label>
 									<div class="controls">
-										<input type="text" class="input-xlarge datepicker" id="date01" style="margin: 0 18px 0 0;">
+										<input type="text" class="input-xlarge datepicker" id="date01" style="margin: 0 18px 0 0;" value="<?php date("d/m/Y"); ?>">
 										<label style="display:inline;">Al</label>
-								  		<input type="text" class="input-xlarge datepicker" id="date02" style="margin: 0 18px;">
+								  		<input type="text" class="input-xlarge datepicker" id="date02" style="margin: 0 18px;" value="<?php date("d/m/Y"); ?>">
 										<button id="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"><i class="icon-search icon-white"></i>Buscar</button>
 									</div>
 								</div>
@@ -49,14 +49,14 @@
 							</fieldset>
 						</div>
 						<hr>
-						<table id="ventas_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<table id="ventas_table" class="table table-striped table-bordered bootstrap-datatable datatable" >
 							<thead>
 								<tr>
 									<th>Fec. Registro</th>
 									<th>Cliente</th>
 								  	<th>Vendedor</th>
-								  	<th>Cant. Producto</th>
 								  	<th>Tipo Pago</th>
+								  	<th>Cant. Prod.</th>
 								  	<th>Total</th>
 								  	<th>Estado</th>
 							  	</tr>
@@ -76,8 +76,8 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
-									<button type="submit" class="btn btn-primary ">Sí</button>
+									<button type="button" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
+									<button id="btn-anular-venta" type="button" class="btn btn-primary ">Sí</button>
 								</div>
 							</form>
 						</div>

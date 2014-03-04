@@ -3,7 +3,7 @@ function DTActions(options)
 	var divaction = $("<div class='actions'>");
 	var divbubble = $("<div class='action-bubble'>");
 	var divcontainer = $("<div class='action_container'>");
-	var ul = $(getButtons(options.conf));
+	var ul = $(getButtons(options));
 
 	divaction.append(divbubble);
 	divbubble.append(divcontainer);
@@ -47,6 +47,20 @@ function DTActions(options)
 	            tr.addClass('row_selected');
 	            $(tds[tds.length-1]).append(divaction);
 
+	            tr.find("button").removeAttr("disabled");
+
+	            if( typeof options.view_condition != "undefined")
+	            	if(!options.view_condition(nRow, aData, iDisplayIndex))
+	            		ul.find(".btn-view").attr("disabled",true)
+
+	            if( typeof options.edit_condition != "undefined")
+	            	if(!options.edit_condition(nRow, aData, iDisplayIndex))
+	            		ul.find(".btn-edit").attr("disabled",true)
+
+	            if( typeof options.drop_condition != "undefined")
+	            	if(!options.drop_condition(nRow, aData, iDisplayIndex))
+	            		ul.find(".btn-drop").attr("disabled",true)
+
 				ul.find(".btn-view").click(function(e){
 					e.preventDefault();
 					options.ViewFunction(nRow, aData, iDisplayIndex);
@@ -69,14 +83,27 @@ function DTActions(options)
 
 }
 
-function getButtons(conf){
+function getButtons(options){
 	actions = "<ul>";
-	if(conf.substring(0,1)==1)
-	    actions += '<li><button class="btn btn-action btn-view" title="Ver" data-placement="top" data-rel="tooltip"><i class="icon-eye-open"></i></button></li>';
-	if(conf.substring(1,2)==1)
-	    actions += '<li><button class="btn btn-action btn-edit" title="Editar" data-placement="top" data-rel="tooltip"><i class="icon-edit"></i></button></li>';
-	if(conf.substring(2,3)==1)
-	    actions += '<li><button class="btn btn-action btn-drop" title="Deshabilitar" data-placement="top" data-rel="tooltip"><i class="icon-trash"></i></button></li>';
+	var view_tooltip = "Ver";
+	var edit_tooltip = "Editar";
+	var drop_tooltip = "Deshabilitar";
+
+	if(typeof options.view_tooltip != "undefined")
+		view_tooltip = options.view_tooltip;
+
+	if(typeof options.edit_tooltip != "undefined")
+		edit_tooltip = options.edit_tooltip;
+
+	if(typeof options.drop_tooltip != "undefined")
+		drop_tooltip = options.drop_tooltip;
+
+	if(options.conf.substring(0,1)==1)
+	    actions += '<li><button class="btn btn-action btn-view" title="'+view_tooltip+'" data-placement="top" data-rel="tooltip"><i class="icon-eye-open"></i></button></li>';
+	if(options.conf.substring(1,2)==1)
+	    actions += '<li><button class="btn btn-action btn-edit" title="'+edit_tooltip+'" data-placement="top" data-rel="tooltip"><i class="icon-edit"></i></button></li>';
+	if(options.conf.substring(2,3)==1)
+	    actions += '<li><button class="btn btn-action btn-drop" title="'+drop_tooltip+'" data-placement="top" data-rel="tooltip"><i class="icon-trash"></i></button></li>';
 	actions += '<ul>';
 	return actions;
 }

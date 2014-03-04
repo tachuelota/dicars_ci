@@ -36,19 +36,19 @@
 								<table class="table table-bordered">
 									<tr>
 										<td style="width: 25%;"><strong>Cliente</strong></td>
-										<td colspan="3" style="width: 75%;">José Pérez</td>
+										<td colspan="3" style="width: 75%;"><?php echo $venta["Cliente"]; ?></td>
 									</tr>
 									<tr>
 										<td style="width: 25%;"><strong>Dirección</strong></td>
-										<td style="width: 25%;">Mi Casa 123</td>
+										<td style="width: 25%;"><?php echo $venta["Cliente_direccion"];?></td>
 										<td style="width: 25%;"><strong>Fec. Emisión</strong></td>
-										<td style="width: 25%;">01/01/2013</td>
+										<td style="width: 25%;"><?php echo $venta["cVentaFecReg"]; ?></td>
 									</tr>
 									<tr>
 										<td><strong>Vendedor</strong></td>
-										<td>Diego Molina</td>
+										<td><?php echo $venta["Vendedor"]; ?></td>
 										<td><strong>Tipo de Pago</strong></td>
-										<td>Contado</td>
+										<td><?php echo $venta["tipo_pago"]; ?></td>
 									</tr>
 								</table>
 								<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
@@ -61,12 +61,14 @@
 										  </tr>
 									</thead>   
 									<tbody>
-										<tr>
-											<th>0000001</th>
-										  	<th>Botella de Agua</th>
-										  	<th>12</th>
-										  	<th>120</th>
-									  	</tr>
+										<?php foreach ($dettale as $value):?>
+											<tr>
+												<td><?php echo $value["codBarra"]; ?></td>
+												<td><?php echo $value["Producto"]; ?></td>
+												<td><?php echo $value["cant_prod"]; ?></td>
+												<td><?php echo $value["Total"]; ?></td>
+											</tr>
+										<?php endforeach ?>
 									</tbody>
 								</table>
 								<div class="row-fluid">
@@ -76,34 +78,28 @@
 										<table class="table table-bordered">
 											<tr>
 												<td style="width: 50%;"><strong>Subtotal</strong></td>
-												<td style="width: 50%;">s/. 98.4/td>
+												<td style="width: 50%;"><?php echo $venta["SubTotal"];?></td>
 											</tr>
 											<tr>
 												<td><strong>Descuento</strong></td>
-												<td>0 %</td>
+												<td><?php echo $venta["Descuento"];?>%</td>
 											</tr>
 											<tr>
 												<td><strong>IGV</strong></td>
-												<td>18 %</td>
+												<td><?php echo $venta["TipoIGV"];?>%</td>
 											</tr>
 											<tr>
 												<td><strong>Total</strong></td>
-												<td>120</td>
+												<td><?php echo $venta["Total"];?></td>
 											</tr>
 										</table>
-										<!-- div class="control-group">
-											<label class="control-label" for="acuenta">A cuenta</label>
-											<div class="controls">
-												<span class="help-inline" style="margin-top:5px;">s/. {{ amortizado }}</span>
-											</div>
-										</div -->
 									</div>
 								</div>
 								</div>
 							</fieldset>
 						</div>
 						<div class="form-actions">
-							<a href="ventas_consultar.html" class="btn btn-success"><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
+							<a href="<?php echo base_url() ?>ventas/views/cons_ventas" class="btn btn-success"><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
 							<a href="#" id="imprimir" class="btn btn-success" style="float: right;"><i class="icon icon-white icon-print"></i> Imprimir</a>
 						</div>
 					</div>

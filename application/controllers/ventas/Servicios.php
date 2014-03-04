@@ -29,6 +29,7 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
 	}
+
 	public function getClientes_cronograma()
 	{
 		$this->load->model('ventas/Clientes_Model','climod');
@@ -62,5 +63,32 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
 	}	
+
+	public function getVentas($Desde,$Hasta)
+	{
+		$this->load->model('ventas/Venta_Model','venm');
+		$result = $this->venm->get_fromrange($Desde,$Hasta);
+
+		foreach ($result as $key => $value) {
+			switch ($value["cVentaEst"]) {		
+			    case 0:
+			        $result[$key]["estadolabel"] = '<span class="label">Anulada</span>';
+			        break;
+			    case 1:
+			        $result[$key]["estadolabel"] = '<span class="label label-info">Credito</span>';
+			        break;
+			    case 2:
+			        $result[$key]["estadolabel"] = '<span class="label label-success">Pagada</span>';
+			        break;
+			    case 3:
+			        $result[$key]["estadolabel"] = '<span class="label label-warning">Separacion</span>';
+			        break;
+			}
+		}
+
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
+	}
 	
 }

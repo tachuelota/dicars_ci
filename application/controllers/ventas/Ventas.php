@@ -107,12 +107,15 @@ class Ventas extends CI_Controller {
 					foreach ($productos as $key => $prod)
 					{
 						$productos[$key]["nVenta_id"] = $nVenta_id;
-						$DetalleSalProd[]= array(
-							"nSalProd_id" => $nSalProd_id,
-							"nProducto_id" => $prod["nProducto_id"],
-							"DetSalProdCant" => $prod["nDetVentaCant"],
-							"cDetSalProdEst" => 1
-							);
+						if($form["forma_pago"] != '3')
+						{
+							$DetalleSalProd[]= array(
+								"nSalProd_id" => $nSalProd_id,
+								"nProducto_id" => $prod["nProducto_id"],
+								"DetSalProdCant" => $prod["nDetVentaCant"],
+								"cDetSalProdEst" => 1
+								);
+						}
 					}
 
 					$transaccion = array(
@@ -126,7 +129,10 @@ class Ventas extends CI_Controller {
 
 					$this->transm->insert($transaccion);
 					$this->detvenm->insert_batch($productos);
-					$this->detsalprod->insert_batch($DetalleSalProd);
+
+					if($form["forma_pago"] != '3')
+						$this->detsalprod->insert_batch($DetalleSalProd);
+
 					if ($this->db->trans_status() === FALSE)
 					{
 						$this->db->trans_rollback();
@@ -140,6 +146,51 @@ class Ventas extends CI_Controller {
 					$this->db->trans_rollback();
 					$this->output->set_status_header('400');
 				}
+			}
+			else
+				$this->output->set_status_header('400');
+		}
+		else
+			$this->output->set_status_header('400');
+
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode("ok"));
+	}
+
+	public function anular()
+	{
+		if(isset($_POST) && !empty($_POST))
+		{
+			$nVenta_id = $this->input->post('nVenta_id',true);
+			$this->venm->anular($nVenta_id);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode("ok"));
+		}
+	}
+
+	public function editar()
+	{
+		if(isset($_POST) && !empty($_POST))
+		{
+			$form = $this->input->post('formulario',true);
+			$productos = $this->input->post('productos',true);
+			if($form != null)
+			{
+				$nLocal_id = $this->session->userdata('current_local')["nLocal_id"];
+				$nPersonal_id = $this->ion_auth->user()->row()->nPersonal_id;
+				$datenow = date("Y-m-d");
+				$nVenta_id = $form["nVenta_id"];
+
+				$transaccion = array(
+					"nPersonal_id" => $nPersonal_id,
+					"nVenta_id" => $nVenta_id,
+					"cTransaccionDesc" => $DesTrans,
+					"nTransaccionMont" => $MontoTrans,
+					"dTransaccionFecReg" => $datenow,
+					"nTransaccionTipPag" => $form["forma_pago"]
+					);
 			}
 			else
 				$this->output->set_status_header('400');
