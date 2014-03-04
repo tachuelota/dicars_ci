@@ -42,7 +42,7 @@
 						<div class="row-fluid">
 							<div class="span6">
 								<div class="control-group">
-									<label class="control-label" for="codigo">N° Sal. Productos</label>
+									<label class="control-label" for="codigo">Documento</label>
 									<div class="controls">
 										<span class="help-inline" style="margin-top:5px;" id="serie_nro"><?php echo $cSalProdSerie."-".$cSalProdNro;?></span>
 									</div>

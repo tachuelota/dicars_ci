@@ -19,6 +19,7 @@ $(document).ready(function(){
 	};
 	var UrlaDTable = $("#ingreso_productos_table").attr("data-source");
 	FormatoDTable = [
+					  
 					  { "sWidth": "10%","mDataProp": "dIngProdFecReg"},
 		              { "sWidth": "10%","mDataProp": "cIngProdNro"},
 		              { "sWidth": "20%","mDataProp": "nomape"},

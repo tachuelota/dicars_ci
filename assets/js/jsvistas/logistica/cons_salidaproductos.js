@@ -19,10 +19,11 @@ $(document).ready(function(){
 	};
 	var UrlaDTable = $("#salida_prod_table").attr("data-source");
 	FormatoDTable = [
+					  { "sWidth": "10%","mDataProp": "SerieNum"},
 		              { "sWidth": "15%","mDataProp": "dSalProdFecReg"},
 		              { "sWidth": "10%","mDataProp": "registrador"},
-		              { "sWidth": "20%","mDataProp": "solicitante"},
-		              { "sWidth": "20%","mDataProp": "nSalProdMotivo"},
+		              { "sWidth": "17%","mDataProp": "solicitante"},
+		              { "sWidth": "17%","mDataProp": "nSalProdMotivo"},
 		              { "sWidth": "10%","mDataProp": "cSalProdObsv"},
 		              { "sWidth": "10%","mDataProp": "cLocalDesc"}
 		              ];

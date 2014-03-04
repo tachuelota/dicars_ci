@@ -57,6 +57,10 @@ class Servicios extends CI_Controller {
 
 			$this->load->model('logistica/SalProducto_Model','salpro');
 			$result = $this->salpro->get_fromrange($Desde,$Hasta);
+			foreach ($result as $key => $value) {
+				$result[$key]["SerieNum"] = $value["cSalProdSerie"]." - ".$value["cSalProdNro"];
+			}
+
 			$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
