@@ -10,24 +10,15 @@ class CuadreCaja extends CI_Controller {
 	public function get_cuadrecaja($fecha)
 	{
 		$id_local =intval($this->session->userdata('current_local')["nLocal_id"]);
-		$procedure="call sp_venta_cuadrecaja(?,?)";
-
-		$params =array($fecha,$id_local);		
-
-		$result = $this->db->query($procedure,$params);
-		$result->next_result();
-		$result->free_result();
 		
-		if ($this->db->trans_status() === FALSE)
-		{
-			return false;
-		}
-		else
-		{
-			$this->output
+		$procedure="call sp_venta_cuadrecaja(?,?)";
+		$params =array($fecha,$id_local);
+		$result = $this->db->query($procedure,$params);	
+		 //$result->result_array();
+		$this->output
 			->set_content_type('application/json')
-			->set_output(json_encode(array('aaData' => $result)));
-		}
+			->set_output(json_encode( $result->result_array()));
+	
 
 	}
 

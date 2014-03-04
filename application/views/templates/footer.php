@@ -99,6 +99,7 @@
 		$(document).ready(function(){
 			var urlExportCierreXLS = base_url + "assets/extensiones/reportes_xls/formato_reporte_cuadrecaja.php";
 			var urlExportCierrePDF = base_url + "assets/extensiones/reportes_pdf/formato_reporte_cuadrecaja.php";			
+			
 			$('#lanza-cierremes').click(function(e){
 				e.preventDefault();
 				$('#modalcierremes').modal('show');
@@ -116,24 +117,33 @@
 				});
 			});
 		///CUADRE DE CAJA
+		function prepararDatosCuadreCaja(){
+			var date01 =fechaFormatoSQL(new Date($("#date01").datepicker("getDates")));
+			tablacuadrecaja = $.ajax({
+			       url: base_url + 'ventas/CuadreCaja/get_cuadrecaja/'+date01,
+			       async: false
+			   }).responseText;
+			$('#table_cuadrecaja').val(tablacuadrecaja);
+		}
+
+
 			$('#lanza-cuadrecaja').click(function(e){
 				e.preventDefault();
 				$('#modalcuadrecaja').modal('show');
 			});
 
 			$('#pdfcuadrecaja').click(function(e){
-				e.preventDefault();
-				//$("#FormCuadreCaja").attr("action",urlExportCierrePDF);
-				/*$('#FormCuadreCaja').submit();
-				$('#table_cuadrecaja').val('');*/
-
-				date1 = new Date($("#date01").datepicker("getDates"));
-				enviar($("#FormCuadreCaja").attr("action-1")+"/"+fechaFormatoSQL(date1))	
+				e.preventDefault();	
+				prepararDatosCuadreCaja();			
+				$("#FormCuadreCaja").attr("action",urlExportCierrePDF);
+				$('#FormCuadreCaja').submit();
+				$('#table_cuadrecaja').val('');	
 				$('#modalcuadrecaja').modal('hide');
 			});
 
 			$('#xlscuadrecaja').click(function(e){
 				e.preventDefault();
+				prepararDatosCuadreCaja();
 				$("#FormCuadreCaja").attr("action",urlExportCierreXLS);
 				$('#FormCuadreCaja').submit();
 				$('#table_cuadrecaja').val('');

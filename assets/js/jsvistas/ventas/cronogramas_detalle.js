@@ -9,17 +9,13 @@ $(document).ready(function(){
 				{ "sWidth": "6%","mDataProp": "estadolabel"},
 				{ "sWidth": "10%","mDataProp": "btnpagar"},
 				{ "sWidth": "15%","mDataProp": "btnreporte"}    
-				],
+				],	
 		"fnCreatedRow":function(nRow, aData, iDisplayIndex)
 		{
 			$(nRow).find(".btn-pagar").click(function(e){
 				e.preventDefault();
 				$('#modalCuotas').modal('show');
 			});
-		},
-		"fnInitComplete":function(nRow, aData, iDisplayIndex)
-		{
-
 		}
 	};
 

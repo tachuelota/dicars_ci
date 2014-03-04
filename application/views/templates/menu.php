@@ -201,7 +201,7 @@
 		<h3>EXPORTAR</h3>
 	</div>
 	<div class="modal-body">
-		<form method="post" target="_blank" id="FormCuadreCaja" action-1="<?php echo base_url();?>ventas/CuadreCaja/get_cuadrecaja">
+		<form method="post" target="_blank" id="FormCuadreCaja" action-1="">
 			<input type="hidden" name="table_cuadrecaja" id="table_cuadrecaja"/>
 			<div class="form-horizontal">
 				<fieldset>
