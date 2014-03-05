@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 	$("#buscarfecha").click(function(event){
 		event.preventDefault();
-		date1 = new Date($("#date01").datepicker("getDates"));
+		date1 = new Date($("#fecha1").datepicker("getDates"));
 		date2 = new Date($("#date02").datepicker("getDates"));
 		VentasTable.fnReloadAjax(base_url + "ventas/servicios/getventas/"+fechaFormatoSQL(date1)+"/"+fechaFormatoSQL(date2));
 	});
