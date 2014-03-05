@@ -103,7 +103,8 @@
 					<hr>
 					<h3>Detalle Orden de Compra</h3>
 					<hr>
-					<div class="span12">
+					<!-- Solo se comento para poder reutilizarlo otra oportuniad -->
+					<!--<div class="span12">
 						<div class="form-horizontal">
 							<div class="span6" style="margin-bottom: 20px; border-rigth: 1px solid #ddd;">
 								<div class="control-group">
@@ -142,6 +143,35 @@
 						</div>
 						<div class="form-horizontal">
 							<div class="span6" style="margin-bottom: 20px; border-left: 1px solid #ddd;">
+								<div class="control-group">
+									<label class="control-label" for="producto">Producto</label>
+									<div class="controls">
+										<input class="input-xlarge focused" id="producto" type="text" readonly>
+										<input id="producto_id" name="producto_id" type="hidden">
+										<button id="btn-producto" name="btn-producto" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;">
+											<i class="icon-search icon-white"></i>
+										</button>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="precio">Importe</label>
+									<div class="controls">
+										<input id="importe" name="importe" type="number" step="0.01" min="1" style="margin: 0 18px 0 0;" >
+										<label style="display:inline;" for="cantidad"> <strong>Cantidad</strong>
+										</label>
+										<input id="cantidad" type="number" style="margin: 0 18px 0 0;" min="1">
+										<button id="agregar_producto" name="agregar_producto" type="button" class="btn btn-primary">
+											<i class="icon-plus icon-white"></i>
+											Agregar
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>-->
+					<div class="span12">
+						<div class="form-horizontal">
+							<div class="span6">
 								<div class="control-group">
 									<label class="control-label" for="producto">Producto</label>
 									<div class="controls">
