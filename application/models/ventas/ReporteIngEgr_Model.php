@@ -7,11 +7,12 @@ class ReporteIngEgr_Model extends CI_Model {
 		parent::__construct();
 	}
 
-	public function get_reporteIngEgre_byfecha($fecha){
-		
-		$procedure="call spF_kardex_StockActual(".$fecha->format('Y').",".$fecha->format('m').",2)";
-
-		$query = $this->db->query($procedure);	
+	public function get_reporteIngEgre_byfecha($Tipo,$fecha)
+	{
+		$query = $this->db->query("SELECT * FROM  local_reporte_ingreso_egreso_byfecha where TipoIngreso =".$Tipo." and Fecha= '".$fecha."'");
 		return $query -> result_array();
 	}
+
+
+
 }

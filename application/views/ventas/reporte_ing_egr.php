@@ -26,12 +26,12 @@
 		</div>
 	</div>
 	<div class="box-content">
-		<div class="form-horizontal">
+		<div class="form-horizontal" id="IngresosForm" name="IngresosForm">			
 			<fieldset>
-				<div class="control-group">
+				<div class="control-group">			
 				<label class="control-label" for="date01">Escoga el día</label>
 				<div class="controls">
-					<input type="text" class="input-xlarge datepicker" id="date01" value="03/06/2013">
+					<input type="text" class="input-xlarge datepicker" id="date01" name="date01">
 						<button id="buscarfecha" name="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>Buscar</button>
 				</div>
 				</div>
@@ -40,53 +40,41 @@
 		<div class="form-horizontal">
 			<legend>Ingresos</legend>
 		</div>
-		<table class="table table-bordered">
+		<table id="ingresos_table" class="table table-bordered">
 			<thead>
 				<tr>
-					<th>Cantidad</th>
-					<th>Material</th>
-					<th>Monto</th>
-					<th>Cliente</th>
+					<th>Id</th>
+					<th>Cantidad Vendida</th>
+					<th>Monto Facturado</th>
+					<th>Monto cobrado</th>
+					<th>Tipo</th>
+					<th>Concepto</th>
+					<th>Vendedor</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Jack Chris</td>
-					<td class="center">2012/01/01</td>
-					<td class="center">Member</td>
-					<td class="center">
-					<span class="label label-success">Active</span>
-					</td>
-				</tr>	
 			</tbody>
 		</table>
 		<div class="form-horizontal">
 			<legend>Egresos</legend>
 		</div>
-		<table class="table table-bordered">
+		<table id="egresos_table" class="table table-bordered" >
 			<thead>
 				<tr>
-					<th>Cantidad</th>
-					<th>Material</th>
-					<th>Monto</th>
-					<th>Cliente</th>
+					<th>Id</th>
+					<th>Monto cobrado</th>
+					<th>Tipo</th>
+					<th>Concepto</th>
+					<th>Vendedor</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Rizwan Habib</td>
-					<td class="center">2012/01/21</td>
-					<td class="center">Staff</td>
-					<td class="center">
-					<span class="label label-success">Active</span>
-					</td>
-				</tr>
 			</tbody>
 		</table>
 		<div class="form-horizontal">
 			<legend>General</legend>
 		</div>
-		<table class="table table-bordered">
+		<table id="general_table" class="table table-bordered">
 			<thead>
 				<tr>
 				<th>Descripción</th>
@@ -94,18 +82,18 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>Ingresos</td>
-					<td class="center">2012/01/01</td>
-					</tr>
-					<tr>
-					<td>Egresos</td>
-					<td class="center">2012/01/01</td>
-					</tr>
-					<tr>
-					<td>Total</td>
-					<td class="center">2012/01/01</td>
-				</tr>
+			<tr>
+				<td>Ingresos</td>
+				<td id="TotalIngresos"></td>
+			</tr>
+			<tr>
+				<td>Egresos</td>
+				<td id="TotalEgresos"></td>
+			</tr>
+			<tr>
+				<td>TOTAL</td>
+				<td id="TotalGeneral"></td>
+			</tr>
 			</tbody>
 		</table>
 	</div>
