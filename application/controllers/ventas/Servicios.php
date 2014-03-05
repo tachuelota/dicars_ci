@@ -117,7 +117,8 @@ class Servicios extends CI_Controller {
 			->set_output(json_encode(array('aaData' => $result)));
 	}	
 
-	public function get_reporteIngEgre_byfecha($fecha){
+	public function get_reporteIngEgre_byfecha($fecha)
+	{
 			$fec = date_create_from_format('Y-m-d', $fecha);
 			$this->load->model('ventas/ReporteIngEgr_Model','rpteim');
 			$result = $this->rpteim->get_reporteIngEgre_byfecha($fec);
@@ -126,6 +127,7 @@ class Servicios extends CI_Controller {
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
 
+<<<<<<< HEAD
 	public function reporte_ventas_bytienda($fecInicio,$fecFinal){
 			$tipo=1;
 			$fecIni = $fecInicio;
@@ -147,6 +149,14 @@ class Servicios extends CI_Controller {
 			$this->load->model('ventas/Venta_Model','ven');
 			$result = $this->ven->reporte_ventas_byzona($tipo,$fecIni,$fecFin,$id_local);
 			$this->output
+=======
+	public function get_cronogramabyCredito($nVenCredito_id)
+	{
+
+		$this->load->model('ventas/VentaCronograma_Model','cronom');
+		$result = $this->cronom->get_byCredito($nVenCredito_id);
+		$this->output
+>>>>>>> f23c8ded0bf8416fe370617a2e4b8077f63df43e
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
