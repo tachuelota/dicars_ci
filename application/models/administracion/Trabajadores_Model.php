@@ -69,8 +69,8 @@ class Trabajadores_Model extends CI_Model {
 
 	public function get_trabajadores_activos()
 	{	
-		//$id_local = $this->session->userdata('current_local')["nLocal_id"];
-		$query = $this ->db->query("select * from ven_trabajadores_activos");
+		$id_local = $this->session->userdata('current_local')["nLocal_id"];
+		$query = $this ->db->query("select * from ven_trabajadores_activos where id_local=".$id_local);
 		return $query -> result_array();
 	}
 
