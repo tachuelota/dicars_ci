@@ -216,7 +216,7 @@
 					<div class="control-group">
 						<label class="control-label" for="datecuadrecaja">Fecha</label>
 						<div class="controls">
-							<input id="date01" name="date01" type="text" class="input-xlarge datepicker"  style="margin: 0 18px 0 0;"></div>
+							<input id="fecha01" name="fecha01" type="text" class="input-xlarge datepicker"  style="margin: 0 18px 0 0;"></div>
 					</div>
 				</fieldset>
 			</div>

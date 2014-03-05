@@ -183,7 +183,7 @@
 				</div>
 				<div class="modal-body">
 					<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>
-						administracion/Servicios/get_trabajadores_activos">
+						administracion/Servicios/get_trabajadores_nouser">
 						<thead>
 							<tr>
 								<th>Nombres</th>

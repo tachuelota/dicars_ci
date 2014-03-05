@@ -118,7 +118,7 @@
 			});
 		///CUADRE DE CAJA
 		function prepararDatosCuadreCaja(){
-			var date01 =fechaFormatoSQL(new Date($("#date01").datepicker("getDates")));
+			var date01 =fechaFormatoSQL(new Date($("#fecha01").datepicker("getDates")));
 			tablacuadrecaja = $.ajax({
 			       url: base_url + 'ventas/CuadreCaja/get_cuadrecaja/'+date01,
 			       async: false

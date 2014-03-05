@@ -55,7 +55,7 @@
 
 	var titulo = "Saldos Iniciales " + fechanow();
 
-	var date01 = $("#date01").val().split('/');
+	var date01 = $("#fecSalInicial").val().split('/');
 	var fecha = date01[2]+'-'+date01[1]+'-'+date01[0];
 	
 	$('#nombrearchivo').val('saldo_inicial_'+fecha);
@@ -82,13 +82,13 @@
 }
 		//Mandar la fecha
 		$("#buscarfecha").click(function(event){
-		date1 = new Date($("#date01").datepicker("getDates"));
-		SaldoInicialTable.fnReloadAjax($("#SaldoInicialForm").attr("action-1")+"/"+fechaFormatoSQL(date1))
+			dateSalInicial = new Date($("#fecSalInicial").datepicker("getDates"));
+			SaldoInicialTable.fnReloadAjax($("#SaldoInicialForm").attr("action-1")+"/"+fechaFormatoSQL(dateSalInicial))
 	});
 		//Mandar la fecha
 		$("#buscarfecha2").click(function(event){
-		date2 = new Date($("#date02").datepicker("getDates"));
-		SaldoActualTable.fnReloadAjax($("#SaldoActualForm").attr("action-1")+"/"+fechaFormatoSQL(date2))
+			date2 = new Date($("#date02").datepicker("getDates"));
+			SaldoActualTable.fnReloadAjax($("#SaldoActualForm").attr("action-1")+"/"+fechaFormatoSQL(date2))
 	});
 	//REPORTE DE SALDO INICIAL
 	$("#xlsinigen").click(function(e){

@@ -52,8 +52,8 @@
 							<fieldset>
 								<div class="control-group">
 									<div class="controls">
-										<input type="text" class="input-xlarge datepicker" id="date01" name="date01">
-										<button id="buscarfecha" name="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+										<input type="text" class="input-xlarge datepicker" id="fecSalInicial" style="margin: 0 18px 0 0;">
+										<button id="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 											Buscar
 										</button>
 									</div>

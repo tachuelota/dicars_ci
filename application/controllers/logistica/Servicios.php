@@ -27,9 +27,10 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
 	}	
-	public function get_trabajadores_activos(){		
+	public function get_trabajadores_activos(){
+		$id_local = $this->session->userdata('current_local')["nLocal_id"];		
 		$this->load->model('administracion/Trabajadores_Model','tra');
-		$result = $this->tra->get_trabajadores_activos();
+		$result = $this->tra->get_trabajadores_bylocal($id_local);
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
@@ -76,9 +77,11 @@ class Servicios extends CI_Controller {
 	}
 
 	public function get_log_saldoinicial_byfecha($fecha){
+
+			$id_local = $this->session->userdata('current_local')["nLocal_id"];
 			$fec = date_create_from_format('Y-m-d', $fecha);
 			$this->load->model('logistica/Saldo_Model','sal');
-			$result = $this->sal->get_saldoinicial_byfecha($fec);
+			$result = $this->sal->get_saldoinicial_byfecha($fec,$id_local);
 			$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		

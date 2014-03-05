@@ -3,15 +3,19 @@
 class Saldo_Model extends CI_Model {
 
 	
-	function __construct() {
+	public function __construct() {
 		parent::__construct();
 	}
 
-	public function get_saldoinicial_byfecha($fecha){
+	public function get_saldoinicial_byfecha($fech,$id_local){
 		
-		$procedure="call spF_kardex_SaldoInicial(".$fecha->format('Y').",".$fecha->format('m').",2)";
+		$procedure="call spF_kardex_SaldoInicial(?,?,?)";
 
-		$query = $this->db->query($procedure);	
+ 		$params =array($fech->format('Y'),$fech->format('m'),$id_local);
+		
+		$query = $this->db->query($procedure,$params);
+
+		//$query = $this->db->query($procedure);	
 		return $query -> result_array();
 	}
 

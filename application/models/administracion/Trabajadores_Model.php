@@ -55,9 +55,10 @@ class Trabajadores_Model extends CI_Model {
 
  	public function get_trabajadores($nPersonal_id = FALSE)
 	{
+		//$id_local = $this->session->userdata('current_local')["nLocal_id"];
 		if($nPersonal_id === FALSE )
 		{
-			$query = $this ->db->query('select * from ven_personal_all;');
+			$query = $this ->db->query("select * from ven_personal_all;");
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('ven_personal', array('nPersonal_id' => $nPersonal_id));
@@ -68,7 +69,8 @@ class Trabajadores_Model extends CI_Model {
 
 	public function get_trabajadores_activos()
 	{	
-		$query = $this ->db->query('select * from ven_personal_all where cPersonalEst = 1');
+		//$id_local = $this->session->userdata('current_local')["nLocal_id"];
+		$query = $this ->db->query("select * from ven_trabajadores_activos");
 		return $query -> result_array();
 	}
 
@@ -81,6 +83,11 @@ class Trabajadores_Model extends CI_Model {
 	public function get_trabajadores_bylocal($nLocal_id)
 	{
 		$query = $this ->db->query("SELECT * FROM ven_personal_all  where id_local =" .$nLocal_id);
+		return $query -> result_array();
+	}
+	public function get_trabajadores_nouser()
+	{
+		$query = $this ->db->query("SELECT * FROM  ven_trabajadores_no_user");
 		return $query -> result_array();
 	}
 

@@ -81,6 +81,7 @@ class Servicios extends CI_Controller {
 
 	public function getTrabajadores()
 	{
+		
 		$this->load->model('administracion/Trabajadores_Model','tramod');
 		$trabajadores = $this->tramod->get_trabajadores();
 		foreach ($trabajadores as $key => $trabajador) {
@@ -272,6 +273,13 @@ class Servicios extends CI_Controller {
 		$result = $this->tramod->get_trabajadores_activos();
 		echo json_encode(array('aaData' => $result));
 	}
+
+	public function get_trabajadores_nouser(){
+		$this->load->model('administracion/Trabajadores_Model','tramod');
+		$result = $this->tramod->get_trabajadores_nouser();
+		echo json_encode(array('aaData' => $result));
+	}
+
 	public function get_trabajadores_bylocal(){
 
 		$nLocal_id= $this->session->userdata('current_local')["nLocal_id"];
