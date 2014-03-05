@@ -86,6 +86,9 @@ class Servicios extends CI_Controller {
 			        break;
 			}
 		}
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));
 	}
 
 	public function getClienteZona($nZona_id)

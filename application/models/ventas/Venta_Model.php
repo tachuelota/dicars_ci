@@ -23,6 +23,22 @@ class Venta_Model extends CI_Model
 			return $this->db->insert_id();
 		}
 	}
+
+	public function update($id,$data)
+	{
+        $this->db->where('nVenta_id',$id);
+		$this->db->update('ven_venta',$data);
+
+		if ($this->db->trans_status() === FALSE)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+
 	public function get_fromrange($Desde,$Hasta)
 	{
 		$query = $this->db->query("SELECT * FROM ven_venta_all where cVentaFecReg_temp between '".$Desde."' and '".$Hasta."'");

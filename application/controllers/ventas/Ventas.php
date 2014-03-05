@@ -55,96 +55,90 @@ class Ventas extends CI_Controller {
 					"cVentaEst" => $Estado
 					);
 
-				try {
+				$nVenta_id = $this->venm->insert($venta);
 
-					$nVenta_id = $this->venm->insert($venta);
+				if($form["forma_pago"] == '3')
+				{
+					$DesTrans = "Venta Separada";
+					$MontoTrans = $form["amortizacion"];
+				}
+		
 
-					if($form["forma_pago"] == '3')
-					{
-						$DesTrans = "Venta Separada";
-						$MontoTrans = $form["amortizacion"];
-					}
-			
+				if($form["forma_pago"] != '3')
+				{
+					$SalProd = array($nPersonal_id,$nLocal_id,2,$nPersonal_id,"Salida por ventas");
+					$nSalProd_id = $this->salprod->insert($SalProd);
+				}
 
-					if($form["forma_pago"] != '3')
-					{
-						$SalProd = array($nPersonal_id,$nLocal_id,2,$nPersonal_id,"Salida por ventas");
-						$nSalProd_id = $this->salprod->insert($SalProd);
-					}
-
-					if($form["forma_pago"] == '2')
-					{
-						$Credito = array(
-							"nCreditoFormaPag" => $form["forma_pago"],
-							"nVenCreditoNCuota" => $form["num_cuotas"],
-							"nVenCreditoMontInicial" => $form["amortizacion"],
-							"nVenCreditoPPag" => 100/$form["num_cuotas"],
-							"nVenta_id" => $nVenta_id,
-							"cCreditoEst" => 1
-							);
-						
-						$idCredito = $this->credm->insert($Credito);
-						$FechaDiaPago = date_create_from_format('d/m/Y', $form["prim_cuota"]);
-						$CronoPago = array();
-						for($i = 0 ; $i < $form["num_cuotas"]; $i++)
-						{
-							$CronoPago[] = array(
-								"nCronPagoNroCuota" => $i+1,
-								"nCronPagoFecReg" => $datenow,
-								"nCronPagoFecPago" => $FechaDiaPago->format("Y-m-d"),
-								"nCronPagoMonCouApg" => $form["montocuota"],
-								"nVenCredito_id" => $idCredito,
-								);													
-							$FechaDiaPago -> modify('+7 day');
-						}
-
-						$this->cronom->insert_batch($CronoPago);
-							
-						$DesTrans = "Venta Credito";
-						$MontoTrans = $form["amortizacion"];
-					}					
-					$DetalleSalProd = array();
-					foreach ($productos as $key => $prod)
-					{
-						$productos[$key]["nVenta_id"] = $nVenta_id;
-						if($form["forma_pago"] != '3')
-						{
-							$DetalleSalProd[]= array(
-								"nSalProd_id" => $nSalProd_id,
-								"nProducto_id" => $prod["nProducto_id"],
-								"DetSalProdCant" => $prod["nDetVentaCant"],
-								"cDetSalProdEst" => 1
-								);
-						}
-					}
-
-					$transaccion = array(
-						"nPersonal_id" => $nPersonal_id,
+				if($form["forma_pago"] == '2')
+				{
+					$Credito = array(
+						"nCreditoFormaPag" => $form["forma_pago"],
+						"nVenCreditoNCuota" => $form["num_cuotas"],
+						"nVenCreditoMontInicial" => $form["amortizacion"],
+						"nVenCreditoPPag" => 100/$form["num_cuotas"],
 						"nVenta_id" => $nVenta_id,
-						"cTransaccionDesc" => $DesTrans,
-						"nTransaccionMont" => $MontoTrans,
-						"dTransaccionFecReg" => $datenow,
- 						"nTransaccionTipPag" => $form["forma_pago"]
+						"cCreditoEst" => 1
 						);
-
-					$this->transm->insert($transaccion);
-					$this->detvenm->insert_batch($productos);
-
-					if($form["forma_pago"] != '3')
-						$this->detsalprod->insert_batch($DetalleSalProd);
-
-					if ($this->db->trans_status() === FALSE)
+					
+					$idCredito = $this->credm->insert($Credito);
+					$FechaDiaPago = date_create_from_format('d/m/Y', $form["prim_cuota"]);
+					$CronoPago = array();
+					for($i = 0 ; $i < $form["num_cuotas"]; $i++)
 					{
-						$this->db->trans_rollback();
+						$CronoPago[] = array(
+							"nCronPagoNroCuota" => $i+1,
+							"nCronPagoFecReg" => $datenow,
+							"nCronPagoFecPago" => $FechaDiaPago->format("Y-m-d"),
+							"nCronPagoMonCouApg" => $form["montocuota"],
+							"nVenCredito_id" => $idCredito,
+							);													
+						$FechaDiaPago -> modify('+7 day');
 					}
-					else
-					{
-						$this->db->trans_commit();
-					}	
 
-				} catch (Exception $e) {
+					$this->cronom->insert_batch($CronoPago);
+						
+					$DesTrans = "Venta Credito";
+					$MontoTrans = $form["amortizacion"];
+				}					
+				$DetalleSalProd = array();
+				foreach ($productos as $key => $prod)
+				{
+					$productos[$key]["nVenta_id"] = $nVenta_id;
+					if($form["forma_pago"] != '3')
+					{
+						$DetalleSalProd[]= array(
+							"nSalProd_id" => $nSalProd_id,
+							"nProducto_id" => $prod["nProducto_id"],
+							"DetSalProdCant" => $prod["nDetVentaCant"],
+							"cDetSalProdEst" => 1
+							);
+					}
+				}
+
+				$transaccion = array(
+					"nPersonal_id" => $nPersonal_id,
+					"nVenta_id" => $nVenta_id,
+					"cTransaccionDesc" => $DesTrans,
+					"nTransaccionMont" => $MontoTrans,
+					"dTransaccionFecReg" => $datenow,
+						"nTransaccionTipPag" => $form["forma_pago"]
+					);
+
+				$this->transm->insert($transaccion);
+				$this->detvenm->insert_batch($productos);
+
+				if($form["forma_pago"] != '3')
+					$this->detsalprod->insert_batch($DetalleSalProd);
+
+				if ($this->db->trans_status() === FALSE)
+				{
 					$this->db->trans_rollback();
 					$this->output->set_status_header('400');
+				}
+				else
+				{
+					$this->db->trans_commit();
 				}
 			}
 			else
@@ -175,7 +169,6 @@ class Ventas extends CI_Controller {
 		if(isset($_POST) && !empty($_POST))
 		{
 			$form = $this->input->post('formulario',true);
-			$productos = $this->input->post('productos',true);
 			if($form != null)
 			{
 				$nLocal_id = $this->session->userdata('current_local')["nLocal_id"];
@@ -183,14 +176,47 @@ class Ventas extends CI_Controller {
 				$datenow = date("Y-m-d");
 				$nVenta_id = $form["nVenta_id"];
 
+				$this->db->trans_begin();
+
 				$transaccion = array(
 					"nPersonal_id" => $nPersonal_id,
 					"nVenta_id" => $nVenta_id,
-					"cTransaccionDesc" => $DesTrans,
-					"nTransaccionMont" => $MontoTrans,
+					"cTransaccionDesc" => "Pago Separacion",
+					"nTransaccionMont" => $form["pagofinal"],
 					"dTransaccionFecReg" => $datenow,
-					"nTransaccionTipPag" => $form["forma_pago"]
+					"nTransaccionTipPag" => 1
 					);
+
+				$this->transm->insert($transaccion);
+
+				if(($form["saldo"] - $form["pagofinal"])<= 0)
+				{
+					$SalProd = array($nPersonal_id,$nLocal_id,2,$nPersonal_id,"Salida por ventas");
+					$nSalProd_id = $this->salprod->insert($SalProd);
+					$productos = $this->detvenm->get_detalles($nVenta_id);
+					$DetalleSalProd = array();
+					foreach ($productos as $key => $prod)
+					{
+						$DetalleSalProd[]= array(
+							"nSalProd_id" => $nSalProd_id,
+							"nProducto_id" => $prod["nProducto_id"],
+							"DetSalProdCant" => $prod["cant_prod"],
+							"cDetSalProdEst" => 1
+							);
+					}
+					$this->detsalprod->insert_batch($DetalleSalProd);
+					$this->venm->update($nVenta_id,array("cVentaEst"=>2));
+				}
+
+				if ($this->db->trans_status() === FALSE)
+				{
+					$this->output->set_status_header('400');
+					$this->db->trans_rollback();
+				}
+				else
+				{
+					$this->db->trans_commit();
+				}
 			}
 			else
 				$this->output->set_status_header('400');

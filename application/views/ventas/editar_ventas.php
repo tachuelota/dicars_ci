@@ -100,6 +100,7 @@
 											<form id="PagarForm" action-1="<?php echo base_url();?>ventas/ventas/editar">
 											<input type="hidden" name="nVenta_id" value="<?php echo $venta["nVenta_id"];?>">
 											<input type="hidden" name ="pagofinal" id="pagofinal" val="0">
+											<input type="hidden" name ="saldo" id="saldo" val="<?php echo $venta["nVentaSaldo"];?>">
 												<div id="saldo_block" >
 													<div class="control-group">
 														<label class="control-label" for="amortizacion">Monto a Pagar</label>
@@ -122,7 +123,7 @@
 													</tr>
 													<tr>
 														<td><strong>Saldo</strong></td>
-														<td id="saldo"><?php echo $venta["nVentaSaldo"];?></td>
+														<td id="saldo_rest"><?php echo $venta["nVentaSaldo"];?></td>
 													</tr>
 												</table>
 											</div>
@@ -139,7 +140,8 @@
 									<p id="mensaje_pago"></p>
 								</div>
 								<div class="modal-footer">
-									<a href="#" class="btn" id="btn_enviar" data-dismiss="modal">Aceptar</a>
+									<button type="button" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>
+									<button type="button" class="btn" id="btn_enviar">Aceptar</a>
 								</div>
 							</div>
 						<div class="form-actions">
