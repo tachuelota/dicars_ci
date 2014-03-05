@@ -23,7 +23,7 @@ $(document).ready(function(){
 					  { "sWidth": "10%","mDataProp": "dIngProdFecReg"},
 		              { "sWidth": "10%","mDataProp": "cIngProdNro"},
 		              { "sWidth": "20%","mDataProp": "nomape"},
-		              { "sWidth": "20%","mDataProp": "nIngProdMotivo"},
+		              { "sWidth": "20%","mDataProp": "DescMotivo"},
 		              { "sWidth": "10%","mDataProp": "cIngProdDocNro"},
 		              ];
 

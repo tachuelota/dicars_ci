@@ -86,7 +86,7 @@ class Servicios extends CI_Controller {
 			        break;
 			}
 		}
-
+	}
 
 	public function getClienteZona($nZona_id)
 	{

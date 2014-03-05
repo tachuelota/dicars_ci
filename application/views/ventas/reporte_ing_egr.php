@@ -32,6 +32,7 @@
 				<label class="control-label" for="date01">Escoga el día</label>
 				<div class="controls">
 					<input type="text" class="input-xlarge datepicker" id="date01" value="03/06/2013">
+						<button id="buscarfecha" name="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>Buscar</button>
 				</div>
 				</div>
 			</fieldset>
