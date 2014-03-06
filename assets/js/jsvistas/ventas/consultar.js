@@ -47,10 +47,13 @@ $(document).ready(function(){
 
 	var VentasOptions = {
 		"aoColumns":[
-			{ "sWidth": "15%","mDataProp": "fecpago"},
-			{ "sWidth": "15%","mDataProp": "nrocuota"},
-			{ "sWidth": "15%","mDataProp": "montoapg"},
-			{ "sWidth": "15%","mDataProp": "montoapl"}
+			{ "sWidth": "15%","mDataProp": "cVentaFecReg"},
+			{ "sWidth": "15%","mDataProp": "cClienteNom"},
+			{ "sWidth": "15%","mDataProp": "cPersonalNom"},
+			{ "sWidth": "15%","mDataProp": "tipo_pago"},
+			{ "sWidth": "15%","mDataProp": "cant_prod"},
+			{ "sWidth": "15%","mDataProp": "VentaTotal"},
+			{ "sWidth": "15%","mDataProp": "estadolabel"}
 				],
 		"fnCreatedRow": VentaActions.RowCBFunction
 	};
