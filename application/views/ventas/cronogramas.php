@@ -39,7 +39,7 @@
 							<th>Nombres</th>
 							<th>Apellidos</th>
 							<th>DNI</th>
-							<th>Línea de Crédito</th>
+							<th>Línea de Crédito S/.</th>
 							<th>Opciones</th>
 						</tr>
 					</thead>

@@ -74,7 +74,7 @@
 						<div class="modal-footer">
 							<button type="reset" class="btn" data-dismiss="modal">Cancelar</button>
 							<button id="btn-reg-marca" class="btn btn-primary">Registrar</button>
-							<button id="btn-editar-marca" class="btn btn-primary" style="display:none">Editar</button>
+							<button id="btn-editar-marca" class="btn btn-primary" style="display:none">Guardar</button>
 						</div>
 					</form>
 				</div>

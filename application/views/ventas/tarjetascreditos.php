@@ -53,14 +53,14 @@
 										<input class="input-xlarge focused" id="monto" name="monto" type="text">
 									</div>
 								</div>
-								<div class="control-group">
+								<!--<div class="control-group">
 									<label class="control-label" for="cliente">Vista Previa</label>
 									<div class="controls">
 										<figure>
 											<img style="width:40%;" src="img/card.png" alt="Tarjeta">
 										</figure>
 									</div>
-								</div>
+								</div>-->
 								<div class="form-actions">
 									<button id="btn-reg-lineacreditos" name="btn-reg-lineacreditos" type="submit" class="btn btn-primary">Registrar</button>
 									<button class="btn" >Imprimir</button>
@@ -77,7 +77,7 @@
 						</div>
 						<div class="modal-body" >
 							<table id="select_trabajador_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>
-								administracion/Servicios/get_trabajadores_bylocal">
+								administracion/Servicios/get_trabajadores_activos">
 								<thead>
 									<tr>
 										<th>Nombres</th>

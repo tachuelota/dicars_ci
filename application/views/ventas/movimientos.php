@@ -58,7 +58,7 @@
 									<th>Fecha de Registro</th>
 									<th>Trabajador</th>
 									<th>Concepto</th>
-									<th>Monto</th>															
+									<th>Monto S/.</th>
 									<th>Tipo de Movimiento</th>									
 									<th>Tipo de Pago</th>									
 								</tr>

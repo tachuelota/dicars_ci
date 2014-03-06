@@ -150,7 +150,6 @@ class Servicios extends CI_Controller {
 				->set_content_type('application/json')
 				->set_output(json_encode(array('aaData' => $result)));	
 	}
-
 	public function get_cronogramabyCredito($nVenCredito_id)
 	{
 

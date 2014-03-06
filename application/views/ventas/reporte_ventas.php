@@ -61,10 +61,10 @@
 					<th>Producto</th>
 					<th>Serie</th>
 					<th>Cant.</th>
-					<th>Desct.</th>
-					<th>Prec. Costo</th>
-					<th>Prec. Contado</th>
-					<th>Prec. Credito</th>
+					<th>Desct. S/.</th>
+					<th>Prec. Costo S/.</th>
+					<th>Prec. Contado S/.</th>
+					<th>Prec. Credito S/.</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -104,10 +104,10 @@
 					<th>Producto</th>
 					<th>Serie</th>
 					<th>Cant.</th>
-					<th>Desct.</th>
-					<th>Prec. Costo</th>
-					<th>Prec. Contado</th>
-					<th>Prec. Credito</th>
+					<th>Desct. S/.</th>
+					<th>Prec. Costo S/.</th>
+					<th>Prec. Contado S/.</th>
+					<th>Prec. Credito S/.</th>
 				</tr>
 			</thead>
 			<tbody>

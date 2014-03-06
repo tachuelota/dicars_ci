@@ -72,7 +72,7 @@
 							<div class="modal-footer">
 								<button type="reset" class="btn btn-cancelarprov" data-dismiss="modal">Cancelar</button>			
 								<button id="btn-reg-constante" class="btn btn-primary">Registrar</button>
-								<button id="btn-edit-constante" class="btn btn-primary" style="display:none">Editar</button>
+								<button id="btn-edit-constante" class="btn btn-primary" style="display:none">Guardar</button>
 							</div>
 						</form>
 					</div>
