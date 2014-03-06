@@ -54,13 +54,14 @@
 							<h3>Cuotas</h3>
 						</div>
 						<div class="modal-body">
-							<form id="PagarCuotasForm" class="form-horizontal" method="post" action="">
+							<form id="PagarCuotasForm" class="form-horizontal" action-1="<?php echo base_url(); ?>ventas/cronogramas/pagarcuota">
 								<div class="control-group">
 									<label class="control-label" for="amortizacion">A cuenta</label>
 									<div class="controls">
 										<div class="input-append">
 											<input class="input-xlarge focused" style="margin: 0 0px 0 0;" id="monto" type="number" step="0.1" value="0" min="0">
 											<input type="hidden" name="monto" id="montoapg">
+											<input type="hidden" name="nVenta_id" id="nVenta_id">	
 											<span id="spanamort" class="add-on">s/.</span>
 										</div>
 										<input type="hidden" name="idcredito" id="idcredito">
@@ -82,7 +83,7 @@
 						  </table> 
 						</div>
 						<div class="modal-footer">
-							<a href="#" class="btn" data-dismiss="modal">Cerrar</a>
+							<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 							<a id='guardar_pago' href="#" class="btn btn-primary btn-guardar">Guardar</a>
 						</div>
 					</div>

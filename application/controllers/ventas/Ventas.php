@@ -88,7 +88,6 @@ class Ventas extends CI_Controller {
 					{
 						$CronoPago[] = array(
 							"nCronPagoNroCuota" => $i+1,
-							"nCronPagoFecReg" => $datenow,
 							"nCronPagoFecPago" => $FechaDiaPago->format("Y-m-d"),
 							"nCronPagoMonCouApg" => $form["montocuota"],
 							"nVenCredito_id" => $idCredito,

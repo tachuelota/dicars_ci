@@ -148,7 +148,7 @@ class Servicios extends CI_Controller {
 			$result = $this->ven->reporte_ventas_byzona($tipo,$fecIni,$fecFin,$id_local);
 			$this->output
 				->set_content_type('application/json')
-				->set_output(json_encode(array('aaData' => $result)));	
+				->set_output(json_encode(array('aaData' => $result)));
 	}
 	public function get_cronogramabyCredito($nVenCredito_id)
 	{
@@ -158,6 +158,29 @@ class Servicios extends CI_Controller {
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
+	}
+
+
+	public function get_cronpago_venta($nVenta_id)
+	{
+		$this->load->model('ventas/Venta_Model','venm');
+		$this->load->model('ventas/DetalleVenta_Model','detvenm');
+		$this->load->model('ventas/VentaCronograma_Model','cronom');
+		$Venta = $this->venm->get_venta($nVenta_id);
+		$DetVenta = $this->detvenm->get_detalles($nVenta_id);
+		$Cuotas = $this->cronom->get_byVenta($nVenta_id);
+
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array(
+				'detventas' => $DetVenta,
+				'cuotas' => $Cuotas,
+				'fecreg' => $Venta["cVentaFecReg"],
+				'vendedor' => $Venta["Vendedor"],
+				'amortizacion' => $Venta["nVentaTotAmt"],
+				'monto' => $Venta["Total"],
+				'nVenta_id' => $Venta["nVenta_id"],
+				'cliente' => $Venta["Cliente"])));
 	}
 	
 }

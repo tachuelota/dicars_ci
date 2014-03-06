@@ -187,7 +187,7 @@ function CloneAttr(Array, attr1, attr2){
 function CloneAttrTable(Tabla, attr, pos){
 	var Array = Tabla.fnGetData();
 	$(Array).each(function( index ){
-		CuotasTable.fnUpdate(this[attr],index,pos);
+		Tabla.fnUpdate(this[attr],index,pos);
 	});
 }
 	
