@@ -122,9 +122,43 @@ class Servicios extends CI_Controller {
 		$this->load->model('ventas/ReporteIngEgr_Model','rpteim');	
 		$result = $this->rpteim->get_reporteIngEgre_byfecha($Tipo,$fecha);
 		$this->output
-			->set_content_type('application/json')
+		->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
 	}
 
+	public function reporte_ventas_bytienda($fecInicio,$fecFinal){
+			$tipo=1;
+			$fecIni = $fecInicio;
+			$fecFin=  $fecFinal;
+			$id_local=intval($this->session->userdata('current_local')["nLocal_id"]);
+
+			$this->load->model('ventas/Venta_Model','ven');
+			$result = $this->ven->reporte_ventas_bytienda($tipo,$fecIni,$fecFin,$id_local);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
+	}
+	public function reporte_ventas_byzona($fecInicio,$fecFinal){
+			$tipo=2;
+			$fecIni = $fecInicio;
+			$fecFin=  $fecFinal;
+			$id_local=intval($this->session->userdata('current_local')["nLocal_id"]);
+
+			$this->load->model('ventas/Venta_Model','ven');
+			$result = $this->ven->reporte_ventas_byzona($tipo,$fecIni,$fecFin,$id_local);
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(array('aaData' => $result)));	
+	}
+
+	public function get_cronogramabyCredito($nVenCredito_id)
+	{
+
+		$this->load->model('ventas/VentaCronograma_Model','cronom');
+		$result = $this->cronom->get_byCredito($nVenCredito_id);
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
+	}
 	
 }

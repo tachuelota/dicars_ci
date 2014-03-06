@@ -101,14 +101,14 @@
 						</a>
 					</li>
 				<?php endif ?>
-				<?php if($this->ion_auth->in_group("log_ord_ped")): ?>
-					<li id="ord_ped">
+				<?php //if($this->ion_auth->in_group("log_ord_ped")): ?>
+					<!--<li id="ord_ped">
 						<a class="ajax-link" href="<?php echo base_url();?>logistica/views/cons_pedidos">
 							<i class="icon icon-black icon-compose"></i>
 							<span class="hidden-tablet">Orden de Pedido</span>
 						</a>
-					</li>
-				<?php endif ?>
+					</li>-->
+				<?php //endif ?>
 				<?php if($this->ion_auth->in_group("log_ord_comp")): ?>
 					<li id="ord_com">
 						<a class="ajax-link" href="<?php echo base_url();?>logistica/views/cons_ordencompra">

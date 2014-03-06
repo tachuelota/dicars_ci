@@ -7,7 +7,7 @@ $(document).ready(function(){
 
 	$("#buscarfecha").click(function(event){
 		event.preventDefault();
-		date1 = new Date($("#fecha1").datepicker("getDates"));
+		date1 = new Date($("#date01").datepicker("getDates"));
 		date2 = new Date($("#date02").datepicker("getDates"));
 		VentasTable.fnReloadAjax(base_url + "ventas/servicios/getventas/"+fechaFormatoSQL(date1)+"/"+fechaFormatoSQL(date2));
 	});
@@ -47,13 +47,10 @@ $(document).ready(function(){
 
 	var VentasOptions = {
 		"aoColumns":[
-				{ "sWidth": "15%","mDataProp": "cVentaFecReg"},
-				{ "sWidth": "15%","mDataProp": "cClienteNom"},
-				{ "sWidth": "15%","mDataProp": "cPersonalNom"}, 
-				{ "sWidth": "15%","mDataProp": "tipo_pago"},
-				{ "sWidth": "15%","mDataProp": "cant_prod"},
-				{ "sWidth": "15%","mDataProp": "VentaTotal"},	    	              
-				{ "sWidth": "15%","mDataProp": "estadolabel"},
+			{ "sWidth": "15%","mDataProp": "fecpago"},
+			{ "sWidth": "15%","mDataProp": "nrocuota"},
+			{ "sWidth": "15%","mDataProp": "montoapg"},
+			{ "sWidth": "15%","mDataProp": "montoapl"}
 				],
 		"fnCreatedRow": VentaActions.RowCBFunction
 	};

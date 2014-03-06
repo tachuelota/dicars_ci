@@ -1,7 +1,8 @@
 <?php
 $title = $_POST['title'];
-$movimientotable = $_POST['movimientotable'];
-
+$table_ingresos = $_POST['table_ingresos'];
+$table_egresos = $_POST['table_egresos'];
+$table_total = $_POST['table_total']; 
 ob_start();
 ?>
     
@@ -27,19 +28,19 @@ ob_start();
 		text-transform: uppercase;
 		width: 80%;
 	}
-	#tmovimiento{
+	#treporte{
 		border-collapse: collapse;
 		text-align: center;
 	}
-	#tmovimiento td.head{
+	#treporte td.head{
 		background: #111;
 		color: #fff;
 		text-transform: uppercase;
 	}
-	#tmovimiento th, #tmovimiento td{
+	#treporte th, #treporte td{
 		border: black 1px solid;
 	}
-	#tmovimiento td.izquierda{
+	#treporte td.izquierda{
 		text-align: left;
 		padding-left: 17px;
 	}
@@ -71,8 +72,13 @@ ob_start();
 				</tr>
 			</table>
 			<br>
-			<?php echo $movimientotable ?><br>
-			<br>
+				<p>INGRESOS</p>	
+				<?php echo $table_ingresos ?><br>	
+				<p>EGRESOS</p>	
+				<?php echo $table_egresos ?><br>
+				<p>GENERAL</p>	
+				<?php echo $table_total ?><br>
+			<br>			
 		</div>
     </page>
     <?php 
@@ -82,5 +88,5 @@ ob_start();
     $html2pdf = new HTML2PDF('L','A4','es');
     $html2pdf->pdf->SetDisplayMode('fullpage');
     $html2pdf->writeHTML($content);
-    $html2pdf->Output($nombrearchivo.date("d-m-Y").'.pdf');
+    $html2pdf->Output('reporte_ingresoegreso'.date("d-m-Y").'.pdf');   
 ?>

@@ -23,5 +23,11 @@ class VentaCronograma_Model extends CI_Model
 			return true;
 		}
 	}
+
+	public function get_byCredito($nVenCredito_id)
+	{
+		$query = $this->db->query("SELECT * FROM ven_cronogramapago_all where nVenCredito_id=".$nVenCredito_id);
+		return $query -> result_array();
+	}
 }
  ?>
