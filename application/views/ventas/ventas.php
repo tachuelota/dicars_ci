@@ -57,7 +57,7 @@
 								  	<th>Vendedor</th>
 								  	<th>Tipo Pago</th>
 								  	<th>Cant. Prod.</th>
-								  	<th>Total</th>
+								  	<th>Total S/.</th>
 								  	<th>Estado</th>
 							  	</tr>
 						  	</thead>   

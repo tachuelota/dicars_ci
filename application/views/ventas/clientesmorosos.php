@@ -20,9 +20,9 @@
 				<th>DNI</th>
 				<th>Zona</th>
 				<th>Dirección</th>
-				<th>Total Crédito</th>
-				<th>Total Pago Realizado</th>
-				<th>Saldo</th>
+				<th>Total Crédito S/.</th>
+				<th>Total Pago Realizado S/.</th>
+				<th>Saldo S/.</th>
 				<th>Estado</th>
 				<th>Responsable</th>
 			</tr>

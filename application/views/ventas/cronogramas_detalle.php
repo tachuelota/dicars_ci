@@ -37,8 +37,8 @@
 						  <thead>
 							  <tr>
 								  <th>Fecha de la Venta</th>
-								  <th>Monto Total</th>
-								  <th>Monto Pagado</th>
+								  <th>Monto Total S/.</th>
+								  <th>Monto Pagado S/.</th>
 								  <th>Nro de Cuotas</th>
 								  <th></th>
 								  <th></th>	

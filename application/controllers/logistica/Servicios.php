@@ -28,9 +28,9 @@ class Servicios extends CI_Controller {
 			->set_output(json_encode(array('aaData' => $result)));
 	}	
 	public function get_trabajadores_activos(){
-		$id_local = $this->session->userdata('current_local')["nLocal_id"];		
+		//$id_local = $this->session->userdata('current_local')["nLocal_id"];		
 		$this->load->model('administracion/Trabajadores_Model','tra');
-		$result = $this->tra->get_trabajadores_bylocal($id_local);
+		$result = $this->tra->get_trabajadores_activos();
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
