@@ -96,7 +96,7 @@ $objkardex = json_decode($tkardexgen);
 					$inventario_final = $totalentcosttotal - $totalsalcosttotal;
 					$costo_ventas = $inventario_inicial + $totalentcosttotal - $inventario_final;
 					echo "	<tr>
-								<td colspan='2'>TOTAL:</td>
+								<td colspan='3'>TOTAL:</td>
 								<td>$totalentcant</td>
 								<td></td>
 								<td>$totalentcosttotal</td>
@@ -169,7 +169,7 @@ $objkardex = json_decode($tkardexgen);
 						
 						<table id='tproductos'>
 							<tr>
-								<th colspan='2'>COMPROBANTE DE PAGO<br>DOCUMENTO INTERIOR O SIMILAR</th>
+								<th colspan='3'>COMPROBANTE DE PAGO<br>DOCUMENTO INTERIOR O SIMILAR</th>
 								<th colspan='3'>ENTRADAS</th>
 								<th colspan='3'>SALIDAS</th>
 								<th colspan='3'>SALDO FINAL</th>
@@ -177,6 +177,7 @@ $objkardex = json_decode($tkardexgen);
 							<tr>
 								<th>FECHA</th>
 								<th>DOCUMENTO</th>
+								<th>DETALLE</th>
 								<th>CANTIDAD</th>
 								<th>COSTO UNITARIO</th>
 								<th>COSTO TOTAL</th>
@@ -188,8 +189,9 @@ $objkardex = json_decode($tkardexgen);
 								<th>COSTO TOTAL</th>
 							</tr>
 							<tr>
-								<td>".$producto->{'Mes'}." - ".$producto->{'Anio'}."</td>
+								<td>".$producto->{'Fecha'}."</td>
 								<td>".$producto->{'Documento'}."</td>
+								<td>".$producto->{'Detalle'}."</td>
 				";
 				if ($producto->{'TipoIngreso'} == 'Ingreso') {
 					echo "	<td>".$producto->{'Cantidad'}."</td>
@@ -245,6 +247,7 @@ $objkardex = json_decode($tkardexgen);
 					echo "	<td></td>
 							<td></td>
 							<td></td>
+							<td></td>
 							<td>".$producto->{'Cantidad'}."</td>
 							<td>".$producto->{'PrecUnit'}."</td>
 							<td>".$producto->{'PrecTot'}."</td>";
@@ -262,7 +265,7 @@ $objkardex = json_decode($tkardexgen);
 		$inventario_final = $totalentcosttotal - $totalsalcosttotal;
 		$costo_ventas = $inventario_inicial + $totalentcosttotal - $inventario_final;
 		echo "<tr>
-				<td colspan='2'>TOTAL:</td>
+				<td colspan='3'>TOTAL:</td>
 				<td>$totalentcant</td>
 				<td></td>
 				<td>$totalentcosttotal</td>

@@ -97,17 +97,19 @@ class Servicios extends CI_Controller {
 	}
 
 	public function get_kardex_byfecha($fecha){
+			$local = $this->session->userdata('current_local')["nLocal_id"];
 			$fec = date_create_from_format('Y-m-d', $fecha);
 			$this->load->model('logistica/Kardex_Model','kar');
-			$result = $this->kar->get_kardex_byfecha($fec);
+			$result = $this->kar->get_kardex_byfecha($fec,$local);
 			$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
 	public function get_kardex_rptvalorizado($fecha){
+			$local = $this->session->userdata('current_local')["nLocal_id"];
 			$fec = date_create_from_format('Y-m-d', $fecha);
 			$this->load->model('logistica/Kardex_Model','kar');
-			$result = $this->kar->get_reporte_valorizado($fec);
+			$result = $this->kar->get_reporte_valorizado($fec,$local);
 			$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode($result));		

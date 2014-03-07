@@ -7,14 +7,14 @@ class Kardex_Model extends CI_Model {
 		parent::__construct();
 	}
 
-	public function get_kardex_byfecha($fecha)
+	public function get_kardex_byfecha($fecha,$local)
 	{
-		$query = $this->db->query("select * from log_consultar_kardex where Anio =" .$fecha->format('Y')." and MesNum=" .$fecha->format('m'));
+		$query = $this->db->query("select * from log_consultar_kardex where nLocal_id=".$local." and Anio =" .$fecha->format('Y')." and MesNum=" .$fecha->format('m'));
 		return $query -> result_array();
 		
 	}
-	public function get_reporte_valorizado($fecha){
-		$query = $this->db->query("select * from log_consultar_kardexvalorizado where Anio =" .$fecha->format('Y')." and NroMes=" .$fecha->format('m'));
+	public function get_reporte_valorizado($fecha,$local){
+		$query = $this->db->query("select * from log_consultar_kardexvalorizado where  nLocal_id=".$local."  and Anio =" .$fecha->format('Y')." and NroMes=" .$fecha->format('m'));
 		return $query -> result_array();
 	}
 

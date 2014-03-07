@@ -39,6 +39,7 @@
 					</div>
 				</div>
 				<div class="form-horizontal" id="KardexForm" name="KardexForm" action-1="<?php echo base_url();?>logistica/Servicios/get_kardex_byfecha">
+					<input type="hidden" name="idLocal" id="idLocal" value="<?php echo $local["nLocal_id"];?>">
 					<fieldset>
 						<div class="control-group">
 							<div class="controls">
@@ -56,6 +57,8 @@
 							<th>Año</th>
 							<th>Mes</th>
 							<th>Producto</th>
+							<th>Marca</th>
+							<th>Tipo Producto</th>
 							<th>Tipo Ingreso</th>
 							<th>Cantidad</th>
 							<th>Prec. Unitario s/.</th>

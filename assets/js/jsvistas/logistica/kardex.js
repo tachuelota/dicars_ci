@@ -23,8 +23,10 @@ $(document).ready(function(){
 		              { "sWidth": "10%","mDataProp": "Anio"},
 		              { "sWidth": "10%","mDataProp": "Mes"},
 		              { "sWidth": "25%","mDataProp": "Producto"},
+		              { "sWidth": "10%","mDataProp": "cMarcaDesc"},
+		              { "sWidth": "10%","mDataProp": "cMarcaDesc"},
 		              { "sWidth": "15%","mDataProp": "TipoIngreso"},
-		              { "sWidth": "15%","mDataProp": "Cantidad"},
+		              { "sWidth": "10%","mDataProp": "Cantidad"},
 		              { "sWidth": "15%","mDataProp": "PrecUnit"},
 		              { "sWidth": "15%","mDataProp": "PrecTot"}
 		              ],
@@ -41,10 +43,10 @@ $(document).ready(function(){
 
 	function prepararGenDatos(){
 	var tablakardex = toHTML(crearTablaToArray("tdetalle",
-			['Año','Mes', 'Documento','Producto','Detalle','Tipo de Ingreso','Cantidad','Prec. Unitario s/.','Prec. Total s/.'],
-			['class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" '],
-			['Anio','Mes','Documento','Producto','Detalle','TipoIngreso','Cantidad','PrecUnit','PrecTot'],
-			['style="width: 15%;"','style="width: 15%;"','style="width: 25%;"','style="width: 15%;"','style="width: 15%;"','style="width: 15%;"'],
+			['Año','Mes', 'Documento','Producto','Marca','Tipo Producto','Detalle','Tipo de Ingreso','Cantidad','Prec. Unitario s/.','Prec. Total s/.'],
+			['class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" ','class="prodth" '],
+			['Anio','Mes','Documento','Producto','cMarcaDesc','cMarcaDesc','Detalle','TipoIngreso','Cantidad','PrecUnit','PrecTot'],
+			['style="width: 15%;"','style="width: 15%;"','style="width: 25%;"','style="width: 15%;"','style="width: 15%;"','style="width: 15%;"','style="width: 15%;"','style="width: 15%;"'],
 			KardexTable.fnGetData()));
 
 	var titulo = "Kardex General ";
