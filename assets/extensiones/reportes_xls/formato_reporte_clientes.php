@@ -1,5 +1,6 @@
 <?php
 $title = $_POST['title'];
+$table_resumen = $_POST['table_resumen'];
 $table_clientes = $_POST['table_clientes'];
 
 header('Content-type: application/x-msdownload; charset=utf-16');
@@ -22,6 +23,14 @@ header('Expires: 0');
 		background: #e7e6e6;
 		text-align: center;
 		width: 100%;
+	}
+	#resume, #total{
+		border: #111 1px solid;
+		padding: 10px;
+	}
+	#resume td.impar, .upbold{
+		font-weight: bold; 
+		text-transform: uppercase;
 	}
 	#tclientes{
 		border-collapse: collapse;
@@ -48,8 +57,9 @@ header('Expires: 0');
 			<h3><?php echo $title ?></h3>
 		</div>
 		<br>
+		Fecha Emision: <?php echo date('d/m/Y'); ?><br>
+		<br><?php echo $table_resumen ?><br>
 		<?php echo $table_clientes ?><br>
 		<br>
-		Fecha Emision: <?php echo date('d/m/Y'); ?>
     </body>
     </html>

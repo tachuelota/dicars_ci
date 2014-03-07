@@ -8,6 +8,8 @@ $(document).ready(function(){
 	var	urlExportXLS = base_url +"assets/extensiones/reportes_xls/formato_reporte_clientes.php";
 	var	urlExportPDF = base_url +"assets/extensiones/reportes_pdf/formato_reporte_clientes.php";
 
+	var SelectZona = null;
+
 	var ZonaPersonalOptions = {
 		"aoColumns":[
 				{ "sWidth": "15%","mDataProp": "cZonaDesc"},
@@ -24,6 +26,7 @@ $(document).ready(function(){
 						$('#zonapersonal_table tr.row_selected').removeClass('row_selected');
 			            $(this).addClass('row_selected');
 			            ClienteTable.fnReloadAjax(base_url+"ventas/servicios/getClienteZona/"+aData.nZona_id);
+			            SelectZona = aData;
 			        }
 				});
 		}
@@ -43,7 +46,12 @@ $(document).ready(function(){
 
 
 	$("#pdfgen").click(function(){
-			tabla_clientes = toHTML(crearTablaToArray("tclientes",
+			
+		resumen = [	{'td1':'NOMBRE ZONA:','td2':SelectZona.cZonaDesc,'td3':'UBIGEO:','td4':SelectZona.des_ubigeo},
+					{'td1':'','td2':'','td3':'','td4':''},
+		           	{'td1':'ENCARGADO:','td2':SelectZona.persona,'td3':'','td4':''}];
+
+		tabla_clientes = toHTML(crearTablaToArray("tclientes",
 				['NOMBRE','APELLIDO','DNI','LINEA OPERATIVA'],
 				[	'style="width: 25%;" class="head" ','style="width: 25%;" class="head" ','style="width: 25%;" class="head" ',
 					'style="width: 25%;" class="head" '],
@@ -51,7 +59,14 @@ $(document).ready(function(){
 				[	'style="width: 25%;" ','style="width: 25%;" ','style="width: 25%;" ',
 					'style="width: 25%;" '],
 					ClienteTable.fnGetData()));
+
+		tablaresumen = toHTML(crearTablaToArray("resume",null,null,
+					['td1','td2','td3','td4'],
+					['style="width: 25%;" class="impar" ','style="width:25%;" ','style="width: 25%;" class="impar" ','style="width: 25%;" '],
+					resumen));
+
 		$("#title").val("REPORTE ZONAS");
+		$("#table_resumen").val(tablaresumen);
 		$("#table_clientes").val(tabla_clientes);
 		$("#exportmodal").modal('show');	
 	});

@@ -1,5 +1,6 @@
 <?php
 $title = $_POST['title'];
+$table_resumen = $_POST['table_resumen'];
 $table_clientes = $_POST['table_clientes'];
 
 ob_start();
@@ -26,6 +27,14 @@ ob_start();
 		text-align: right;
 		text-transform: uppercase;
 		width: 80%;
+	}
+	#resume, #total{
+		border: #111 1px solid;
+		padding: 10px;
+	}
+	#resume td.impar, .upbold{
+		font-weight: bold; 
+		text-transform: uppercase;
 	}
 	#tclientes{
 		border-collapse: collapse;
@@ -68,11 +77,12 @@ ob_start();
 				<tr>
 					<td style="height: 20px;"></td>
 				</tr>
-			</table>
+			</table>	
+				Fecha Emision: <?php echo date('d/m/Y'); ?><br>
 			<br>
+			<?php echo $table_resumen ?><br>
 			<?php echo $table_clientes ?><br>
 			<br>
-			Fecha Emision: <?php echo date('d/m/Y'); ?>
 		</div>
     </page>
     <?php 
