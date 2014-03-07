@@ -85,27 +85,66 @@
 				<hr>
 				<h3>Detalle de Ingreso de Productos</h3>
 				<hr>
-				<form id="ProductoForm" class="form-horizontal">
-					<div class="control-group">
-						<label class="control-label" for="producto">Producto</label>
-						<div class="controls">
-							<input type="hidden" id="idProducto" name="idProducto">
-							<input class="input-xlarge focused" id="producto" disabled type="text">
-						<button id="btn-buscar-productos" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
-								Buscar
-						</button>
-						<label style="display:inline;" for="cantidad">Cantidad</label>
-							<input class="validate[required,custom[onlyNumberSp]]" id="cantidad" name="cantidad" type="number" min="1" style="margin: 0 18px 0 0;">
-						<label style="display:inline;">Precio/Unidad</label>
-							<input class="validate[required,custom[onlyNumberSp]]" id="precio_uni" name="precio_uni" type="number" min="0" step="0.01" style="margin: 0 18px;" >
-						<button id="agregar_producto" type="submit" class="btn btn-primary"> <i class="icon-plus icon-white"></i>
-								Agregar
-						</button>
+				<div class="span12">
+						<div class="form-horizontal">
+							<div class="span6" style="margin-bottom: 20px; border-rigth: 1px solid #ddd;">
+								<div class="control-group">
+									<label class="control-label" for="ordped">Pedido</label>
+									<div class="controls">
+										<input id="id_pedido" name="id_pedido" type="hidden">
+										<input class="input-xlarge focused" id="ordped" name="ordped" type="text" readonly>
+										<button id="btn-pedido" name="btn.pedido" type="button" class="btn btn-info btn-ordped" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
+										</button>
+									</div>
+								</div>							
+								<div class="control-group">
+									<label class="control-label" for="preciod">Importe</label>
+									<div class="controls">
+										
+										<input id="imported" name="imported" type="number" step="0.01" min="1" style="margin: 0 18px 0 0;">
+										<label style="display:inline;" for="cantidadd"> <strong>Cantidad</strong>
+										</label>
+										<input id="cantidadd" name="cantidadd" type="number" style="margin: 0 18px 0 0;" min="1">
+										<button id="agregar_detalle" name="agregar_detalle" type="button" class="btn btn-primary">
+											<i class="icon-plus icon-white"></i>
+											Agregar
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-horizontal">
+							<div class="span6" style="margin-bottom: 20px; border-left: 1px solid #ddd;">
+								<div class="control-group">
+									<label class="control-label" for="producto">Producto</label>
+									<div class="controls">
+										<input class="input-xlarge focused" id="producto" type="text" readonly>
+										<input id="producto_id" name="producto_id" type="hidden">
+										<button id="btn-producto" name="btn-producto" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;">
+											<i class="icon-search icon-white"></i>
+										</button>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="precio">Importe</label>
+									<div class="controls">
+										<input id="importe" name="importe" type="number" step="0.01" min="1" style="margin: 0 18px 0 0;" >
+										<label style="display:inline;" for="cantidad"> <strong>Cantidad</strong>
+										</label>
+										<input id="cantidad" type="number" style="margin: 0 18px 0 0;" min="1">
+										<button id="agregar_producto" name="agregar_producto" type="button" class="btn btn-primary">
+											<i class="icon-plus icon-white"></i>
+											Agregar
+										</button>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
-				</form>
+
+
 				<hr>
-				<table id="ingreso_productos_table" name="ingreso_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+				<!--<table id="ingreso_productos_table" name="ingreso_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
 					<thead>
 						<tr>
 							<th>Código</th>
@@ -116,8 +155,32 @@
 					</thead>
 					<tbody>
 					</tbody>
-				</table>
+				</table> -->
+				<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
+						<thead>
+							<tr>
+								<th>Codigo</th>
+								<th>Producto</th>
+								<th>Cantidad</th>
+								<th>Precio Unitario</th>
+								<th>Importe S/.</th>
+								<th>Fecha de registro</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
 				<hr>
+					<!--<div class="form-actions" style="padding-left: 17px;">
+						<a href="<?php echo base_url();?>logistica/views/cons_ordencompra/" type="reset" class="btn btn-success btn-cancelar" >
+							<i class="icon icon-white icon-arrowthick-w"></i>
+							Volver
+						</a>
+						<button id="btn_enviar_ordcom" type="submit" class="btn btn-primary" style="float: right;">
+							<i class="icon icon-white icon-save"></i>
+							Guardar
+						</button>
+					</div>-->
 				<div class="form-actions">
 					<a href="<?php echo base_url();?>logistica/views/cons_ingresoproductos/" class="btn btn-success">
 						<i class="icon icon-white icon-arrowthick-w"></i>
@@ -129,7 +192,7 @@
 					</button>
 				</div>
 				<!---------------------------------------------------->
-				<div class="modal hide fade" id="modalBuscarProducto">
+				<!--<div class="modal hide fade" id="modalBuscarProducto">
 					<div class="modal-header">
 						<h3>Productos</h3>
 					</div>
@@ -150,7 +213,62 @@
 						<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
 						<a  id="select_producto" href="#" class="btn btn-primary">Seleccionar</a>
 					</div>
-				</div>
+				</div>-->
+				<!-----------Modal ORDEN Pedido-------------------->
+					<div class="modal hide fade" id="modalBuscarOrdPed" style="width: 650px;">
+						<div class="modal-header">
+							<h3>Detalles de Pedido</h3>
+						</div>
+						<div class="modal-body">
+							<table id="select_ordped_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getOrdenPedido">
+								<thead>
+
+									<tr>
+										<th rowspan="2">Producto</th>
+										<th rowspan="2">Registrante</th>
+										<th colspan="3">Cantidad</th>
+
+										<th rowspan="2">Fecha Registro</th>
+										<th rowspan="2">BarCode</th>
+									</tr>
+									<tr>
+										<th>Ped.</th>
+										<th>Acep.</th>
+										<th>Faltan</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+							<a id="select_ordped" href="#" class="btn btn-primary">Seleccionar</a>
+						</div>					
+					</div>
+					<!--------------MODAL PRODUCTO------------------------>
+					<div class="modal hide fade" id="modalBuscarProducto">
+						<div class="modal-header">
+							<h3>Productos</h3>
+						</div>
+						<div class="modal-body">
+							<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getProductos" >
+								<thead>
+									<tr>
+										<th>Código</th>
+										<th>Producto</th>
+										<th>Stock</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+						<div class="modal-footer">
+							<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+							<a  id="select_producto" href="#" class="btn btn-primary">Seleccionar</a>
+						</div>						
+					</div>
 			</div>
 		</div>
 			<div class="modal hide fade" id="agregarproductos">
