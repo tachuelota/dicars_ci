@@ -58,13 +58,19 @@ class Constante_Model extends CI_Model
 			$query = $this ->db->get ('constante');
 			return $query -> result_array();
 		}
-		$query = $this->db->get_where('constante', array('nCategoria_id' => $nConstante_id));
+		$query = $this->db->get_where('constante', array('nConstante_id' => $nConstante_id));
 		return $query->row_array();
 	}
 
 	public function get_ByClase($nConstanteClase)
 	{
 		$query = $this->db->get_where('constante', array('nConstanteClase' => $nConstanteClase,'cConstanteValor !='=>0));
+		return $query->result_array();
+	}
+
+	public function get_Clases()
+	{
+		$query = $this->db->get_where('constante', array('cConstanteValor' => 0));
 		return $query->result_array();
 	}
 }

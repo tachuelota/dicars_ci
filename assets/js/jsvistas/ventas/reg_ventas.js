@@ -254,6 +254,9 @@ $(document).ready(function(){
 	var ResumenProdTable = createDataTable2('tabla_resumen_productos',ResumenProdOptions);
 
 	var unlockload = function(){
+		$("#resumen_venta").printThis({
+            	importCSS: true
+        });
 		$.unblockUI({
             onUnblock: function(){
 	            $(location).attr("href",base_url+"ventas/views/cons_ventas"); 

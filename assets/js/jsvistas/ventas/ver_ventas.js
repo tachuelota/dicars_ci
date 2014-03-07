@@ -3,7 +3,7 @@
 			$("#imprimir").click(function(e){
 				e.preventDefault();
 				$("#resumen_venta").printThis({
-		        	importCSS: false
+		        	importCSS: true
 		         });
 			});
 		});

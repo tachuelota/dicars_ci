@@ -27,29 +27,31 @@
 					<div class="box-header well" data-original-title>
 						<h2>ZONAS ASIGNADAS</h2>
 					</div>
-					<div class="box-content">
+					<div>
 						<form id="ZonapersonalForm" class="form-horizontal" method="post" action-1="<?php echo base_url();?>administracion/Zona_Personal/registrar">
-							<fieldset>								
-								<input type="hidden" name="idzonapersonal">
+							<fieldset>
+								<div class="box-content">								
+									<input type="hidden" name="idzonapersonal">
+										<div class="control-group">
+										<label class="control-label" for="nombre_trabajador">Trabajador</label>
+										<div class="controls">
+											<input class="input-xlarge" id="nombre_trabajador" type="text" readonly required>
+											<input id="id_trabajador" name="id_trabajador" type="hidden">	
+										</div>
+									</div>
 									<div class="control-group">
-									<label class="control-label" for="nombre_trabajador">Trabajador</label>
-									<div class="controls">
-										<input class="input-xlarge" id="nombre_trabajador" type="text" readonly required>
-										<input id="id_trabajador" name="id_trabajador" type="hidden">	
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label" for="nombre_zona">Zona</label>
-									<div class="controls">
-										<input class="input-xlarge" id="nombre_zona" type="text" readonly required>
-										<input id="id_zona" name="id_zona" type="hidden">
-										<button class="btn btn-info" id="btn-zona" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
-									</div>
-								</div>							
-								<div class="form-actions">
-									<button id="agregar_usuario" type="submit" class="btn btn-primary">Asignar</button>
-									<a class="btn" href="<?php echo base_url();?>administracion/views/zona_personal">Cancelar</a>
-							  	</div>
+										<label class="control-label" for="nombre_zona">Zona</label>
+										<div class="controls">
+											<input class="input-xlarge" id="nombre_zona" type="text" readonly required>
+											<input id="id_zona" name="id_zona" type="hidden">
+											<button class="btn btn-info" id="btn-zona" style="margin-left: 15px;"><i class="icon-user icon-white"></i></button>
+										</div>
+									</div>							
+									<div class="form-actions">
+										<button id="agregar_usuario" type="submit" class="btn btn-primary">Asignar</button>
+										<a class="btn" href="<?php echo base_url();?>administracion/views/zona_personal">Cancelar</a>
+								  	</div>
+					  			</div>
 							</fieldset>
 						</form>
 						<div class="modal hide fade" id="modalBuscarTrabajador">

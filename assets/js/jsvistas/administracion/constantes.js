@@ -7,15 +7,7 @@ $(document).ready(function(){
 		$('#modalConstante').modal('show');
 	});
 	
-	//enviar('RegistrarClaseForm', ReloadTableRegistrar);
-	//enviar('EditarClaseForm', ReloadTableEditar);
-
-	UrlaDTable = $("#constantes_table").attr("data-source");
-	FormatoCategorias = [
-		              { "sWidth": "33%","mDataProp": "nConstanteClase"},
-		              { "sWidth": "33%","mDataProp": "cConstanteDesc"},
-		              { "sWidth": "34%","mDataProp": "cConstanteValor"},
-		              ];
+	$(".SelectAjax").SelectAjax();
 
 	var Actions = new DTActions({
 		'conf': '010',
@@ -30,14 +22,21 @@ $(document).ready(function(){
 	  		$("#idConstante").val(aData.nConstante_id);
 		},
 	});
-
-	RowCBFCategorias = function(nRow, aData, iDisplayIndex){
-		Actions.RowCBFunction(nRow, aData, iDisplayIndex);
+	
+	var CategoriasOptions = {
+	"aoColumns":[
+	              { "sWidth": "33%","mDataProp": "nConstanteClase"},
+	              { "sWidth": "33%","mDataProp": "cConstanteDesc"},
+	              { "sWidth": "34%","mDataProp": "cConstanteValor"},
+	              ],
+	"fnCreatedRow":Actions.RowCBFunction
 	};
+
+	ConstanteTable = createDataTable2('constantes_table',CategoriasOptions);
 
 	var successCategoria = function(){
 		$('#modalConstante').modal('hide');
-		TableConstante.fnReloadAjax()
+		ConstanteTable.fnReloadAjax()
 	}
 
 	$('#modalConstante').on('hidden', function(){		
@@ -58,6 +57,12 @@ $(document).ready(function(){
 			enviar($("#ConstanteForm").attr("action-2"),{formulario:$("#ConstanteForm").serializeObject()}, successCategoria, null)
 	});
 
-	TableConstante = createDataTable("constantes_table",UrlaDTable,FormatoCategorias, null, RowCBFCategorias);
+	ConstanteTable.fnReloadAjax(base_url+"administracion/servicios/getConstantesByClase/"+$("#claseconstante").val());
+	$("#clase").val($("#claseconstante").val());
+	$("#claseconstante").change(function()
+	{
+		ConstanteTable.fnReloadAjax(base_url+"administracion/servicios/getConstantesByClase/"+$(this).val());
+		$("#clase").val($("#claseconstante").val());
+	})
 });
 

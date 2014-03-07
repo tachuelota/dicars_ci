@@ -34,7 +34,16 @@
 					</div>
 				</div>
 				<div class="box-content">
-					<table id="constantes_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>administracion/servicios/getConstantes">
+					<div class="form-horizontal">
+						<div class="control-group">
+							<label class="control-label" for="tipo">Clase</label>
+							<div class="controls">
+								<select id="claseconstante" class="SelectAjax" name="claseconstante" data-source="<?php echo base_url();?>administracion/servicios/getClaseConstante" attrval="nConstanteClase" attrdesc="cConstanteDesc"></select>
+							</div>
+						</div>
+					</div>					
+					<hr>
+					<table id="constantes_table" class="table table-striped table-bordered bootstrap-datatable datatable">
 						<thead>
 							<tr>
 								<th>Clase</th>
@@ -52,13 +61,9 @@
 							<input type="hidden" id="idConstante" name="idConstante">
 							<div class="modal-body">
 								<fieldset>
+									<input id="clase" name="clase" type="hidden">
 									<div class="control-group">
-										<label class="control-label" for="clase">Nro de Clase</label>
-										<div class="controls">
-											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]]" id="clase" name="clase" type="text" data-prompt-position="topLeft"></div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="nom_clase">Nombre de Clase</label>
+										<label class="control-label" for="nom_clase">Descripcion</label>
 										<div class="controls">
 											<input class="input-xlarge focused validate[required,custom[onlyLetterNumberSp]]" id="nom_clase" name="nom_clase" type="text" data-prompt-position="topLeft"></div>
 									</div>

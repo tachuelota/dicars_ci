@@ -113,6 +113,15 @@ class Servicios extends CI_Controller {
 		echo json_encode(array('aaData' => $result));
 	}
 	
+	public function getClaseConstante()
+	{
+		$this->load->model('administracion/Constante_Model','constm');
+		$result = $this->constm->get_Clases();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode($result));
+	}
+
 	public function getTipoMonedas($nTipoMoneda = FALSE)
 	{
 		$this->load->model('administracion/TipoMoneda_Model','tmonmod');
