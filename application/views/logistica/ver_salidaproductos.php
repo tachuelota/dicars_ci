@@ -22,7 +22,7 @@
 			</li>
 			<li>
 				<a href="<?php echo base_url();?>logistica/views/cons_salidaproductos/">Salida de Productos</a>
-			</li>
+			</li> 
 		</ul>
 	</div>
 	<div class="row-fluid sortable">
@@ -109,7 +109,7 @@
 					</tfoot>
 				</table>
 				<div class="form-actions">
-					<a href="logistica_cons_salidaproductos.html" class="btn btn-success"> <i class="icon icon-white icon-arrowthick-w"></i>
+					<a href="<?php echo base_url();?>logistica/views/cons_salidaproductos/" class="btn btn-success"> <i class="icon icon-white icon-arrowthick-w"></i>
 						Volver
 					</a>
 				</div>
