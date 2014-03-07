@@ -91,20 +91,37 @@ $(document).ready(function(){
 
 		//
 	var successSalidaProductos = function(){
-		/*$("#observaciones").val("");
-		$("#solicitante").val("");
-		$("#solicitante_id").val("");*/
+		$.unblockUI({
+            onUnblock: function(){
+	            $(location).attr("href",base_url+"logistica/views/cons_salidaproductos"); 
+            } 
+        });
+	}
+
+
+	var prepararDatos = function()
+	{
+		var datosingreso = {
+			formulario: $("#RegistrarSalidaForm").serializeObject(),
+			tabla: CopyArray(SalidaProductosTable.fnGetData(),["nProducto_id","DetSalProdCant"])
+		}
+		return datosingreso;
 	}
 
 	$("#enviar_salida_producto").click(function(event){
 	event.preventDefault();
-	if (SalidaProductosTable.fnSettings().fnRecordsTotal() > 0) {
-		if($("#RegistrarSalidaForm").validationEngine('validate'))			
-			enviar($("#RegistrarSalidaForm").attr("action-1"),{formulario:$("#RegistrarSalidaForm").serializeObject(),
-				tabla: CopyArray(SalidaProductosTable.fnGetData(),["nProducto_id","DetSalProdCant"])}, successSalidaProductos, null)
-		}
-		else
-			$("#agregarproductos").modal("show");
+	if (SalidaProductosTable.fnSettings().fnRecordsTotal() > 0)
+	{
+		if($("#RegistrarSalidaForm").validationEngine('validate'))
+			$.blockUI({ 
+				onBlock: function()
+				{ 
+					enviar($("#RegistrarSalidaForm").attr("action-1"),prepararDatos(), successSalidaProductos, null)
+				}
+    		});	
+	}
+	else
+		$("#agregarproductos").modal("show");
 	});
 
 	$('#btn-buscar-trabajador').click(function(e){

@@ -2,6 +2,22 @@ $(document).ready(function(){
 	$("#RegistrarOrdenCompraForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 	var SelectProveeedoresData = new Array();
 
+	function Suma(){
+		igv = parseFloat($("#igv").val());
+		descuento = parseFloat($("#descuento").val());	
+		montototal = sumArraycol(OrdenCompraTable.fnGetData(),'nDetCompraImporte');
+		
+		subtotal = montototal * 100/(100 + igv);
+		montodescuento = subtotal * descuento/100;
+		subtdesc = subtotal - montodescuento;
+		montoigv = subtdesc*(igv)/100;
+		total = montoigv + subtdesc;
+		$('#subtotal').val(subtotal.toFixed(2));
+		$('#total').val(total.toFixed(2));
+		$('#spanigv').text(montoigv.toFixed(2));
+		$('#spandesc').text(-montodescuento.toFixed(2));
+	}
+
 	//creamos el datatable de proveedor
 	var BuscarProOptions = {
 	"aoColumns":[
@@ -106,7 +122,6 @@ $(document).ready(function(){
 		event.preventDefault();
 		$("#producto_id").val(SelectProductosData[0].nProducto_id);
 		$('#producto').val(SelectProductosData[0].cProductoDesc);
-		$('#importe').val(SelectProductosData[0].nProductoPCosto);
 		$('#modalBuscarProducto').modal('hide');
 	});
 	$('#select_ordped').click(function(event){
@@ -133,7 +148,7 @@ $(document).ready(function(){
 		$("#producto").val("");
 		$("#idProducto").val("");
 		$("#importe").val("");
-		//console.log(IngresoProductosTable.fnGetData());
+		Suma();
 	});
 	//	Agregar a la tabla
 	$('#agregar_detalle').click(function(event){
@@ -153,30 +168,46 @@ $(document).ready(function(){
 		//console.log(IngresoProductosTable.fnGetData());
 	});
 
+	var prepararDatos = function()
+	{
+		var datoscompra = {
+			formulario:$("#RegistrarOrdenCompraForm").serializeObject(),
+			tabla: CopyArray(OrdenCompraTable.fnGetData(),["nDetOrdOrdPed","nDetCompraCant","nDetCompraImporte","nDetCompraPrecUnt","nProducto_id"])
+		}
+		return datoscompra;
+	}
+
+
 	var successOrdenCompra = function(){
+		$.unblockUI({
+            onUnblock: function(){
+	            $(location).attr("href",base_url+"logistica/views/cons_ordencompra"); 
+            } 
+        });
 	}
 
 
 	//REGISTRAR ORDEN DE COMPRA
 	$("#btn_enviar_ordcom").click(function(event){
-	event.preventDefault();
-	if(OrdenCompraTable.fnSettings().fnRecordsTotal() > 0){
-		if($("#RegistrarOrdenCompraForm").validationEngine('validate'))			
-			enviar($("#RegistrarOrdenCompraForm").attr("action-1"),{formulario:$("#RegistrarOrdenCompraForm").serializeObject(),
-				tabla: CopyArray(OrdenCompraTable.fnGetData(),["nDetOrdOrdPed","nDetCompraCant","nDetCompraImporte","nDetCompraPrecUnt","nProducto_id"])}, successOrdenCompra, null);
+		event.preventDefault();
+		if(OrdenCompraTable.fnSettings().fnRecordsTotal() > 0)
+		{
+			if($("#RegistrarOrdenCompraForm").validationEngine('validate'))
+				$.blockUI({ 
+				onBlock: function()
+				{ 
+					enviar($("#RegistrarOrdenCompraForm").attr("action-1"),prepararDatos(), successOrdenCompra, null);
+				}
+	        	});				
 		}
 		else
 			$("#agregarproductos").modal("show");
 	});
 
-
-
- 	//Reportes
-
-	var urlES =  "js/es_ES.txt";
-
 	var urlExportCierreXLS = "extensiones/reportes_xls/formato_reporte_cuadrecaja.php";
 	var urlExportCierrePDF = "extensiones/reportes_pdf/formato_reporte_cuadrecaja.php";
+
+	$('#RegistrarOrdenCompraForm').change(function(){Suma();});
 
 	$('#lanza-cierremes').click(function(e){
 		e.preventDefault();
