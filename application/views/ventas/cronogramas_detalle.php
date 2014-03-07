@@ -89,7 +89,7 @@
 					</div>
 					<!----Modal-->
 					<div class="form-actions">
-						<a href="ventas_cronograma.html" class="btn btn-success"><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
+						<a href="<?php echo base_url();?>ventas/views/cronogramas" class="btn btn-success"><i class="icon icon-white icon-arrowthick-w"></i> Volver</a>
 					</div> 
 				</div><!--/span-->
 				<div class="modal hide fade" id="vercronograma">

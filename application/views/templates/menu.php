@@ -149,14 +149,14 @@
 						</a>
 					</li>
 				<?php endif ?>
-				<?php if($this->ion_auth->in_group("log_rep_sal_prod")): ?>
-					<li id="rep_sal_prod">
+				<!-<?php if($this->ion_auth->in_group("log_rep_sal_prod")): ?> -->
+					<!--<li id="rep_sal_prod">
 						<a class="ajax-link" href="<?php echo base_url();?>logistica/views/cronogramas">
 							<i class="icon icon-black icon-page"></i>
 							<span class="hidden-tablet">Reporte Salida Productos</span>
 						</a>
-					</li>
-				<?php endif ?>
+					</li> -->
+				<!-<?php endif ?>-->
 				<?php if($this->ion_auth->in_group("log_cierre_mes")): ?>
 					<li id="cierre_mes">
 						<a class="ajax-link" href="#" id="lanza-cierremes">
