@@ -164,7 +164,6 @@
 								<th>Cantidad</th>
 								<th>Precio Unitario</th>
 								<th>Importe S/.</th>
-								<th>Fecha de registro</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -217,25 +216,19 @@
 				<!-----------Modal ORDEN Pedido-------------------->
 					<div class="modal hide fade" id="modalBuscarOrdPed" style="width: 650px;">
 						<div class="modal-header">
-							<h3>Detalles de Pedido</h3>
+							<h3>Detalles de Orden de Compra</h3>
 						</div>
 						<div class="modal-body">
-							<table id="select_ordped_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getOrdenPedido">
+							<table id="select_ordped_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/get_log_ordcompras">
 								<thead>
-
 									<tr>
-										<th rowspan="2">Producto</th>
-										<th rowspan="2">Registrante</th>
-										<th colspan="3">Cantidad</th>
-
-										<th rowspan="2">Fecha Registro</th>
-										<th rowspan="2">BarCode</th>
-									</tr>
-									<tr>
-										<th>Ped.</th>
-										<th>Acep.</th>
-										<th>Faltan</th>
-									</tr>
+										<th>Codigo</th>
+										<th>Producto</th>
+										<th>Registrante</th>
+										<th >Fecha Registro</th>
+										<th>Cantidad</th>
+										<th >Importe</th>								
+									</tr>							
 								</thead>
 								<tbody>
 								</tbody>

@@ -44,6 +44,24 @@ class Servicios extends CI_Controller {
 			->set_output(json_encode(array('aaData' => $result)));
 	}	
 
+	public function get_log_ordcompras()
+	{		
+			$this->load->model('logistica/DetOrdCompra_Model','detordcompra');
+			$detalles=$this->detordcompra->get_OrdCompra();
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(array('aaData' => $detalles)));		
+	}
+
+	public function get_log_detordcompras($nOrdenCom_id)
+	{		
+			$this->load->model('logistica/DetOrdCompra_Model','detordcompra');
+			$detalles=$this->detordcompra->get_DetOrdCompra($nOrdenCom_id);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $detalles)));		
+	}
+
 	//CARGAR POR RANGO DE FECHAS
 	public function get_log_ingprod($Desde,$Hasta){		
 
@@ -115,7 +133,6 @@ class Servicios extends CI_Controller {
 			->set_output(json_encode($result));		
 	}
 
-
 	//CARGAR DETALLES(TABLAS)
 	public function get_log_detingprod($nIngProd_id){		
 
@@ -142,15 +159,6 @@ class Servicios extends CI_Controller {
 			    $detalles[$key]["band"] = 1;
 
 			}
-		$this->output
-			->set_content_type('application/json')
-			->set_output(json_encode(array('aaData' => $detalles)));		
-	}
-
-	public function get_log_detordcompras($nOrdenCom_id){		
-
-			$this->load->model('logistica/DetOrdCompra_Model','detordcompra');
-			$detalles=$this->detordcompra->get_DetOrdCompra($nOrdenCom_id);
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $detalles)));		
