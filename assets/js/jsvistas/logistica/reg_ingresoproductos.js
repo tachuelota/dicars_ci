@@ -104,8 +104,7 @@ $(document).ready(function(){
 		SelectDetalleCompraData[0].cProductoDesc = $("#ordped").val();
 		SelectDetalleCompraData[0].nDetIngProdCant = $("#cantidadd").val();
 		SelectDetalleCompraData[0].nDetIngProdPrecUnt = $("#imported").val()/ $("#cantidadd").val();
-		SelectDetalleCompraData[0].nDetIngProdTot = $("#imported").val();
-		console.log(SelectDetalleCompraData[0]);
+		SelectDetalleCompraData[0].nDetIngProdTot = $("#imported").val();		
 		OrdenCompraTable.fnAddData(SelectDetalleCompraData);
 	});
 
@@ -142,7 +141,7 @@ $(document).ready(function(){
 					onBlock: function()
 					{ 
 						enviar($("#IngresoProductosForm").attr("action-1"),prepararDatos(), successIngresoProductos, null);
-			//console.log(prepararDatos());
+			
 					}
 	    		});	
 	}

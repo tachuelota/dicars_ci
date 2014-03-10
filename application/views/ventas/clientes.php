@@ -74,7 +74,7 @@
 									<div class="control-group">
 										<label class="control-label" for="dni">DNI</label>
 										<div class="controls">
-											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]] validate[minSize[8]]" id="dni" name="dni" type="text" data-prompt-position="topLeft">
+											<input class="input-xlarge focused validate[required,custom[onlyNumberSp]] validate[minSize[8]] validate[maxSize[8]]" id="dni" name="dni" type="text" data-prompt-position="topLeft">
 										</div>
 									</div>
 									<div class="control-group">
@@ -86,13 +86,13 @@
 									<div class="control-group">
 										<label class="control-label" for="referencia">Referencia</label>
 										<div class="controls">
-											<input class="input-xlarge focused validate[required]" value=" " maxlength="200" id="referencia" name="referencia" type="text" data-prompt-position="topLeft">
+											<input class="input-xlarge focused" value=" " maxlength="200" id="referencia" name="referencia" type="text" >
 										</div>
 									</div>	
 									<div class="control-group">
 										<label class="control-label" for="ocupacion">Ocupación</label>
 										<div class="controls">
-											<input class="input-xlarge focused validate[required,custom[onlyLetterSp]] " id="ocupacion" name="ocupacion" type="text" data-prompt-position="topLeft">
+											<input class="input-xlarge focused " id="ocupacion" name="ocupacion" type="text">
 										</div>
 									</div>
 									<div class="control-group">
