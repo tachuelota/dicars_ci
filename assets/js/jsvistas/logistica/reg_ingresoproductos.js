@@ -3,7 +3,7 @@ $(document).ready(function(){
 
 	var SelectProductosData = new Array();
 	var DataToSend = {};
-//CREAR EL DATATABLE DE ORDEN DE PEDIDO
+//CREAR EL DATATABLE DE ORDEN DE compra
 	var SelectDetalleCompraData = new Array();
 	var BuscarDetOrCompOptions = {
 	"aoColumns":[
@@ -40,7 +40,7 @@ $(document).ready(function(){
 		}
 	});
 
-	BuscarOrdenPedidodOptions = {
+	DetIngProduOptions = {
 	"aoColumns":[
 		{ "sWidth": "12%","mDataProp": "cOrdComDocSerie"},
 		{ "sWidth": "12%","mDataProp": "cProductoDesc"},
@@ -51,7 +51,7 @@ $(document).ready(function(){
 	//"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
 	"fnCreatedRow":OrdenComprasActions.RowCBFunction
 	};
-	OrdenCompraTable = createDataTable2('productos_table',BuscarOrdenPedidodOptions);
+	OrdenCompraTable = createDataTable2('productos_table',DetIngProduOptions);
 
 	/*******************************************/
 	//llamar al modal pedido

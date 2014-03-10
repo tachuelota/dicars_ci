@@ -144,18 +144,6 @@
 
 
 				<hr>
-				<!--<table id="ingreso_productos_table" name="ingreso_productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
-					<thead>
-						<tr>
-							<th>Código</th>
-							<th>Nombre</th>
-							<th>Cantidad</th>
-							<th>Precio</th>
-						</tr>
-					</thead>
-					<tbody>
-					</tbody>
-				</table> -->
 				<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
 						<thead>
 							<tr>
@@ -170,16 +158,6 @@
 						</tbody>
 					</table>
 				<hr>
-					<!--<div class="form-actions" style="padding-left: 17px;">
-						<a href="<?php echo base_url();?>logistica/views/cons_ordencompra/" type="reset" class="btn btn-success btn-cancelar" >
-							<i class="icon icon-white icon-arrowthick-w"></i>
-							Volver
-						</a>
-						<button id="btn_enviar_ordcom" type="submit" class="btn btn-primary" style="float: right;">
-							<i class="icon icon-white icon-save"></i>
-							Guardar
-						</button>
-					</div>-->
 				<div class="form-actions">
 					<a href="<?php echo base_url();?>logistica/views/cons_ingresoproductos/" class="btn btn-success">
 						<i class="icon icon-white icon-arrowthick-w"></i>
@@ -190,29 +168,6 @@
 						Guardar
 					</button>
 				</div>
-				<!---------------------------------------------------->
-				<!--<div class="modal hide fade" id="modalBuscarProducto">
-					<div class="modal-header">
-						<h3>Productos</h3>
-					</div>
-					<div class="modal-body">
-						<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source = "<?php echo base_url();?>logistica/Servicios/getProductos">
-							<thead>
-								<tr>
-									<th>Producto</th>
-									<th>Stock</th>
-									<th>Precio</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-					</div>
-					<div class="modal-footer">
-						<a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-						<a  id="select_producto" href="#" class="btn btn-primary">Seleccionar</a>
-					</div>
-				</div>-->
 				<!-----------Modal ORDEN Pedido-------------------->
 					<div class="modal hide fade" id="modalBuscarOrdPed" style="width: 650px;">
 						<div class="modal-header">
