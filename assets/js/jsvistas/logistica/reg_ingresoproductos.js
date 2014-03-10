@@ -4,7 +4,7 @@ $(document).ready(function(){
 	var SelectProductosData = new Array();
 	var DataToSend = {};
 //CREAR EL DATATABLE DE ORDEN DE PEDIDO
-	var SelectOrdenPedidoData = new Array();
+	var SelectDetalleCompraData = new Array();
 	var BuscarDetOrCompOptions = {
 	"aoColumns":[
 				  { "sWidth": "5%","mDataProp": "cOrdComDocSerie"}, //serie numero
@@ -14,7 +14,7 @@ $(document).ready(function(){
 	              { "sWidth": "5%","mDataProp": "nDetCompraCant"},	          
 	              { "sWidth": "5%","mDataProp": "nDetCompraImporte"}	
 	              ],
-	"fnCreatedRow":getSimpleSelectRowCallBack(SelectOrdenPedidoData)
+	"fnCreatedRow":getSimpleSelectRowCallBack(SelectDetalleCompraData)
 	};
 	BuscarDetIngTable = createDataTable2('select_ordped_table',BuscarDetOrCompOptions);
 
@@ -74,8 +74,8 @@ $(document).ready(function(){
 
 	$('#select_ordped').click(function(event){
 		event.preventDefault();
-		$('#ordped').val(SelectOrdenPedidoData[0].cProductoDesc);
-		$('#cantidadd').val(SelectOrdenPedidoData[0].nDetCompraCant);
+		$('#ordped').val(SelectDetalleCompraData[0].cProductoDesc);
+		$('#cantidadd').val(SelectDetalleCompraData[0].nDetCompraCant);
 		$('#modalBuscarOrdPed').modal('hide');
 	});
 
@@ -100,12 +100,13 @@ $(document).ready(function(){
 	//	Agregar a la tabla
 	$('#agregar_detalle').click(function(event){
 		event.preventDefault();
-		SelectOrdenPedidoData[0].nDetOrdCompra = SelectOrdenPedidoData[0].nDetCompra_id;
-		SelectOrdenPedidoData[0].cProductoDesc = $("#ordped").val();
-		SelectOrdenPedidoData[0].nDetIngProdCant = $("#cantidadd").val();
-		SelectOrdenPedidoData[0].nDetIngProdPrecUnt = $("#imported").val()/ $("#cantidadd").val();
-		SelectOrdenPedidoData[0].nDetIngProdTot = $("#imported").val();
-		OrdenCompraTable.fnAddData(SelectOrdenPedidoData);
+		SelectDetalleCompraData[0].nDetOrdCompra = SelectDetalleCompraData[0].nDetCompra_id;
+		SelectDetalleCompraData[0].cProductoDesc = $("#ordped").val();
+		SelectDetalleCompraData[0].nDetIngProdCant = $("#cantidadd").val();
+		SelectDetalleCompraData[0].nDetIngProdPrecUnt = $("#imported").val()/ $("#cantidadd").val();
+		SelectDetalleCompraData[0].nDetIngProdTot = $("#imported").val();
+		console.log(SelectDetalleCompraData[0]);
+		OrdenCompraTable.fnAddData(SelectDetalleCompraData);
 	});
 
 	var OfertaProductoActions = new DTActions({
@@ -124,19 +125,29 @@ $(document).ready(function(){
 		}
 		return datosingreso;
 	}
-
 	var successIngresoProductos = function(){
+		$.unblockUI({
+            onUnblock: function(){
+	            $(location).attr("href",base_url+"logistica/views/cons_ingresoproductos"); 
+            } 
+        });
 	}
 
 	$("#enviar_ingreso_producto").click(function(event){
 	event.preventDefault();
-	if(OrdenCompraTable.fnSettings().fnRecordsTotal() > 0){
+	if(OrdenCompraTable.fnSettings().fnRecordsTotal() > 0)
+	{
 		if($("#IngresoProductosForm").validationEngine('validate'))			
-			enviar($("#IngresoProductosForm").attr("action-1"),prepararDatos(), successIngresoProductos, null);
-		}
+			$.blockUI({ 
+					onBlock: function()
+					{ 
+						enviar($("#IngresoProductosForm").attr("action-1"),prepararDatos(), successIngresoProductos, null);
+			//console.log(prepararDatos());
+					}
+	    		});	
+	}
 		else
 			$("#agregarproductos").modal("show");
 	});
-
 
 });

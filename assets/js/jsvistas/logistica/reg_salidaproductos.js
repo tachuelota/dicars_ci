@@ -109,19 +109,19 @@ $(document).ready(function(){
 	}
 
 	$("#enviar_salida_producto").click(function(event){
-	event.preventDefault();
-	if (SalidaProductosTable.fnSettings().fnRecordsTotal() > 0)
-	{
-		if($("#RegistrarSalidaForm").validationEngine('validate'))
-			$.blockUI({ 
-				onBlock: function()
-				{ 
-					enviar($("#RegistrarSalidaForm").attr("action-1"),prepararDatos(), successSalidaProductos, null)
-				}
-    		});	
-	}
-	else
-		$("#agregarproductos").modal("show");
+		event.preventDefault();
+		if (SalidaProductosTable.fnSettings().fnRecordsTotal() > 0)
+		{
+			if($("#RegistrarSalidaForm").validationEngine('validate'))
+				$.blockUI({ 
+					onBlock: function()
+					{ 
+						enviar($("#RegistrarSalidaForm").attr("action-1"),prepararDatos(), successSalidaProductos, null)
+					}
+	    		});	
+		}
+		else
+			$("#agregarproductos").modal("show");
 	});
 
 	$('#btn-buscar-trabajador').click(function(e){
