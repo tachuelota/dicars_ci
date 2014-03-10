@@ -23,5 +23,11 @@ class Transaccion_Model extends CI_Model
 			return true;
 		}
 	}
+
+	public function get_byVenta($nVenta_id)
+	{
+		$query = $this->db->get_where('ven_transaccion', array('nVenta_id' => $nVenta_id));
+		return $query->row_array();
+	}
 }
 ?>
