@@ -47,11 +47,18 @@ class Clientes_Model extends CI_Model {
 	}
 
 
- 	public function get_clientes()
+ 	
+ 	public function get_clientes($nCliente_id = FALSE)
 	{
+		if($nCliente_id === FALSE )
+		{
 			$query = $this->db->query("SELECT * FROM ven_cliente_all;");
 			return $query -> result_array();
+		}
+		$query = $this->db->get_where('ven_cliente', array('nCliente_id' => $nCliente_id));
+		return $query->row_array();
 	}
+ 	
 
 	public function get_clientesmorosos()
 	{
@@ -70,17 +77,5 @@ class Clientes_Model extends CI_Model {
 		return $query->row_array();
 	}
 
-	/*
-	public function get_clientes($nCliente_id = FALSE)
-	{
-		if($nCliente_id === FALSE )
-		{
-			$query = $this ->db->get ('SELECT * FROM ven_cliente_all;');
-			return $query -> result_array();
-		}
-		$query = $this->db->get_where('ven_cliente', array('nCliente_id' => $nCliente_id));
-		return $query->row_array();
-	}
-	*/
 
 }
