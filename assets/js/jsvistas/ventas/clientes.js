@@ -33,6 +33,7 @@ $("#ClienteForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3
 		$("#lineaop").val(aData.nClienteLineaOp);	
 		$("#ocupacion").val(aData.cClienteOcup);		
 		$("#idClientes").val(aData.nCliente_id);
+		//cargarUbigeo(Ubigeos,"dist", "prov", "dep",aData.);
 		cargarZonas();
 		},
 	});

@@ -40,9 +40,9 @@
 						<div class="control-group">
 							<label class="control-label">Del</label>
 							<div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" name="date01">
+								<input type="text" class="input-xlarge datepicker" id="date01" name="date01" value="<?php echo date("d/m/Y") ?>">
 								<label style="display:inline;">Al</label>
-								<input type="text" class="input-xlarge datepicker" id="date02" name="date02">
+								<input type="text" class="input-xlarge datepicker" id="date02" name="date02" value="<?php echo date("d/m/Y") ?>">
 								<button id="buscarfecha" name="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 									Buscar
 								</button>

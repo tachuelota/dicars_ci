@@ -3,52 +3,111 @@ $(document).ready(function(){
 
 	var SelectProductosData = new Array();
 	var DataToSend = {};
+//CREAR EL DATATABLE DE ORDEN DE compra
+	var SelectDetalleCompraData = new Array();
+	var BuscarDetOrCompOptions = {
+	"aoColumns":[
+				  { "sWidth": "5%","mDataProp": "cOrdComDocSerie"}, //serie numero
+	              { "sWidth": "5%","mDataProp": "cProductoDesc"},
+	              { "sWidth": "5%","mDataProp": "cPersonalNom"},
+	              { "sWidth": "5%","mDataProp": "OrdComFecReg"},
+	              { "sWidth": "5%","mDataProp": "nDetCompraCant"},	          
+	              { "sWidth": "5%","mDataProp": "nDetCompraImporte"}	
+	              ],
+	"fnCreatedRow":getSimpleSelectRowCallBack(SelectDetalleCompraData)
+	};
+	BuscarDetIngTable = createDataTable2('select_ordped_table',BuscarDetOrCompOptions);
+
+	//CREAR EL DATATABLE DE PRODUCTOS
+	var BuscarSelectProductosData = new Array();
+
+	var BuscarProOptions = {
+		"aoColumns":[
+		              { "sWidth": "5%","mDataProp": "cProductoCodBarra"},
+		              { "sWidth": "5%","mDataProp": "cProductoDesc"},
+		              { "sWidth": "5%","mDataProp": "nProductoStock"}
+		              ],
+		"fnCreatedRow":getSimpleSelectRowCallBack(SelectProductosData)
+	};
+	BuscarProductoTable = createDataTable2('select_producto_table',BuscarProOptions);
+
+	//DATA TABLE DETALLE DE ORDEN DE COMPRAS
+	var OrdenComprasActions = new DTActions({
+	'conf': '001',
+	'DropFunction': function(nRow, aData, iDisplayIndex) {
+				var index = $(OrdenCompraTable.fnGetData()).getIndexObj(aData,'nProducto_id');
+				OrdenCompraTable.fnDeleteRow(index); 
+		}
+	});
+
+	DetIngProduOptions = {
+	"aoColumns":[
+		{ "sWidth": "12%","mDataProp": "cOrdComDocSerie"},
+		{ "sWidth": "12%","mDataProp": "cProductoDesc"},
+		{ "sWidth": "12%","mDataProp": "nDetIngProdCant"},
+		{ "sWidth": "12%","mDataProp": "nDetIngProdPrecUnt"},
+		{ "sWidth": "12%","mDataProp": "nDetIngProdTot"},			
+	              ],
+	//"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
+	"fnCreatedRow":OrdenComprasActions.RowCBFunction
+	};
+	OrdenCompraTable = createDataTable2('productos_table',DetIngProduOptions);
+
+	/*******************************************/
+	//llamar al modal pedido
+	$('#btn-pedido').click(function(e){
+		e.preventDefault();
+		$('#modalBuscarOrdPed').modal('show');
+	});
+	//llamar al modal producto
+	$('#btn-producto').click(function(e){
+		e.preventDefault();
+		$('#modalBuscarProducto').modal('show');
+	});
+	//MOSTRAR PROVEEDOR AL SELECCIONAR EN EL MODAL
+	$('#select_producto').click(function(event){
+		event.preventDefault();
+		$('#producto').val(SelectProductosData[0].cProductoDesc);
+		$('#importe').val(SelectProductosData[0].nProductoPCosto);
+		$('#modalBuscarProducto').modal('hide');
+	});
+
+	$('#select_ordped').click(function(event){
+		event.preventDefault();
+		$('#ordped').val(SelectDetalleCompraData[0].cProductoDesc);
+		$('#cantidadd').val(SelectDetalleCompraData[0].nDetCompraCant);
+		$('#modalBuscarOrdPed').modal('hide');
+	});
+
+	//agregar al detalle
 	//	Agregar a la tabla
 	$('#agregar_producto').click(function(event){
 		event.preventDefault();
-		$("#ProductoForm").validationEngine('validate');
+		SelectProductosData[0].cOrdComDocSerie = 0;
+		SelectProductosData[0].nDetOrdCompra = 0;
+		SelectProductosData[0].cProductoDesc = $("#producto").val();
 		SelectProductosData[0].nDetIngProdCant = $("#cantidad").val();
-		SelectProductosData[0].nDetIngProdPrecUnt = $("#precio_uni").val();
-		SelectProductosData[0].nDetIngProdTot = 	$("#cantidad").val() * $("#precio_uni").val();
-		IngresoProductosTable.fnAddData(SelectProductosData);
+		SelectProductosData[0].nDetIngProdPrecUnt = 	$("#importe").val()/ $("#cantidad").val();
+		SelectProductosData[0].nDetIngProdTot = $("#importe").val();
+		SelectProductosData[0].OrdComFecReg = fechanow() ;
+		OrdenCompraTable.fnAddData(SelectProductosData);
 		$("#cantidad").val("");
 		$("#precio_uni").val("");
 		$("#producto").val("");
 		$("#idProducto").val("");
+		$("#importe").val("");
 	});
-
-	$('#select_producto').click(function(event){
+	//	Agregar a la tabla
+	$('#agregar_detalle').click(function(event){
 		event.preventDefault();
-		$("#idProducto").val(SelectProductosData[0].nProducto_id);
-		$('#producto').val(SelectProductosData[0].cProductoDesc);
-		$('#modalBuscarProducto').modal('hide');
+		SelectDetalleCompraData[0].nDetOrdCompra = SelectDetalleCompraData[0].nDetCompra_id;
+		SelectDetalleCompraData[0].cProductoDesc = $("#ordped").val();
+		SelectDetalleCompraData[0].nDetIngProdCant = $("#cantidadd").val();
+		SelectDetalleCompraData[0].nDetIngProdPrecUnt = $("#imported").val()/ $("#cantidadd").val();
+		SelectDetalleCompraData[0].nDetIngProdTot = $("#imported").val();		
+		OrdenCompraTable.fnAddData(SelectDetalleCompraData);
 	});
 
-	//LLAMAR AL MODAL
-	$('#btn-buscar-productos').click(function(e){
-		e.preventDefault();
-		$('#modalBuscarProducto').modal('show');
-	});
-
-	function prepararDatos(){
-		DataToSend = {
-			formulario:$("#ProductoForm").serializeObject(),
-			productos:CopyArray(SelectProductosData,["nProducto_id"])
-			
-			};
-	}
-
-	var BuscarProOptions = {
-	"aoColumns":[
-	              { "sWidth": "5%","mDataProp": "cProductoDesc"},
-	              { "sWidth": "5%","mDataProp": "nProductoStock"},
-	              { "sWidth": "5%","mDataProp": "nProductoPCredito"}
-	              ],
-	"fnCreatedRow":getSimpleSelectRowCallBack(SelectProductosData)
-	};
-	BuscarProductosTable = createDataTable2('select_producto_table',BuscarProOptions);
-
-	////////
 	var OfertaProductoActions = new DTActions({
 	'conf': '001',
 	'DropFunction': function(nRow, aData, iDisplayIndex) {
@@ -57,33 +116,37 @@ $(document).ready(function(){
 		}
 	});
 
-	BuscarIngresoProductosdOptions = {
-		"aoColumns":[
-			{ "sWidth": "12%","mDataProp": "cProductoCodBarra"},
-			{ "sWidth": "12%","mDataProp": "cProductoDesc"},
-			{ "sWidth": "12%","mDataProp": "nDetIngProdCant"},
-			{ "sWidth": "12%","mDataProp": "nDetIngProdPrecUnt"}			
-		              ],
-		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
-		"fnCreatedRow":OfertaProductoActions.RowCBFunction
-	};
-	IngresoProductosTable = createDataTable2('ingreso_productos_table',BuscarIngresoProductosdOptions);	
-
-
-	var successIngresoProductos = function(){
-	}
-	//
-	//Registrar
-	$("#enviar_ingreso_producto").click(function(event){
-		event.preventDefault();
-		if (IngresoProductosTable.fnSettings().fnRecordsTotal() > 0) {
-			if($("#IngresoProductosForm").validationEngine('validate'))
-				enviar($("#IngresoProductosForm").attr("action-1"),{formulario:$("#IngresoProductosForm").serializeObject(),
-					tabla: CopyArray(IngresoProductosTable.fnGetData(),["nProducto_id","nDetIngProdCant","nDetIngProdPrecUnt","nDetIngProdTot"])}, successIngresoProductos, null);
+	var prepararDatos = function()
+	{
+		var datosingreso = {
+			formulario:$("#IngresoProductosForm").serializeObject(),
+			tabla: CopyArray(OrdenCompraTable.fnGetData(),["nDetOrdCompra","nDetIngProdCant","nDetIngProdTot","nDetIngProdPrecUnt","nProducto_id"])
 		}
+		return datosingreso;
+	}
+	var successIngresoProductos = function(){
+		$.unblockUI({
+            onUnblock: function(){
+	            $(location).attr("href",base_url+"logistica/views/cons_ingresoproductos"); 
+            } 
+        });
+	}
+
+	$("#enviar_ingreso_producto").click(function(event){
+	event.preventDefault();
+	if(OrdenCompraTable.fnSettings().fnRecordsTotal() > 0)
+	{
+		if($("#IngresoProductosForm").validationEngine('validate'))			
+			$.blockUI({ 
+					onBlock: function()
+					{ 
+						enviar($("#IngresoProductosForm").attr("action-1"),prepararDatos(), successIngresoProductos, null);
+			
+					}
+	    		});	
+	}
 		else
 			$("#agregarproductos").modal("show");
 	});
-
 
 });

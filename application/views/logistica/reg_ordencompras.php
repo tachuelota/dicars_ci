@@ -197,7 +197,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> 
 					<table id="productos_table" class="table table-striped table-bordered bootstrap-datatable datatable">
 						<thead>
 							<tr>

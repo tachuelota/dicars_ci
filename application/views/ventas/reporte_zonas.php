@@ -67,6 +67,7 @@
 			<div class="modal-body">
 				<form method="post" target="_blank" id="CreatePDFForm">
 					<input type="hidden" name="title" id="title"/>
+						<input type="hidden" name="table_resumen" id="table_resumen"/>
 					<input type="hidden" name="table_clientes" id="table_clientes"/>
 					<div class="sortable row-fluid ui-sortable">
 						<a id="pdfbutton" data-rel="tooltip" class="well span3 top-block" style="width: 48%;" href="#" data-original-title="Exportar a PDF.">

@@ -165,6 +165,8 @@ class Views extends CI_Controller
 		if($this->ion_auth->in_group("ven_ven_prod"))
 		{
 			$this->load->model('administracion/Trabajadores_Model','tra');
+			$this->load->model('ventas/Clientes_Model','cli');
+			$pagedata["clianonimo"] = $this->cli->get_anonimo();
 			$pagedata["trabajador"] = $this->tra->get_trabajadores($this->ion_auth->user()->row()->nPersonal_id);
 			$pagedata["local"] = $this->session->userdata('current_local');
 	      	$dataheader['title'] = 'Dicars - Ventas -(registrar)';

@@ -232,6 +232,14 @@ function sumArrayByAttr(Array2,attr1,attr2){
 	return(total);
 }
 
+function sumArraycol(Array2,attr1){
+	var total = 0;
+	$(Array2).each(function( index ){		
+		total +=parseFloat(this[attr1]);	
+	});
+	return(total);
+}
+
 function getSimpleSelectRowCallBack(DSelected){
 	var SelectRowFunction = function(nRow,aData,iDisplayIndex){
 		$(nRow).click( function() {

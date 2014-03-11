@@ -5,7 +5,8 @@ $(document).ready(function(){
 	var totalcredito = 0;
 	var formapago = null;
 	var moneda = getAjaxObject(base_url+"administracion/servicios/getTipoMonedas").aaData;
-	var tipoigv = getAjaxObject(base_url+"administracion/servicios/getTipoIGVActivo").aaData;
+	var tipoigv = getAjaxObject(base_url+"administracion/servicios/getTipoIGVActivo").aaData;	
+	$("#fechaR").text(fechanow());
 
 	$("#EnviarVentaForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3000});
 	$("#tipo_moneda").SelectAjax(moneda);
@@ -254,16 +255,15 @@ $(document).ready(function(){
 	var ResumenProdTable = createDataTable2('tabla_resumen_productos',ResumenProdOptions);
 
 	var unlockload = function(){
+		$("#resumen_venta").printThis({
+            	importCSS: true
+        });
 		$.unblockUI({
             onUnblock: function(){
 	            $(location).attr("href",base_url+"ventas/views/cons_ventas"); 
             } 
         });
 	};
-
-	$('#cliente').val('ANONIMO ANONIMO');
-	$('#cliente_id').val('0');
-	$("#fechaR").text(fechanow());
 
 	var volverConsultar = function(){
 		$(location).attr(base_url+"ventas/views/ventas");

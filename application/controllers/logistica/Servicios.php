@@ -44,6 +44,24 @@ class Servicios extends CI_Controller {
 			->set_output(json_encode(array('aaData' => $result)));
 	}	
 
+	public function get_log_ordcompras()
+	{		
+			$this->load->model('logistica/DetOrdCompra_Model','detordcompra');
+			$detalles=$this->detordcompra->get_OrdCompra();
+			$this->output
+				->set_content_type('application/json')
+				->set_output(json_encode(array('aaData' => $detalles)));		
+	}
+
+	public function get_log_detordcompras($nOrdenCom_id)
+	{		
+			$this->load->model('logistica/DetOrdCompra_Model','detordcompra');
+			$detalles=$this->detordcompra->get_DetOrdCompra($nOrdenCom_id);
+			$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $detalles)));		
+	}
+
 	//CARGAR POR RANGO DE FECHAS
 	public function get_log_ingprod($Desde,$Hasta){		
 
@@ -97,22 +115,23 @@ class Servicios extends CI_Controller {
 	}
 
 	public function get_kardex_byfecha($fecha){
+			$local = $this->session->userdata('current_local')["nLocal_id"];
 			$fec = date_create_from_format('Y-m-d', $fecha);
 			$this->load->model('logistica/Kardex_Model','kar');
-			$result = $this->kar->get_kardex_byfecha($fec);
+			$result = $this->kar->get_kardex_byfecha($fec,$local);
 			$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
 	public function get_kardex_rptvalorizado($fecha){
+			$local = $this->session->userdata('current_local')["nLocal_id"];
 			$fec = date_create_from_format('Y-m-d', $fecha);
 			$this->load->model('logistica/Kardex_Model','kar');
-			$result = $this->kar->get_reporte_valorizado($fec);
+			$result = $this->kar->get_reporte_valorizado($fec,$local);
 			$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode($result));		
 	}
-
 
 	//CARGAR DETALLES(TABLAS)
 	public function get_log_detingprod($nIngProd_id){		
@@ -140,15 +159,6 @@ class Servicios extends CI_Controller {
 			    $detalles[$key]["band"] = 1;
 
 			}
-		$this->output
-			->set_content_type('application/json')
-			->set_output(json_encode(array('aaData' => $detalles)));		
-	}
-
-	public function get_log_detordcompras($nOrdenCom_id){		
-
-			$this->load->model('logistica/DetOrdCompra_Model','detordcompra');
-			$detalles=$this->detordcompra->get_DetOrdCompra($nOrdenCom_id);
 		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $detalles)));		

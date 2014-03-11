@@ -98,8 +98,8 @@
 										<div class="control-group">
 											<label class="control-label" for="cliente">Cliente</label>
 											<div class="controls">
-												<input class="input focused" id="cliente" type="text" readonly required>
-												<input type="hidden" id="cliente_id" name="cliente_id">
+												<input class="input focused" id="cliente" type="text" readonly value="<?php echo $clianonimo["cClienteNom"]." ".$clianonimo["cClienteApe"] ?>" required>
+												<input type="hidden" id="cliente_id" name="cliente_id" value="<?php echo $clianonimo["nCliente_id"] ?>">
 												<button type="button" class="btn btn-info btn-buscarc" style="margin: 0 18px;">
 													<i class="icon-search icon-white"></i>
 												</button>
@@ -308,6 +308,7 @@
 							</div>							
 						</div>
 					</div>
+					<hr>
 					<ul class="pager wizard">
 						<li class="previous"><a href="#">Previous</a></li>
 					  	<li class="next"><a href="#">Next</a></li>

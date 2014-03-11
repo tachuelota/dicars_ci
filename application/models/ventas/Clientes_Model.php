@@ -69,4 +69,10 @@ class Clientes_Model extends CI_Model {
 		return $query -> result_array();
 	}
 
+	public function get_anonimo()
+	{
+		$query = $this->db->get_where('ven_cliente', array('cClienteDNI' => "00000000"));
+		return $query->row_array();
+	}
+
 }

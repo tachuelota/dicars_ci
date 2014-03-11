@@ -15,10 +15,12 @@
 	<div>
 		<ul class="breadcrumb">
 			<li>
-				<a href="<?php echo base_url();?>">Home</a> <span class="divider">/</span>
+				<a href="<?php echo base_url();?>">Home</a>
+				<span class="divider">/</span>
 			</li>
 			<li>
-				<a href="<?php echo base_url();?>logistica/">Logística</a> <span class="divider">/</span>
+				<a href="<?php echo base_url();?>logistica/">Logística</a>
+				<span class="divider">/</span>
 			</li>
 			<li>
 				<a href="<?php echo base_url();?>logistica/views/cons_salidaproductos/">Salida de Productos</a>
@@ -30,19 +32,24 @@
 			<div class="box-header well" data-original-title>
 				<h2>SALIDA DE PRODUCTOS</h2>
 				<div class="box-icon">
-					<a href="<?php echo base_url();?>logistica/views/reg_salidaproductos/" class="btn btn-round" alt="Registrar Salida de Productos"> <i class="icon-plus"></i>
+					<a href="<?php echo base_url();?>
+						logistica/views/reg_salidaproductos/" class="btn btn-round" alt="Registrar Salida de Productos"> <i class="icon-plus"></i>
 					</a>
 				</div>
 			</div>
 			<div class="box-content">
-				<div class="form-horizontal" id="SalProductosForm" name="SalProductosForm" action-1="<?php echo base_url();?>logistica/Servicios/get_log_salprod" action-2="<?php echo base_url();?>logistica/Views/ver_salidaproductos">
+				<div class="form-horizontal" id="SalProductosForm" name="SalProductosForm" action-1="<?php echo base_url();?>
+					logistica/Servicios/get_log_salprod" action-2="
+					<?php echo base_url();?>
+					logistica/Views/ver_salidaproductos">
 					<fieldset>
 						<div class="control-group">
 							<label class="control-label">Del</label>
 							<div class="controls">
-								<input type="text" class="input-xlarge datepicker" id="date01" style="margin: 0 18px 0 0;">
+								<input type="text" class="input-xlarge datepicker" id="date01" style="margin: 0 18px 0 0;" value="<?php echo date("d/m/Y") ?>
+								">
 								<label style="display:inline;">Al</label>
-								<input type="text" class="input-xlarge datepicker" id="date02"  style="margin: 0 18px;">
+								<input type="text" class="input-xlarge datepicker" id="date02"  style="margin: 0 18px;" value="<?php echo date("d/m/Y") ?>">
 								<button id="buscarfecha" type="button" class="btn btn-info btn-buscarp" style="margin: 0 18px;"> <i class="icon-search icon-white"></i>
 									Buscar
 								</button>
@@ -63,8 +70,7 @@
 							<th>Local</th>
 						</tr>
 					</thead>
-					<tbody>
-					</tbody>
+					<tbody></tbody>
 				</table>
 			</div>
 		</div>

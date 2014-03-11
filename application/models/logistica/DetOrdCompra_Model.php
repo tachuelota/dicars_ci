@@ -59,4 +59,10 @@ class DetOrdCompra_Model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function get_OrdCompra()
+	{
+		$query = $this->db->query("SELECT * FROM log_ordcom_all");
+		return $query->result_array();
+	}
+
 }

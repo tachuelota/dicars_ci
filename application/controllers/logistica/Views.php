@@ -159,10 +159,11 @@ class Views extends CI_Controller
 	{
 		if($this->ion_auth->in_group("log_gen_kardex"))
 		{
+			$pagedata["local"] = $this->session->userdata('current_local');
 			$dataheader['title'] = 'Dicars - Kardex -';
 			$this->load->view('templates/headers.php',$dataheader);		
 			$this->load->view('templates/menu.php');
-			$this->load->view('logistica/kardex.php');
+			$this->load->view('logistica/kardex.php',$pagedata);
 			$datafooter['jsvista'] = 'assets/js/jsvistas/logistica/kardex.js';
 			$datafooter['active'] = 'gen_kardex';
 			$this->load->view('templates/footer.php',$datafooter);
