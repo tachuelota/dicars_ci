@@ -168,6 +168,14 @@ class Servicios extends CI_Controller {
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $detalles)));		
 	}
+	public function cierremes(){		
+			$id_local= $this->session->userdata('current_local')["nLocal_id"];
+			$this->load->model('logistica/Saldo_Model','sal');
+			$result=$this->sal->cierremes($id_local);
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
+	}
 
 	
 

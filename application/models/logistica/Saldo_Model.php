@@ -26,4 +26,12 @@ class Saldo_Model extends CI_Model {
 		$query = $this->db->query($procedure);	
 		return $query -> result_array();
 	}
+
+	public function cierremes($id_local){
+
+		$procedure="call spI_cierreMes(".$id_local.")";
+
+		$query = $this->db->query($procedure);	
+		return $query -> result_array();
+	}
 }

@@ -60,7 +60,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="index.html">
+				<a class="brand" href="<?php echo base_url();?>">
 					<?php 
 						$image_logo = array
 						(

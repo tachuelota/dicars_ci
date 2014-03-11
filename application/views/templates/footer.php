@@ -108,7 +108,7 @@
 			$('#btn-cierremes').click(function(){
 				$('#modalcierremes').modal('hide');
 				var ajax = $.ajax({
-					url: "<?php echo base_url();?>"+2,
+					url: base_url+"logistica/Servicios/cierremes",
 					dataType: "json",
 					async: false
 				});
