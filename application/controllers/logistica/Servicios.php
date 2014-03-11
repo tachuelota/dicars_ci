@@ -184,7 +184,7 @@ class Servicios extends CI_Controller {
 			$result=$this->sal->cierremes($id_local);
 		$this->output
 			->set_content_type('application/json')
-			->set_output(json_encode(array('aaData' => $result)));		
+			->set_output(json_encode(array('Ok')));		
 	}
 
 	
