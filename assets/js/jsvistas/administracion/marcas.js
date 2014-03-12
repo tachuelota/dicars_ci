@@ -20,8 +20,15 @@ $(document).ready(function(){
 
 	successMarca = function(){
 		$('#modalMarca').modal('hide');
-		MarcasTable.fnReloadAjax()
+		MarcasTable.fnReloadAjax()		
 	}
+
+	$('#modalMarca').on('hidden', function(){		
+		$("#MarcaForm").reset();
+		$('#modalMarca').modal('hide');
+		$("#btn-reg-marca").show();
+		$("#btn-editar-marca").hide();
+	});
 	
 	//mostrar Buscar Cliente------------------------------------>
 	$('.btn-registrar').click(function(e){

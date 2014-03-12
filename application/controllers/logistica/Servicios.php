@@ -20,6 +20,14 @@ class Servicios extends CI_Controller {
 			->set_output(json_encode(array('aaData' => $result)));		
 	}
 
+	public function getProductosLog(){
+		$this->load->model('logistica/Producto_Model','prod');
+		$result = $this->prod->get_produtolog();
+		$this->output
+			->set_content_type('application/json')
+			->set_output(json_encode(array('aaData' => $result)));		
+	}
+
 	public function getProveedor(){		
 		$this->load->model('logistica/Proveedor_Model','pro');
 		$result = $this->pro->get_proveedor();

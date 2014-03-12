@@ -68,6 +68,17 @@ class Producto_model extends CI_Model
 		$query = $this ->db->query('select * from ven_producto_all where nLocal_id='.$local["nLocal_id"].' and nProducto_id='.$nProducto_id);
 		return $query->row_array();
 	}
+	public function get_produtolog($nProducto_id = False)
+	{
+		$local = $this->session->userdata('current_local');
+		if($nProducto_id === FALSE )
+		{
+			$query = $this ->db->query('select * from log_productos_all where nLocal_id='.$local["nLocal_id"]);
+			return $query -> result_array();
+		}
+		$query = $this ->db->query('select * from log_productos_all where nLocal_id='.$local["nLocal_id"].' and nProducto_id='.$nProducto_id);
+		return $query->row_array();
+	}
 
 	public function get_byoferta($nOferta_id)
 	{

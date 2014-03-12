@@ -34,9 +34,15 @@ $(document).ready(function(){
 	};
 
 	var successEditarOferta = function(data){
-		BuscarProdTable.fnReloadAjax();
-		OfertaProductoTable.fnReloadAjax();
-	};
+		$.unblockUI({
+            onUnblock: function(){
+            	BuscarProdTable.fnReloadAjax();
+				OfertaProductoTable.fnReloadAjax();
+	            $(location).attr("href",base_url+"administracion/views/ofertas"); 
+            } 
+        });
+	}
+	
 
 	$('#btn-buscarproducto').click(function(event){
 		event.preventDefault();
@@ -55,11 +61,21 @@ $(document).ready(function(){
 		UnselectRow("select_producto_table");
 	});
 
-	$('#enviar_editar').click(function(event){
-		event.preventDefault();
-		if($("#OfertasForm").validationEngine('validate'))
-		enviar($("#OfertasForm").attr("action-1"),PrepararDatosOferta(), successEditarOferta, null)
+	
+
+	$("#enviar_editar").click(function(event){
+	event.preventDefault();	
+		if($("#OfertasForm").validationEngine('validate'))			
+			$.blockUI({ 
+					onBlock: function()
+					{ 
+						enviar($("#OfertasForm").attr("action-1"),PrepararDatosOferta(), successEditarOferta, null)
+			
+					}
+	    		});	
+	
 	});
+	
 
 	BuscarProdOptions = {
 		"aoColumns":[
@@ -67,8 +83,8 @@ $(document).ready(function(){
 			{ "sWidth": "12%","mDataProp": "producto"},
 			{ "sWidth": "12%","mDataProp": "precio"},
 			{ "sWidth": "12%","mDataProp": "cMarcaDesc"},
-			{ "sWidth": "12%","mDataProp": "cCategoriaNom"},
-			{ "sWidth": "12%","mDataProp": "cConstanteDesc"}
+			{ "sWidth": "12%","mDataProp": "cConstanteDesc"},
+			{ "sWidth": "12%","mDataProp": "cCategoriaNom"}
 		              ],
 		"sDom":"t<'row-fluid'<'span12'i><'span12 center'p>>",
 		"fnCreatedRow":getMultipleSelectRowCallBack(SelectProductoData)

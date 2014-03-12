@@ -274,7 +274,7 @@ class Views extends CI_Controller
 			redirect('/logistica', 'refresh');
 	}
 
-	public function cons_pedidos()
+	/*public function cons_pedidos()
 	{
 		if($this->ion_auth->in_group("log_ord_ped"))
 		{
@@ -325,6 +325,6 @@ class Views extends CI_Controller
 		}
 		else
 			redirect('/logistica', 'refresh');
-	}
+	} */
 	
 }
