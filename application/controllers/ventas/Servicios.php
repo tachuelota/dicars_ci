@@ -5,8 +5,8 @@ class Servicios extends CI_Controller {
 	public function getClientes()
 	{
 		$this->load->model('ventas/Clientes_Model','climod');
-		$result = $this->climod->get_clientes();
-	$this->output
+		$result = $this->climod->get_clientes();	
+		$this->output
 			->set_content_type('application/json')
 			->set_output(json_encode(array('aaData' => $result)));
 	}

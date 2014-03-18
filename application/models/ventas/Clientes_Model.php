@@ -47,16 +47,18 @@ class Clientes_Model extends CI_Model {
 	}
 
 
+ 	
  	public function get_clientes($nCliente_id = FALSE)
 	{
 		if($nCliente_id === FALSE )
 		{
-			$query = $this ->db->get ('ven_cliente');
+			$query = $this->db->query("SELECT * FROM ven_cliente_all;");
 			return $query -> result_array();
 		}
 		$query = $this->db->get_where('ven_cliente', array('nCliente_id' => $nCliente_id));
 		return $query->row_array();
 	}
+ 	
 
 	public function get_clientesmorosos()
 	{
@@ -74,5 +76,6 @@ class Clientes_Model extends CI_Model {
 		$query = $this->db->get_where('ven_cliente', array('cClienteDNI' => "00000000"));
 		return $query->row_array();
 	}
+
 
 }

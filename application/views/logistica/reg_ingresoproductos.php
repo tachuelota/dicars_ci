@@ -200,7 +200,7 @@
 							<h3>Productos</h3>
 						</div>
 						<div class="modal-body">
-							<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getProductos" >
+							<table id="select_producto_table" class="table table-striped table-bordered bootstrap-datatable datatable" data-source="<?php echo base_url();?>logistica/Servicios/getProductosLog" >
 								<thead>
 									<tr>
 										<th>Código</th>

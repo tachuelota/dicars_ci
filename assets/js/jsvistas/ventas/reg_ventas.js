@@ -294,6 +294,12 @@ $(document).ready(function(){
 	$("#select_producto").click(function(event){
 		event.preventDefault();
 		var data = SelectProductoData[0];
+		$('#cantidad').removeClass();
+		$('#cantidad').addClass("validate[required,custom[number],min[1],max["+data.nProductoStock+"]]");
+		$('#modpcontado').removeClass();
+		$('#modpcontado').addClass("validate[required,custom[number],min[1],max["+data.PrecioContado_Dscto+"]]");
+		$('#modpcredito').removeClass();
+		$('#modpcredito').addClass("validate[required,custom[number],min[1],max["+data.PrecioCredito_Dscto+"]]");
 		$('#producto').val(data.cProductoCodBarra);
 		$('#cantidad').val("1");
 		$('#modalBuscarProducto').modal('hide');
@@ -303,19 +309,21 @@ $(document).ready(function(){
 
 	$("#agregar_producto").click(function(event){
 		event.preventDefault();
-		if(SelectProductoData.length > 0){
-			SelectProductoData[0].nDetVentaCant = $('#cantidad').val();
-			SelectProductoData[0].PrecioContado_Dscto = $('#modpcontado').val();
-			SelectProductoData[0].PrecioCredito_Dscto = $('#modpcredito').val();
-			VentaProdTable.fnAddData(SelectProductoData);
-			$('#producto').val("");
-			$('#cantidad').val("");
-			$('#modpcontado').val("");
-			$('#modpcredito').val("");
-			SelectProductoData.splice(0,SelectProductoData.length);
-			$("#total_contado").text(totalcontado = (sumArrayByAttr(VentaProdTable.fnGetData(),'PrecioContado_Dscto','nDetVentaCant')).toFixed(2));
-			$("#total_credito").text(totalcredito = (sumArrayByAttr(VentaProdTable.fnGetData(),'PrecioCredito_Dscto','nDetVentaCant')).toFixed(2));
-		}
+		if(SelectProductoData.length > 0)
+			if(!$("#cantidad").validationEngine("validate") && !$("#modpcontado").validationEngine("validate") && !$("#modpcredito").validationEngine("validate"))
+			{
+				SelectProductoData[0].nDetVentaCant = $('#cantidad').val();
+				SelectProductoData[0].PrecioContado_Dscto = $('#modpcontado').val();
+				SelectProductoData[0].PrecioCredito_Dscto = $('#modpcredito').val();
+				VentaProdTable.fnAddData(SelectProductoData);
+				$('#producto').val("");
+				$('#cantidad').val("");
+				$('#modpcontado').val("");
+				$('#modpcredito').val("");
+				SelectProductoData.splice(0,SelectProductoData.length);
+				$("#total_contado").text(totalcontado = (sumArrayByAttr(VentaProdTable.fnGetData(),'PrecioContado_Dscto','nDetVentaCant')).toFixed(2));
+				$("#total_credito").text(totalcredito = (sumArrayByAttr(VentaProdTable.fnGetData(),'PrecioCredito_Dscto','nDetVentaCant')).toFixed(2));
+			}
 	});
 
 	$("#btn-select-cliente").click(function(event){

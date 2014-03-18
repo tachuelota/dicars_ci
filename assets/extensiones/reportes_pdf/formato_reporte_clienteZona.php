@@ -1,5 +1,6 @@
 <?php
 $title = $_POST['title'];
+$table_resumen = $_POST['table_resumen'];
 $table_clientes = $_POST['table_clientes'];
 
 ob_start();
@@ -79,6 +80,7 @@ ob_start();
 			</table>	
 				Fecha Emision: <?php echo date('d/m/Y'); ?><br>
 			<br>
+			<br><?php echo $table_resumen ?><br>
 		<?php echo $table_clientes ?><br>
 			<br>
 		</div>

@@ -5,8 +5,8 @@ $(document).ready(function(){
 	var RowCallBackFunctionZonaPersonal;
 	var tabla_clientes;
 
-	var	urlExportXLS = base_url +"assets/extensiones/reportes_xls/formato_reporte_clientes.php";
-	var	urlExportPDF = base_url +"assets/extensiones/reportes_pdf/formato_reporte_clientes.php";
+	var	urlExportXLS = base_url +"assets/extensiones/reportes_xls/formato_reporte_clienteZona.php";
+	var	urlExportPDF = base_url +"assets/extensiones/reportes_pdf/formato_reporte_clienteZona.php";
 
 	var SelectZona = null;
 

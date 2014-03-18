@@ -33,7 +33,7 @@ $("#ClienteForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3
 		$("#lineaop").val(aData.nClienteLineaOp);	
 		$("#ocupacion").val(aData.cClienteOcup);		
 		$("#idClientes").val(aData.nCliente_id);
-		//cargarUbigeo(Ubigeos,"dist", "prov", "dep",aData.);
+		cargarUbigeo(Ubigeos,"dist", "prov", "dep",aData.nUbigeo_id);
 		cargarZonas();
 		},
 	});
@@ -95,7 +95,7 @@ $("#ClienteForm").validationEngine('attach',{autoHidePrompt:true,autoHideDelay:3
 				['ID','NOMBRE','DNI','LINEA OPERATIVA','ZONA','DIRECCIÓN'],
 				[	'style="width: 5%;" class="head" ','style="width: 25%;" class="head" ','style="width: 15%;" class="head" ',
 					'style="width: 15%;" class="head" ','style="width: 15%;" class="head" ','style="width: 25%;" class="head" ',],
-				['nCliente_id','cClienteNom','cClienteDNI','nClienteLineaOp','nZona_id','cClientecDir'],
+				['nCliente_id','cClienteNom','cClienteDNI','nClienteLineaOp','cZonaDesc','cClientecDir'],
 				[	'style="width: 5%;" ','style="width: 25%;" ','style="width: 15%;" ',
 					'style="width: 15%;" ','style="width: 15%;" ','style="width: 25%;" '],
 					ClientesTable.fnGetData()));
