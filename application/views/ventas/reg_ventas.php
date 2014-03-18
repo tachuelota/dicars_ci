@@ -87,7 +87,7 @@
 										<td id='total_contado'>0</td>
 										<td id='total_credito'>0</td>
 									</tr>
-								</tfoo>
+								</tfoot>
 							</table>
 						</div>
 					<div class="tab-pane" id="tab2">

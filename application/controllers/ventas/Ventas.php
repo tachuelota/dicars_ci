@@ -108,7 +108,6 @@ class Ventas extends CI_Controller {
 
 				foreach ($productos as $key => $prod)
 				{
-					$this->get_producto();
 					$productos[$key]["nVenta_id"] = $nVenta_id;
 					if($form["forma_pago"] != '3')
 					{
